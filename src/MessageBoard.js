@@ -1,13 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import styled from '@emotion/styled';
+import Dashboard from './Components/AddMessages/Dashboard';
+import Messages from './Components/Messages/Messages';
 
-function MessageBoard() {
+const Container = styled.main`
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  grid-gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+`;
+
+const MessageBoard = () => {
   return (
-    <div className="App">
-      <span />
-    </div>
+    <Container>
+      <Dashboard />
+      <Messages />
+    </Container>
   );
-}
+};
 
 export default MessageBoard;
