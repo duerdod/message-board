@@ -1,0 +1,7 @@
+type Message {
+  id: ID! @id
+  title: String!
+  message: String!
+  author: String!
+  date: String!
+}
