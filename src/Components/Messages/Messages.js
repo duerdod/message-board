@@ -2,7 +2,8 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import styled from '@emotion/styled';
-import Message from './Message';
+import Message, { DummyMessage } from './Message';
+import message from '../../data';
 
 const GET_ALL_MESSAGES = gql`
   query GET_ALL_MESSAGES {
@@ -18,23 +19,28 @@ const GET_ALL_MESSAGES = gql`
 
 const MessagesContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-gap: 1rem;
-  /* background: #fafafa; */
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-rows: minmax(160px, auto);
+  grid-auto-flow: dense;
+  grid-gap: 0.5rem;
+  transition: all 0.2s ease;
 `;
 
-const Messages = () => {
+const dummy = {
+  id: 1,
+  title: 'd',
+  message: '',
+  author: 'erik bajs',
+  date: Date.now()
+};
+
+const Messages = ({ values }) => {
   return (
     <MessagesContainer>
-      <Query query={GET_ALL_MESSAGES}>
-        {({ data, loading, error }) => {
-          if (error) return 'Error';
-          if (loading) return 'Loading';
-          return data.messages.map(message => (
-            <Message key={message.id} message={message} />
-          ));
-        }}
-      </Query>
+      {Object.keys(values).length >= 1 ? <DummyMessage dummy={values} /> : null}
+      {message.map(message => (
+        <Message key={message.id} message={message} />
+      ))}
     </MessagesContainer>
   );
 };

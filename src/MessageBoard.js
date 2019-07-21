@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from '@emotion/styled';
-import Dashboard from './Components/AddMessages/Dashboard';
+import FormContainer from './Components/AddMessages/Dashboard';
 import Messages from './Components/Messages/Messages';
+import useForm from './Components/AddMessages/useForm';
 
 const Container = styled.main`
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: 350px 1fr;
   grid-gap: 1rem;
   max-width: 1200px;
   margin: 0 auto;
@@ -13,10 +14,21 @@ const Container = styled.main`
 `;
 
 const MessageBoard = () => {
+  const { values, handleChange, handleSubmit } = useForm();
+  const initState = {
+    author: '',
+    title: '',
+    message: ''
+  };
+
   return (
     <Container>
-      <Dashboard />
-      <Messages />
+      <FormContainer
+        values={values}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+      />
+      <Messages values={values} />
     </Container>
   );
 };

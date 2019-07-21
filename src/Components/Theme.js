@@ -5,8 +5,8 @@ const Theme = {
   white: '#fffbf5',
   main: '#a4abb0',
   border: `2px solid #383838`,
-  sansSerif: 'Source Sans Pro',
-  serif: 'DM Serif Text'
+  sansSerif: 'Source Sans Pro, sans-serif',
+  serif: 'DM Serif Text, serif'
 };
 
 export const resetStyles = css``;
