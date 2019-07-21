@@ -4,7 +4,7 @@ import messages from '../../data';
 import { truncatingText, addMessageTime } from '../../utils';
 
 const SingleMessage = styled.div`
-  background: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.backgroundWhite};
   padding: 0.5rem 1.5rem;
   border-radius: 3px;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px;
@@ -28,13 +28,18 @@ const ReadMore = styled.button`
   outline: 0;
   border: 0;
   text-decoration: underline;
-  text-decoration-color: ${({ theme }) => theme.black};
+  color: #799797;
+  /* text-decoration-color: ${({ theme }) => theme.black}; */
   padding: 0.2rem 0.4rem;
   display: block;
   width: 80px;
   margin: 1rem auto;
   cursor: pointer;
   grid-area: 'reademore';
+  transition: all 0.2s ease;
+  &:hover {
+    color: ${({ theme }) => theme.dark};
+  }
 `;
 
 const Header = styled.header`
@@ -45,7 +50,7 @@ const Header = styled.header`
 const MessageTitle = styled.h2`
   font-size: 1rem;
   margin: 0.5rem 0 0 0;
-  color: ${({ theme }) => theme.black};
+  color: ${({ theme }) => theme.dark};
 `;
 
 const MessageContainer = styled.div`
@@ -66,6 +71,7 @@ const MessageText = styled.p`
   font-size: 0.85rem;
   grid-area: 'body';
   align-self: start;
+  color: ${({ theme }) => theme.dark};
 `;
 
 const Footer = styled.footer`
@@ -78,6 +84,7 @@ const Footer = styled.footer`
 
   > * {
     font-size: 0.65rem;
+    color: ${({ theme }) => theme.dark};
   }
 `;
 
