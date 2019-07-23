@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Global } from '@emotion/core';
 import { ThemeProvider } from 'emotion-theming';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
-import './index.css';
+// import './index.css';
 import MessageBoard from './MessageBoard';
 import * as serviceWorker from './serviceWorker';
-import Theme from './Components/Theme';
+import theme, { reset } from './Components/Theme';
 
 const client = new ApolloClient({
   uri: 'http://localhost:4000',
@@ -15,8 +16,11 @@ const client = new ApolloClient({
   }
 });
 
+const { styles } = reset;
+
 const App = () => (
-  <ThemeProvider theme={Theme}>
+  <ThemeProvider theme={theme}>
+    <Global styles={{ styles }} />
     <ApolloProvider client={client}>
       <MessageBoard />
     </ApolloProvider>

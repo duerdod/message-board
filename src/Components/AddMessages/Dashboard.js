@@ -1,8 +1,16 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import Button from '../Button';
+import config from '../../config';
+import { charCounter } from '../../utils';
 
-const Container = styled.div`
-  /* padding: 0.5rem; */
+const Container = styled.div``;
+
+const ContainerInner = styled.div`
+  background: ${({ theme }) => theme.white};
+  padding: 0.5rem 1rem;
+  border-radius: 3px;
+  box-shadow: ${({ theme }) => theme.boxShadow};
 `;
 
 const Title = styled.h2`
@@ -10,6 +18,8 @@ const Title = styled.h2`
   margin: 0;
   line-height: 1.2;
   color: ${({ theme }) => theme.main};
+  font-family: ${({ theme }) => theme.sansSerif};
+  ${p => p.red && `color: ${({ theme }) => theme.lightRed}`}
 `;
 
 const MessageForm = styled.form`
@@ -40,7 +50,7 @@ const Label = styled.label`
   display: block;
   font-size: 0.85rem;
   color: ${({ theme }) => theme.black};
-  width: 80%;
+  width: 90%;
   &::after {
     content: '';
     width: 100%;
@@ -48,46 +58,73 @@ const Label = styled.label`
     display: block;
     background-color: ${({ theme }) => theme.main};
   }
+  .counter {
+    text-align: right;
+    margin: 0;
+    font-size: 0.65rem;
+    color: ${({ theme }) => theme.main};
+  }
 `;
 
 const Input = styled.input``;
 
 const Textarea = styled.textarea`
-  height: 100px;
+  transition: 'all .2s ease';
+  overflow: hidden;
 `;
 
 const FormContainer = ({ handleSubmit, handleChange, values }) => {
+  let textFieldLength = values && values.message ? values.message.length : 0;
+  const increaseHeight = e => {
+    const { scrollHeight, clientHeight } = e.target;
+    if (scrollHeight > clientHeight) {
+      e.target.style.height = `${scrollHeight}px`;
+    }
+  };
+
   return (
     <Container>
-      <Title>Say something. Nice.</Title>
-      <MessageForm>
-        <Label>
-          <Input
-            type="text"
-            placeholder="Title"
-            name="title"
-            maxLength="50"
-            onChange={e => handleChange(e)}
-          />
-        </Label>
-        <Label>
-          <Textarea
-            placeholder="Message"
-            name="message"
-            maxLength="500"
-            onChange={e => handleChange(e)}
-          />
-        </Label>
-        <Label>
-          <Input
-            type="text"
-            placeholder="Name"
-            name="name"
-            maxLength="50"
-            onChange={e => handleChange(e)}
-          />
-        </Label>
-      </MessageForm>
+      <ContainerInner>
+        <Title>Say something</Title>
+        <Title style={{ color: '#fcc6c9' }}>Nice.</Title>
+        <Title style={{ color: '#FF8B5C' }}>To the Internet.</Title>
+        <MessageForm>
+          <Label>
+            <Input
+              type="text"
+              placeholder="Title"
+              name="title"
+              maxLength="50"
+              onChange={e => handleChange(e)}
+            />
+          </Label>
+          <Label>
+            <Textarea
+              placeholder="Message"
+              name="message"
+              maxLength={config.messageLength}
+              onChange={e => {
+                handleChange(e);
+                increaseHeight(e);
+              }}
+              style={{ transition: 'all .2s ease', overflow: 'hidden' }}
+            />
+            <p className="counter">
+              {charCounter(textFieldLength, config.messageLength)}
+            </p>
+          </Label>
+          <Label>
+            <Input
+              type="text"
+              placeholder="Name"
+              name="name"
+              maxLength="50"
+              onChange={e => handleChange(e)}
+            />
+          </Label>
+          <Button onClick={handleSubmit}>Post</Button>
+        </MessageForm>
+      </ContainerInner>
     </Container>
   );
 };
