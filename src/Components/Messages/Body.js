@@ -19,7 +19,7 @@ const MessageContainer = styled.div`
 const MessageText = styled.p`
   font-size: 0.85rem;
   grid-area: body;
-  align-self: start;
+
   color: ${({ theme }) => theme.dark};
 `;
 

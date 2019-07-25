@@ -20,11 +20,9 @@ const ReadMore = styled.button`
 `;
 
 const StyledArrow = styled(IoIosArrowDown)`
-  ${p =>
-    p.isExapanded &&
-    `
-    transform: rotate(0.5turn)
-`}
+  &.open {
+    transform: rotate(0.5turn);
+  }
 `;
 
 const ReadMoreButton = ({
@@ -38,7 +36,7 @@ const ReadMoreButton = ({
   return messageLength >= config.messageTruncateLength ? (
     <ReadMore onClick={() => handleClick(true, id)}>
       {isContainerExpanded(isExapanded, id, clickedMessageId) ? (
-        <StyledArrow isExapanded={true} />
+        <StyledArrow className="open" />
       ) : (
         <StyledArrow />
       )}

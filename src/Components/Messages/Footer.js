@@ -5,11 +5,10 @@ import ReadMoreButton from './ReadMoreButton';
 
 const Container = styled.footer`
   grid-area: footer;
-  display: flex;
-  justify-content: space-around;
   padding: 0.5rem 0;
   width: 100%;
-
+  display: flex;
+  justify-content: space-between;
   > * {
     font-size: 0.65rem;
     color: ${({ theme }) => theme.dark};

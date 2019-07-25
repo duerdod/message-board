@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import Button from '../Button';
 import config from '../../config';
 import { charCounter } from '../../utils';
+import { FiSend } from 'react-icons/fi';
 
 const Container = styled.div``;
 
@@ -74,7 +75,9 @@ const Textarea = styled.textarea`
 `;
 
 const FormContainer = ({ handleSubmit, handleChange, values }) => {
+  // Passed to charCounter fn.
   let textFieldLength = values && values.message ? values.message.length : 0;
+  // Used to increase height when typing message.
   const increaseHeight = e => {
     const { scrollHeight, clientHeight } = e.target;
     if (scrollHeight > clientHeight) {
@@ -88,7 +91,11 @@ const FormContainer = ({ handleSubmit, handleChange, values }) => {
         <Title>Say something</Title>
         <Title style={{ color: '#fcc6c9' }}>Nice.</Title>
         <Title style={{ color: '#FF8B5C' }}>To the Internet.</Title>
-        <MessageForm>
+        <MessageForm
+          onSubmit={e => {
+            e.preventDefault();
+          }}
+        >
           <Label>
             <Input
               type="text"
@@ -122,7 +129,13 @@ const FormContainer = ({ handleSubmit, handleChange, values }) => {
               onChange={e => handleChange(e)}
             />
           </Label>
-          <Button onClick={handleSubmit}>Post</Button>
+          <Button
+            fn={() => {
+              console.log('hej');
+            }}
+          >
+            Post <FiSend style={{ lineHeight: '0' }} />
+          </Button>
         </MessageForm>
       </ContainerInner>
     </Container>

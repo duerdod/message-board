@@ -11,6 +11,9 @@ const Container = styled.main`
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
+  @media screen and (max-width: 40em) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const MessageBoard = () => {

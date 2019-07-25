@@ -11,12 +11,9 @@ const theme = {
   border: `2px solid #383838`,
   boxShadow: '0 2px 6px 0 hsla(0, 0%, 0%, 0.2)',
   sansSerif: 'Source Sans Pro, sans-serif',
-  fredokaOne: 'Fredoka One',
+  secondary: 'Fredoka One',
   serif: 'DM Serif Text, serif'
 };
-
-// https://pigment.shapefactory.co/?s=0&a=617D7D&b=EBC28B
-// https://pigment.shapefactory.co/?d=0&a=FF6A35&b=2D5344
 
 export const buttonGradient = `
     background: linear-gradient(
@@ -30,6 +27,9 @@ export const reset = css`
     background: ${theme.bg};
     color: ${theme.black};
     font-family: ${theme.sansSerif};
+  }
+  html * {
+    box-sizing: border-box;
   }
 `;
 

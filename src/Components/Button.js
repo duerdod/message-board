@@ -24,8 +24,8 @@ const ThemeButton = styled.button`
   }
 `;
 
-const Button = props => {
-  return <ThemeButton>{props.children}</ThemeButton>;
+const Button = ({ children, fn }) => {
+  return <ThemeButton onClick={fn}>{children}</ThemeButton>;
 };
 
 export default Button;
