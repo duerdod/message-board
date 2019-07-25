@@ -5,7 +5,7 @@ const mockedMessages = [
     message:
       'Jived fox nymph grabs quick waltz, nymph grabs quick waltz, fox nymph grabs quick waltz',
     author: 'erik ',
-    date: 1563967874186
+    date: 1564052682536
   },
   {
     id: 2,
