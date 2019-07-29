@@ -21,9 +21,10 @@ export const GET_ALL_MESSAGES = gql`
 
 const MessagesContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  grid-template-columns: repeat(4, minmax(140px, 1fr));
+  grid-template-columns: repeat(2, minmax(140px, 1fr));
+  grid-auto-flow: row dense;
   grid-gap: 0.8rem;
-  margin: 0 auto;
   .expanded {
     grid-row-end: span 2;
   }

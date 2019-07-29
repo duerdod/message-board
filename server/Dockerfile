@@ -1,11 +1,11 @@
 FROM node:11-alpine
 
-WORKDIR /board
+WORKDIR /server
 
 COPY package*.json ./
 
 RUN yarn install
 
-EXPOSE 3000
+EXPOSE 8000
 
-CMD [ "yarn", "start" ]
+CMD [ "yarn", "dev" ]

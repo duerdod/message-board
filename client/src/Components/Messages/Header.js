@@ -9,6 +9,7 @@ const HeaderWrapper = styled.header`
   justify-content: space-between;
   align-content: center;
   align-items: center;
+  padding: 0.5rem 0.8rem 0 0.8rem;
 `;
 
 const AuthorContainer = styled.span`
