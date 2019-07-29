@@ -1,13 +1,49 @@
-const { GraphQLServer } = require('graphql-yoga');
-const Prisma = require('../generated/prisma-client/index');
+const { ApolloServer, gql } = require('apollo-server-express');
+const { prisma } = require('../generated/prisma-client/index');
 const Query = require('./resolvers/Query');
 const Mutation = require('./resolvers/Mutation');
 
+// Apollo Server 2 uses gwl.
+// Separate it from createServer.
+const typeDefs = gql`
+  type Message {
+    id: ID!
+    title: String!
+    message: String!
+    author: String!
+    date: String
+  }
+
+  type Query {
+    messages: [Message]
+  }
+
+  type Mutation {
+    addMessage(
+      title: String!
+      message: String!
+      author: String!
+      date: String
+    ): Message
+  }
+`;
+
+const corsOptions = {
+  origin: '*',
+  credentials: true
+};
+
 function createServer() {
-  return new GraphQLServer({
-    typeDefs: './src/schema.graphql',
-    resolvers: { Query },
-    context: Prisma
+  return new ApolloServer({
+    cors: corsOptions,
+    typeDefs,
+    resolvers: { Query, Mutation },
+    // Surfaces prisma db.
+    context: ({ req, res }) => ({
+      ...req,
+      ...res,
+      prisma
+    })
   });
 }
 

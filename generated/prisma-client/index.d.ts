@@ -120,7 +120,7 @@ export interface MessageCreateInput {
   title: String;
   message: String;
   author: String;
-  date: String;
+  date?: Maybe<String>;
 }
 
 export interface MessageUpdateInput {
@@ -269,7 +269,7 @@ export interface MessagePreviousValues {
   title: String;
   message: String;
   author: String;
-  date: String;
+  date?: String;
 }
 
 export interface MessagePreviousValuesPromise
@@ -339,7 +339,7 @@ export interface Message {
   title: String;
   message: String;
   author: String;
-  date: String;
+  date?: String;
 }
 
 export interface MessagePromise extends Promise<Message>, Fragmentable {

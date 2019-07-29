@@ -18,7 +18,7 @@ type Message {
   title: String!
   message: String!
   author: String!
-  date: String!
+  date: String
 }
 
 type MessageConnection {
@@ -32,7 +32,7 @@ input MessageCreateInput {
   title: String!
   message: String!
   author: String!
-  date: String!
+  date: String
 }
 
 type MessageEdge {
@@ -58,7 +58,7 @@ type MessagePreviousValues {
   title: String!
   message: String!
   author: String!
-  date: String!
+  date: String
 }
 
 type MessageSubscriptionPayload {

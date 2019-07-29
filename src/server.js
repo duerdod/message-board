@@ -1,21 +1,37 @@
 require('dotenv').config();
 const express = require('express');
-// const createServer = require('./createServer');
-// const server = createServer();
-const port = 8000;
-const server = express();
+const app = express();
+const createServer = require('./createServer');
+const server = createServer();
+const cookieParser = require('cookie-parser');
 
-// Middleware
-server.use(express.json());
+// ENV
+const port =
+  process.env.NODE_ENV === 'development' ? 8000 : process.env.API_PORT;
+const hostname =
+  process.env.NODE_ENV === 'development' ? '0.0.0.0' : process.env.API_HOSTNAME;
+
+const corsOptions = {
+  origin: '*',
+  credentials: true
+};
+
+// Middlewares
+// Cookies
+app.use(cookieParser());
+
+// Read req/req body
+app.use(express.json());
 
 // Debugging
-server.use((req, res, next) => {
-  console.log(req.header);
-  next();
-});
+if (process.env.NODE_ENV === 'development') {
+  app.use((req, res, next) => {
+    next();
+  });
+}
 
-// server.get('/hej', (req, res) => console.log(req));
+// Apply Express as middleware to Apollo Server.
+server.applyMiddleware({ app, cors: corsOptions });
 
-server.listen({ port, hostname: '0.0.0.0' }, () =>
-  console.log(`Listen to ${port}`)
-);
+// Start
+app.listen({ port, hostname }, () => console.log(`Listen to ${port}`));

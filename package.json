@@ -10,11 +10,14 @@
   "author": "erikp",
   "license": "ISC",
   "dependencies": {
+    "apollo-server": "^2.7.2",
+    "apollo-server-express": "^2.7.2",
+    "cookie-parser": "^1.4.4",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "express-graphql": "^0.9.0",
     "graphql": "^14.4.2",
-    "graphql-yoga": "^1.18.1",
+    "morgan": "^1.9.1",
     "nodemon": "^1.19.1",
     "prisma-client-lib": "^1.34.2"
   }

@@ -2,7 +2,7 @@ FROM node:11-alpine
 
 WORKDIR /board-api
 
-COPY package.json ./
+COPY package*.json ./
 
 RUN yarn install
 

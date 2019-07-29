@@ -3,5 +3,5 @@ type Message {
   title: String!
   message: String!
   author: String!
-  date: String!
+  date: String
 }
