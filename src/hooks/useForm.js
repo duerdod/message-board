@@ -1,15 +1,16 @@
 import { useState } from 'react';
 
 // Use form hook.
-const useForm = callback => {
+const useForm = () => {
   // Init with empty state.
   const [values, setValues] = useState({});
 
   // On submit
-  const handleSubmit = e => {
+  const handleSubmit = (e, action) => {
     if (e) e.preventDefault();
-    // Exec callback.
-    callback();
+    action();
+    // Set empty state also removes the message if the mutation did not succeed. Rewrite to handle errors.
+    setValues({});
   };
 
   const handleChange = e => {

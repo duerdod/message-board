@@ -30,6 +30,7 @@ const Author = styled.span`
 
 const Timestamp = styled.span`
   font-size: 0.75rem;
+  opacity: 0.6;
 `;
 
 const Header = ({ message }) => {

@@ -8,6 +8,7 @@ const theme = {
   red: '#d47666',
   lightRed: '#fcc6c9',
   redGradient: '#f97a82, #f27179, #eb6970, #e46067, #dd575e',
+  error: '#B6051F',
   border: `2px solid #383838`,
   boxShadow: '0 2px 6px 0 hsla(0, 0%, 0%, 0.2)',
   sansSerif: 'Source Sans Pro, sans-serif',
@@ -27,6 +28,9 @@ export const reset = css`
     background: ${theme.bg};
     color: ${theme.black};
     font-family: ${theme.sansSerif};
+  }
+  html {
+    font-size: 15px;
   }
   html * {
     box-sizing: border-box;

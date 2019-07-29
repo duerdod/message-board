@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { buttonGradient } from './Theme';
+import { buttonGradient } from '../Theme';
 
 const ThemeButton = styled.button`
   margin: 1rem 0;
@@ -22,10 +22,19 @@ const ThemeButton = styled.button`
     transform: scale(1.01);
     box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.1);
   }
+  ${p =>
+    p.disabled &&
+    `
+    opacity: 0.3;
+  `}
 `;
 
-const Button = ({ children, fn }) => {
-  return <ThemeButton onClick={fn}>{children}</ThemeButton>;
+const Button = ({ children, fn, disabled = true }) => {
+  return (
+    <ThemeButton disabled={disabled} onClick={fn}>
+      {children}
+    </ThemeButton>
+  );
 };
 
 export default Button;

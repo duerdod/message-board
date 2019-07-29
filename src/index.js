@@ -8,7 +8,7 @@ import MessageBoard from './MessageBoard';
 import theme, { reset } from './Components/Theme';
 
 const client = new ApolloClient({
-  uri: 'http://localhost:4000',
+  uri: '/graphql',
   fetchOptions: {
     mode: 'cors'
   }
@@ -16,13 +16,15 @@ const client = new ApolloClient({
 
 const { styles } = reset;
 
-const App = () => (
-  <ThemeProvider theme={theme}>
-    <Global styles={{ styles }} />
-    <ApolloProvider client={client}>
-      <MessageBoard />
-    </ApolloProvider>
-  </ThemeProvider>
-);
+const App = () => {
+  return (
+    <ThemeProvider theme={theme}>
+      <Global styles={{ styles }} />
+      <ApolloProvider client={client}>
+        <MessageBoard />
+      </ApolloProvider>
+    </ThemeProvider>
+  );
+};
 
 ReactDOM.render(<App />, document.getElementById('root'));

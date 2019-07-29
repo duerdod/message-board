@@ -9,7 +9,7 @@ export function truncateMessage(message, maxLength) {
 // Adds timestamp to each message. Should this really be handled client side?
 // Rewrite this. The output should be 1 minute ago, 4 hours ago etcetc., until there is a new date.
 export function addTimestamp(time) {
-  const added = new Date(time);
+  const added = new Date(Number(time));
   const now = new Date();
   const difference = now - added;
   const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
@@ -17,7 +17,9 @@ export function addTimestamp(time) {
   let timestamp = '';
   if (hours > 0 && hours < 24) {
     timestamp = `${hours} hours ago`;
-  } else if (hours <= 0) {
+  } else if (hours === 0 && minutes === 0) {
+    timestamp = `now`;
+  } else if (hours <= 1) {
     timestamp = `${minutes} minutes ago`;
   } else {
     timestamp = `${added.toLocaleDateString()}`;
@@ -26,6 +28,13 @@ export function addTimestamp(time) {
 }
 
 // Self explanatory.
-export function charCounter(text = 0, maxLength) {
-  return `${text} / ${maxLength}`;
+export function charCounter(inputCount = 0, maxLength) {
+  return `${inputCount} / ${maxLength}`;
 }
+
+// Trim fn. Strip "Network error:", "Graphql error:" etc.
+export const trimErrorMessage = message => {
+  var index = [...message].indexOf(':');
+  var errorMessage = message.substring(index + 2);
+  return errorMessage;
+};

@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import FormContainer from './Components/AddMessages/Dashboard';
-import Messages from './Components/Messages/Messages';
-import useForm from './Components/AddMessages/useForm';
+import AddMessageSection from './Components/Dashboard';
+import Messages from './Components/Messages';
 
 const Container = styled.main`
   display: grid;
@@ -17,16 +16,10 @@ const Container = styled.main`
 `;
 
 const MessageBoard = () => {
-  const { values, handleChange, handleSubmit } = useForm();
-
   return (
     <Container>
-      <FormContainer
-        values={values}
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
-      />
-      <Messages values={values} />
+      <AddMessageSection />
+      <Messages />
     </Container>
   );
 };
