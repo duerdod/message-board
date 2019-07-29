@@ -1,0 +1,7 @@
+endpoint: https://eu1.prisma.sh/erpe18-48bd69/board-api/dev
+datamodel: datamodel.prisma
+secret: ${env:PRISMA_SECRET}
+
+generate:
+  - generator: javascript-client
+    output: ./generated/prisma-client/
