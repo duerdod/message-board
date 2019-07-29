@@ -1,6 +1,7 @@
 ## Message Board
 
-Internet has no need for this application but it's still a work in progress.
+Internet has no need for this application but it's still a work in progress.  
+Comes with the most simplest word sanitizer for all you evil ones.
 
 Requires `Docker` and `docker-compose`,  
 do `docker-compose` and you're up.

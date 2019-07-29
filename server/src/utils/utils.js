@@ -1,4 +1,5 @@
 const Filter = require('bad-words');
+const cleanWithEmojis = new Filter({ placeHolder: '💩' });
 
 function addUserTimestamp(context) {
   // Add cookie.
@@ -10,7 +11,7 @@ function addUserTimestamp(context) {
 }
 
 function validateMessage(title, message, author) {
-  const minLength = 13;
+  const minLength = 2;
   if (title.length < minLength) {
     throw new Error('Not very much of a title.');
   }
@@ -22,7 +23,12 @@ function validateMessage(title, message, author) {
   }
 }
 
+function sanitizer(text) {
+  return cleanWithEmojis.clean(text);
+}
+
 module.exports = {
   addUserTimestamp,
-  validateMessage
+  validateMessage,
+  sanitizer
 };

@@ -18,7 +18,7 @@ export function addTimestamp(time) {
   if (hours > 0 && hours < 24) {
     timestamp = `${hours} hours ago`;
   } else if (hours === 0 && minutes === 0) {
-    timestamp = `now`;
+    timestamp = `just now`;
   } else if (hours <= 1) {
     timestamp = `${minutes} minutes ago`;
   } else {

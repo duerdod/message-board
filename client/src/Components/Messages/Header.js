@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { FiEye } from 'react-icons/fi';
-import { addTimestamp } from '../../utils';
+import { addTimestamp } from '../../utils/utils';
 
 const HeaderWrapper = styled.header`
   grid-area: header;

@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { addMessageTime } from '../../utils';
-import ReadMoreButton from './ReadMoreButton';
 
 const Container = styled.footer`
   grid-area: footer;
@@ -15,33 +13,8 @@ const Container = styled.footer`
   }
 `;
 
-const Author = styled.span``;
-
-const Date = styled.span``;
-
-const Footer = ({
-  message,
-  isContainerExpanded,
-  handleClick,
-  isExapanded,
-  clickedMessageId,
-  messageLength,
-  author
-}) => {
-  return (
-    <Container>
-      <Author>{author}</Author>
-      <ReadMoreButton
-        messageLength={messageLength}
-        isContainerExpanded={isContainerExpanded}
-        handleClick={handleClick}
-        isExapanded={isExapanded}
-        clickedMessageId={clickedMessageId}
-        id={message.id}
-      />
-      <Date>{addMessageTime()}</Date>
-    </Container>
-  );
+const Footer = () => {
+  return <Container />;
 };
 
 export default Footer;

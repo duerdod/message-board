@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { truncateMessage } from '../../utils';
+import { truncateMessage } from '../../utils/utils';
 import config from '../../config';
 
 const MessageContainer = styled.div`

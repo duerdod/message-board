@@ -1,4 +1,8 @@
-const { addUserTimestamp, validateMessage } = require('../utils/utils');
+const {
+  addUserTimestamp,
+  validateMessage,
+  sanitizer
+} = require('../utils/utils');
 
 const Mutation = {
   async addMessage(root, { title, message, author }, context) {
@@ -12,9 +16,9 @@ const Mutation = {
     const date = Date.now().toString();
     // Add message...
     const newMessage = await context.prisma.createMessage({
-      title,
-      message,
-      author,
+      title: sanitizer(title),
+      message: sanitizer(message),
+      author: sanitizer(author),
       date
     });
     // Add / update timestamp cookie.
