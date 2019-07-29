@@ -18,7 +18,7 @@ do `docker-compose` and you're up.
 ## Todo
 
 - [x] Attach to GraphQL server.
-- [-] Complete form and client side form validation.
+- [x] Complete form and client side form validation.
 - [x] Stop users from posting within a fixed time frame.
 - [ ] Message grid cleanup.
 - [ ] Add commenting possibility.
