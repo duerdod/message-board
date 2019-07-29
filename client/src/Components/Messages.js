@@ -21,12 +21,13 @@ export const GET_ALL_MESSAGES = gql`
 
 const MessagesContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, minmax(140px, 1fr));
-  grid-template-columns: repeat(2, minmax(140px, 1fr));
-  grid-auto-flow: row dense;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   grid-gap: 0.8rem;
   .expanded {
     grid-row-end: span 2;
+  }
+  .message {
+    /* padding: 1rem; */
   }
   @media screen and (max-width: 40em) {
     grid-template-columns: 1fr;
@@ -59,11 +60,11 @@ const MessagesGrid = ({ messages }) => {
     <MessagesContainer>
       {trailedMessages.map((props, i) => (
         <animated.div
-          className={
+          className={`message ${
             messages[i].message.length > config.messageTruncateLength
               ? 'expanded'
               : null
-          }
+          }`}
           style={props}
           key={messages[i].id}
         >

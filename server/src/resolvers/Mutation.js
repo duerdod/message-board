@@ -1,7 +1,8 @@
-const { addUserTimestamp } = require('../utils/utils');
+const { addUserTimestamp, validateMessage } = require('../utils/utils');
 
 const Mutation = {
   async addMessage(root, { title, message, author }, context) {
+    validateMessage(title, message, author);
     // Check if user is inside timeframe.
     if (context.cookies['last_message']) {
       throw new Error('Hang tight between yo messages, yo. 🥁');

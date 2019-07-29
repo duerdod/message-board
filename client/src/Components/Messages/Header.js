@@ -6,7 +6,7 @@ import { addTimestamp } from '../../utils';
 const HeaderWrapper = styled.header`
   grid-area: header;
   display: flex;
-  justify-content: space-between;
+  justify-content: initial;
   align-content: center;
   align-items: center;
   padding: 0.5rem 0.8rem 0 0.8rem;
@@ -15,6 +15,7 @@ const HeaderWrapper = styled.header`
 const AuthorContainer = styled.span`
   display: flex;
   align-items: center;
+  margin-right: 4px;
 `;
 
 // Hard coded avatar. Fix this.
@@ -30,8 +31,8 @@ const Author = styled.span`
 `;
 
 const Timestamp = styled.span`
-  font-size: 0.75rem;
-  opacity: 0.6;
+  font-size: 0.65rem;
+  opacity: 0.5;
 `;
 
 const Header = ({ message }) => {
@@ -43,7 +44,7 @@ const Header = ({ message }) => {
         </Avatar>
         <Author>{message.author}</Author>
       </AuthorContainer>
-      <Timestamp>{addTimestamp(message.date)}</Timestamp>
+      <Timestamp> &#8729; {addTimestamp(message.date)}</Timestamp>
     </HeaderWrapper>
   );
 };
