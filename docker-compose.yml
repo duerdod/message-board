@@ -2,28 +2,28 @@ version: '3'
 services:
   api:
     build:
-      context: ./board-api
+      context: ./packages/server
       dockerfile: Dockerfile
     expose:
       - 8000
     ports:
       - 8000:8000
     volumes:
-      - ./board-api:/board-api
-      - /board-api/node_modules
+      - ./packages/server:/packages/server
+      - ./packages/server/node_modules
     networks:
       - board-network
   board:
     build:
-      context: ./board
+      context: ./packages/client
       dockerfile: Dockerfile
     expose:
       - 3000
     ports:
       - 3000:3000
     volumes:
-      - ./board:/board
-      - /board/node_modules
+      - ./packages/client:/packages/client
+      - ./packages/client/node_modules
     depends_on:
       - api
     networks:
