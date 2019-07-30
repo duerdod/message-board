@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 const Container = styled.div`
-  padding: 1.5rem 1rem;
+  padding: 1rem 0.85rem 1.5rem 0.85rem;
   width: 100%;
 `;
 

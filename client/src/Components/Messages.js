@@ -21,13 +21,12 @@ export const GET_ALL_MESSAGES = gql`
 
 const MessagesContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  grid-gap: 0.8rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   .expanded {
-    grid-row-end: span 2;
+    grid-row: span 2;
   }
   .message {
-    /* padding: 1rem; */
+    margin: 0 0.5rem 0.5rem 0.5rem;
   }
   @media screen and (max-width: 40em) {
     grid-template-columns: 1fr;
@@ -63,7 +62,7 @@ const MessagesGrid = ({ messages }) => {
           className={`message ${
             messages[i].message.length > config.messageTruncateLength
               ? 'expanded'
-              : null
+              : ''
           }`}
           style={props}
           key={messages[i].id}

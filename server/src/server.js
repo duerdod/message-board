@@ -26,6 +26,8 @@ app.use(express.json());
 // Debugging
 if (process.env.NODE_ENV === 'development') {
   app.use((req, res, next) => {
+    console.log(req.path);
+    console.log(req.cookies);
     next();
   });
 }

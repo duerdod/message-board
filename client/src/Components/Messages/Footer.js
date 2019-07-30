@@ -2,19 +2,15 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 const Container = styled.footer`
-  grid-area: footer;
-  padding: 0.5rem 0;
   width: 100%;
   display: flex;
   justify-content: space-between;
-  > * {
-    font-size: 0.65rem;
-    color: ${({ theme }) => theme.dark};
-  }
+  padding: 0.7rem 0;
+  background: ${({ theme }) => theme.bgvariant};
 `;
 
 const Footer = () => {
-  return <Container />;
+  return <Container>hej</Container>;
 };
 
 export default Footer;

@@ -23,7 +23,7 @@ const Avatar = styled.span`
   display: inline-flex;
   padding: 6px;
   border-radius: 50%;
-  background: #f2f2f2;
+  background: ${({ theme }) => theme.bgvariant};
   margin-right: 6px;
 `;
 const Author = styled.span`
