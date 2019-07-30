@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import AddMessageSection from './Components/Dashboard';
+import AddMessageSection from './Components/Dashboard/Dashboard';
 import Messages from './Components/Messages';
 
 const Container = styled.main`

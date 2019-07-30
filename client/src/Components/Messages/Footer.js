@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
 import { FiUmbrella } from 'react-icons/fi';
-import { GET_ALL_MESSAGES } from '../Messages';
 
 const DISLIKE_MESSAGE = gql`
   mutation DISLIKE_MESSAGE($id: ID!) {
@@ -48,7 +47,21 @@ const Dislike = ({ id, dislikes }) => {
       variables={{ id }}
       refetchQueries={[
         {
-          query: GET_ALL_MESSAGES
+          query: gql`
+            query($id: ID!) {
+              message(id: $id) {
+                id
+                title
+                message
+                author
+                dislikes
+                date
+              }
+            }
+          `,
+          variables: {
+            id
+          }
         }
       ]}
     >
