@@ -7,13 +7,13 @@ const LoadingPage = styled.div`
   right: 0;
   left: 0;
   bottom: 0;
-  font-family: ${({ theme }) => theme.sansSerif};
+  font-family: ${({ theme }) => theme.secondary};
   background: ${({ theme }) => theme.bg};
 `;
 
 const Text = styled.h2`
   font-size: 2rem;
-  color: ${({ theme }) => theme.main};
+  color: ${({ theme }) => theme.darkGreen};
   text-align: center;
 `;
 

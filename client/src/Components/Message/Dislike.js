@@ -1,42 +1,12 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
-import { FiUmbrella } from 'react-icons/fi';
-import { GET_ALL_MESSAGES } from '../Messages';
-
-const GET_SINGLE_MESSAGE = gql`
-  query GET_SINGLE_MESSAGE($id: ID!) {
-    message(id: $id) {
-      title
-      message
-      author
-      dislikes
-      date
-    }
-  }
-`;
-
-const DISLIKE_MESSAGE = gql`
-  mutation DISLIKE_MESSAGE($id: ID!) {
-    dislikeMessage(id: $id) {
-      id
-      dislikes
-    }
-  }
-`;
-
-const Container = styled.footer`
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  padding: 0.5rem 0.5rem;
-  background: ${({ theme }) => theme.lightGrey};
-
-  > * {
-    font-size: 0.75rem;
-  }
-`;
+import { FiBell } from 'react-icons/fi';
+import {
+  DISLIKE_MESSAGE,
+  GET_ALL_MESSAGES,
+  GET_SINGLE_MESSAGE
+} from '../../gql/gql';
 
 const DislikeContainer = styled.label`
   display: flex;
@@ -44,6 +14,10 @@ const DislikeContainer = styled.label`
   align-content: center;
   line-height: 12px;
   cursor: pointer;
+  > svg {
+    color: ${({ theme }) => theme.yellow};
+    /* fill: ${({ theme }) => theme.yellow}; */
+  }
 `;
 
 const DislikeButton = styled.input`
@@ -71,10 +45,20 @@ const Dislike = ({ id, dislikes }) => {
     >
       {(dislikeMessage, { data, error, loading }) => {
         return (
-          <DislikeContainer htmlFor={`dislike-${id}`} onChange={dislikeMessage}>
+          <DislikeContainer
+            htmlFor={`dislike-${id}`}
+            onChange={dislikeMessage}
+            disabled={loading}
+          >
             <DislikeButton type="checkbox" id={`dislike-${id}`} />
             <Dislikees>{dislikes}</Dislikees>
-            <FiUmbrella />
+            <span
+              role="img"
+              aria-label="report message"
+              style={{ fontSize: '1rem' }}
+            >
+              🔔
+            </span>
           </DislikeContainer>
         );
       }}
@@ -82,12 +66,4 @@ const Dislike = ({ id, dislikes }) => {
   );
 };
 
-const Footer = ({ id, dislikes }) => {
-  return (
-    <Container>
-      <Dislike id={id} dislikes={dislikes} />
-    </Container>
-  );
-};
-
-export default Footer;
+export default Dislike;

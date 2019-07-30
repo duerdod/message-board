@@ -17,7 +17,9 @@ const ThemeButton = styled.button`
   ${buttonGradient};
   background-size: 200% 200%;
   letter-spacing: 1px;
-  &:hover {
+  display: flex;
+  align-items: center;
+  al &:hover {
     background-size: 100% 100%;
     transform: scale(1.01);
     box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.1);

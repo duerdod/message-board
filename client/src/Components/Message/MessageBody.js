@@ -2,26 +2,32 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 const Container = styled.div`
-  padding: 1rem 0.85rem 1.5rem 0.85rem;
+  padding: 0.1rem 1.5rem;
   width: 100%;
 `;
 
 const MessageTitle = styled.h2`
-  font-size: 1rem;
-  margin: 0.5rem 0 0.5rem 0;
-  color: ${({ theme }) => theme.main};
+  font-size: 0.85rem;
+  margin: 0.5rem 0 0.2rem 0;
+  font-weight: 600;
+  color: ${({ theme }) => theme.darkGreen};
 `;
 
 const MessageText = styled.div`
-  font-size: 0.85rem;
-  color: ${({ theme }) => theme.dark};
+  p {
+    margin-top: 0;
+    font-size: 0.85rem;
+    word-wrap: break-word;
+  }
 `;
 
 const MessageBody = ({ message }) => {
   return (
     <Container>
       <MessageTitle>{message.title}</MessageTitle>
-      <MessageText>{message.message}</MessageText>
+      <MessageText>
+        <p>{message.message}</p>
+      </MessageText>
     </Container>
   );
 };

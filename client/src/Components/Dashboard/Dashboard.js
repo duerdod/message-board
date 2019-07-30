@@ -16,8 +16,8 @@ const Title = styled.h2`
   font-size: 2.5rem;
   margin: 0;
   line-height: 1.2;
-  color: ${({ theme }) => theme.main};
-  font-family: ${({ theme }) => theme.sansSerif};
+  color: ${({ theme }) => theme.darkGreen};
+  font-family: ${({ theme }) => theme.secondary};
   ${p => p.red && `color: ${({ theme }) => theme.lightRed}`}
 `;
 
@@ -33,10 +33,11 @@ const InformationContainer = styled.div`
 `;
 
 const Information = styled.span`
-  > svg {
+   svg {
     font-size: 1.5rem;
-    color: ${({ theme }) => theme.main};
+    color: ${({ theme }) => theme.darkGreen};
   }
+
   &:hover {
     &:after {
       height: 45px;
@@ -57,7 +58,7 @@ const Information = styled.span`
     text-transform: uppercase;
     font-weight: 600;
     box-shadow: ${({ theme }) => theme.boxShadow};
-    background: #fcc6c9;
+    background: ${({ theme }) => theme.darkGreen};
     color: ${({ theme }) => theme.white};
     border-radius: 4px;
     white-space: pre-wrap;
@@ -70,11 +71,11 @@ const AddMessageSection = () => {
     <Container>
       <ContainerInner>
         <Title>Say something</Title>
-        <Title style={{ color: '#fcc6c9' }}>Nice.</Title>
-        <Title style={{ color: '#FF8B5C' }}>To the Internet.</Title>
+        <Title style={{ color: '#ee9ca7' }}>Nice.</Title>
+        <Title style={{ color: '#74b49b' }}>To the Internet.</Title>
         <AddMessages />
         <InformationContainer>
-          <Information information="do you disagree with a message? \A press the umbrella ⛱">
+          <Information information="do you disagree with a message? \A ring the bell 🔔">
             <FiInfo />
           </Information>
         </InformationContainer>

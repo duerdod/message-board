@@ -22,7 +22,8 @@ do `docker-compose` and you're up.
 - [x] Complete form and client side form validation.
 - [x] Stop users from posting within a fixed time frame.
 - [ ] Message grid cleanup.
-- [ ] Add dislike function, remove messages after a certain dislike count.
+- [ ] "Pagination".
+- [x] Add some kind of dislike, remove messages after a certain amount of dislikes.
 - [ ] Add commenting possibility.
 - [ ] Better server side error handling.
 - [ ] Naming, refactoring and cleanup.

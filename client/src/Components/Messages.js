@@ -1,24 +1,11 @@
 import React from 'react';
-import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import styled from '@emotion/styled';
 import { useTrail, animated } from 'react-spring';
-import Message from './Messages/Message';
+import { GET_ALL_MESSAGES } from '../gql/gql';
+import Message from './Message/Message';
 import config from '../config';
 import Loading from './Loading';
-
-export const GET_ALL_MESSAGES = gql`
-  query GET_ALL_MESSAGES {
-    messages {
-      id
-      title
-      message
-      author
-      dislikes
-      date
-    }
-  }
-`;
 
 const MessagesContainer = styled.div`
   display: grid;

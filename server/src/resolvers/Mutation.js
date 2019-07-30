@@ -35,8 +35,7 @@ const Mutation = {
     // Is dislike count greater than or equals to 5?
     // Remove it.
     if (dislikes >= 5) {
-      const message = context.prisma.deleteMessage({ id });
-      return message;
+      return context.prisma.deleteMessage({ id });
     }
 
     // Else set new dislike count.
