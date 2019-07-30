@@ -1,8 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from '@emotion/styled';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
 import { FiUmbrella } from 'react-icons/fi';
+import { GET_ALL_MESSAGES } from '../Messages';
+
+const DISLIKE_MESSAGE = gql`
+  mutation DISLIKE_MESSAGE($id: ID!) {
+    dislikeMessage(id: $id) {
+      id
+    }
+  }
+`;
 
 const Container = styled.footer`
   width: 100%;
@@ -16,7 +25,7 @@ const Container = styled.footer`
   }
 `;
 
-const DislikeContainer = styled.div`
+const DislikeContainer = styled.label`
   display: flex;
   justify-content: flex-end;
   align-content: center;
@@ -24,28 +33,38 @@ const DislikeContainer = styled.div`
   cursor: pointer;
 `;
 
+const DislikeButton = styled.input`
+  display: none;
+`;
+
 const Dislikees = styled.span`
   margin-right: 3px;
 `;
 
 const Dislike = ({ id, dislikes }) => {
-  const [dislikeCounts, dislikeMessage] = useState({
-    id,
-    dislikeCounts: dislikes
-  });
-
   return (
-    <DislikeContainer
-      onClick={() =>
-        dislikeMessage({
-          id,
-          dislikeCounts: dislikeCounts.dislikeCounts + 1
-        })
-      }
+    <Mutation
+      mutation={DISLIKE_MESSAGE}
+      variables={{ id }}
+      refetchQueries={[
+        {
+          query: GET_ALL_MESSAGES
+        }
+      ]}
     >
-      <Dislikees>{dislikeCounts.dislikeCounts}</Dislikees>
-      <FiUmbrella />
-    </DislikeContainer>
+      {(dislikeMessage, { data, error, loading }) => {
+        return (
+          <DislikeContainer
+            htmlFor={`dislike-${id}`}
+            onChange={() => dislikeMessage()}
+          >
+            <DislikeButton type="checkbox" id={`dislike-${id}`} />
+            <Dislikees>{dislikes}</Dislikees>
+            <FiUmbrella />
+          </DislikeContainer>
+        );
+      }}
+    </Mutation>
   );
 };
 

@@ -60,11 +60,8 @@ const MessagesGrid = ({ messages }) => {
     <MessagesContainer>
       {trailedMessages.map((props, i) => (
         <animated.div
-          className={`message ${
-            messages[i].message.length > config.messageTruncateLength
-              ? 'expanded'
-              : ''
-          }`}
+          className={`message ${messages[i].message.length >
+            config.messageTruncateLength && 'expanded'}`}
           style={props}
           key={messages[i].id}
         >
