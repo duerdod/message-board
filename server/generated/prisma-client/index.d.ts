@@ -110,6 +110,8 @@ export type MessageOrderByInput =
   | "message_DESC"
   | "author_ASC"
   | "author_DESC"
+  | "dislikes_ASC"
+  | "dislikes_DESC"
   | "date_ASC"
   | "date_DESC";
 
@@ -120,6 +122,7 @@ export interface MessageCreateInput {
   title: String;
   message: String;
   author: String;
+  dislikes: Int;
   date?: Maybe<String>;
 }
 
@@ -127,13 +130,7 @@ export interface MessageUpdateInput {
   title?: Maybe<String>;
   message?: Maybe<String>;
   author?: Maybe<String>;
-  date?: Maybe<String>;
-}
-
-export interface MessageUpdateManyMutationInput {
-  title?: Maybe<String>;
-  message?: Maybe<String>;
-  author?: Maybe<String>;
+  dislikes?: Maybe<Int>;
   date?: Maybe<String>;
 }
 
@@ -194,6 +191,14 @@ export interface MessageWhereInput {
   author_not_starts_with?: Maybe<String>;
   author_ends_with?: Maybe<String>;
   author_not_ends_with?: Maybe<String>;
+  dislikes?: Maybe<Int>;
+  dislikes_not?: Maybe<Int>;
+  dislikes_in?: Maybe<Int[] | Int>;
+  dislikes_not_in?: Maybe<Int[] | Int>;
+  dislikes_lt?: Maybe<Int>;
+  dislikes_lte?: Maybe<Int>;
+  dislikes_gt?: Maybe<Int>;
+  dislikes_gte?: Maybe<Int>;
   date?: Maybe<String>;
   date_not?: Maybe<String>;
   date_in?: Maybe<String[] | String>;
@@ -211,6 +216,14 @@ export interface MessageWhereInput {
   AND?: Maybe<MessageWhereInput[] | MessageWhereInput>;
   OR?: Maybe<MessageWhereInput[] | MessageWhereInput>;
   NOT?: Maybe<MessageWhereInput[] | MessageWhereInput>;
+}
+
+export interface MessageUpdateManyMutationInput {
+  title?: Maybe<String>;
+  message?: Maybe<String>;
+  author?: Maybe<String>;
+  dislikes?: Maybe<Int>;
+  date?: Maybe<String>;
 }
 
 export interface MessageSubscriptionWhereInput {
@@ -269,6 +282,7 @@ export interface MessagePreviousValues {
   title: String;
   message: String;
   author: String;
+  dislikes: Int;
   date?: String;
 }
 
@@ -279,6 +293,7 @@ export interface MessagePreviousValuesPromise
   title: () => Promise<String>;
   message: () => Promise<String>;
   author: () => Promise<String>;
+  dislikes: () => Promise<Int>;
   date: () => Promise<String>;
 }
 
@@ -289,6 +304,7 @@ export interface MessagePreviousValuesSubscription
   title: () => Promise<AsyncIterator<String>>;
   message: () => Promise<AsyncIterator<String>>;
   author: () => Promise<AsyncIterator<String>>;
+  dislikes: () => Promise<AsyncIterator<Int>>;
   date: () => Promise<AsyncIterator<String>>;
 }
 
@@ -339,6 +355,7 @@ export interface Message {
   title: String;
   message: String;
   author: String;
+  dislikes: Int;
   date?: String;
 }
 
@@ -347,6 +364,7 @@ export interface MessagePromise extends Promise<Message>, Fragmentable {
   title: () => Promise<String>;
   message: () => Promise<String>;
   author: () => Promise<String>;
+  dislikes: () => Promise<Int>;
   date: () => Promise<String>;
 }
 
@@ -357,6 +375,7 @@ export interface MessageSubscription
   title: () => Promise<AsyncIterator<String>>;
   message: () => Promise<AsyncIterator<String>>;
   author: () => Promise<AsyncIterator<String>>;
+  dislikes: () => Promise<AsyncIterator<Int>>;
   date: () => Promise<AsyncIterator<String>>;
 }
 
@@ -367,6 +386,7 @@ export interface MessageNullablePromise
   title: () => Promise<String>;
   message: () => Promise<String>;
   author: () => Promise<String>;
+  dislikes: () => Promise<Int>;
   date: () => Promise<String>;
 }
 

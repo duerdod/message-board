@@ -1,9 +1,10 @@
+/* eslint-disable */
 const { ApolloServer, gql } = require('apollo-server-express');
 const { prisma } = require('../generated/prisma-client/index');
 const Query = require('./resolvers/Query');
 const Mutation = require('./resolvers/Mutation');
 
-// Apollo Server 2 uses gwl.
+// Apollo Server 2 uses gql.
 // Separate it from createServer.
 const typeDefs = gql`
   type Message {
@@ -11,6 +12,7 @@ const typeDefs = gql`
     title: String!
     message: String!
     author: String!
+    dislikes: Int!
     date: String
   }
 
@@ -25,6 +27,8 @@ const typeDefs = gql`
       author: String!
       date: String
     ): Message
+    dislikeMessage(id: ID!): Message
+    deleteMessage(id: ID!): Message
   }
 `;
 

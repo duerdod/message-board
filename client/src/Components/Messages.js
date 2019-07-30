@@ -14,6 +14,7 @@ export const GET_ALL_MESSAGES = gql`
       title
       message
       author
+      dislikes
       date
     }
   }

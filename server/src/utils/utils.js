@@ -3,7 +3,7 @@ const cleanWithEmojis = new Filter({ placeHolder: '💩' });
 
 function addUserTimestamp(context) {
   // Add cookie.
-  context.res.cookie('last_message', 'tiden', {
+  context.res.cookie('last_message', 'time since last post', {
     maxAge: process.env.NODE_ENV === 'development' ? 9000 : 1000 * 60 * 60, // 1 hour else 1,5 minutes
     httpOnly: true
   });

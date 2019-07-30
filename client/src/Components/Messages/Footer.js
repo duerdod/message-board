@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
+import gql from 'graphql-tag';
+import { Mutation } from 'react-apollo';
 import { FiUmbrella } from 'react-icons/fi';
 
 const Container = styled.footer`
@@ -26,14 +28,31 @@ const Dislikees = styled.span`
   margin-right: 3px;
 `;
 
-const Footer = () => {
-  const [dislikes, dislike] = useState(0);
+const Dislike = ({ id, dislikes }) => {
+  const [dislikeCounts, dislikeMessage] = useState({
+    id,
+    dislikeCounts: dislikes
+  });
+
+  return (
+    <DislikeContainer
+      onClick={() =>
+        dislikeMessage({
+          id,
+          dislikeCounts: dislikeCounts.dislikeCounts + 1
+        })
+      }
+    >
+      <Dislikees>{dislikeCounts.dislikeCounts}</Dislikees>
+      <FiUmbrella />
+    </DislikeContainer>
+  );
+};
+
+const Footer = ({ id, dislikes }) => {
   return (
     <Container>
-      <DislikeContainer onClick={() => dislike(dislikes => dislikes + 1)}>
-        <Dislikees>{dislikes}</Dislikees>
-        <FiUmbrella />
-      </DislikeContainer>
+      <Dislike id={id} dislikes={dislikes} />
     </Container>
   );
 };

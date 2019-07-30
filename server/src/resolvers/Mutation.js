@@ -19,12 +19,39 @@ const Mutation = {
       title: sanitizer(title),
       message: sanitizer(message),
       author: sanitizer(author),
+      dislikes: 0,
       date
     });
     // Add / update timestamp cookie.
     addUserTimestamp(context);
     // Return message.
     return newMessage;
+  },
+  async dislikeMessage(root, { id }, context) {
+    // Querying the message to get number of dislikes.
+    const message = await context.prisma.message({ id });
+    const { dislikes } = message;
+
+    // Is dislike count greater than or equals to 5?
+    // Remove it.
+    if (dislikes >= 5) {
+      const message = context.prisma.deleteMessage({ id });
+      return message;
+    }
+
+    // Else set new dislike count.
+    const dislike = await context.prisma.updateMessage({
+      data: {
+        dislikes: dislikes + 1
+      },
+      where: {
+        id
+      }
+    });
+    return dislike;
+  },
+  deleteMessage(root, { id }, context) {
+    return context.prisma.deleteMessage({ id });
   }
 };
 

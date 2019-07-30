@@ -3,5 +3,6 @@ type Message {
   title: String!
   message: String!
   author: String!
+  dislikes: Int!
   date: String
 }
