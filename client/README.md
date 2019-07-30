@@ -1,24 +1,32 @@
 ## Message Board
 
-Merge from: https://github.com/duerdod/message-board-old
-AND https://gitlab.com/erikpehrers/message-board-api
+Internet has no need for this application but it's still a work in progress.  
+Comes with the most simplest word sanitizer for all you evil ones.
 
-Internet has no need for this application and it's still a work in progress.
-
-The regular  
-`git clone https://github.com/duerdod/message-board && cd message-board && yarn install && yarn start`
+Requires `Docker` and `docker-compose`,  
+do `docker-compose` and you're up.
 
 ## Tools
 
-- GraphQL
+- Express
+- GraphQL-Server
 - React
 - React Apollo
+- Emotion
+- Emotion theming
+- Docker and docker-compose
 
 ## Todo
 
-- [ ] Attach it to existing GraphQL server.
-- [ ] Complete form and client side form validation.
-- [ ] Stop users from posting within a fixed time frame.
-- [ ] Naming, refactoring and cleanup.
+- [x] Attach to GraphQL server.
+- [x] Complete form and client side form validation.
+- [x] Stop users from posting within a fixed time frame.
 - [ ] Message grid cleanup.
+- [ ] Vote for removal. Call it something craycray.
+- [ ] Add commenting possibility.
+- [ ] Better server side error handling.
+- [ ] Naming, refactoring and cleanup.
 - [ ] Eject from CRA.
+
+Merge from: https://github.com/duerdod/message-board-old
+AND https://gitlab.com/erikpehrers/message-board-api

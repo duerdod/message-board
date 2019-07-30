@@ -4,7 +4,6 @@ import { FiEye } from 'react-icons/fi';
 import { addTimestamp } from '../../utils/utils';
 
 const HeaderWrapper = styled.header`
-  grid-area: header;
   display: flex;
   justify-content: initial;
   align-content: center;
@@ -23,7 +22,7 @@ const Avatar = styled.span`
   display: inline-flex;
   padding: 6px;
   border-radius: 50%;
-  background: ${({ theme }) => theme.bgvariant};
+  background: ${({ theme }) => theme.lightGrey};
   margin-right: 6px;
 `;
 const Author = styled.span`
