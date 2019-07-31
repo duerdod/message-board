@@ -18,7 +18,7 @@ const theme = {
   border: `2px solid #383838`,
   boxShadow: '0 2px 6px 0 hsla(0, 0%, 0%, 0.2)',
   sansSerif: 'Open Sans, sans-serif',
-  secondary: 'Fredoka One',
+  secondary: 'Luckiest Guy, sans-serif',
   serif: 'DM Serif Text, serif'
 };
 

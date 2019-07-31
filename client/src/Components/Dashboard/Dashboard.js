@@ -17,7 +17,8 @@ const Title = styled.h2`
   margin: 0;
   line-height: 1.2;
   color: ${({ theme }) => theme.darkGreen};
-  font-family: ${({ theme }) => theme.secondary};
+  font-family: ${({ theme }) => theme.sansSerif};
+  font-weight: 800;
   ${p => p.red && `color: ${({ theme }) => theme.lightRed}`};
 `;
 const InformationContainer = styled.div`
@@ -69,9 +70,9 @@ const AddMessageSection = () => {
   return (
     <Container>
       <ContainerInner>
-        <Title>Say something</Title>
-        <Title style={{ color: '#ee9ca7' }}>Nice.</Title>
-        <Title style={{ color: '#74b49b' }}>To the Internet.</Title>
+        <Title>SHOUT OUT</Title>
+        <Title style={{ color: '#ee9ca7' }}>AND</Title>
+        <Title style={{ color: '#74b49b' }}>STAY COOL</Title>
         <AddMessages />
         <InformationContainer>
           <Information information="ain\'t concurring? \A ring the bell 🔔">

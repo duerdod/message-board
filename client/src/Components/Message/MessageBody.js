@@ -17,6 +17,7 @@ const MessageText = styled.div`
   p {
     margin-top: 0;
     font-size: 0.85rem;
+    font-weight: 300;
     word-wrap: break-word;
   }
 `;
