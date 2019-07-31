@@ -27,7 +27,7 @@ const Messages = props => {
   return (
     <Query query={GET_ALL_MESSAGES}>
       {({ error, loading, data }) => {
-        if (error) return <p>Error..</p>;
+        if (error) return <Loading>Oh darn :(</Loading>;
         if (loading) return <Loading />;
         return <MessagesGrid messages={data.messages} />;
       }}

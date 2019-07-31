@@ -18,9 +18,8 @@ const Title = styled.h2`
   line-height: 1.2;
   color: ${({ theme }) => theme.darkGreen};
   font-family: ${({ theme }) => theme.secondary};
-  ${p => p.red && `color: ${({ theme }) => theme.lightRed}`}
+  ${p => p.red && `color: ${({ theme }) => theme.lightRed}`};
 `;
-
 const InformationContainer = styled.div`
   position: relative;
   overflow: hidden;
@@ -40,7 +39,7 @@ const Information = styled.span`
 
   &:hover {
     &:after {
-      height: 45px;
+      height: 33px;
     }
   }
   &:after {
@@ -75,7 +74,7 @@ const AddMessageSection = () => {
         <Title style={{ color: '#74b49b' }}>To the Internet.</Title>
         <AddMessages />
         <InformationContainer>
-          <Information information="do you disagree with a message? \A ring the bell 🔔">
+          <Information information="ain\'t concurring? \A ring the bell 🔔">
             <FiInfo />
           </Information>
         </InformationContainer>

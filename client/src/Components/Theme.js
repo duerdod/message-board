@@ -31,7 +31,7 @@ export const buttonGradient = `
 
 export const reset = css`
   body {
-     background: linear-gradient(to right bottom, #fdf0f6, #fdebf2, #fee6ed, #ffe2e7, #ffdde1);
+    background: linear-gradient(to right bottom, #fdf0f6, #fdebf2, #fee6ed, #ffe2e7, #ffdde1);
     background-attachment:fixed;
     height:100%;
     /* background: ${theme.bg}; */

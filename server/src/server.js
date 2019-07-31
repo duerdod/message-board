@@ -27,12 +27,13 @@ app.use(express.json());
 // Debugging
 if (process.env.NODE_ENV === 'development') {
   app.use((req, res, next) => {
-    // console.log(req.path);
+    // console.log(req);
     // console.log(req.cookies);
     next();
   });
 }
 
+console.log(process.env.NODE_ENV);
 // Static files
 if (process.env.NODE_ENV === 'production') {
   app.use('/', express.static(path.join(clientPath, 'build')));
