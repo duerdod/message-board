@@ -9,9 +9,8 @@
   "main": "server.js",
   "scripts": {
     "dev": "nodemon ./server/src/server.js",
-    "build": "cd client && yarn build",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cd server && PORT=8000 yarn start"
+    "start": "node ./server/src/server.js",
+    "build": "cd client && yarn install && yarn build"
   },
   "author": "erikp",
   "license": "ISC",
