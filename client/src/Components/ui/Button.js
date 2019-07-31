@@ -19,9 +19,9 @@ const ThemeButton = styled.button`
   letter-spacing: 1px;
   display: flex;
   align-items: center;
-  al &:hover {
+  &:hover {
     background-size: 100% 100%;
-    transform: scale(1.01);
+    transform: scale(1.05);
     box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.1);
   }
   ${p =>

@@ -2,7 +2,7 @@ import { css } from '@emotion/core';
 
 const theme = {
   black: '#383838',
-  white: '#f1f1f1',
+  white: '#fffafa',
   lightGreen: '#a7d7c5',
   green: '#74b49b',
   darkGreen: '#5c8d89',
@@ -10,9 +10,9 @@ const theme = {
   backgroundPink: '#ffdde1',
   backgroundCerise: '#ee9ca7',
   red: '#d47666',
-  yellow: '#D7BA35',
+  yellow: '#f8b500',
   lightRed: '#fcc6c9',
-  lightGrey: '#e6e6e6',
+  lightGrey: '#f4f3f3',
   redGradient: '#f97a82, #f27179, #eb6970, #e46067, #dd575e',
   error: '#B6051F',
   border: `2px solid #383838`,
@@ -31,7 +31,7 @@ export const buttonGradient = `
 
 export const reset = css`
   body {
-     background: linear-gradient(to right bottom, #ffdde1, #f3acb5, #ee9ca7);
+     background: linear-gradient(to right bottom, #fdf0f6, #fdebf2, #fee6ed, #ffe2e7, #ffdde1);
     background-attachment:fixed;
     height:100%;
     /* background: ${theme.bg}; */
