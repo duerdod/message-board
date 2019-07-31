@@ -7,10 +7,8 @@ const cookieParser = require('cookie-parser');
 const path = require('path');
 
 // ENV
-const port =
-  process.env.NODE_ENV === 'development' ? 8000 : process.env.API_PORT;
-const hostname =
-  process.env.NODE_ENV === 'development' ? '0.0.0.0' : process.env.API_HOSTNAME;
+const port = process.env.PORT || 8000;
+const hostname = process.env.HOSTNAME || '0.0.0.0';
 
 const clientPath = path.join(__dirname, '../../client');
 
