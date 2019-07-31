@@ -9,9 +9,10 @@
   "main": "server.js",
   "scripts": {
     "dev": "nodemon ./server/src/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "concurrently \"cd client && yarn build\" \"cd server && yarn build\"",
-    "start": "concurrently \"cd client && PORT=3000 yarn start\" \"cd server && PORT=8000 yarn start\"",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "heroku-postbuild": "yarn build",
+    "start": "concurrently \"cd client && PORT=3000 yarn start\" \"cd server && PORT=8000 yarn start\""
   },
   "author": "erikp",
   "license": "ISC",
