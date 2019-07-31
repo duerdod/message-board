@@ -1,15 +1,18 @@
-require('dotenv').config();
+require('dotenv').config({ path: '../.env' });
 const express = require('express');
 const app = express();
 const createServer = require('./createServer');
 const server = createServer();
 const cookieParser = require('cookie-parser');
+const path = require('path');
 
 // ENV
 const port =
   process.env.NODE_ENV === 'development' ? 8000 : process.env.API_PORT;
 const hostname =
   process.env.NODE_ENV === 'development' ? '0.0.0.0' : process.env.API_HOSTNAME;
+
+const clientPath = path.join(__dirname, '../../client');
 
 const corsOptions = {
   origin: '*',
@@ -32,8 +35,18 @@ if (process.env.NODE_ENV === 'development') {
   });
 }
 
+// Static files
+if (process.env.NODE_ENV === 'production') {
+  app.use('/', express.static(path.join(clientPath, 'build')));
+  app.get('/', (req, res) => {
+    res.sendFile(path.join(clientPath, 'build'));
+  });
+}
+
 // Apply Express as middleware to Apollo Server.
 server.applyMiddleware({ app, cors: corsOptions });
 
 // Start
-app.listen({ port, hostname }, () => console.log(`Listen to ${port}`));
+app.listen({ port, hostname }, () =>
+  console.log(`Listen to ${hostname}:${port}`)
+);

@@ -4,9 +4,21 @@ type Message {
   message: String!
   author: String!
   dislikes: Int!
-  date: Int!
+  date: String
 }
 
 type Query {
   messages: [Message]
+  message(id: ID!): Message
+}
+
+type Mutation {
+  addMessage(
+    title: String!
+    message: String!
+    author: String!
+    date: String
+  ): Message
+  dislikeMessage(id: ID!): Message
+  deleteMessage(id: ID!): Message
 }
