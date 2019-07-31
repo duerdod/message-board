@@ -3,7 +3,13 @@ import styled from '@emotion/styled';
 import AddMessages from '../AddMessages';
 import { FiInfo } from 'react-icons/fi';
 
-const Container = styled.div``;
+const Container = styled.div`
+  grid-row: span 2;
+  grid-column: 1 / 1;
+  @media screen and (max-width: 40em) {
+    grid-row: span 1;
+  }
+`;
 
 const ContainerInner = styled.div`
   background: ${({ theme }) => theme.white};
@@ -16,53 +22,46 @@ const Title = styled.h2`
   font-size: 2.5rem;
   margin: 0;
   line-height: 1.2;
+  font-weight: 800;
   color: ${({ theme }) => theme.darkGreen};
   font-family: ${({ theme }) => theme.sansSerif};
-  font-weight: 800;
-  ${p => p.red && `color: ${({ theme }) => theme.lightRed}`};
+  text-shadow: 1px 1px 0px ${({ theme }) => theme.lightpink},
+    2px 2px 0px rgba(0, 0, 0, 0.2);
 `;
 const InformationContainer = styled.div`
   position: relative;
-  overflow: hidden;
-  width: 25px;
-  margin: 0 auto;
+  text-align: center;
   cursor: pointer;
-  &:hover {
-    overflow: visible;
-  }
 `;
 
 const Information = styled.span`
-   svg {
+  svg {
     font-size: 1.5rem;
     color: ${({ theme }) => theme.darkGreen};
   }
-
   &:hover {
-    &:after {
-      height: 33px;
+    &:before {
+      display: block;
     }
   }
-  &:after {
-    left: 50%;
-    transform: translateX(-50%);
-    height: 0;
-    width: 150px;
-    text-align: center;
-    overflow: hidden;
-    position: absolute;
-    display: block;
+  &::before {
+    display: none;
     font-size: 0.75rem;
-    padding: 0.5rem;
-    transition: all 0.2s ease;
-    text-transform: uppercase;
-    font-weight: 600;
-    box-shadow: ${({ theme }) => theme.boxShadow};
-    background: ${({ theme }) => theme.darkGreen};
-    color: ${({ theme }) => theme.white};
-    border-radius: 4px;
+    padding: 4px 8px;
+    margin-bottom: 4px;
+    position: absolute;
+    width: 100px;
+    left: 50%;
+    transform: translate(-50%);
+    top: 25px;
+    border-radius: 3px;
     white-space: pre-wrap;
+    height: 33px;
     content: '${p => p.information}';
+    box-shadow: ${({ theme }) => theme.boxShadow};
+    background: ${({ theme }) => theme.green};
+    color: ${({ theme }) => theme.white};
+    font-family: ${({ theme }) => theme.sansSerif};
   }
 `;
 

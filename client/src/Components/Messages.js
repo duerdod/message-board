@@ -1,34 +1,19 @@
 import React from 'react';
 import { Query } from 'react-apollo';
-import styled from '@emotion/styled';
 import { useTrail, animated } from 'react-spring';
 import { GET_ALL_MESSAGES } from '../gql/gql';
 import Message from './Message/Message';
 import config from '../config';
-import Loading from './Loading';
-
-const MessagesContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  .expanded {
-    grid-row: span 2;
-  }
-  .message {
-    margin: 0 0.5rem 0.5rem 0.5rem;
-  }
-  @media screen and (max-width: 40em) {
-    grid-template-columns: 1fr;
-  }
-`;
+import Status from './StatusPage';
 
 const animationConfig = { duration: 250 };
 
-const Messages = props => {
+const Messages = () => {
   return (
     <Query query={GET_ALL_MESSAGES}>
       {({ error, loading, data }) => {
-        if (error) return <Loading>Oh darn :(</Loading>;
-        if (loading) return <Loading />;
+        if (error) return <Status state={error && 'error'} />;
+        if (loading) return <Status state={loading && 'loading'} />;
         return <MessagesGrid messages={data.messages} />;
       }}
     </Query>
@@ -43,23 +28,19 @@ const MessagesGrid = ({ messages }) => {
     to: { transform: 'scale(1)' }
   });
 
-  return (
-    <MessagesContainer>
-      {trailedMessages.map((props, i) => (
-        <animated.div
-          className={`message ${messages[i].message.length >
-            config.messageTruncateLength && 'expanded'}`}
-          style={props}
-          key={messages[i].id}
-        >
-          <Message message={messages[i]} />
-        </animated.div>
-      ))}
-    </MessagesContainer>
-  );
+  return trailedMessages.map((props, i) => (
+    <animated.div
+      className={`${messages[i].message.length > config.messageTruncateLength &&
+        'expanded'} message`}
+      style={props}
+      key={messages[i].id}
+    >
+      <Message message={messages[i]} />
+    </animated.div>
+  ));
 };
 
-// The dummy message. Should this be used?
+// Dummy message. Should this be used?
 // {Object.keys(values).length >= 1 ? (
 //   <DummyMessage dummy={values} />
 // ) : null}

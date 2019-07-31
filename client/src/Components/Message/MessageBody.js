@@ -24,7 +24,7 @@ const MessageText = styled.div`
 
 const MessageBody = ({ message }) => {
   return (
-    <Container>
+    <Container className="content">
       <MessageTitle>{message.title}</MessageTitle>
       <MessageText>
         <p>{message.message}</p>

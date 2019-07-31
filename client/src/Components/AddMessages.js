@@ -7,7 +7,7 @@ import config from '../config';
 import { charCounter, trimErrorMessage } from '../utils/utils';
 import useForm from '../hooks/useForm';
 import { ADD_MESSAGE, GET_ALL_MESSAGES } from '../gql/gql';
-import { ErrorMessage } from './Error';
+import { ErrorMessage } from './StatusPage';
 
 const MessageForm = styled.form`
   width: 100%;
@@ -34,6 +34,9 @@ const MessageForm = styled.form`
       text-transform: uppercase;
       font-size: 0.65rem;
       font-family: ${({ theme }) => theme.sansSerif};
+    }
+    @media screen and (max-width: 40em) {
+      font-size: 1.1rem;
     }
   }
 `;
