@@ -7,6 +7,7 @@ const Container = styled.main`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   grid-auto-rows: minmax(150px, auto);
+  grid-auto-flow: dense;
   grid-gap: 1rem;
   max-width: 1200px;
   margin: 0 auto;
