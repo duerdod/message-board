@@ -61,15 +61,13 @@ const Label = styled.label`
   }
 `;
 
-const Input = styled.input``;
-
 const Textarea = styled.textarea`
   transition: 'all .2s ease';
   overflow: hidden;
 `;
 
 const AddMessages = () => {
-  const { values, handleChange, handleSubmit } = useForm();
+  const { values, handleChange, handleSubmit, setValues } = useForm();
   // Passed to charCounter fn.
   let textFieldLength = values && values.message ? values.message.length : 0;
   // For increasing textfield height.
@@ -89,6 +87,7 @@ const AddMessages = () => {
           query: GET_ALL_MESSAGES
         }
       ]}
+      onCompleted={() => setValues({})}
     >
       {(addMessage, { error, loading }) => {
         return (
@@ -98,7 +97,7 @@ const AddMessages = () => {
             }}
           >
             <Label>
-              <Input
+              <input
                 type="text"
                 placeholder="Title"
                 name="title"
@@ -126,7 +125,7 @@ const AddMessages = () => {
               </p>
             </Label>
             <Label>
-              <Input
+              <input
                 type="text"
                 placeholder="Name"
                 name="author"

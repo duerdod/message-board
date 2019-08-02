@@ -14,7 +14,7 @@ function validateMessage(title, message, author) {
   // This is really arbitrary. Change and move to env.variables.
   const minLength = 2;
   if (title.length < minLength) {
-    throw new Error('Not very much of a title.');
+    return title, message, author;
   }
   if (message.length < minLength) {
     throw new Error('Not very much of a message.');

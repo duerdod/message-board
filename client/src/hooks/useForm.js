@@ -9,8 +9,6 @@ const useForm = () => {
   const handleSubmit = (e, action) => {
     if (e) e.preventDefault();
     action();
-    // Set empty state also removes the message if the mutation did not succeed. Rewrite to handle errors.
-    setValues({});
   };
 
   const handleChange = e => {
@@ -22,7 +20,8 @@ const useForm = () => {
   return {
     handleChange,
     handleSubmit,
-    values
+    values,
+    setValues
   };
 };
 

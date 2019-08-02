@@ -25,6 +25,9 @@ const InnerContainer = styled.div`
     margin: 0 auto;
     display: inline-block;
   }
+  span.eyes {
+    display: block;
+  }
   span.first {
     width: 60px;
     animation: rotate 1s ease infinite;
@@ -49,23 +52,31 @@ const ErrorText = styled.p`
   color: ${({ theme }) => theme.error};
 `;
 
+const IconSpan = props => (
+  <span className={props.className} role="img" aria-label="loading messages">
+    {props.children}
+  </span>
+);
+
 // For smaller error messages.
 export const ErrorMessage = props => <ErrorText>{props.children}</ErrorText>;
 
-const Spinner = () => (
+const Spinner = () => {
   // Jez... there are probably better ways.
-  <>
-    <span style={{ display: 'block' }} role="img" aria-label="loading messages">
-      👁 👁
-    </span>
-    <span className="first" role="img" aria-label="loading messages">
-      <span style={{ visibility: 'hidden' }}>______</span>🎾
-    </span>
-    <span className="second" role="img" aria-label="loading messages">
-      <span style={{ visibility: 'hidden' }}>______</span>🎾
-    </span>
-  </>
-);
+  return (
+    <>
+      <IconSpan className="eyes" style={{ display: 'block' }}>
+        👁 👁
+      </IconSpan>
+      <IconSpan className="first">
+        <span style={{ visibility: 'hidden' }}>______</span>🎾
+      </IconSpan>
+      <IconSpan className="second">
+        <span style={{ visibility: 'hidden' }}>______</span>🎾
+      </IconSpan>
+    </>
+  );
+};
 
 const Status = ({ state }) => {
   return (

@@ -5,7 +5,6 @@ import { FiInfo } from 'react-icons/fi';
 
 const Container = styled.div`
   grid-row: span 2;
-  grid-column: 1 / 1;
   @media screen and (max-width: 40em) {
     grid-row: span 1;
   }
@@ -62,6 +61,7 @@ const Information = styled.span`
     background: ${({ theme }) => theme.green};
     color: ${({ theme }) => theme.white};
     font-family: ${({ theme }) => theme.sansSerif};
+    z-index: 9999;
   }
 `;
 
