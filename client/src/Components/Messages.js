@@ -1,6 +1,6 @@
 import React from 'react';
 import { Query } from 'react-apollo';
-import { useTransition, animated } from 'react-spring';
+import { useTrail, animated } from 'react-spring';
 import { GET_ALL_MESSAGES } from '../gql/gql';
 import Message from './Message/Message';
 import config from '../config';
@@ -18,31 +18,27 @@ const Messages = () => {
   );
 };
 
-const anmationConfig = { duration: 250 };
+const animationConfig = { duration: 250 };
 
 const MessagesGrid = ({ messages }) => {
-  // Animations.
-  const trailedMessages = useTransition(
-    messages ? messages : [],
-    message => message.id,
-    {
-      config: anmationConfig,
-      trail: 400 / messages.length,
-      from: { opacity: 0, transform: 'scale(0)' },
-      enter: { opacity: 1, transform: 'scale(1)' },
-      leave: { opacity: 0, transform: 'scale(0)' }
-    }
-  );
-  return trailedMessages.map((props, i) => (
-    <animated.div
-      className={`${messages[i].message.length > config.messageTruncateLength &&
-        'expanded'} message`}
-      style={props.props}
-      key={messages[i].id}
-    >
-      <Message message={messages[i]} />
-    </animated.div>
-  ));
+  // Animations. Rewrite using transitions...
+  const trailedMessages = useTrail(messages.length, {
+    config: animationConfig,
+    from: { transform: 'scale(0)' },
+    to: { transform: 'scale(1)' }
+  });
+  return trailedMessages.map((props, i) => {
+    return (
+      <animated.div
+        className={`${messages[i].message.length >
+          config.messageTruncateLength && 'expanded'} message`}
+        style={props}
+        key={messages[i].id}
+      >
+        <Message message={messages[i]} />
+      </animated.div>
+    );
+  });
 };
 
 // Dummy message. Should this be used?
