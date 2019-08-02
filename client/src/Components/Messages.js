@@ -1,6 +1,6 @@
 import React from 'react';
 import { Query } from 'react-apollo';
-import { useTrail, animated } from 'react-spring';
+import { useTransition, animated } from 'react-spring';
 import { GET_ALL_MESSAGES } from '../gql/gql';
 import Message from './Message/Message';
 import config from '../config';
@@ -18,24 +18,30 @@ const Messages = () => {
   );
 };
 
-const animationConfig = { duration: 250 };
+const anmationConfig = { duration: 250 };
 
 const MessagesGrid = ({ messages }) => {
-  // Animations. Rewrite using transitions...
-  const trailedMessages = useTrail(messages.length, {
-    config: animationConfig,
-    from: { transform: 'scale(0)' },
-    to: { transform: 'scale(1)' }
-  });
-  return trailedMessages.map((props, i) => {
+  // Animations.
+  const trailedMessages = useTransition(
+    messages ? messages : [],
+    item => item.id,
+    {
+      config: anmationConfig,
+      unique: true,
+      trail: 400 / messages.length,
+      from: { opacity: 0, transform: 'scale(0)' },
+      enter: { opacity: 1, transform: 'scale(1)' },
+      leave: { opacity: 0, transform: 'scale(0)' }
+    }
+  );
+  console.log(trailedMessages);
+  return trailedMessages.map(({ item, props, key }) => {
+    console.log({ item });
+    console.log({ props });
+    console.log({ key });
     return (
-      <animated.div
-        className={`${messages[i].message.length >
-          config.messageTruncateLength && 'expanded'} message`}
-        style={props}
-        key={messages[i].id}
-      >
-        <Message message={messages[i]} />
+      <animated.div style={props} key={key}>
+        <Message message={item} />
       </animated.div>
     );
   });
