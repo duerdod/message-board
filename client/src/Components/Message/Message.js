@@ -11,14 +11,12 @@ const SingleMessage = styled.div`
   transition: all 0.2s ease;
 `;
 
-const Message = ({ message }) => {
-  return (
-    <SingleMessage>
-      <Header message={message} />
-      <MessageBody message={message} />
-      <Footer id={message.id} dislikes={message.dislikes} />
-    </SingleMessage>
-  );
-};
+const Message = ({ message }) => (
+  <SingleMessage>
+    <Header message={message} />
+    <MessageBody message={message} />
+    <Footer id={message.id} dislikes={message.dislikes} />
+  </SingleMessage>
+);
 
 export default Message;

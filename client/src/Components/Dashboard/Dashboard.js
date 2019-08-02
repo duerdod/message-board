@@ -31,41 +31,13 @@ const InformationContainer = styled.div`
   position: relative;
   text-align: center;
   cursor: pointer;
-`;
-
-const Information = styled.span`
   svg {
     font-size: 1.5rem;
     color: ${({ theme }) => theme.darkGreen};
   }
-  &:hover {
-    &:before {
-      display: block;
-    }
-  }
-  &::before {
-    display: none;
-    font-size: 0.75rem;
-    padding: 4px 8px;
-    margin-bottom: 4px;
-    position: absolute;
-    width: 100px;
-    left: 50%;
-    transform: translate(-50%);
-    top: 25px;
-    border-radius: 3px;
-    white-space: pre-wrap;
-    height: 33px;
-    content: '${p => p.information}';
-    box-shadow: ${({ theme }) => theme.boxShadow};
-    background: ${({ theme }) => theme.green};
-    color: ${({ theme }) => theme.white};
-    font-family: ${({ theme }) => theme.sansSerif};
-    z-index: 9999;
-  }
 `;
 
-const AddMessageSection = () => {
+const AddMessageSection = ({ toggleOpen }) => {
   return (
     <Container>
       <ContainerInner>
@@ -74,9 +46,7 @@ const AddMessageSection = () => {
         <Title style={{ color: '#74b49b' }}>STAY COOL</Title>
         <AddMessages />
         <InformationContainer>
-          <Information information="ain\'t concurring? \A ring the bell 🔔">
-            <FiInfo />
-          </Information>
+          <FiInfo onClick={() => toggleOpen(isOpen => !isOpen)} />
         </InformationContainer>
       </ContainerInner>
     </Container>

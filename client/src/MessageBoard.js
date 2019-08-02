@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from '@emotion/styled';
-import AddMessageSection from './Components/Dashboard/Dashboard';
+import Dashboard from './Components/Dashboard/Dashboard';
 import Messages from './Components/Messages';
+import Information from './Components/Dashboard/Information';
 
 const Container = styled.main`
   display: grid;
@@ -16,7 +17,7 @@ const Container = styled.main`
     grid-row: span 2;
   }
   .message {
-    will-change: transform, scale;
+    will-change: transform;
   }
   @media screen and (max-width: 40em) {
     grid-template-columns: 1fr;
@@ -24,10 +25,11 @@ const Container = styled.main`
 `;
 
 const MessageBoard = () => {
+  const [isOpen, toggleOpen] = useState(false);
   return (
     <Container>
-      <AddMessageSection />
-      <Messages />
+      <Dashboard toggleOpen={toggleOpen} />
+      {isOpen ? <Information isOpen={isOpen} /> : <Messages />}
     </Container>
   );
 };
