@@ -14,14 +14,9 @@ const Container = styled.main`
   padding: 2rem;
   .expanded {
     grid-row: span 2;
-    .content {
-      height: auto !important;
-    }
   }
   .message {
-    .content {
-      height: 115px;
-    }
+    will-change: transform, scale;
   }
   @media screen and (max-width: 40em) {
     grid-template-columns: 1fr;

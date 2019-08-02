@@ -29,18 +29,20 @@ const MessagesGrid = ({ messages }) => {
       config: anmationConfig,
       unique: true,
       trail: 400 / messages.length,
-      from: { opacity: 0, transform: 'scale(0)' },
-      enter: { opacity: 1, transform: 'scale(1)' },
-      leave: { opacity: 0, transform: 'scale(0)' }
+      from: { opacity: 0, transform: 'translate3d(0px, -20px, 0px) scale(0)' },
+      enter: { opacity: 1, transform: 'translate3d(0px, 0px, 0px) scale(1)' },
+      leave: { opacity: 0, transform: 'translate3d(0px, 0px, 0px) scale(0)' }
     }
   );
   console.log(trailedMessages);
   return trailedMessages.map(({ item, props, key }) => {
-    console.log({ item });
-    console.log({ props });
-    console.log({ key });
     return (
-      <animated.div style={props} key={key}>
+      <animated.div
+        className={`${item.message.length > config.messageTruncateLength &&
+          'expanded'} message`}
+        style={props}
+        key={key}
+      >
         <Message message={item} />
       </animated.div>
     );
