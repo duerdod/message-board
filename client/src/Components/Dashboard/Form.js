@@ -2,12 +2,12 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { Mutation } from 'react-apollo';
 import { FiSend } from 'react-icons/fi';
-import Button from './ui/Button';
-import config from '../config';
-import { charCounter, trimErrorMessage } from '../utils/utils';
-import useForm from '../hooks/useForm';
-import { ADD_MESSAGE, GET_ALL_MESSAGES } from '../gql/gql';
-import { ErrorMessage } from './StatusPage';
+import Button from '../ui/Button';
+import config from '../../config';
+import { charCounter, trimErrorMessage } from '../../utils/utils';
+import useForm from '../../hooks/useForm';
+import { ADD_MESSAGE, GET_ALL_MESSAGES } from '../../gql/gql';
+import { ErrorMessage } from '../StatusPage';
 
 const MessageForm = styled.form`
   width: 100%;

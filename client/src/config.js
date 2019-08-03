@@ -1,5 +1,5 @@
 const config = {
-  messageTruncateLength: 200,
+  cardContentLength: 220,
   messageLength: 500
 };
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Query } from 'react-apollo';
-import { GET_ALL_MESSAGES } from '../gql/gql';
-import CardAnimation from './ui/CardAnimation';
-import Message from './Message/Message';
-import Status from './StatusPage';
+import { GET_ALL_MESSAGES } from '../../gql/gql';
+import CardAnimation from '../ui/CardAnimation';
+import Message from './Message';
+import Status from '../StatusPage';
 
 const Messages = () => (
   <Query query={GET_ALL_MESSAGES}>

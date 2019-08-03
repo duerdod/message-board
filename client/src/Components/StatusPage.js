@@ -3,7 +3,8 @@ import styled from '@emotion/styled';
 
 const LoadingPage = styled.div`
   grid-column: span 3;
-  background: ${({ theme }) => theme.bg};
+  background: ${({ theme }) => theme.white};
+  box-shadow: ${({ theme }) => theme.boxShadow};
 `;
 
 const InnerContainer = styled.div`

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import AddMessages from '../AddMessages';
+import AddMessages from './Form';
 import { FiInfo } from 'react-icons/fi';
 
 const Container = styled.div`
@@ -37,16 +37,20 @@ const InformationContainer = styled.div`
   }
 `;
 
-const AddMessageSection = ({ toggleOpen }) => {
+const AddMessageSection = ({ toggleVisible }) => {
   return (
-    <Container>
+    <Container className="dashboard-container">
       <ContainerInner>
         <Title>SHOUT OUT</Title>
         <Title style={{ color: '#ee9ca7' }}>AND</Title>
         <Title style={{ color: '#74b49b' }}>STAY COOL</Title>
         <AddMessages />
         <InformationContainer>
-          <FiInfo onClick={() => toggleOpen(isOpen => !isOpen)} />
+          <FiInfo
+            onClick={() =>
+              toggleVisible(isInformationVisible => !isInformationVisible)
+            }
+          />
         </InformationContainer>
       </ContainerInner>
     </Container>

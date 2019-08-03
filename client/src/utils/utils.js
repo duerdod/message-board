@@ -1,3 +1,5 @@
+import config from '../config';
+
 // Truncate text and add [...].
 // This will probably truncate in the middle of a word. But who cares?
 function truncateMessage(message, maxLength) {
@@ -43,4 +45,15 @@ const trimErrorMessage = message => {
   return errorMessage;
 };
 
-export { trimErrorMessage, charCounter, addTimestamp, truncateMessage };
+const shouldMessageExpand = cardContent =>
+  cardContent && cardContent.length > config.cardContentLength
+    ? `expanded`
+    : '';
+
+export {
+  trimErrorMessage,
+  charCounter,
+  addTimestamp,
+  truncateMessage,
+  shouldMessageExpand
+};

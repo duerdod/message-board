@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { shouldMessageExpand } from '../../utils/utils';
 
 const Container = styled.div`
   padding: 0.1rem 1.5rem;
@@ -24,7 +25,7 @@ const MessageText = styled.div`
 
 const MessageBody = ({ message }) => {
   return (
-    <Container className="content">
+    <Container className={`${shouldMessageExpand(message.message)} content`}>
       <MessageTitle>{message.title}</MessageTitle>
       <MessageText>
         <p>{message.message}</p>
