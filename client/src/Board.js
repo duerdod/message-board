@@ -34,7 +34,7 @@ const Container = styled.main`
 `;
 
 const MessageBoard = () => {
-  const [isInformationVisible, toggleVisible] = useState(true);
+  const [isInformationVisible, toggleVisible] = useState(false);
   return (
     // Is information visible
     // return information grid.
