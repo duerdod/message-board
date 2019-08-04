@@ -44,6 +44,14 @@ export const reset = css`
   html * {
     box-sizing: border-box;
   }
+
+  button, input, textarea {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    outline: 0;
+  }
 `;
 
 export default theme;

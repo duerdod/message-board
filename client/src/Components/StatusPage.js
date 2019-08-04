@@ -40,12 +40,13 @@ const InnerContainer = styled.div`
 `;
 
 const Text = styled.h2`
-  font-family: ${({ theme }) => theme.secondary};
+  font-family: ${({ theme }) => theme.sansSerif};
+  font-weight: 800;
   text-transform: uppercase;
   margin: 0.2rem;
   font-weight: 200;
   letter-spacing: 3px;
-  text-shadow: 1px 1px 0px ${({ theme }) => theme.lightpink};
+  text-shadow: 1px 1px 0px ${({ theme }) => theme.lightPink};
 `;
 
 const ErrorText = styled.p`

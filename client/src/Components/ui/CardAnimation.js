@@ -13,10 +13,9 @@ const CardAnimation = ({ className = '', ...props }) => {
     {
       config: { duration: 250 },
       unique: true,
-      trail: 700 / props.items.length,
-      from: { opacity: 0, transform: 'translate3d(0px, -15px, 0px)' },
-      enter: { opacity: 1, transform: 'translate3d(0px, 0px, 0px)' },
-      leave: { opacity: 0, transform: 'translate3d(0px, 0px, 0px)' }
+      trail: 300 / props.items.length,
+      from: { opacity: 0, transform: 'translate3d(0px, -10px, 0px)' },
+      enter: { opacity: 1, transform: 'translate3d(0px, 0px, 0px)' }
     }
   );
 

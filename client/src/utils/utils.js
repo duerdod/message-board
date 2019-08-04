@@ -35,6 +35,7 @@ function addTimestamp(time) {
 
 // Self explanatory.
 function charCounter(inputCount = 0, maxLength) {
+  inputCount = inputCount ? inputCount.length : 0;
   return `${inputCount} / ${maxLength}`;
 }
 

@@ -1,17 +1,17 @@
-import React from 'react';
+import React, { useState, createContext } from 'react';
 import styled from '@emotion/styled';
 import { Mutation } from 'react-apollo';
-import { FiSend } from 'react-icons/fi';
-import Button from '../ui/Button';
-import config from '../../config';
-import { charCounter, trimErrorMessage } from '../../utils/utils';
+import { trimErrorMessage } from '../../utils/utils';
 import useForm from '../../hooks/useForm';
 import { ADD_MESSAGE, GET_ALL_MESSAGES } from '../../gql/gql';
 import { ErrorMessage } from '../StatusPage';
+import { Title, Message, Name } from './FormInputs';
+import StepButton from './StepButton';
+import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 
 const MessageForm = styled.form`
-  width: 100%;
-
+  display: flex;
+  justify-content: space-around;
   input,
   textarea {
     width: 100%;
@@ -24,6 +24,7 @@ const MessageForm = styled.form`
     border-radius: 2px;
     font-size: 0.95rem;
     color: ${({ theme }) => theme.darkGreen};
+    resize: none;
     &:not(output):-moz-ui-invalid:not(:focus),
     &:not(output):-moz-ui-invalid:focus,
     &:not(output):-moz-ui-invalid:-moz-focusring:not(:focus) {
@@ -41,42 +42,14 @@ const MessageForm = styled.form`
   }
 `;
 
-const Label = styled.label`
-  display: block;
-  font-size: 0.85rem;
-  color: ${({ theme }) => theme.black};
-  width: 90%;
-  &::after {
-    content: '';
-    width: 100%;
-    height: 1px;
-    display: block;
-    background-color: ${({ theme }) => theme.darkGreen};
-  }
-  .counter {
-    text-align: right;
-    margin: 0;
-    font-size: 0.65rem;
-    color: ${({ theme }) => theme.darkGreen};
-  }
-`;
-
-const Textarea = styled.textarea`
-  transition: 'all .2s ease';
-  overflow: hidden;
-`;
+export const FormContext = createContext();
 
 const AddMessages = () => {
+  const [step, setStep] = useState({
+    count: 1,
+    name: ''
+  });
   const { values, handleChange, handleSubmit, setValues } = useForm();
-  // Passed to charCounter fn.
-  let textFieldLength = values && values.message ? values.message.length : 0;
-  // For increasing textfield height.
-  const increaseHeight = e => {
-    const { scrollHeight, clientHeight } = e.target;
-    if (scrollHeight > clientHeight) {
-      e.target.style.height = `${scrollHeight}px`;
-    }
-  };
 
   return (
     <Mutation
@@ -89,62 +62,35 @@ const AddMessages = () => {
       ]}
       onCompleted={() => setValues({})}
     >
-      {(addMessage, { error, loading }) => {
-        return (
-          <MessageForm
-            onSubmit={e => {
-              handleSubmit(e, addMessage);
-            }}
-          >
-            <Label>
-              <input
-                type="text"
-                placeholder="Title"
-                name="title"
-                maxLength="50"
-                value={values.title || ''}
-                required
-                onChange={handleChange}
-              />
-            </Label>
-            <Label>
-              <Textarea
-                placeholder="Message"
-                name="message"
-                maxLength={config.messageLength}
-                value={values.message || ''}
-                required
-                onChange={e => {
-                  handleChange(e);
-                  increaseHeight(e);
-                }}
-                style={{ transition: 'all .2s ease', overflow: 'hidden' }}
-              />
-              <p className="counter">
-                {charCounter(textFieldLength, config.messageLength)}
-              </p>
-            </Label>
-            <Label>
-              <input
-                type="text"
-                placeholder="Name"
-                name="author"
-                maxLength="50"
-                value={values.author || ''}
-                required
-                onChange={handleChange}
-              />
-            </Label>
+      {(addMessage, { error, loading }) => (
+        <FormContext.Provider
+          value={{
+            addMessage,
+            values,
+            handleChange,
+            handleSubmit,
+            setValues,
+            step,
+            setStep,
+            loading
+          }}
+        >
+          <MessageForm>
+            <StepButton direction="back">
+              <MdChevronLeft />
+            </StepButton>
+            {step.count === 1 && <Message />}
+            {step.count === 2 && <Title />}
+            {step.count === 3 && <Name />}
+            <StepButton direction="forward">
+              <MdChevronRight />
+            </StepButton>
             {error ? (
               <ErrorMessage>{trimErrorMessage(error.message)}</ErrorMessage>
             ) : null}
-            <Button type="submit" disabled={loading}>
-              Post{loading ? 'ing' : null}
-              <FiSend style={{ marginLeft: '4px' }} />
-            </Button>
           </MessageForm>
-        );
-      }}
+        </FormContext.Provider>
+      )}
     </Mutation>
   );
 };

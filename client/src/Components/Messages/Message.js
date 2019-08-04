@@ -5,10 +5,9 @@ import MessageBody from './MessageBody';
 import Footer from './Footer';
 
 const SingleMessage = styled.div`
-  background: ${({ theme }) => theme.white};
-  border-radius: 4px;
-  box-shadow: ${({ theme }) => theme.boxShadow};
-  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 `;
 
 const Message = ({ message }) => (

@@ -9,6 +9,7 @@ const Container = styled.footer`
   padding: 0.5rem 0.5rem;
   background: ${({ theme }) => theme.lightGrey};
   border-top: 1px solid #e7e7e7;
+  margin-top: auto;
   > * {
     font-size: 0.75rem;
   }

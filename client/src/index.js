@@ -4,7 +4,7 @@ import { Global } from '@emotion/core';
 import { ThemeProvider } from 'emotion-theming';
 import { ApolloClient, InMemoryCache, HttpLink } from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
-import MessageBoard from './Board';
+import Board from './Board';
 import theme, { reset } from './Components/Theme';
 
 const headers = {
@@ -29,7 +29,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <Global styles={{ styles }} />
       <ApolloProvider client={client}>
-        <MessageBoard />
+        <Board />
       </ApolloProvider>
     </ThemeProvider>
   );
