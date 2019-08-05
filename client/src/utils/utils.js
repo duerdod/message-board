@@ -46,15 +46,37 @@ const trimErrorMessage = message => {
   return errorMessage;
 };
 
+// Self explanatory.
+// This is later passed to classNames.
 const shouldMessageExpand = cardContent =>
   cardContent && cardContent.length > config.cardContentLength
     ? `expanded`
     : '';
+
+// Used by addMessage compoent.
+const forwardOnEnter = (e, step, setStep, availableInputs) => {
+  const { key, shiftKey, target } = e;
+  // If user holding shift and enter, return early.
+  // Else prevent default on enter button, return the next message stage
+  if (!shiftKey && key === 'Enter') {
+    e.preventDefault();
+    if (step.count !== availableInputs.length - 1) {
+      setStep({
+        count: step.count + 1,
+        name: availableInputs[step.count]
+      });
+    }
+    // Adds focus to input. Otherwise user have to do focus themselfs.
+    target.focus();
+  }
+  return;
+};
 
 export {
   trimErrorMessage,
   charCounter,
   addTimestamp,
   truncateMessage,
-  shouldMessageExpand
+  shouldMessageExpand,
+  forwardOnEnter
 };

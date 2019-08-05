@@ -7,8 +7,8 @@ const Container = styled.footer`
   display: flex;
   justify-content: flex-end;
   padding: 0.5rem 0.5rem;
-  background: ${({ theme }) => theme.lightGrey};
-  border-top: 1px solid #e7e7e7;
+  /* background: ${({ theme }) => theme.lightGrey}; */
+  border-top: 1px solid ${({ theme }) => theme.lightGrey};
   margin-top: auto;
   > * {
     font-size: 0.75rem;

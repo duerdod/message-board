@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { FormContext } from './Form';
 import styled from '@emotion/styled';
 import config from '../../config';
-import { charCounter } from '../../utils/utils';
+import { charCounter, forwardOnEnter } from '../../utils/utils';
 
 const Label = styled.label`
   display: block;
@@ -29,21 +29,6 @@ const Textarea = styled.textarea`
   transition: 'all .2s ease';
   overflow: hidden;
 `;
-
-const forwardOnEnter = (e, step, setStep, availableInputs) => {
-  const { key, shiftKey, target } = e;
-  if (!shiftKey && key === 'Enter') {
-    e.preventDefault();
-    if (step.count !== availableInputs.length - 1) {
-      setStep({
-        count: step.count + 1,
-        name: availableInputs[step.count]
-      });
-    }
-    target.focus();
-  }
-  return;
-};
 
 const Message = () => {
   const { values, handleChange, step, setStep, availableInputs } = useContext(

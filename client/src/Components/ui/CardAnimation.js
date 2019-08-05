@@ -25,7 +25,7 @@ const CardAnimation = ({ className = '', ...props }) => {
       key={key}
       style={props}
     >
-      {render(item)}
+      {render(item, key)}
     </animated.div>
   ));
 };

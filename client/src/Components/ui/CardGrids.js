@@ -1,21 +1,38 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { css } from '@emotion/core';
 
-const Container = styled.main`
+// Shared between the two "main" elements.
+const sharedStyles = css`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   grid-gap: 1rem;
   max-width: 1200px;
-  margin: 0 auto;
   padding: 2rem;
+  margin: 0 auto;
+  transition: all 0.2s ease;
 
-  ${p =>
-    p.gridType &&
-    `
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  > div {
+    will-change: transform;
+  }
+  @media screen and (max-width: 40em) {
+    grid-template-columns: 1fr;
+    grid-gap: 0rem;
+    padding: 0rem;
+    .message {
+      box-shadow: none !important;
+      border-radius: 0;
+      border-top: 1px solid #f4f3f3;
+    }
+    > div {
+      grid-template-columns: 1fr !important;
+      padding: 0.3rem;
+    }
+  }
+`;
 
-
-  `}
+const MessagesGrid = styled.main`
+  ${sharedStyles}
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
 
   .message {
     background: ${({ theme }) => theme.white};
@@ -25,47 +42,23 @@ const Container = styled.main`
     &.expanded {
       grid-row: span 2;
     }
-    /* .content {
-      height: 150px;
-      &.expanded {
-        height: auto;
-      }
-    } */
-  }
-  > div {
-    will-change: transform;
-  }
-  @media screen and (max-width: 40em) {
-    grid-template-columns: 1fr;
-    padding: 0.3rem;
   }
 `;
 
 const InformationGrid = styled.main`
-  display: grid;
-  grid-template-columns: 240px 1fr 1fr 1fr 1fr 1fr 1fr;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
+  ${sharedStyles}
+
+  > div {
+    display: grid;
+    grid-gap: 1rem;
+  }
 
   .information-card {
     background: ${({ theme }) => theme.white};
     border-radius: 4px;
     box-shadow: ${({ theme }) => theme.boxShadow};
-    transition: all 0.2s ease;
-
-    &:last-child {
-      grid-column: span 5;
-    }
-  }
-
-  .dashboard-container {
-    grid-column: span 2;
-  }
-
-  @media screen and (max-width: 40em) {
-    grid-template-columns: 1fr;
-    padding: 0.3rem;
+    padding: 2rem;
+    text-transform: uppercase;
   }
 `;
 
@@ -73,7 +66,7 @@ const CardGrids = ({ isInformationVisible, children }) =>
   isInformationVisible ? (
     <InformationGrid>{children}</InformationGrid>
   ) : (
-    <Container>{children}</Container>
+    <MessagesGrid>{children}</MessagesGrid>
   );
 
 export default CardGrids;

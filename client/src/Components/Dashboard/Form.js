@@ -13,6 +13,7 @@ import SendButton from './SendButton';
 const MessageForm = styled.form`
   display: flex;
   justify-content: space-around;
+  align-items: center;
   input,
   textarea {
     width: 100%;
@@ -42,9 +43,24 @@ const MessageForm = styled.form`
   }
 `;
 
+const FormSteps = ({ count }) => {
+  // Not sure if this is any better, tho.
+  // Should probably go with an if else statement...
+  return count === 0 ? (
+    <Message />
+  ) : count === 1 ? (
+    <Title />
+  ) : count === 2 ? (
+    <>
+      <Name />
+      <SendButton />
+    </>
+  ) : null;
+};
+
 export const FormContext = createContext();
 
-const AddMessages = () => {
+const Form = () => {
   // Count is being used to render correct step. Name is for client side error handling.
   // A later feature.
   const [step, setStep] = useState({
@@ -52,11 +68,12 @@ const AddMessages = () => {
     name: ''
   });
 
-  // Make this dynamic.
+  // Could this be dymanic? Should probably be handled in useForm hook instead.
   const availableInputs = ['message', 'title', 'name'];
 
   const { values, handleChange, handleSubmit, setValues } = useForm();
 
+  // There is alot of logic going on below. Rewrite this.
   return (
     <Mutation
       mutation={ADD_MESSAGE}
@@ -92,17 +109,12 @@ const AddMessages = () => {
             <StepButton direction="back">
               <MdChevronLeft />
             </StepButton>
-            {step.count === 0 && <Message />}
-            {step.count === 1 && <Title />}
-            {step.count === 2 && (
-              <>
-                <Name />
-                <SendButton />
-              </>
+            <FormSteps count={step.count} />
+            {step.count !== availableInputs.length - 1 && (
+              <StepButton direction="forward">
+                <MdChevronRight />
+              </StepButton>
             )}
-            <StepButton direction="forward">
-              <MdChevronRight />
-            </StepButton>
             {error ? (
               <ErrorMessage>{trimErrorMessage(error.message)}</ErrorMessage>
             ) : null}
@@ -113,4 +125,4 @@ const AddMessages = () => {
   );
 };
 
-export default AddMessages;
+export default Form;

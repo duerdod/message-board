@@ -15,7 +15,6 @@ const Container = styled.div`
 const ContainerInner = styled.div`
   background: ${({ theme }) => theme.white};
   padding: 0.5rem 1rem;
-  border-radius: 4px;
   box-shadow: ${({ theme }) => theme.boxShadow};
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;

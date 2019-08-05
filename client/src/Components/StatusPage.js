@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 const LoadingPage = styled.div`
-  grid-column: span 3;
+  grid-column: span 4;
   background: ${({ theme }) => theme.white};
   box-shadow: ${({ theme }) => theme.boxShadow};
 `;

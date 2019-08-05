@@ -37,6 +37,8 @@ export const reset = css`
     /* background: ${theme.bg}; */
     color: ${theme.black};
     font-family: ${theme.sansSerif};
+    padding: 0;
+      margin: 0;
   }
   html {
     font-size: 15px;
@@ -52,6 +54,7 @@ export const reset = css`
     background: transparent;
     outline: 0;
   }
+
 `;
 
 export default theme;
