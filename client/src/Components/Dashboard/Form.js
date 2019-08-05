@@ -1,13 +1,14 @@
 import React, { useState, createContext } from 'react';
 import styled from '@emotion/styled';
 import { Mutation } from 'react-apollo';
+import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 import { trimErrorMessage } from '../../utils/utils';
 import useForm from '../../hooks/useForm';
 import { ADD_MESSAGE, GET_ALL_MESSAGES } from '../../gql/gql';
 import { ErrorMessage } from '../StatusPage';
 import { Title, Message, Name } from './FormInputs';
 import StepButton from './StepButton';
-import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
+import SendButton from './SendButton';
 
 const MessageForm = styled.form`
   display: flex;
@@ -30,7 +31,6 @@ const MessageForm = styled.form`
     &:not(output):-moz-ui-invalid:-moz-focusring:not(:focus) {
       box-shadow: none;
     }
-
     &::placeholder {
       text-transform: uppercase;
       font-size: 0.65rem;
@@ -45,10 +45,16 @@ const MessageForm = styled.form`
 export const FormContext = createContext();
 
 const AddMessages = () => {
+  // Count is being used to render correct step. Name is for client side error handling.
+  // A later feature.
   const [step, setStep] = useState({
-    count: 1,
+    count: 0,
     name: ''
   });
+
+  // Make this dynamic.
+  const availableInputs = ['message', 'title', 'name'];
+
   const { values, handleChange, handleSubmit, setValues } = useForm();
 
   return (
@@ -60,7 +66,13 @@ const AddMessages = () => {
           query: GET_ALL_MESSAGES
         }
       ]}
-      onCompleted={() => setValues({})}
+      onCompleted={() => {
+        setValues({});
+        setStep({
+          count: 0,
+          name: ''
+        });
+      }}
     >
       {(addMessage, { error, loading }) => (
         <FormContext.Provider
@@ -72,16 +84,22 @@ const AddMessages = () => {
             setValues,
             step,
             setStep,
+            availableInputs,
             loading
           }}
         >
-          <MessageForm>
+          <MessageForm onSubmit={e => handleSubmit(e, addMessage)}>
             <StepButton direction="back">
               <MdChevronLeft />
             </StepButton>
-            {step.count === 1 && <Message />}
-            {step.count === 2 && <Title />}
-            {step.count === 3 && <Name />}
+            {step.count === 0 && <Message />}
+            {step.count === 1 && <Title />}
+            {step.count === 2 && (
+              <>
+                <Name />
+                <SendButton />
+              </>
+            )}
             <StepButton direction="forward">
               <MdChevronRight />
             </StepButton>

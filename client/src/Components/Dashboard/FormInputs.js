@@ -15,6 +15,7 @@ const Label = styled.label`
     height: 1px;
     display: block;
     background-color: ${({ theme }) => theme.lightPink};
+    }
   }
   .counter {
     text-align: right;
@@ -29,8 +30,25 @@ const Textarea = styled.textarea`
   overflow: hidden;
 `;
 
+const forwardOnEnter = (e, step, setStep, availableInputs) => {
+  const { key, shiftKey, target } = e;
+  if (!shiftKey && key === 'Enter') {
+    e.preventDefault();
+    if (step.count !== availableInputs.length - 1) {
+      setStep({
+        count: step.count + 1,
+        name: availableInputs[step.count]
+      });
+    }
+    target.focus();
+  }
+  return;
+};
+
 const Message = () => {
-  const { values, handleChange } = useContext(FormContext);
+  const { values, handleChange, step, setStep, availableInputs } = useContext(
+    FormContext
+  );
   // For increasing textfield height.
   const increaseHeight = e => {
     const { scrollHeight, clientHeight } = e.target;
@@ -38,11 +56,14 @@ const Message = () => {
       e.target.style.height = `${scrollHeight}px`;
     }
   };
+
   return (
-    <Label>
+    <Label htmlFor="message">
       <Textarea
-        placeholder="Message"
+        onKeyDown={e => forwardOnEnter(e, step, setStep, availableInputs)}
+        autoFocus={true}
         name="message"
+        placeholder="Message"
         maxLength={config.messageLength}
         value={values.message || ''}
         required
@@ -60,37 +81,45 @@ const Message = () => {
 };
 
 const Title = () => {
-  const { values, handleChange } = useContext(FormContext);
+  const { values, handleChange, step, setStep, availableInputs } = useContext(
+    FormContext
+  );
   return (
     <Label>
       <Textarea
+        onKeyDown={e => forwardOnEnter(e, step, setStep, availableInputs)}
+        autoFocus
         type="text"
         placeholder="Title"
         name="title"
-        maxLength="50"
+        maxLength="60"
         value={values.title || ''}
         required
         onChange={handleChange}
       />
-      <p className="counter">{charCounter(values.title, 50)}</p>
+      <p className="counter">{charCounter(values.title, 60)}</p>
     </Label>
   );
 };
 
 const Name = () => {
-  const { values, handleChange } = useContext(FormContext);
+  const { values, handleChange, step, setStep, availableInputs } = useContext(
+    FormContext
+  );
   return (
     <Label>
       <Textarea
+        onKeyDown={e => forwardOnEnter(e, step, setStep, availableInputs)}
+        autoFocus
         type="text"
         placeholder="Name"
         name="author"
-        maxLength="30"
+        maxLength="50"
         value={values.author || ''}
         required
         onChange={handleChange}
       />
-      <p className="counter">{charCounter(values.name, 30)}</p>
+      <p className="counter">{charCounter(values.name, 50)}</p>
     </Label>
   );
 };

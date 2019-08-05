@@ -9,20 +9,17 @@ const Button = styled.button`
 `;
 
 const StepButton = ({ children, direction }) => {
-  const { step, setStep, values } = useContext(FormContext);
-  const availableFields = ['message', 'title', 'name'];
+  const { step, setStep, availableInputs } = useContext(FormContext);
 
   const toggleStep = direction => {
-    if (direction === 'forward') {
-      setStep({ count: step.count + 1, name: availableFields[step.count] });
+    if (direction === 'forward' && step.count < availableInputs.length - 1) {
+      setStep({ count: step.count + 1, name: availableInputs[step.count] });
     } else if (direction === 'back') {
-      setStep({ count: step.count - 1, name: availableFields[step.count] });
-    } else setStep((step.count = 1));
+      setStep({ count: step.count - 1, name: availableInputs[step.count] });
+    }
   };
 
-  const disable =
-    (direction === 'back' && step === 1) ||
-    (direction === 'forward' && step === 3);
+  const disable = step.count === 0 && direction === 'back';
 
   return (
     <Button

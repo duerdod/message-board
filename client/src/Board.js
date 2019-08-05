@@ -34,7 +34,9 @@ import Information from './Components/Infomation/Information';
 // `;
 
 const Board = () => {
-  const [isInformationVisible, toggleVisible] = useState(false);
+  const [isInformationVisible, toggleVisible] = useState(
+    process.env.NODE_ENV === 'development'
+  );
   return (
     <main>
       <Dashboard toggleVisible={toggleVisible} />
