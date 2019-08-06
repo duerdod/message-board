@@ -4,8 +4,8 @@ import { Mutation } from 'react-apollo';
 import { FaBell } from 'react-icons/fa';
 import {
   DISLIKE_MESSAGE,
-  DELETE_MESSAGE,
-  GET_SINGLE_MESSAGE,
+  // DELETE_MESSAGE,
+  // GET_SINGLE_MESSAGE,
   GET_ALL_MESSAGES
 } from '../../gql/gql';
 import BellAnimation from '../ui/BellAnimation';
@@ -43,37 +43,34 @@ const StyledBell = styled(FaBell)`
   }
 `;
 
-const refetchMessage = dislikes =>
-  dislikes < 5 ? GET_SINGLE_MESSAGE : GET_ALL_MESSAGES;
-
-const deleteMessage = (dislikes, id) => {
-  return <Mutation mutation={DELETE_MESSAGE}>{({ data }) => null}</Mutation>;
-};
+// const refetchMessage = dislikes =>
+//   dislikes < 5 ? GET_SINGLE_MESSAGE : GET_ALL_MESSAGES;
 
 const Dislike = ({ id, dislikes }) => {
   const updateCache = (cache, payload) => {
+    // Reac cache
     const data = cache.readQuery({ query: GET_ALL_MESSAGES });
 
-    if (dislikes > 4) {
-      data.messages = data.messages.filter(
-        message => message.id !== payload.data.dislikeMessage.id
-      );
-      return cache.writeQuery({ query: GET_ALL_MESSAGES, data });
-    }
-    return;
+    // Remove message from cache
+    data.messages = data.messages.filter(
+      message => message.id !== payload.data.dislikeMessage.id
+    );
+
+    // Put back into cache
+    cache.writeQuery({ query: GET_ALL_MESSAGES, data });
   };
 
   return (
     <Mutation
       mutation={DISLIKE_MESSAGE}
       variables={{ id }}
-      // update={updateCache}
+      update={dislikes >= 5 ? updateCache : null}
     >
-      {(handleMessage, { data, loading }) => {
+      {(dislikeMessage, { data, loading }) => {
         return (
           <DislikeContainer
             htmlFor={`dislike-${id}`}
-            onChange={handleMessage}
+            onChange={dislikeMessage}
             disabled={loading}
           >
             <DislikeButton type="checkbox" id={`dislike-${id}`} />

@@ -7,14 +7,8 @@ import { ApolloProvider } from 'react-apollo';
 import Board from './Board';
 import theme, { reset } from './Components/Theme';
 
-const headers = {
-  authorization:
-    'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InNlcnZpY2UiOiJib2FyZC1hcGlAZGV2Iiwicm9sZXMiOlsiYWRtaW4iXX0sImlhdCI6MTU2NDU1MDQzMSwiZXhwIjoxNTY1MTU1MjMxfQ.oATwRrA392-Y3Dm2278rEoTpFxGX2oESBE93eY1wqGY'
-};
-
 const httpLink = new HttpLink({
   uri: '/graphql'
-  // headers
 });
 
 const client = new ApolloClient({

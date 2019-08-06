@@ -42,12 +42,14 @@ const Mutation = {
     // Otherwise get dislikes.
     const { dislikes } = message;
 
+    // If reached dislike count
     if (dislikes >= 5) {
+      // Remove message.
       const deletedMessage = await context.prisma.deleteMessage({ id });
       return deletedMessage;
     }
 
-    // Set new dislike count.
+    // Otherwise set new dislike count.
     const dislike = await context.prisma.updateMessage({
       data: {
         dislikes: dislikes + 1
@@ -60,8 +62,10 @@ const Mutation = {
     return dislike;
   },
 
-  deleteMessage(root, { id }, context) {
-    return context.prisma.deleteMessage({ id });
+  async deleteMessage(root, { id }, context) {
+    const deletedMessage = await context.prisma.deleteMessage({ id });
+    console.log(deletedMessage);
+    return deletedMessage;
   }
 };
 
