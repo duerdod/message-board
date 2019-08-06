@@ -9,6 +9,7 @@ const path = require('path');
 // ENV
 const port = process.env.PORT || 8000;
 const hostname = process.env.HOSTNAME || '0.0.0.0';
+console.log(process.env.NODE_ENV);
 
 const clientPath = path.join(__dirname, '../../client');
 
@@ -33,7 +34,6 @@ if (process.env.NODE_ENV === 'development') {
   });
 }
 
-console.log(process.env.NODE_ENV);
 // Static files
 if (process.env.NODE_ENV === 'production') {
   app.use('/', express.static(path.join(clientPath, 'build')));

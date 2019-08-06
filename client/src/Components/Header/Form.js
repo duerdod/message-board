@@ -25,6 +25,10 @@ const MessageForm = styled.form`
     &:not(output):-moz-ui-invalid:-moz-focusring:not(:focus) {
       box-shadow: none;
     }
+    &::-webkit-validation-bubble-message {
+      color: ${({ theme }) => theme.backgroundCerise};
+    }
+
     &::placeholder {
       text-transform: uppercase;
       font-size: 0.65rem;
@@ -38,7 +42,7 @@ const MessageForm = styled.form`
 
 export const FormContext = createContext();
 
-const Form = ({ children }) => {
+const Form = ({ children, className }) => {
   // Count is being used to render correct step when using DesktopForm. Name is for client side error handling.
   // Aka later feature.
   const [step, setStep] = useState({
@@ -49,10 +53,17 @@ const Form = ({ children }) => {
   // Could this be dymanic? Should probably be handled in useForm hook instead.
   const availableInputs = ['message', 'title', 'name'];
 
-  const { values, handleChange, handleSubmit, setValues } = useForm();
+  const {
+    values,
+    handleChange,
+    handleSubmit,
+    setValues,
+    isValid,
+    stateInit
+  } = useForm();
 
   const onMessageComplete = () => {
-    setValues({});
+    setValues(stateInit);
     setStep({
       count: 0,
       name: ''
@@ -82,10 +93,14 @@ const Form = ({ children }) => {
             setStep,
             availableInputs,
             loading,
-            error
+            error,
+            isValid
           }}
         >
-          <MessageForm onSubmit={e => handleSubmit(e, addMessage)}>
+          <MessageForm
+            className={className}
+            onSubmit={e => handleSubmit(e, addMessage)}
+          >
             {/* Either DesktopForm or MobileForm */}
             {children}
           </MessageForm>

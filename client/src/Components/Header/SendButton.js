@@ -18,16 +18,13 @@ export const Button = styled.button`
   ${buttonGradient};
   background-size: 200% 200%;
   letter-spacing: 1px;
-  display: flex;
-  align-items: center;
   &:hover {
     background-size: 100% 100%;
-    transform: scale(1.05);
     box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.1);
   }
 `;
 
-const SendButton = () => {
+const SendButton = ({ type }) => {
   const { loading } = useContext(FormContext);
   return <Button type="submit">Post{loading ? 'ing' : ''}</Button>;
 };

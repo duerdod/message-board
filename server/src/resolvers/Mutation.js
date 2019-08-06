@@ -64,7 +64,6 @@ const Mutation = {
 
   async deleteMessage(root, { id }, context) {
     const deletedMessage = await context.prisma.deleteMessage({ id });
-    console.log(deletedMessage);
     return deletedMessage;
   }
 };

@@ -1,9 +1,13 @@
 import { useState } from 'react';
 
-// Use form hook.
 const useForm = () => {
-  // Init with empty state.
-  const [values, setValues] = useState({});
+  // Init with state.
+  const stateInit = {
+    title: '',
+    message: '',
+    author: ''
+  };
+  const [values, setValues] = useState(stateInit);
 
   // On submit
   const handleSubmit = (e, action) => {
@@ -11,17 +15,31 @@ const useForm = () => {
     action();
   };
 
+  // On input change.
   const handleChange = e => {
     e.persist();
     setValues(values => ({ ...values, [e.target.name]: e.target.value }));
   };
 
-  // Returns eact fn and state to be used insde stateful fn.
+  // "Valid" as far as the client is concerned. This looks stupid. Rewrite.
+  const isValid =
+    values.title &&
+    values.title.length >= 1 &&
+    values.message &&
+    values.message.length >= 1 &&
+    values.author &&
+    values.author.length >= 1
+      ? true
+      : false;
+
+  // Returns each as an object to be used insde stateful fn.
   return {
     handleChange,
     handleSubmit,
     values,
-    setValues
+    setValues,
+    isValid,
+    stateInit
   };
 };
 

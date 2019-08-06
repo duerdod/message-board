@@ -46,11 +46,11 @@ const Message = () => {
     <Label htmlFor="message">
       <Textarea
         onKeyDown={e => forwardOnEnter(e, step, setStep, availableInputs)}
-        autoFocus={true}
+        autoFocus
         name="message"
         placeholder="Message"
         maxLength={config.messageLength}
-        value={values.message || ''}
+        value={values.message}
         required
         onChange={e => {
           handleChange(e);
@@ -70,7 +70,7 @@ const Title = () => {
     FormContext
   );
   return (
-    <Label>
+    <Label htmlFor="title">
       <Textarea
         onKeyDown={e => forwardOnEnter(e, step, setStep, availableInputs)}
         autoFocus
@@ -78,7 +78,7 @@ const Title = () => {
         placeholder="Title"
         name="title"
         maxLength="60"
-        value={values.title || ''}
+        value={values.title}
         required
         onChange={handleChange}
       />
@@ -92,7 +92,7 @@ const Name = () => {
     FormContext
   );
   return (
-    <Label>
+    <Label htmlFor="name">
       <Textarea
         onKeyDown={e => forwardOnEnter(e, step, setStep, availableInputs)}
         autoFocus
@@ -100,7 +100,7 @@ const Name = () => {
         placeholder="Name"
         name="author"
         maxLength="50"
-        value={values.author || ''}
+        value={values.author}
         required
         onChange={handleChange}
       />
