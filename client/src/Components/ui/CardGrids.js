@@ -1,9 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { css } from '@emotion/core';
 
-// Shared between the two "main" elements.
-const sharedStyles = css`
+const MessagesGrid = styled.main`
   display: grid;
   grid-gap: 1rem;
   max-width: 1200px;
@@ -25,10 +23,6 @@ const sharedStyles = css`
       padding: 0.3rem;
     }
   }
-`;
-
-const MessagesGrid = styled.main`
-  ${sharedStyles}
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
 
   .message {
@@ -42,28 +36,6 @@ const MessagesGrid = styled.main`
   }
 `;
 
-const InformationGrid = styled.main`
-  ${sharedStyles}
+const CardGrid = ({ children }) => <MessagesGrid>{children}</MessagesGrid>;
 
-  > div {
-    display: grid;
-    grid-gap: 1rem;
-  }
-
-  .information-card {
-    background: ${({ theme }) => theme.white};
-    border-radius: 4px;
-    box-shadow: ${({ theme }) => theme.boxShadow};
-    padding: 2rem;
-    text-transform: uppercase;
-  }
-`;
-
-const CardGrids = ({ isInformationVisible, children }) =>
-  isInformationVisible ? (
-    <InformationGrid>{children}</InformationGrid>
-  ) : (
-    <MessagesGrid>{children}</MessagesGrid>
-  );
-
-export default CardGrids;
+export default CardGrid;

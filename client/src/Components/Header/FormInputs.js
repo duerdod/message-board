@@ -8,7 +8,7 @@ const Label = styled.label`
   display: block;
   font-size: 0.85rem;
   color: ${({ theme }) => theme.black};
-  width: 90%;
+  width: 100%;
   &::after {
     content: '';
     width: 100%;

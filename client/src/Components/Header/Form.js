@@ -6,7 +6,6 @@ import { ADD_MESSAGE, GET_ALL_MESSAGES } from '../../gql/gql';
 
 const MessageForm = styled.form`
   display: flex;
-  justify-content: space-around;
   align-items: center;
   input,
   textarea {
