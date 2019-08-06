@@ -13,7 +13,7 @@ do `docker-compose` and you're up.
 - [x] Attach to GraphQL server.
 - [x] Complete form and client side form validation.
 - [x] Stop users from posting within a fixed time frame.
-- [ ] Message grid cleanup.
+- [x] Message grid cleanup.
 - [ ] "Pagination".
 - [x] Add some kind of dislike, remove messages after a certain amount of dislikes.
 - [ ] Add commenting possibility.
