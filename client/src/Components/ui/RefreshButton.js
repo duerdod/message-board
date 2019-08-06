@@ -9,6 +9,7 @@ const Button = styled.button`
   ${ButtonStyle}
   border: 3px solid ${({ theme }) => theme.lightRed};
   padding: 0.1rem 0.5rem;
+  width: 20%;
   svg {
     stroke: ${({ theme }) => theme.white};
     width: 50%;
