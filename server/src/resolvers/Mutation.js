@@ -11,10 +11,12 @@ const Mutation = {
     if (context.cookies['last_message']) {
       throw new Error('Hang tight between yo messages, yo. 🥁');
     }
+
     // Set timestamp for client side calculations.
-    // Rewrite to use a custom scalar inside graphql schema.
+    // Rewrite to use a custom scalar from graphql schema.
     const date = Date.now().toString();
-    // Add message...
+
+    // Add message and run text through the "sanitizer"...
     const newMessage = await context.prisma.createMessage({
       title: sanitizer(title),
       message: sanitizer(message),
@@ -22,23 +24,30 @@ const Mutation = {
       dislikes: 0,
       date
     });
+
     // Add / update timestamp cookie.
     addUserTimestamp(context);
+
     // Return message.
     return newMessage;
   },
+
   async dislikeMessage(root, { id }, context) {
     // Querying the message to get number of dislikes.
     const message = await context.prisma.message({ id });
+
+    // Is message already removed?
+    if (!message) throw new Error('Message does not exist.');
+
+    // Otherwise get dislikes.
     const { dislikes } = message;
 
-    // Is dislike count greater than or equals to 5?
-    // Remove it.
     if (dislikes >= 5) {
-      return context.prisma.deleteMessage({ id });
+      const deletedMessage = await context.prisma.deleteMessage({ id });
+      return deletedMessage;
     }
 
-    // Else set new dislike count.
+    // Set new dislike count.
     const dislike = await context.prisma.updateMessage({
       data: {
         dislikes: dislikes + 1
@@ -47,8 +56,10 @@ const Mutation = {
         id
       }
     });
+    // Return the updated message.
     return dislike;
   },
+
   deleteMessage(root, { id }, context) {
     return context.prisma.deleteMessage({ id });
   }

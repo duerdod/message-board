@@ -104,7 +104,7 @@ const Name = () => {
         required
         onChange={handleChange}
       />
-      <p className="counter">{charCounter(values.name, 50)}</p>
+      <p className="counter">{charCounter(values.author, 50)}</p>
     </Label>
   );
 };

@@ -13,8 +13,8 @@ const headers = {
 };
 
 const httpLink = new HttpLink({
-  uri: '/graphql',
-  headers
+  uri: '/graphql'
+  // headers
 });
 
 const client = new ApolloClient({

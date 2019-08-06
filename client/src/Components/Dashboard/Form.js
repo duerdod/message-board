@@ -67,7 +67,6 @@ const Form = () => {
     count: 0,
     name: ''
   });
-
   // Could this be dymanic? Should probably be handled in useForm hook instead.
   const availableInputs = ['message', 'title', 'name'];
 

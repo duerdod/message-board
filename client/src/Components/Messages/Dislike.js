@@ -4,8 +4,9 @@ import { Mutation } from 'react-apollo';
 import { FaBell } from 'react-icons/fa';
 import {
   DISLIKE_MESSAGE,
-  GET_ALL_MESSAGES,
-  GET_SINGLE_MESSAGE
+  DELETE_MESSAGE,
+  GET_SINGLE_MESSAGE,
+  GET_ALL_MESSAGES
 } from '../../gql/gql';
 import BellAnimation from '../ui/BellAnimation';
 
@@ -13,10 +14,13 @@ const DislikeContainer = styled.label`
   width: 100%;
   text-align: center;
   transition: all 0.4s ease;
+  padding: 0.2rem 0.5rem;
+  display: flex;
+  justify-content: flex-end;
   cursor: pointer;
-  &:hover {
+  /* &:hover {
     transform: scale(1.05);
-  }
+  } */
 `;
 
 const DislikeButton = styled.input`
@@ -25,7 +29,6 @@ const DislikeButton = styled.input`
 
 const Dislikees = styled.span`
   font-size: 0.65rem;
-  display: block;
   opacity: 0.7;
 `;
 
@@ -43,26 +46,37 @@ const StyledBell = styled(FaBell)`
 const refetchMessage = dislikes =>
   dislikes < 5 ? GET_SINGLE_MESSAGE : GET_ALL_MESSAGES;
 
+const deleteMessage = (dislikes, id) => {
+  return <Mutation mutation={DELETE_MESSAGE}>{({ data }) => null}</Mutation>;
+};
+
 const Dislike = ({ id, dislikes }) => {
+  const updateCache = (cache, payload) => {
+    const data = cache.readQuery({ query: GET_ALL_MESSAGES });
+
+    if (dislikes > 4) {
+      data.messages = data.messages.filter(
+        message => message.id !== payload.data.dislikeMessage.id
+      );
+      return cache.writeQuery({ query: GET_ALL_MESSAGES, data });
+    }
+    return;
+  };
+
   return (
     <Mutation
       mutation={DISLIKE_MESSAGE}
       variables={{ id }}
-      refetchQueries={[
-        {
-          query: refetchMessage(dislikes),
-          variables: { id }
-        }
-      ]}
+      // update={updateCache}
     >
-      {(dislikeMessage, { data, error, loading }) => {
+      {(handleMessage, { data, loading }) => {
         return (
           <DislikeContainer
             htmlFor={`dislike-${id}`}
-            onChange={dislikeMessage}
+            onChange={handleMessage}
             disabled={loading}
           >
-            <DislikeButton type="radio" id={`dislike-${id}`} />
+            <DislikeButton type="checkbox" id={`dislike-${id}`} />
             <StyledBell className={loading && 'pressed'} />
             <Dislikees>{dislikes}</Dislikees>
           </DislikeContainer>

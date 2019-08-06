@@ -14,9 +14,7 @@ const Messages = () => (
         <CardAnimation
           className="message"
           items={data.messages}
-          render={item => {
-            return <Message message={item} />;
-          }}
+          render={item => <Message message={item} />}
         />
       );
     }}
