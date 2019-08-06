@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { buttonGradient } from '../Theme';
 import { FormContext } from './Form';
 
-const Button = styled.button`
+export const Button = styled.button`
   margin: 1rem 0;
   border: 3px solid ${({ theme }) => theme.lightRed};
   color: ${({ theme }) => theme.white};

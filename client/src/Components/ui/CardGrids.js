@@ -11,7 +11,7 @@ const sharedStyles = css`
   margin: 0 auto;
   transition: all 0.2s ease;
 
-  @media screen and (max-width: 40em) {
+  @media screen and (max-width: 50em) {
     grid-template-columns: 1fr;
     grid-gap: 0rem;
     padding: 0rem;

@@ -2,12 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { Mutation } from 'react-apollo';
 import { FaBell } from 'react-icons/fa';
-import {
-  DISLIKE_MESSAGE,
-  // DELETE_MESSAGE,
-  // GET_SINGLE_MESSAGE,
-  GET_ALL_MESSAGES
-} from '../../gql/gql';
+import { DISLIKE_MESSAGE, GET_ALL_MESSAGES } from '../../gql/gql';
 import BellAnimation from '../ui/BellAnimation';
 
 const DislikeContainer = styled.label`
@@ -18,9 +13,6 @@ const DislikeContainer = styled.label`
   display: flex;
   justify-content: flex-end;
   cursor: pointer;
-  /* &:hover {
-    transform: scale(1.05);
-  } */
 `;
 
 const DislikeButton = styled.input`
@@ -48,7 +40,7 @@ const StyledBell = styled(FaBell)`
 
 const Dislike = ({ id, dislikes }) => {
   const updateCache = (cache, payload) => {
-    // Reac cache
+    // Read cache
     const data = cache.readQuery({ query: GET_ALL_MESSAGES });
 
     // Remove message from cache
@@ -56,7 +48,7 @@ const Dislike = ({ id, dislikes }) => {
       message => message.id !== payload.data.dislikeMessage.id
     );
 
-    // Put back into cache
+    // Put back into Apollo cache
     cache.writeQuery({ query: GET_ALL_MESSAGES, data });
   };
 
@@ -66,7 +58,7 @@ const Dislike = ({ id, dislikes }) => {
       variables={{ id }}
       update={dislikes >= 5 ? updateCache : null}
     >
-      {(dislikeMessage, { data, loading }) => {
+      {(dislikeMessage, { loading }) => {
         return (
           <DislikeContainer
             htmlFor={`dislike-${id}`}

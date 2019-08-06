@@ -5,6 +5,7 @@ const LoadingPage = styled.div`
   grid-column: span 4;
   background: ${({ theme }) => theme.white};
   box-shadow: ${({ theme }) => theme.boxShadow};
+  padding: 50% 0;
 `;
 
 const InnerContainer = styled.div`
@@ -32,10 +33,20 @@ const InnerContainer = styled.div`
   span.first {
     width: 60px;
     animation: rotate 1s ease infinite;
+    &::after {
+      display: block;
+      content: '_____';
+      visibility: hidden;
+    }
   }
   span.second {
     width: 100px;
     animation: rotate 1s ease infinite reverse;
+    &::before {
+      display: block;
+      content: '_____';
+      visibility: hidden;
+    }
   }
 `;
 
@@ -44,7 +55,7 @@ const Text = styled.h2`
   font-weight: 800;
   text-transform: uppercase;
   margin: 0.2rem;
-  font-weight: 200;
+  font-weight: 800;
   letter-spacing: 3px;
   text-shadow: 1px 1px 0px ${({ theme }) => theme.lightPink};
 `;
@@ -54,12 +65,6 @@ const ErrorText = styled.p`
   color: ${({ theme }) => theme.error};
 `;
 
-const IconSpan = props => (
-  <span className={props.className} role="img" aria-label="loading messages">
-    {props.children}
-  </span>
-);
-
 // For smaller error messages.
 export const ErrorMessage = props => <ErrorText>{props.children}</ErrorText>;
 
@@ -67,15 +72,15 @@ const Spinner = () => {
   // Jez... there are probably better ways.
   return (
     <>
-      <IconSpan className="eyes" style={{ display: 'block' }}>
-        👁 👁
-      </IconSpan>
-      <IconSpan className="first">
-        <span style={{ visibility: 'hidden' }}>______</span>🎾
-      </IconSpan>
-      <IconSpan className="second">
-        <span style={{ visibility: 'hidden' }}>______</span>🎾
-      </IconSpan>
+      <span role="img" aria-label="loading messages" className="eyes">
+        👀
+      </span>
+      <span role="img" aria-label="loading messages" className="first">
+        🎾
+      </span>
+      <span role="img" aria-label="loading messages" className="second">
+        🎾
+      </span>
     </>
   );
 };
@@ -85,9 +90,7 @@ const Status = ({ state }) => {
     <LoadingPage>
       <InnerContainer>
         {state === 'loading' ? (
-          <Text>
-            Consider me yo <br /> loading spinner
-          </Text>
+          <Text />
         ) : (
           <Text>
             Oh darn. <br />
