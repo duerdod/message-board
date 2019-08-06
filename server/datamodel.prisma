@@ -1,8 +1,17 @@
+type Comment {
+  id: ID! @id
+  comment: String!
+  author: String!
+  dislikes: Int!
+  date: String
+}
+
 type Message {
   id: ID! @id
   title: String!
   message: String!
   author: String!
   dislikes: Int!
+  comments: [Comment]
   date: String
 }

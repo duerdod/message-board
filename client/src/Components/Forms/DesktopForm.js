@@ -14,7 +14,6 @@ const DesktopForm = () => {
       <StepButton direction="back">
         <MdChevronLeft />
       </StepButton>
-
       {step.count === 0 && <Message />}
       {step.count === 1 && <Title />}
       {step.count === 2 && (

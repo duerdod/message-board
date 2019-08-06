@@ -58,6 +58,7 @@ const Mutation = {
         id
       }
     });
+
     // Return the updated message.
     return dislike;
   },

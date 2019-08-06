@@ -13,7 +13,16 @@ const typeDefs = gql`
     message: String!
     author: String!
     dislikes: Int!
+    comments: [Comment]
     date: String
+  }
+
+  type Comment {
+    id: ID!
+    comment: String!
+    author: String!
+    date: String
+    dislikes: Int!
   }
 
   type Query {
