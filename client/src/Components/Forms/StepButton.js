@@ -5,7 +5,7 @@ import { FormContext } from './Form';
 const Button = styled.button`
   font-size: 1.5rem;
   cursor: pointer;
-  color: ${({ theme }) => theme.backgroundPink};
+  color: ${({ theme }) => theme.backgroundCerise};
 `;
 
 const StepButton = ({ children, direction }) => {

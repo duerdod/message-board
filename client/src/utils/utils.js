@@ -1,7 +1,7 @@
 import config from '../config';
 
 // Truncate text and add [...].
-// This will probably truncate in the middle of a word. But who cares?
+// This will probably truncate in the middle of a word. But who cares RIGHT?!
 function truncateMessage(message, maxLength) {
   let text = message.slice(0, maxLength);
   text += ' ...';
@@ -9,15 +9,20 @@ function truncateMessage(message, maxLength) {
 }
 
 // Adds timestamp to each message. Should this really be handled client side?
-// Rewrite. The output should be 1 minute ago, 4 hours ago etcetc., until there is "a new day".
+// Rewrite. The output should be 1 minute ago, 4 hours ago etcetc., until there is "a new day". CHECKKKK!
 function addTimestamp(time) {
   const added = new Date(Number(time));
   const now = new Date();
-  let timestamp;
-  // Is there a new day? Return date added.
-
-  // Else calculate hours and minutes.
   const difference = now - added;
+  let timestamp;
+
+  // Is there a new day? Return date added.
+  const days = new Date(difference).getDate();
+  if (days >= 2) {
+    return (timestamp = `${added.toLocaleDateString()}`);
+  }
+
+  // Else calculate hours or minutes.
   const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
   const minutes = Math.floor((difference / (1000 * 60)) % 60);
 
@@ -28,7 +33,7 @@ function addTimestamp(time) {
   } else if (hours <= 1) {
     timestamp = `${minutes} minutes ago`;
   } else {
-    timestamp = `${added.toLocaleDateString()}`;
+    timestamp = '';
   }
   return timestamp;
 }
@@ -56,9 +61,10 @@ const shouldMessageExpand = cardContent =>
 // Used by addMessage compoent.
 const forwardOnEnter = (e, step, setStep, availableInputs) => {
   const { key, shiftKey, target } = e;
+
   // If user holding shift and enter, return early.
-  // Else prevent default on enter button, return the next message stage
   if (!shiftKey && key === 'Enter') {
+    // Else prevent default on enter button, return the next form stage
     e.preventDefault();
     if (step.count !== availableInputs.length - 1) {
       setStep({
@@ -66,7 +72,7 @@ const forwardOnEnter = (e, step, setStep, availableInputs) => {
         name: availableInputs[step.count]
       });
     }
-    // Adds focus to input. Otherwise user have to do focus themselfs.
+    // Adds focus to input. Otherwise user have to do focus themselves. :(
     target.focus();
   }
   return;

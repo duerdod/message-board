@@ -4,11 +4,15 @@ import { FormContext } from './Form';
 // import { ErrorMessage } from '../StatusPage';
 import { Title, Message, Name } from './FormInputs';
 import styled from '@emotion/styled';
-import { Button as SendButton } from './SendButton';
 import { useSpring, animated } from 'react-spring';
+import ButtonStyle from '../ui/Button';
 
-const StyledSendButton = styled(SendButton)`
+const StyledSendButton = styled.button`
+  ${ButtonStyle}
+  border: 3px solid ${({ theme }) => theme.lightRed};
+  color: ${({ theme }) => theme.white};
   width: 50%;
+  font-size: 0.85rem;
   position: fixed;
   bottom: 25px;
   padding: 1rem 0.5rem;
@@ -22,7 +26,7 @@ const ChevronButton = styled.button`
   padding: 1rem;
   display: block;
   cursor: pointer;
-  font-size: 1.5rem;
+  font-size: 2rem;
   color: ${({ theme }) => theme.backgroundCerise};
   transform: rotate(${p => p.rotate}deg);
   transition: all 0.4s ease;

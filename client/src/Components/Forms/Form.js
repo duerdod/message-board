@@ -25,9 +25,6 @@ const MessageForm = styled.form`
     &:not(output):-moz-ui-invalid:-moz-focusring:not(:focus) {
       box-shadow: none;
     }
-    &::-webkit-validation-bubble-message {
-      color: ${({ theme }) => theme.backgroundCerise};
-    }
 
     &::placeholder {
       text-transform: uppercase;

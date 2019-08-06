@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { MdDehaze } from 'react-icons/md';
-import Form from './Form';
-import DesktopForm from './DesktopForm';
-import MobileForm from './MobileForm';
+import Form from '../Forms/Form';
+import DesktopForm from '../Forms/DesktopForm';
+import MobileForm from '../Forms/MobileForm';
 import useMobileView from '../../hooks/useMobileView';
 
 const HeaderContainer = styled.header`
@@ -23,6 +23,14 @@ const HeaderContainer = styled.header`
     font-size: 1.5rem;
     svg {
       fill: ${({ theme }) => theme.backgroundCerise};
+    }
+    &:hover {
+      &::before {
+        content: 'Empty';
+        display: inline-block;
+        color: ${({ theme }) => theme.backgroundCerise};
+        font-size: 0.65rem;
+      }
     }
   }
   @media screen and (max-width: 50em) {
@@ -63,7 +71,7 @@ const Header = () => {
       </Form>
       {/* Burger */}
       <button className="menu-container">
-        <MdDehaze />
+        <MdDehaze style={{ opacity: '0.2' }} />
       </button>
     </HeaderContainer>
   );
