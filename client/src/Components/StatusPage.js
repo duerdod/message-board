@@ -5,7 +5,7 @@ const LoadingPage = styled.div`
   grid-column: span 4;
   background: ${({ theme }) => theme.white};
   box-shadow: ${({ theme }) => theme.boxShadow};
-  padding: 50% 0;
+  padding: 10% 0;
 `;
 
 const InnerContainer = styled.div`
@@ -90,7 +90,7 @@ const Status = ({ state }) => {
     <LoadingPage>
       <InnerContainer>
         {state === 'loading' ? (
-          <Text />
+          <Text>Yo spinner.</Text>
         ) : (
           <Text>
             Oh darn. <br />

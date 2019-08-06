@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { MdDehaze } from 'react-icons/md';
+import { ReactComponent as Burger } from '../../svg/Burger.svg';
 import Form from '../Forms/Form';
 import DesktopForm from '../Forms/DesktopForm';
 import MobileForm from '../Forms/MobileForm';
@@ -8,7 +8,7 @@ import useMobileView from '../../hooks/useMobileView';
 
 const HeaderContainer = styled.header`
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-columns: 1fr 2fr 1fr;
   align-items: center;
   background: ${({ theme }) => theme.white};
   padding: 0.5rem 1rem;
@@ -22,7 +22,7 @@ const HeaderContainer = styled.header`
     justify-self: end;
     font-size: 1.5rem;
     svg {
-      fill: ${({ theme }) => theme.backgroundCerise};
+      stroke: ${({ theme }) => theme.backgroundCerise};
     }
     &:hover {
       &::before {
@@ -33,14 +33,25 @@ const HeaderContainer = styled.header`
       }
     }
   }
-  @media screen and (max-width: 50em) {
-    grid-template-columns: 1fr 1fr;
 
+  @media screen and (max-width: 50em) {
+    grid-template-columns: 1fr;
+
+    /* A mess. */
     .form-container {
       grid-row: 2;
       grid-column: span 4;
       .mobile-form {
         width: 100%;
+        .dashboard-buttons {
+          display: flex;
+          justify-content: center;
+          width: 100%;
+          position: fixed;
+          left: 50%;
+          transform: translateX(-50%);
+          bottom: 25px;
+        }
       }
     }
   }
@@ -59,6 +70,7 @@ const Title = styled.h2`
 const Header = () => {
   const isMobileView = useMobileView();
 
+  // This could probably be much simplier.
   return (
     <HeaderContainer>
       <div className="title-container">
@@ -69,10 +81,12 @@ const Header = () => {
       <Form className="form-container">
         {isMobileView ? <MobileForm /> : <DesktopForm />}
       </Form>
-      {/* Burger */}
-      <button className="menu-container">
-        <MdDehaze style={{ opacity: '0.2' }} />
-      </button>
+      {/* Burger on desktop */}
+      {isMobileView ? null : (
+        <button className="menu-container">
+          <Burger style={{ opacity: '0.2' }} />
+        </button>
+      )}
     </HeaderContainer>
   );
 };

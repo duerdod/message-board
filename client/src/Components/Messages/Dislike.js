@@ -1,17 +1,17 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Mutation } from 'react-apollo';
-import { FaBell } from 'react-icons/fa';
+import { ReactComponent as Bell } from '../../svg/Bell.svg';
 import { DISLIKE_MESSAGE, GET_ALL_MESSAGES } from '../../gql/gql';
 import BellAnimation from '../ui/BellAnimation';
 
 const DislikeContainer = styled.label`
   width: 100%;
-  text-align: center;
   transition: all 0.4s ease;
   padding: 0.2rem 0.5rem;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   cursor: pointer;
 `;
 
@@ -24,10 +24,11 @@ const Dislikees = styled.span`
   opacity: 0.7;
 `;
 
-const StyledBell = styled(FaBell)`
+const StyledBell = styled(Bell)`
   color: ${({ theme }) => theme.yellow};
   fill: ${({ theme }) => theme.yellow};
-  font-size: 1rem;
+  width: 1.3rem;
+  stroke: none;
   ${BellAnimation};
   &.pressed {
     animation-name: dangle;

@@ -24,11 +24,11 @@ const useForm = () => {
   // "Valid" as far as the client is concerned. This looks stupid. Rewrite.
   const isValid =
     values.title &&
-    values.title.length >= 1 &&
+    values.title.length >= 2 &&
     values.message &&
-    values.message.length >= 1 &&
+    values.message.length >= 2 &&
     values.author &&
-    values.author.length >= 1
+    values.author.length >= 2
       ? true
       : false;
 

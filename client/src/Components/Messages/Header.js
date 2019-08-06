@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { FiEye } from 'react-icons/fi';
+import { ReactComponent as Person } from '../../svg/Person.svg';
 import { addTimestamp } from '../../utils/utils';
 
 const HeaderWrapper = styled.header`
@@ -24,6 +24,11 @@ const Avatar = styled.span`
   border-radius: 50%;
   background: ${({ theme }) => theme.lightGrey};
   margin-right: 6px;
+
+  svg {
+    height: 1rem;
+    width: 1rem;
+  }
 `;
 const Author = styled.span`
   font-size: 0.75rem;
@@ -39,7 +44,7 @@ const Header = ({ message }) => {
     <HeaderWrapper>
       <AuthorContainer>
         <Avatar>
-          <FiEye />
+          <Person />
         </Avatar>
         <Author>{message.author}</Author>
       </AuthorContainer>

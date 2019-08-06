@@ -6,6 +6,7 @@ import { Title, Message, Name } from './FormInputs';
 import styled from '@emotion/styled';
 import { useSpring, animated } from 'react-spring';
 import ButtonStyle from '../ui/Button';
+import RefreshButton from '../ui/RefreshButton';
 
 const StyledSendButton = styled.button`
   ${ButtonStyle}
@@ -13,11 +14,7 @@ const StyledSendButton = styled.button`
   color: ${({ theme }) => theme.white};
   width: 50%;
   font-size: 0.85rem;
-  position: fixed;
-  bottom: 25px;
   padding: 1rem 0.5rem;
-  left: 50%;
-  transform: translateX(-50%);
 `;
 
 const ChevronButton = styled.button`
@@ -41,6 +38,7 @@ const Chevron = ({ rotate, onTouchStart, onClick }) => (
 const Button = ({ isOpen, toggleOpen, handleSubmit, addMessage, isValid }) => (
   // This button handles a little much. Separate it?
   <StyledSendButton
+    type="button"
     onTouchStart={e => {
       // Is the form visible and is there any input?
       if (isOpen && isValid) {
@@ -50,7 +48,8 @@ const Button = ({ isOpen, toggleOpen, handleSubmit, addMessage, isValid }) => (
         return;
       }
       // Otherwise prevent submit and toggle the form.
-      e.preventDefault();
+      e.nativeEvent.preventDefault();
+      e.persist();
       toggleOpen(isOpen => !isOpen);
     }}
   >
@@ -84,15 +83,19 @@ const MobileForm = () => {
           <Chevron rotate={90} onTouchStart={() => toggleOpen(false)} />
         </AnimatedFormContainer>
       )}
-      <Button
-        isValid={isValid}
-        addMessage={addMessage}
-        handleSubmit={handleSubmit}
-        isOpen={isOpen}
-        toggleOpen={toggleOpen}
-      >
-        Post
-      </Button>
+      {/* These are a part of the header. Rewrite. */}
+      <div className="dashboard-buttons">
+        <Button
+          isValid={isValid}
+          addMessage={addMessage}
+          handleSubmit={handleSubmit}
+          isOpen={isOpen}
+          toggleOpen={toggleOpen}
+        >
+          Post
+        </Button>
+        <RefreshButton />
+      </div>
     </div>
   );
 };

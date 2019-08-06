@@ -2,7 +2,7 @@ import { css } from '@emotion/core';
 import { buttonGradient } from '../Theme';
 
 const ButtonStyle = css`
-  margin: 1rem 0;
+  margin: 1rem 0.1rem;
   padding: 0.5rem 1em;
   font-size: 0.65rem;
   text-transform: uppercase;
