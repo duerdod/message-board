@@ -5,9 +5,7 @@ import Messages from './Components/Messages/Messages';
 import Information from './Components/Infomation/Information';
 
 const Board = () => {
-  const [isInformationVisible, toggleVisible] = useState(
-    process.env.NODE_ENV !== 'development'
-  );
+  const [isInformationVisible, toggleVisible] = useState(false);
   return (
     <main>
       <Dashboard toggleVisible={toggleVisible} />
