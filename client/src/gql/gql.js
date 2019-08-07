@@ -10,6 +10,9 @@ export const GET_SINGLE_MESSAGE = gql`
       dislikes
       comments {
         id
+        comment
+        author
+        date
       }
       date
       __typename

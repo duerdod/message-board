@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import styled from '@emotion/styled';
 import { HeaderContext } from '../Header';
 import { ReactComponent as MenuBell } from '../../../svg/Bell.svg';
@@ -36,7 +36,7 @@ const Bell = styled(MenuBell)`
   fill: ${({ theme }) => theme.lightRed};
   stroke: none;
   width: 1.5rem;
-  transition: all .2s ease;
+  transition: all 0.2s ease;
   &:hover {
     fill: ${({ theme }) => theme.white};
   }
@@ -47,11 +47,10 @@ const Text = styled.h2`
   font-size: ${p => p.size}rem;
 `;
 
-const FAQ = styled.div`
+const FAQ = styled.ul`
   width: 100%;
   margin: 3rem 0;
   padding: 0;
-  list-style: none;
 
   li {
     display: flex;
@@ -61,16 +60,16 @@ const FAQ = styled.div`
     font-size: 1.1rem;
     margin: 0.5rem 0;
     padding: 0;
-    cursor: pointer; 
+    cursor: pointer;
 
     svg {
       width: 28px;
       margin-right: 8px;
-      transition: all .2s ease;
+      transition: all 0.2s ease;
     }
-    &:hover{
+    &:hover {
       svg {
-stroke: ${({ theme }) => theme.white};
+        stroke: ${({ theme }) => theme.white};
       }
     }
   }
@@ -78,8 +77,19 @@ stroke: ${({ theme }) => theme.white};
 
 const Menu = () => {
   const { isMenuOpen, isLarge } = useContext(HeaderContext);
+
+  useEffect(() => {
+    // Is this OK? Looks bad.
+    const body = document.querySelector('body');
+    isMenuOpen
+      ? body.classList.add('menu-open')
+      : body.classList.remove('menu-open');
+  }, [isMenuOpen]);
+
   if (isLarge) return null;
   // if (!isMenuOpen) return null;
+  // Yes, this is always rendered. No big deal, not done anyho.
+
   return (
     <MenuContainer className={`${isMenuOpen ? 'menu-open' : ''}`}>
       <MenuInnerContainer>

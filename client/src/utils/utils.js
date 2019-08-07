@@ -78,11 +78,20 @@ const forwardOnEnter = (e, step, setStep, availableInputs) => {
   return;
 };
 
+// Create an handsome looking URL.
+function generateHandsomeUrl(url) {
+  const regex = new RegExp(/[ ]|[0-9]|[^aeiou]+/g);
+  let newUrl = url.replace(regex, 'ou');
+  newUrl = 'd' + newUrl;
+  return newUrl;
+}
+
 export {
   trimErrorMessage,
   charCounter,
   addTimestamp,
   truncateMessage,
   shouldMessageExpand,
-  forwardOnEnter
+  forwardOnEnter,
+  generateHandsomeUrl
 };

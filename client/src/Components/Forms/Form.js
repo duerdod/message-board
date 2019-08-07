@@ -31,7 +31,7 @@ const MessageForm = styled.form`
       font-size: 0.65rem;
       font-family: ${({ theme }) => theme.sansSerif};
     }
-    @media screen and (max-width: 55em) {
+    @media screen and (max-width: 64em) {
       font-size: 1.1rem;
     }
   }

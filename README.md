@@ -1,6 +1,7 @@
 ## Message Board
 
 Available at: https://the-congress.herokuapp.com/
+Mostly been focusing on mobile devices.
 
 Internet has no need for this application but it's still a work in progress.  
 Comes with the most simplest word sanitizer for all you evil ones.
@@ -15,7 +16,7 @@ do `docker-compose` and you're up.
 - [x] Stop users from posting within a fixed time frame.
 - [x] Message grid cleanup.
 - [ ] "Pagination".
-- [x] Add some kind of dislike, remove messages after a certain amount of dislikes.
+- [x] Vote for removal.
 - [ ] Add commenting possibility.
 - [ ] Better server side error handling.
 - [ ] Naming, refactoring and cleanup.

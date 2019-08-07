@@ -46,12 +46,24 @@ export const reset = css`
     box-sizing: border-box;
   }
 
-  button, input, textarea {
+  button, input, textarea, ul, li {
     margin: 0;
     border: 0;
     padding: 0;
     background: transparent;
     outline: 0;
+    list-style: none;
+  }
+
+  a {
+    text-decoration: none;
+    color: ${theme.black};
+  }
+  /* Stupid. */
+  body.menu-open {
+    position: fixed;
+    height: 100%;
+    overflow: hidden;
   }
 
 `;

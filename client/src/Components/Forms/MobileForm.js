@@ -61,7 +61,13 @@ const MobileForm = ({ renderFormChildren }) => {
           <Title />
           <Message />
           <Name />
-          <Chevron rotate={180} onTouchStart={() => toggleFormOpen(false)} />
+          <Chevron
+            rotate={180}
+            onClick={e => {
+              e.preventDefault();
+              toggleFormOpen(false);
+            }}
+          />
         </AnimatedFormContainer>
       )}
       {renderFormChildren(handleToggleOrSumbit)}

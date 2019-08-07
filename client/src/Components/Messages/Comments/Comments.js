@@ -1,36 +1,51 @@
 import React from 'react';
+import { Query } from 'react-apollo';
 import styled from '@emotion/styled';
-import { ReactComponent as CommentsIcon } from '../../../svg/Comments.svg';
+import { GET_SINGLE_MESSAGE } from '../../../gql/gql';
+import Message from '../Message';
+import Comment from './Comment';
+import StatusPage from '../../StatusPage';
 
-const CommentsContainer = styled.label`
-  transition: all 0.4s ease;
-  padding: 0.2rem 0.5rem;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
+const CommentsContainer = styled.section`
+  > div {
+    border-radius: 0px;
+    box-shadow: none;
+    border-top: 1px solid ${({ theme }) => theme.lightGrey};
+    border-bottom: 1px solid ${({ theme }) => theme.lightGrey};
+  }
 `;
 
-const CommentsCount = styled.span`
-  font-size: 0.65rem;
-  opacity: 0.7;
-  margin-left: 4px;
+const CommentContainer = styled.ul`
+  background: ${({ theme }) => theme.white};
+  box-shadow: 0 7px 6px -6px hsla(0, 0%, 0%, 0.15);
+  padding: 1rem;
+
+  @media screen and (max-width: 64em) {
+    /* border-radius: 0px; */
+  }
 `;
 
-const StyledCommentsIcon = styled(CommentsIcon)`
-  color: ${({ theme }) => theme.backgroundCerise};
-  fill: ${({ theme }) => theme.backgroundCerise};
-  width: 16px;
-  stroke: none;
-`;
-
-const Comments = ({ id, comments }) => {
+const Comments = props => {
+  // const { id } = props.match.params;
+  // Is this koscher?
+  const { state } = props.location;
   return (
-    <CommentsContainer>
-      <StyledCommentsIcon />
-      <CommentsCount>{comments ? comments.length : 0}</CommentsCount>
-    </CommentsContainer>
+    <Query query={GET_SINGLE_MESSAGE} variables={{ id: state }}>
+      {({ data, error, loading }) => {
+        if (error) return <StatusPage state={error && 'error'} />;
+        if (loading) return <StatusPage state={loading && 'loading'} />;
+        return (
+          <>
+            <CommentsContainer>
+              <Message message={data.message} />
+              <CommentContainer>
+                <Comment />
+              </CommentContainer>
+            </CommentsContainer>
+          </>
+        );
+      }}
+    </Query>
   );
 };
 

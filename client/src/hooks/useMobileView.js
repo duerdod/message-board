@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 // Returns bool
 function getWindowWidth() {
-  return window.innerWidth <= 880;
+  return window.innerWidth <= 1024;
 }
 
 const useMobileView = () => {

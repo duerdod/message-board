@@ -37,7 +37,7 @@ const HeaderContainer = styled.header`
     }
   }
 
-  @media screen and (max-width: 55em) {
+  @media screen and (max-width: 64em) {
     grid-template-columns: 1fr;
 
     /* A mess. */

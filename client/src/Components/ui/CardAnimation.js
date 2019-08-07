@@ -2,6 +2,8 @@ import React from 'react';
 import { useTransition, animated } from 'react-spring';
 import { shouldMessageExpand } from '../../utils/utils';
 
+// REMOVE!
+
 const CardAnimation = ({ className = '', ...props }) => {
   const { render } = props;
 

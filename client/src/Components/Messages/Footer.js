@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
 import Dislike from './Dislike/Dislike';
-import Comments from './Comments/Comments';
+import Comments from './Comments/CommentsIndicator';
+import { generateHandsomeUrl } from '../../utils/utils';
 
 const Container = styled.footer`
   width: 100%;
@@ -23,7 +25,14 @@ const Container = styled.footer`
 const Footer = ({ id, dislikes, comments }) => {
   return (
     <Container>
-      <Comments id={id} comments={comments} />
+      <Link
+        to={{
+          pathname: `/message/${generateHandsomeUrl(id)}`,
+          state: id
+        }}
+      >
+        <Comments id={id} comments={comments} />
+      </Link>
       <Dislike id={id} dislikes={dislikes} />
     </Container>
   );
