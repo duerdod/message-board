@@ -13,6 +13,7 @@ const DislikeContainer = styled.label`
   justify-content: flex-end;
   align-items: center;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 `;
 
 const DislikeButton = styled.input`

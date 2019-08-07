@@ -58,7 +58,7 @@ const shouldMessageExpand = cardContent =>
     ? `expanded`
     : '';
 
-// Used by addMessage compoent.
+// Used by input compoents.
 const forwardOnEnter = (e, step, setStep, availableInputs) => {
   const { key, shiftKey, target } = e;
 

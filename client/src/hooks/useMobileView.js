@@ -1,19 +1,34 @@
 import { useState, useEffect } from 'react';
 
-function getWindowSize(setMobileView) {
-  return setMobileView(window.innerWidth <= 750);
+// Returns bool
+function getWindowWidth() {
+  return window.innerWidth <= 880;
 }
 
 const useMobileView = () => {
-  const [isMobileView, setMobileView] = useState(null);
+  // Init state with getWindowWidth return.
+  // Otherwise the user have to resize before any changes appears.
+  const [isSmall, setScreenWidth] = useState(getWindowWidth());
 
   useEffect(() => {
-    window.addEventListener('resize', getWindowSize(setMobileView));
+    function handleResize() {
+      // Sets bool
+      setScreenWidth(getWindowWidth());
+    }
+    // Add resize event
+    window.addEventListener('resize', handleResize);
 
-    return () => window.removeEventListener('resize', getWindowSize);
-  }, [isMobileView]);
+    // Clean up resize event
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
-  return isMobileView;
+  const isLarge = !isSmall;
+
+  return {
+    isSmall,
+    isLarge
+  };
 };
 
+// Should probably be called something else...
 export default useMobileView;

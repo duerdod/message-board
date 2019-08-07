@@ -1,4 +1,5 @@
 import { css } from '@emotion/core';
+import UseMobileView from '../hooks/useMobileView';
 
 const theme = {
   black: '#383838',
@@ -19,7 +20,11 @@ const theme = {
   boxShadow: '0 2px 6px 0 hsla(0, 0%, 0%, 0.2)',
   sansSerif: 'Open Sans, sans-serif',
   secondary: 'Luckiest Guy, sans-serif',
-  serif: 'DM Serif Text, serif'
+  serif: 'DM Serif Text, serif',
+  isLarge: () => {
+    const isLarge = UseMobileView();
+    return isLarge;
+  }
 };
 
 export const buttonGradient = `

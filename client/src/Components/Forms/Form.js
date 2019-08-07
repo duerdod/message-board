@@ -31,7 +31,7 @@ const MessageForm = styled.form`
       font-size: 0.65rem;
       font-family: ${({ theme }) => theme.sansSerif};
     }
-    @media screen and (max-width: 50em) {
+    @media screen and (max-width: 55em) {
       font-size: 1.1rem;
     }
   }
@@ -98,7 +98,7 @@ const Form = ({ children, className }) => {
             className={className}
             onSubmit={e => handleSubmit(e, addMessage)}
           >
-            {/* Either DesktopForm or MobileForm */}
+            {/* Either DesktopForm or MobileForm in Header.js */}
             {children}
           </MessageForm>
         </FormContext.Provider>

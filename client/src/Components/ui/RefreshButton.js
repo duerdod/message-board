@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { ApolloConsumer } from 'react-apollo';
 import { GET_ALL_MESSAGES } from '../../gql/gql';
 import { ReactComponent as Refresh } from '../../svg/Burger.svg';
-import ButtonStyle from './Button';
+import { ButtonStyle } from './ThemeButton';
 
 const Button = styled.button`
   ${ButtonStyle}

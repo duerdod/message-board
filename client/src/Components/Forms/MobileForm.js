@@ -1,21 +1,10 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
+import { HeaderContext } from '../Header/Header';
 import { FormContext } from './Form';
-// import { trimErrorMessage } from '../../utils/utils';
-// import { ErrorMessage } from '../StatusPage';
 import { Title, Message, Name } from './FormInputs';
 import styled from '@emotion/styled';
 import { useSpring, animated } from 'react-spring';
-import ButtonStyle from '../ui/Button';
-import RefreshButton from '../ui/RefreshButton';
-
-const StyledSendButton = styled.button`
-  ${ButtonStyle}
-  border: 3px solid ${({ theme }) => theme.lightRed};
-  color: ${({ theme }) => theme.white};
-  width: 50%;
-  font-size: 0.85rem;
-  padding: 1rem 0.5rem;
-`;
+import { ReactComponent as ChevronDown } from '../../svg/ChevronLeft.svg';
 
 const ChevronButton = styled.button`
   width: auto;
@@ -31,30 +20,8 @@ const ChevronButton = styled.button`
 
 const Chevron = ({ rotate, onTouchStart, onClick }) => (
   <ChevronButton rotate={rotate} onTouchStart={onTouchStart} onClick={onClick}>
-    &lsaquo;
+    <ChevronDown style={{ fill: '#ee9ca7' }} />
   </ChevronButton>
-);
-
-const Button = ({ isOpen, toggleOpen, handleSubmit, addMessage, isValid }) => (
-  // This button handles a little much. Separate it?
-  <StyledSendButton
-    type="button"
-    onTouchStart={e => {
-      // Is the form visible and is there any input?
-      if (isOpen && isValid) {
-        // Submit and close.
-        handleSubmit(e, addMessage);
-        toggleOpen(false);
-        return;
-      }
-      // Otherwise prevent submit and toggle the form.
-      e.nativeEvent.preventDefault();
-      e.persist();
-      toggleOpen(isOpen => !isOpen);
-    }}
-  >
-    Post
-  </StyledSendButton>
 );
 
 const FormContainer = styled.div`
@@ -63,39 +30,40 @@ const FormContainer = styled.div`
 
 const AnimatedFormContainer = animated(FormContainer);
 
-const MobileForm = () => {
+const MobileForm = ({ renderFormChildren }) => {
+  const { isFormOpen, toggleFormOpen } = useContext(HeaderContext);
   const { handleSubmit, addMessage, isValid } = useContext(FormContext);
-  const [isOpen, toggleOpen] = useState(false);
 
   // Animations.
   const props = useSpring({
-    height: isOpen ? 300 : 0,
+    height: isFormOpen ? 300 : 0,
     config: { duration: 200 }
   });
 
+  const handleToggleOrSumbit = e => {
+    // Is the form visible and is there any input?
+    if (isFormOpen && isValid) {
+      // Try submit and close.
+      handleSubmit(e, addMessage);
+      toggleFormOpen(false);
+      return;
+    }
+    // Otherwise prevent submit and toggle form open.
+    e.persist();
+    toggleFormOpen(isFormOpen => !isFormOpen);
+  };
+
   return (
     <div className="mobile-form">
-      {isOpen && (
+      {isFormOpen && (
         <AnimatedFormContainer style={props}>
           <Title />
           <Message />
           <Name />
-          <Chevron rotate={90} onTouchStart={() => toggleOpen(false)} />
+          <Chevron rotate={90} onTouchStart={() => toggleFormOpen(false)} />
         </AnimatedFormContainer>
       )}
-      {/* These are a part of the header. Rewrite. */}
-      <div className="dashboard-buttons">
-        <Button
-          isValid={isValid}
-          addMessage={addMessage}
-          handleSubmit={handleSubmit}
-          isOpen={isOpen}
-          toggleOpen={toggleOpen}
-        >
-          Post
-        </Button>
-        <RefreshButton />
-      </div>
+      {renderFormChildren(handleToggleOrSumbit)}
     </div>
   );
 };

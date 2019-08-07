@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState, createContext } from 'react';
 import styled from '@emotion/styled';
 import { ReactComponent as Burger } from '../../svg/Burger.svg';
 import Form from '../Forms/Form';
 import DesktopForm from '../Forms/DesktopForm';
 import MobileForm from '../Forms/MobileForm';
 import useMobileView from '../../hooks/useMobileView';
+import ThemeButton from '../ui/ThemeButton';
+import RefreshButton from '../ui/RefreshButton';
 
 const HeaderContainer = styled.header`
   display: grid;
@@ -34,7 +36,7 @@ const HeaderContainer = styled.header`
     }
   }
 
-  @media screen and (max-width: 50em) {
+  @media screen and (max-width: 55em) {
     grid-template-columns: 1fr;
 
     /* A mess. */
@@ -67,26 +69,61 @@ const Title = styled.h2`
   text-shadow: 1px 1px 0px ${({ theme }) => theme.lightPink};
 `;
 
-const Header = () => {
-  const isMobileView = useMobileView();
+const Logo = () => (
+  <div className="title-container">
+    <Title color="#74b49b">SHOUT OUT</Title>
+    <Title color="#ee9ca7">AND</Title>
+    <Title color="#a7d7c5">STAY COOL</Title>
+  </div>
+);
 
-  // This could probably be much simplier.
+const ToggleSubmitButton = styled(ThemeButton)`
+  padding: 0.5rem 5rem;
+`;
+
+export const HeaderContext = createContext();
+
+const Header = () => {
+  const { isSmall, isLarge } = useMobileView();
+  const [isFormOpen, toggleFormOpen] = useState(false);
+
+  // This could probably be much simplier....
   return (
     <HeaderContainer>
-      <div className="title-container">
-        <Title color="#74b49b">SHOUT OUT</Title>
-        <Title color="#ee9ca7">AND</Title>
-        <Title color="#a7d7c5">STAY COOL</Title>
-      </div>
-      <Form className="form-container">
-        {isMobileView ? <MobileForm /> : <DesktopForm />}
-      </Form>
-      {/* Burger on desktop */}
-      {isMobileView ? null : (
-        <button className="menu-container">
-          <Burger style={{ opacity: '0.2' }} />
-        </button>
-      )}
+      <HeaderContext.Provider
+        value={{
+          isFormOpen,
+          toggleFormOpen
+        }}
+      >
+        <Logo />
+        <Form className="form-container">
+          {isSmall ? (
+            // I belive this makes it easier to manage.
+            <MobileForm
+              renderFormChildren={handleToggleOrSumbit => (
+                <div className="dashboard-buttons">
+                  <ToggleSubmitButton
+                    type="button"
+                    onTouchStart={handleToggleOrSumbit}
+                  >
+                    Post
+                  </ToggleSubmitButton>
+                  <RefreshButton />
+                </div>
+              )}
+            />
+          ) : (
+            <DesktopForm />
+          )}
+        </Form>
+        {/* Burger on desktop */}
+        {isLarge && (
+          <button className="menu-container">
+            <Burger style={{ opacity: '0.2' }} />
+          </button>
+        )}
+      </HeaderContext.Provider>
     </HeaderContainer>
   );
 };

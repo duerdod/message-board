@@ -9,7 +9,7 @@ const MessagesGrid = styled.main`
   margin: 0 auto;
   transition: all 0.2s ease;
 
-  @media screen and (max-width: 50em) {
+  @media screen and (max-width: 55em) {
     grid-template-columns: 1fr;
     grid-gap: 0rem;
     padding: 0rem;
