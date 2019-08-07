@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { ReactComponent as Person } from '../../svg/Person.svg';
+import { ReactComponent as Person } from '../../svg/Person2.svg';
 import { addTimestamp } from '../../utils/utils';
 
 const HeaderWrapper = styled.header`
@@ -28,6 +28,7 @@ const Avatar = styled.span`
   svg {
     height: 1rem;
     width: 1rem;
+    stroke: black;
   }
 `;
 const Author = styled.span`
@@ -36,7 +37,7 @@ const Author = styled.span`
 
 const Timestamp = styled.span`
   font-size: 0.65rem;
-  opacity: 0.5;
+  color: #c5c0c0;
 `;
 
 const Header = ({ message }) => {

@@ -6,7 +6,8 @@ import DesktopForm from '../Forms/DesktopForm';
 import MobileForm from '../Forms/MobileForm';
 import useMobileView from '../../hooks/useMobileView';
 import ThemeButton from '../ui/ThemeButton';
-import RefreshButton from '../ui/RefreshButton';
+import MenuButton from './Menu/MenuButton';
+import Menu from './Menu/Menu';
 
 const HeaderContainer = styled.header`
   display: grid;
@@ -52,7 +53,10 @@ const HeaderContainer = styled.header`
           position: fixed;
           left: 50%;
           transform: translateX(-50%);
-          bottom: 25px;
+          bottom: 55px;
+          &.move-button {
+            margin-left: 12px;
+          }
         }
       }
     }
@@ -69,6 +73,10 @@ const Title = styled.h2`
   text-shadow: 1px 1px 0px ${({ theme }) => theme.lightPink};
 `;
 
+const ToggleSubmitButton = styled(ThemeButton)`
+  padding: 0.5rem 5rem;
+`;
+
 const Logo = () => (
   <div className="title-container">
     <Title color="#74b49b">SHOUT OUT</Title>
@@ -77,14 +85,11 @@ const Logo = () => (
   </div>
 );
 
-const ToggleSubmitButton = styled(ThemeButton)`
-  padding: 0.5rem 5rem;
-`;
-
 export const HeaderContext = createContext();
 
 const Header = () => {
-  const { isSmall, isLarge } = useMobileView();
+  const { isLarge } = useMobileView();
+  const [isMenuOpen, toggleMenuOpen] = useState(false);
   const [isFormOpen, toggleFormOpen] = useState(false);
 
   // This could probably be much simplier....
@@ -92,31 +97,42 @@ const Header = () => {
     <HeaderContainer>
       <HeaderContext.Provider
         value={{
+          isLarge,
           isFormOpen,
-          toggleFormOpen
+          toggleFormOpen,
+          isMenuOpen,
+          toggleMenuOpen
         }}
       >
         <Logo />
+        <Menu />
         <Form className="form-container">
-          {isSmall ? (
-            // I belive this makes it easier to manage.
-            <MobileForm
-              renderFormChildren={handleToggleOrSumbit => (
-                <div className="dashboard-buttons">
-                  <ToggleSubmitButton
-                    type="button"
-                    onTouchStart={handleToggleOrSumbit}
-                  >
-                    Post
-                  </ToggleSubmitButton>
-                  <RefreshButton />
-                </div>
-              )}
-            />
-          ) : (
-            <DesktopForm />
-          )}
+          {/* I belive this makes it easier to manage. Not sure tho. */}
+          <MobileForm
+            renderFormChildren={handleToggleOrSumbit => (
+              <div className="dashboard-buttons">
+                <ToggleSubmitButton
+                  style={{
+                    transform: `${
+                      isMenuOpen ? 'translateX(-200%)' : 'translateX(0)'
+                    }`
+                  }}
+                  type="button"
+                  // onTouchStart={handleToggleOrSumbit}
+                  onClick={handleToggleOrSumbit}
+                >
+                  Post
+                </ToggleSubmitButton>
+                <MenuButton
+                  type="button"
+                  onClick={() => toggleMenuOpen(isMenuOpen => !isMenuOpen)}
+                />
+              </div>
+            )}
+          />
+          <DesktopForm />
         </Form>
+
         {/* Burger on desktop */}
         {isLarge && (
           <button className="menu-container">

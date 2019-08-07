@@ -14,10 +14,11 @@ const theme = {
   yellow: '#f8b500',
   lightRed: '#fcc6c9',
   lightGrey: '#f4f3f3',
-  redGradient: '#f97a82, #f27179, #eb6970, #e46067, #dd575e',
+  buttonGradient:
+    'linear-gradient(315deg, rgba(238,156,167,1) 0%, rgba(237,148,160,1) 100%)',
   error: '#B6051F',
   border: `2px solid #383838`,
-  boxShadow: '0 2px 6px 0 hsla(0, 0%, 0%, 0.2)',
+  boxShadow: '0 2px 6px 0 hsla(0, 0%, 0%, 0.15)',
   sansSerif: 'Open Sans, sans-serif',
   secondary: 'Luckiest Guy, sans-serif',
   serif: 'DM Serif Text, serif',
@@ -26,13 +27,6 @@ const theme = {
     return isLarge;
   }
 };
-
-export const buttonGradient = `
-    background: linear-gradient(
-    to right bottom,
-      ${theme.redGradient} 
-    );
-`;
 
 export const reset = css`
   body {

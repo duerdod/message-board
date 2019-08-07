@@ -4,7 +4,7 @@ import { FormContext } from './Form';
 import { Title, Message, Name } from './FormInputs';
 import styled from '@emotion/styled';
 import { useSpring, animated } from 'react-spring';
-import { ReactComponent as ChevronDown } from '../../svg/ChevronLeft.svg';
+import { ReactComponent as ChevronDown } from '../../svg/ChevronDown.svg';
 
 const ChevronButton = styled.button`
   width: auto;
@@ -20,7 +20,7 @@ const ChevronButton = styled.button`
 
 const Chevron = ({ rotate, onTouchStart, onClick }) => (
   <ChevronButton rotate={rotate} onTouchStart={onTouchStart} onClick={onClick}>
-    <ChevronDown style={{ fill: '#ee9ca7' }} />
+    <ChevronDown />
   </ChevronButton>
 );
 
@@ -31,7 +31,7 @@ const FormContainer = styled.div`
 const AnimatedFormContainer = animated(FormContainer);
 
 const MobileForm = ({ renderFormChildren }) => {
-  const { isFormOpen, toggleFormOpen } = useContext(HeaderContext);
+  const { isFormOpen, toggleFormOpen, isLarge } = useContext(HeaderContext);
   const { handleSubmit, addMessage, isValid } = useContext(FormContext);
 
   // Animations.
@@ -49,10 +49,11 @@ const MobileForm = ({ renderFormChildren }) => {
       return;
     }
     // Otherwise prevent submit and toggle form open.
-    e.persist();
+    // e.persist();
     toggleFormOpen(isFormOpen => !isFormOpen);
   };
 
+  if (isLarge) return null;
   return (
     <div className="mobile-form">
       {isFormOpen && (
@@ -60,7 +61,7 @@ const MobileForm = ({ renderFormChildren }) => {
           <Title />
           <Message />
           <Name />
-          <Chevron rotate={90} onTouchStart={() => toggleFormOpen(false)} />
+          <Chevron rotate={180} onTouchStart={() => toggleFormOpen(false)} />
         </AnimatedFormContainer>
       )}
       {renderFormChildren(handleToggleOrSumbit)}

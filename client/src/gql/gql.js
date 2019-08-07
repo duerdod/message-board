@@ -8,6 +8,9 @@ export const GET_SINGLE_MESSAGE = gql`
       message
       author
       dislikes
+      comments {
+        id
+      }
       date
       __typename
     }
@@ -22,6 +25,9 @@ export const GET_ALL_MESSAGES = gql`
       message
       author
       dislikes
+      comments {
+        id
+      }
       date
       __typename
     }

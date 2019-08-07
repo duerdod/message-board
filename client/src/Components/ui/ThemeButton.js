@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
-import { buttonGradient } from '../Theme';
 import Theme from '../Theme';
 
 export const ButtonStyle = css`
@@ -14,11 +13,12 @@ export const ButtonStyle = css`
   border-radius: 50px;
   cursor: pointer;
   font-weight: 900;
-  transition: all 0.4s ease;
-  box-shadow: 0 1px 6px 0 hsla(0, 0%, 0%, 0.1);
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px 0 hsla(0, 0%, 0%, 0.1);
   background-size: 200% 200%;
   letter-spacing: 1px;
-  ${buttonGradient};
+  background: rgb(238, 156, 167);
+  background-image: ${Theme.buttonGradient};
   &:hover {
     background-size: 100% 100%;
     box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.1);
@@ -35,14 +35,20 @@ const ThemeButton = ({
   onTouchStart,
   onClick,
   disabled,
-  className
+  className,
+  style
 }) => (
   <Button
     onTouchStart={onTouchStart}
-    onClick={onClick}
+    onClick={e => {
+      e.preventDefault();
+      // the actual called fn
+      onClick();
+    }}
     type={type}
     disabled={disabled}
     className={className}
+    style={style}
   >
     {children}
   </Button>

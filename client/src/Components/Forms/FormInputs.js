@@ -95,7 +95,6 @@ const Name = () => {
     <Label htmlFor="name">
       <Textarea
         onKeyDown={e => forwardOnEnter(e, step, setStep, availableInputs)}
-        autoFocus
         type="text"
         placeholder="Name"
         name="author"

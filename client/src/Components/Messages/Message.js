@@ -14,7 +14,11 @@ const Message = ({ message }) => (
   <SingleMessage className="message">
     <Header message={message} />
     <MessageBody message={message} />
-    <Footer id={message.id} dislikes={message.dislikes} />
+    <Footer
+      id={message.id}
+      dislikes={message.dislikes}
+      comments={message.comments}
+    />
   </SingleMessage>
 );
 

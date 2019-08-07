@@ -1,16 +1,15 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Mutation } from 'react-apollo';
-import { ReactComponent as Bell } from '../../svg/Bell.svg';
-import { DISLIKE_MESSAGE, GET_ALL_MESSAGES } from '../../gql/gql';
-import BellAnimation from '../ui/BellAnimation';
+import { ReactComponent as Bell } from '../../../svg/Bell.svg';
+import { DISLIKE_MESSAGE, GET_ALL_MESSAGES } from '../../../gql/gql';
+import BellAnimation from '../../ui/BellAnimation';
 
 const DislikeContainer = styled.label`
-  width: 100%;
   transition: all 0.4s ease;
   padding: 0.2rem 0.5rem;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
@@ -23,9 +22,10 @@ const DislikeButton = styled.input`
 const Dislikees = styled.span`
   font-size: 0.65rem;
   opacity: 0.7;
+  margin-left: 4px;
 `;
 
-const StyledBell = styled(Bell)`
+export const StyledBell = styled(Bell)`
   color: ${({ theme }) => theme.yellow};
   fill: ${({ theme }) => theme.yellow};
   width: 1.3rem;
