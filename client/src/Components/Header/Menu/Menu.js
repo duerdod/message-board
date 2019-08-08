@@ -7,7 +7,7 @@ import { ReactComponent as Horn } from '../../../svg/Horn.svg';
 const MenuContainer = styled.div`
   height: 100%;
   width: 80%;
-  max-width: 300px;
+  max-width: 285px;
   position: fixed;
   z-index: 1;
   top: 0;

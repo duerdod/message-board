@@ -1,5 +1,6 @@
 import React, { useState, createContext } from 'react';
 import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
 import { ReactComponent as Burger } from '../../svg/Burger.svg';
 import Form from '../Forms/Form';
 import DesktopForm from '../Forms/DesktopForm';
@@ -78,11 +79,11 @@ const ToggleSubmitButton = styled(ThemeButton)`
 `;
 
 const Logo = () => (
-  <div className="title-container">
+  <Link className="title-container" to="/">
     <Title color="#74b49b">SHOUT OUT</Title>
     <Title color="#ee9ca7">AND</Title>
     <Title color="#a7d7c5">STAY COOL</Title>
-  </div>
+  </Link>
 );
 
 export const HeaderContext = createContext();

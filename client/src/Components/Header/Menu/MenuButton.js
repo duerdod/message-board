@@ -10,8 +10,10 @@ const StyledMenuButton = styled(ThemeButton)`
   position: relative;
   width: 75px;
   height: 55px;
+  will-change: width, transform;
   &.move {
-    transform: translate3d(65px, 0, 0);
+    transform: translate3d(55px, 0, 0);
+    width: 65px;
   }
   svg {
     stroke-width: 1px;

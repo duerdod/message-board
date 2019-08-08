@@ -4,7 +4,7 @@ import { Global } from '@emotion/core';
 import { ThemeProvider } from 'emotion-theming';
 import { ApolloClient, InMemoryCache, HttpLink } from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Header from './Components/Header/Header';
 import Board from './Board';
 import Comments from './Components/Messages/Comments/Comments';
@@ -27,9 +27,7 @@ const App = () => {
       <Global styles={{ styles }} />
       <ApolloProvider client={client}>
         <Router>
-          <Link to="/">
-            <Header />
-          </Link>
+          <Header />
           <Switch>
             <Route exact path="/" component={Board} />
             <Route path="/message/:id" component={Comments} />
