@@ -4,7 +4,7 @@ import { Mutation } from 'react-apollo';
 import useForm from '../../hooks/useForm';
 import { ADD_MESSAGE, GET_ALL_MESSAGES } from '../../gql/gql';
 
-const MessageForm = styled.form`
+export const MessageForm = styled.form`
   display: flex;
   align-items: center;
   input,
@@ -15,11 +15,12 @@ const MessageForm = styled.form`
     padding: 0.5rem 0.5rem;
     margin: 0.2rem 0;
     font-family: ${({ theme }) => theme.sansSerif};
-    background: transparent;
+    background: ${({ theme }) => theme.white};
     border-radius: 2px;
     font-size: 0.95rem;
     color: ${({ theme }) => theme.darkGreen};
     resize: none;
+    box-shadow: none;
     &:not(output):-moz-ui-invalid:not(:focus),
     &:not(output):-moz-ui-invalid:focus,
     &:not(output):-moz-ui-invalid:-moz-focusring:not(:focus) {
@@ -50,14 +51,15 @@ const Form = ({ children, className }) => {
   // Could this be dymanic? Should probably be handled in useForm hook instead.
   const availableInputs = ['message', 'title', 'name'];
 
-  const {
-    values,
-    handleChange,
-    handleSubmit,
-    setValues,
-    isValid,
+  const stateInit = {
+    title: '',
+    message: '',
+    author: ''
+  };
+
+  const { values, handleChange, handleSubmit, setValues, isValid } = useForm(
     stateInit
-  } = useForm();
+  );
 
   const onMessageComplete = () => {
     setValues(stateInit);

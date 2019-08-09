@@ -3,7 +3,7 @@ import useMobileView from '../../hooks/useMobileView';
 import { FormContext } from './Form';
 import { trimErrorMessage } from '../../utils/utils';
 import { ErrorMessage } from '../StatusPage';
-import { Title, Message, Name } from './FormInputs';
+import { TitleInput, MessageInput, NameInput } from './FormInputs';
 import Button from '../ui/ThemeButton';
 import { ReactComponent as ChevronRight } from '../../svg/ChevronRight.svg';
 import { ReactComponent as ChevronLeft } from '../../svg/ChevronLeft.svg';
@@ -35,11 +35,11 @@ const DesktopForm = () => {
       <Button disabled={step.count === 0} onClick={e => toggleStep(e, 'back')}>
         <ChevronLeft />
       </Button>
-      {step.count === 0 && <Message />}
-      {step.count === 1 && <Title />}
+      {step.count === 0 && <MessageInput />}
+      {step.count === 1 && <TitleInput />}
       {step.count === 2 && (
         <>
-          <Name />
+          <NameInput />
           <Button type="submit" onClick={e => handleSubmit(e, addMessage)}>
             Post{loading ? 'ing' : ''}
           </Button>

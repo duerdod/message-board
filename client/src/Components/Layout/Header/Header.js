@@ -2,11 +2,11 @@ import React, { useState, createContext } from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 import { ReactComponent as Burger } from '../../svg/Burger.svg';
-import Form from '../Forms/Form';
-import DesktopForm from '../Forms/DesktopForm';
-import MobileForm from '../Forms/MobileForm';
-import useMobileView from '../../hooks/useMobileView';
-import ThemeButton from '../ui/ThemeButton';
+import Form from '../../Forms/Form';
+import DesktopForm from '../../Forms/DesktopForm';
+import MobileForm from '../../Forms/MobileForm';
+import useMobileView from '../../../hooks/useMobileView';
+import ThemeButton from '../../ui/ThemeButton';
 import MenuButton from './Menu/MenuButton';
 import Menu from './Menu/Menu';
 

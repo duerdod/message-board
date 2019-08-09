@@ -12,8 +12,9 @@ type Comment {
   id: ID!
   comment: String!
   author: String!
-  date: String
   dislikes: Int!
+  date: String!
+  message: Message!
 }
 
 type Query {

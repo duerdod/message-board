@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import config from '../../config';
 import { charCounter, forwardOnEnter } from '../../utils/utils';
 
-const Label = styled.label`
+export const Label = styled.label`
   display: block;
   font-size: 0.85rem;
   color: ${({ theme }) => theme.black};
@@ -30,7 +30,7 @@ const Textarea = styled.textarea`
   overflow: hidden;
 `;
 
-const Message = () => {
+const MessageInput = () => {
   const { values, handleChange, step, setStep, availableInputs } = useContext(
     FormContext
   );
@@ -65,7 +65,7 @@ const Message = () => {
   );
 };
 
-const Title = () => {
+const TitleInput = () => {
   const { values, handleChange, step, setStep, availableInputs } = useContext(
     FormContext
   );
@@ -87,7 +87,7 @@ const Title = () => {
   );
 };
 
-const Name = () => {
+const NameInput = () => {
   const { values, handleChange, step, setStep, availableInputs } = useContext(
     FormContext
   );
@@ -108,4 +108,4 @@ const Name = () => {
   );
 };
 
-export { Title, Message, Name };
+export { TitleInput, MessageInput, NameInput };

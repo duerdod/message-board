@@ -1,13 +1,14 @@
 type Comment {
-  id: ID! @id
+  id: ID! @id @unique
   comment: String!
   author: String!
   dislikes: Int!
-  date: String
+  date: String!
+  message: Message!
 }
 
 type Message {
-  id: ID! @id
+  id: ID! @id @unique
   title: String!
   message: String!
   author: String!

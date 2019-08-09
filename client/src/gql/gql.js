@@ -64,3 +64,13 @@ export const DELETE_MESSAGE = gql`
     }
   }
 `;
+
+export const COMMENT_MESSAGE = gql`
+  mutation COMMENT_MESSAGE($id: ID!, $comment: String!, $author: String!) {
+    commentMessage(id: $id, author: $author, comment: $comment) {
+      id
+      comment
+      author
+    }
+  }
+`;

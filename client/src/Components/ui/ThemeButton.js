@@ -8,7 +8,7 @@ export const ButtonStyle = css`
   color: ${Theme.white};
   margin: 1rem 0.1rem;
   padding: 0.5rem 1rem;
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   border-radius: 50px;
   cursor: pointer;

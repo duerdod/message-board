@@ -1,12 +1,7 @@
 import { useState } from 'react';
 
-const useForm = () => {
+const useForm = stateInit => {
   // Init with state.
-  const stateInit = {
-    title: '',
-    message: '',
-    author: ''
-  };
   const [values, setValues] = useState(stateInit);
 
   // On submit

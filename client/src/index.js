@@ -7,6 +7,7 @@ import { ApolloProvider } from 'react-apollo';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Header from './Components/Header/Header';
 import Board from './Board';
+import Footer from './Components/Layout/Footer/Footer';
 import Comments from './Components/Messages/Comments/Comments';
 import theme, { reset } from './Components/Theme';
 
@@ -32,6 +33,7 @@ const App = () => {
             <Route exact path="/" component={Board} />
             <Route path="/message/:id" component={Comments} />
           </Switch>
+          <Footer />
         </Router>
       </ApolloProvider>
     </ThemeProvider>

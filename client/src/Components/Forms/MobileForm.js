@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { HeaderContext } from '../Header/Header';
 import { FormContext } from './Form';
-import { Title, Message, Name } from './FormInputs';
+import { TitleInput, MessageInput, NameInput } from './FormInputs';
 import styled from '@emotion/styled';
 import { useSpring, animated } from 'react-spring';
 import { ReactComponent as ChevronDown } from '../../svg/ChevronDown.svg';
@@ -58,9 +58,9 @@ const MobileForm = ({ renderFormChildren }) => {
     <div className="mobile-form">
       {isFormOpen && (
         <AnimatedFormContainer style={props}>
-          <Title />
-          <Message />
-          <Name />
+          <TitleInput />
+          <MessageInput />
+          <NameInput />
           <Chevron
             rotate={180}
             onClick={e => {

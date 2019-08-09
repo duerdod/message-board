@@ -23,6 +23,7 @@ const typeDefs = gql`
     author: String!
     date: String
     dislikes: Int!
+    message: Message!
   }
 
   type Query {
@@ -39,6 +40,7 @@ const typeDefs = gql`
     ): Message
     dislikeMessage(id: ID!): Message
     deleteMessage(id: ID!): Message
+    commentMessage(id: ID!, author: String!, comment: String!): Comment
   }
 `;
 
@@ -51,7 +53,18 @@ function createServer() {
   return new ApolloServer({
     cors: corsOptions,
     typeDefs,
-    resolvers: { Query, Mutation },
+    resolvers: {
+      Query,
+      Mutation,
+      // Type resolvers.
+      Message: {
+        comments(parent, args, ctx) {
+          return ctx.prisma
+            .message({ id: parent.id })
+            .comments({ orderBy: 'date_DESC' });
+        }
+      }
+    },
     // Surfaces prisma db.
     context: ({ req, res }) => ({
       ...req,

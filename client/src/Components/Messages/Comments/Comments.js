@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 import { GET_SINGLE_MESSAGE } from '../../../gql/gql';
 import Message from '../Message';
 import Comment from './Comment';
+import CommentToMessage from './CommentToMessage';
 import StatusPage from '../../StatusPage';
 
 const CommentsContainer = styled.section`
@@ -39,8 +40,9 @@ const Comments = props => {
             <CommentsContainer>
               <Message message={data.message} />
               <CommentContainer>
-                <Comment />
+                <Comment comments={data.message.comments} />
               </CommentContainer>
+              <CommentToMessage id={state} />
             </CommentsContainer>
           </>
         );

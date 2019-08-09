@@ -66,6 +66,23 @@ const Mutation = {
   async deleteMessage(root, { id }, context) {
     const deletedMessage = await context.prisma.deleteMessage({ id });
     return deletedMessage;
+  },
+  async commentMessage(root, { id, author, comment }, context, info) {
+    // 1. Query messages with provided id.
+    const message = await context.prisma.message({ id });
+    // 2. Does message still exist?
+    if (!message) throw new Error('No message found');
+
+    // 3. Update message with provided comment and author
+    const createdComment = await context.prisma.createComment({
+      comment,
+      author,
+      date: Date.now().toString(),
+      dislikes: 0,
+      message: { connect: { id } }
+    });
+    // 4. Return comment
+    return createdComment;
   }
 };
 
