@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { HeaderContext } from '../Header/Header';
+import { HeaderContext } from '../Layout/Header/Header';
 import { FormContext } from './Form';
 import { TitleInput, MessageInput, NameInput } from './FormInputs';
 import styled from '@emotion/styled';

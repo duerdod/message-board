@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 import styled from '@emotion/styled';
 import { useTransition, animated } from 'react-spring';
 import { HeaderContext } from '../Header';
-import { ReactComponent as ModernBurger } from '../../../svg/Burger.svg';
-import { ReactComponent as Close } from '../../../svg/Close.svg';
+import { ReactComponent as ModernBurger } from '../../../../svg/Burger.svg';
+import { ReactComponent as Close } from '../../../../svg/Close.svg';
 import ThemeButton from '../../../ui/ThemeButton';
 
 const StyledMenuButton = styled(ThemeButton)`

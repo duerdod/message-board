@@ -33,7 +33,12 @@ const CommentToMessage = ({ id }) => {
     <Mutation
       mutation={COMMENT_MESSAGE}
       variables={{ id, comment: values.comment, author: values.author }}
-      refetchQueries={[{ query: GET_SINGLE_MESSAGE, variables: id }]}
+      refetchQueries={[
+        {
+          query: GET_SINGLE_MESSAGE,
+          variables: { id }
+        }
+      ]}
     >
       {(commentMessage, { data, error, loading }) => {
         if (error) return <StatusPage state={error && 'error'} />;

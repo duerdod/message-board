@@ -63,7 +63,7 @@ export const reset = css`
   body.menu-open {
     position: fixed;
     height: 100%;
-    overflow: hidden;
+    overflow-y: hidden;
   }
 
 `;

@@ -5,7 +5,7 @@ import { ThemeProvider } from 'emotion-theming';
 import { ApolloClient, InMemoryCache, HttpLink } from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Header from './Components/Header/Header';
+import Header from './Components/Layout/Header/Header';
 import Board from './Board';
 import Footer from './Components/Layout/Footer/Footer';
 import Comments from './Components/Messages/Comments/Comments';

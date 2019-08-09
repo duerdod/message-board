@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from 'react';
 import styled from '@emotion/styled';
 import { HeaderContext } from '../Header';
-import { ReactComponent as MenuBell } from '../../../svg/Bell.svg';
-import { ReactComponent as Horn } from '../../../svg/Horn.svg';
+import { ReactComponent as MenuBell } from '../../../../svg/Bell.svg';
+import { ReactComponent as Horn } from '../../../../svg/Horn.svg';
 
 const MenuContainer = styled.div`
   height: 100%;

@@ -61,7 +61,7 @@ function createServer() {
         comments(parent, args, ctx) {
           return ctx.prisma
             .message({ id: parent.id })
-            .comments({ orderBy: 'date_DESC' });
+            .comments({ orderBy: 'date_ASC' });
         }
       }
     },
