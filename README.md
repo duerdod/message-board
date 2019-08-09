@@ -1,6 +1,6 @@
 ## Message Board
 
-Available at: https://the-congress.herokuapp.com/
+Available at: https://the-congress.herokuapp.com/.  
 Mostly been focusing on mobile devices.
 
 Internet has no need for this application but it's still a work in progress.  
