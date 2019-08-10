@@ -16,16 +16,8 @@ const useForm = stateInit => {
     setValues(values => ({ ...values, [e.target.name]: e.target.value }));
   };
 
-  // "Valid" as far as the client is concerned. This looks stupid. Rewrite.
-  const isValid =
-    values.title &&
-    values.title.length >= 2 &&
-    values.message &&
-    values.message.length >= 2 &&
-    values.author &&
-    values.author.length >= 2
-      ? true
-      : false;
+  // "Valid" as far as the client is concerned.
+  const isValid = Object.values(values).every(value => value.length > 2);
 
   // Returns each as an object to be used insde stateful fn.
   return {
@@ -33,8 +25,7 @@ const useForm = stateInit => {
     handleSubmit,
     values,
     setValues,
-    isValid,
-    stateInit
+    isValid
   };
 };
 

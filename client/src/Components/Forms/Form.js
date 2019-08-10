@@ -100,7 +100,7 @@ const Form = ({ children, className }) => {
             className={className}
             onSubmit={e => handleSubmit(e, addMessage)}
           >
-            {/* Either DesktopForm or MobileForm in Header.js */}
+            {/* Either DesktopForm or MobileForm from Header.js */}
             {children}
           </MessageForm>
         </FormContext.Provider>

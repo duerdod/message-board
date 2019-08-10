@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import useMobileView from '../../hooks/useMobileView';
 import { FormContext } from './Form';
-import { trimErrorMessage } from '../../utils/utils';
+
 import { ErrorMessage } from '../StatusPage';
 import { TitleInput, MessageInput, NameInput } from './FormInputs';
 import Button from '../ui/ThemeButton';
@@ -50,9 +50,7 @@ const DesktopForm = () => {
           <ChevronRight />
         </Button>
       )}
-      {error ? (
-        <ErrorMessage>{trimErrorMessage(error.message)}</ErrorMessage>
-      ) : null}
+      {error ? <ErrorMessage>{error.message}</ErrorMessage> : null}
     </>
   );
 };

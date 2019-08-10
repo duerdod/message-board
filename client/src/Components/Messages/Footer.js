@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 import Dislike from './Dislike/Dislike';
 import Comments from './Comments/CommentsIndicator';
-import { generateHandsomeUrl } from '../../utils/utils';
 
 const Container = styled.footer`
   width: 100%;
@@ -27,8 +26,7 @@ const Footer = ({ id, dislikes, comments }) => {
     <Container>
       <Link
         to={{
-          pathname: `/message/${generateHandsomeUrl(id)}`,
-          state: id
+          pathname: `/message/${id}`
         }}
       >
         <Comments id={id} comments={comments} />

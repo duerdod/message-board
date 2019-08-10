@@ -8,17 +8,8 @@ const FooterContainer = styled.footer`
   padding: 1rem;
 `;
 
-const SomeText = styled.h2`
-  color: ${({ theme }) => theme.lightRed};
-  text-align: center;
-`;
-
 const Footer = () => {
-  return (
-    <FooterContainer>
-      <SomeText>HI</SomeText>
-    </FooterContainer>
-  );
+  return <FooterContainer />;
 };
 
 export default Footer;

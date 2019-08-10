@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { trimErrorMessage } from '../utils/utils';
 
 const LoadingPage = styled.div`
   grid-column: span 4;
@@ -66,7 +67,9 @@ const ErrorText = styled.p`
 `;
 
 // For smaller error messages.
-export const ErrorMessage = props => <ErrorText>{props.children}</ErrorText>;
+export const ErrorMessage = props => (
+  <ErrorText>{trimErrorMessage(props.children)}</ErrorText>
+);
 
 const Spinner = () => {
   // Jez... there are probably better ways.

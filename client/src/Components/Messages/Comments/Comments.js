@@ -27,11 +27,9 @@ const CommentContainer = styled.ul`
 `;
 
 const Comments = props => {
-  // const { id } = props.match.params;
-  // Is this koscher?
-  const { state } = props.location;
+  const { id } = props.match.params;
   return (
-    <Query query={GET_SINGLE_MESSAGE} variables={{ id: state }}>
+    <Query query={GET_SINGLE_MESSAGE} variables={{ id }}>
       {({ data, error, loading }) => {
         if (error) return <StatusPage state={error && 'error'} />;
         if (loading) return <StatusPage state={loading && 'loading'} />;
@@ -42,7 +40,7 @@ const Comments = props => {
               <CommentContainer>
                 <Comment comments={data.message.comments} />
               </CommentContainer>
-              <CommentToMessage id={state} />
+              <CommentToMessage id={id} />
             </CommentsContainer>
           </>
         );

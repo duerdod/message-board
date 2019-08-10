@@ -25,7 +25,7 @@ const StyledCommentsIcon = styled(CommentsIcon)`
   stroke: none;
 `;
 
-const Comments = ({ id, comments }) => {
+const Comments = ({ comments }) => {
   return (
     <CommentsContainer>
       <StyledCommentsIcon />

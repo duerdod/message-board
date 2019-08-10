@@ -5,6 +5,7 @@ import { TitleInput, MessageInput, NameInput } from './FormInputs';
 import styled from '@emotion/styled';
 import { useSpring, animated } from 'react-spring';
 import { ReactComponent as ChevronDown } from '../../svg/ChevronDown.svg';
+import { ErrorMessage } from '../StatusPage';
 
 const ChevronButton = styled.button`
   width: auto;
@@ -32,27 +33,27 @@ const AnimatedFormContainer = animated(FormContainer);
 
 const MobileForm = ({ renderFormChildren }) => {
   const { isFormOpen, toggleFormOpen, isLarge } = useContext(HeaderContext);
-  const { handleSubmit, addMessage, isValid } = useContext(FormContext);
+  const { handleSubmit, addMessage, error } = useContext(FormContext);
 
   // Animations.
   const props = useSpring({
-    height: isFormOpen ? 300 : 0,
+    height: isFormOpen ? 400 : 0,
     config: { duration: 200 }
   });
 
   const handleToggleOrSumbit = e => {
     // Is the form visible and is there any input?
-    if (isFormOpen && isValid) {
+    if (isFormOpen) {
       // Try submit and close.
       handleSubmit(e, addMessage);
-      toggleFormOpen(false);
+      // toggleFormOpen(false);
       return;
     }
     // Otherwise prevent submit and toggle form open.
     // e.persist();
-    toggleFormOpen(isFormOpen => !isFormOpen);
+    toggleFormOpen(true);
   };
-
+  console.log(error);
   if (isLarge) return null;
   return (
     <div className="mobile-form">
@@ -61,6 +62,7 @@ const MobileForm = ({ renderFormChildren }) => {
           <TitleInput />
           <MessageInput />
           <NameInput />
+          {error ? <ErrorMessage>{error.message}</ErrorMessage> : null}
           <Chevron
             rotate={180}
             onClick={e => {
