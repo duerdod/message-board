@@ -40,14 +40,14 @@ const Timestamp = styled.span`
   color: #c5c0c0;
 `;
 
-const Header = ({ message }) => {
+const Header = ({ message, children }) => {
   return (
     <HeaderWrapper>
       <AuthorContainer>
         <Avatar>
           <Person />
         </Avatar>
-        <Author>{message.author}</Author>
+        <Author>{message.author || children}</Author>
       </AuthorContainer>
       <Timestamp> &#8729; {addTimestamp(message.date)}</Timestamp>
     </HeaderWrapper>

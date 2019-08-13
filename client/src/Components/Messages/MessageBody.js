@@ -7,13 +7,6 @@ const Container = styled.div`
   width: 100%;
 `;
 
-const MessageTitle = styled.h2`
-  font-size: 0.85rem;
-  margin: 0.5rem 0 0.2rem 0;
-  font-weight: 600;
-  color: ${({ theme }) => theme.darkGreen};
-`;
-
 const MessageText = styled.div`
   p {
     margin-top: 0;
@@ -23,12 +16,11 @@ const MessageText = styled.div`
   }
 `;
 
-const MessageBody = ({ message }) => {
+const MessageBody = ({ message, children }) => {
   return (
     <Container className={`${shouldMessageExpand(message.message)} content`}>
-      <MessageTitle>{message.title}</MessageTitle>
       <MessageText>
-        <p>{message.message}</p>
+        <p>{message.message || children}</p>
       </MessageText>
     </Container>
   );

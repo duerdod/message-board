@@ -10,6 +10,7 @@ import Board from './Board';
 import Footer from './Components/Layout/Footer/Footer';
 import Comments from './Components/Messages/Comments/Comments';
 import theme, { reset } from './Components/Theme';
+import AppStateProvider from './context/index';
 
 const httpLink = new HttpLink({
   uri: '/graphql'
@@ -27,14 +28,16 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <Global styles={{ styles }} />
       <ApolloProvider client={client}>
-        <Router>
-          <Header />
-          <Switch>
-            <Route exact path="/" component={Board} />
-            <Route path="/message/:id" component={Comments} />
-          </Switch>
-          <Footer />
-        </Router>
+        <AppStateProvider>
+          <Router>
+            <Header />
+            <Switch>
+              <Route exact path="/" component={Board} />
+              <Route path="/message/:id" component={Comments} />
+            </Switch>
+            <Footer />
+          </Router>
+        </AppStateProvider>
       </ApolloProvider>
     </ThemeProvider>
   );

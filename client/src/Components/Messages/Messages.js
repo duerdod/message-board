@@ -1,36 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Query } from 'react-apollo';
 import { GET_ALL_MESSAGES } from '../../gql/gql';
-import styled from '@emotion/styled';
+import MessagesGrid from '../ui/MessagesGrid';
 import Message from './Message';
 import Status from '../StatusPage';
-
-const MessagesGrid = styled.section`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  grid-gap: 1rem;
-  max-width: 1200px;
-  padding: 2rem;
-  margin: 0 auto;
-  transition: all 0.2s ease;
-    &.expanded {
-      grid-row: span 2;
-    }
-  }
-
-  @media screen and (max-width: 64em) {
-    grid-template-columns: 1fr;
-    grid-gap: 0rem;
-    padding: 0rem;
-    .message {
-      box-shadow: none;
-      border-radius: 0;
-      border-top: 1px solid #f4f3f3;
-    }
-  }
-`;
+import MessageForm from '../Forms/MessageForm';
+import { MessageFormContext } from '../../context/message-context';
 
 const Messages = () => {
+  const { isFormOpen } = useContext(MessageFormContext);
   return (
     <Query query={GET_ALL_MESSAGES}>
       {({ error, loading, data }) => {
@@ -39,6 +17,7 @@ const Messages = () => {
         const { messages } = data;
         return (
           <MessagesGrid>
+            {isFormOpen ? <MessageForm /> : null}
             {messages.map(message => (
               <Message key={message.id} message={message} />
             ))}

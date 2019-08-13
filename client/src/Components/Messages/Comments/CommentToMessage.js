@@ -3,8 +3,8 @@ import styled from '@emotion/styled';
 import { Mutation } from 'react-apollo';
 import { COMMENT_MESSAGE, GET_SINGLE_MESSAGE } from '../../../gql/gql';
 import useForm from '../../../hooks/useForm';
-import { Label } from '../../Forms/FormInputs';
-import { MessageForm } from '../../Forms/Form';
+import { Label } from '../../ui/Form';
+import MessageForm from '../../ui/Form';
 import ThemeButton from '../../ui/ThemeButton';
 import StatusPage, { ErrorMessage } from '../../StatusPage';
 

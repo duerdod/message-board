@@ -2,5 +2,6 @@
   "workbench.colorCustomizations": {
     "titleBar.activeBackground": "#F9C00D",
     "titleBar.inactiveBackground": "#F9C00D"
-  }
+  },
+  "eslint.enable": true
 }

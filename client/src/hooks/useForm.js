@@ -4,13 +4,11 @@ const useForm = stateInit => {
   // Init with state.
   const [values, setValues] = useState(stateInit);
 
-  // On submit
   const handleSubmit = (e, action) => {
     if (e) e.preventDefault();
     action();
   };
 
-  // On input change.
   const handleChange = e => {
     e.persist();
     setValues(values => ({ ...values, [e.target.name]: e.target.value }));

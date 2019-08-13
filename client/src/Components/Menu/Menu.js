@@ -1,13 +1,12 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import styled from '@emotion/styled';
-import { HeaderContext } from '../Header';
-import { ReactComponent as MenuBell } from '../../../../svg/Bell.svg';
-import { ReactComponent as Horn } from '../../../../svg/Horn.svg';
+import { AppContext } from '../../context/app-context';
+import { ReactComponent as MenuBell } from '../../svg/Bell.svg';
+import { ReactComponent as Horn } from '../../svg/Horn.svg';
 
 const MenuContainer = styled.div`
   height: 100%;
-  width: 80%;
-  max-width: 285px;
+  max-width: 485px;
   position: fixed;
   z-index: 1;
   top: 0;
@@ -18,6 +17,9 @@ const MenuContainer = styled.div`
   border-radius: 0px 4px 4px 0;
   &.menu-open {
     left: 0;
+  }
+  @media screen and (max-width: 63em) {
+    max-width: 80%;
   }
 `;
 
@@ -76,17 +78,8 @@ const FAQ = styled.ul`
 `;
 
 const Menu = () => {
-  const { isMenuOpen, isLarge } = useContext(HeaderContext);
+  const { isMenuOpen } = useContext(AppContext);
 
-  useEffect(() => {
-    // Is this OK? Looks bad.
-    const body = document.querySelector('body');
-    isMenuOpen
-      ? body.classList.add('menu-open')
-      : body.classList.remove('menu-open');
-  }, [isMenuOpen]);
-
-  if (isLarge) return null;
   // if (!isMenuOpen) return null;
   // Yes, this is always rendered. No big deal, not done anyho.
 

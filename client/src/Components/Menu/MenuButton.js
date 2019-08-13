@@ -1,19 +1,22 @@
 import React, { useContext } from 'react';
 import styled from '@emotion/styled';
 import { useTransition, animated } from 'react-spring';
-import { HeaderContext } from '../Header';
-import { ReactComponent as ModernBurger } from '../../../../svg/Burger.svg';
-import { ReactComponent as Close } from '../../../../svg/Close.svg';
-import ThemeButton from '../../../ui/ThemeButton';
+import { AppContext } from '../../context/app-context';
+import { ReactComponent as ModernBurger } from '../../svg/Burger.svg';
+import { ReactComponent as Close } from '../../svg/Close.svg';
+import ThemeButton from '../ui/ThemeButton';
 
 const StyledMenuButton = styled(ThemeButton)`
   position: relative;
   width: 75px;
-  height: 55px;
+  height: 51px;
   will-change: width, transform;
   &.move {
     transform: translate3d(55px, 0, 0);
     width: 65px;
+    @media screen and (max-width: 63em) {
+      transform: translate3d(55px, 0, 0);
+    }
   }
   svg {
     stroke-width: 1px;
@@ -22,8 +25,8 @@ const StyledMenuButton = styled(ThemeButton)`
 const AnimatedModernBurger = animated(ModernBurger);
 const AnimatedClose = animated(Close);
 
-const MenuButton = ({ onClick }) => {
-  const { isMenuOpen } = useContext(HeaderContext);
+const MenuButton = () => {
+  const { isMenuOpen, toggleMenuOpen, isLarge } = useContext(AppContext);
   const animate = useTransition(isMenuOpen, p => p, {
     unique: true,
     from: {
@@ -42,8 +45,8 @@ const MenuButton = ({ onClick }) => {
 
   return (
     <StyledMenuButton
-      onClick={onClick}
-      className={`${isMenuOpen ? 'move' : ''}`}
+      onClick={() => toggleMenuOpen(isMenuOpen => !isMenuOpen)}
+      className={`${isMenuOpen && !isLarge ? 'move' : ''}`}
     >
       {animate.map(({ item, props }, i) => {
         return item ? (

@@ -37,7 +37,8 @@ export const reset = css`
     color: ${theme.black};
     font-family: ${theme.sansSerif};
     padding: 0;
-      margin: 0;
+    margin: 0;
+    overflow-x: hidden;
   }
   html {
     font-size: 15px;
@@ -53,6 +54,13 @@ export const reset = css`
     background: transparent;
     outline: 0;
     list-style: none;
+    resize: none;
+    box-shadow: none;
+    &:not(output):-moz-ui-invalid:not(:focus),
+    &:not(output):-moz-ui-invalid:focus,
+    &:not(output):-moz-ui-invalid:-moz-focusring:not(:focus) {
+      box-shadow: none;
+    }
   }
 
   a {
@@ -60,11 +68,11 @@ export const reset = css`
     color: ${theme.black};
   }
   /* Stupid. */
-  body.menu-open {
+  /* body.menu-open {
     position: fixed;
     height: 100%;
     overflow-y: hidden;
-  }
+  } */
 
 `;
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import Header from './Header';
+import MessageTitle from './MessageTitle';
 import MessageBody from './MessageBody';
 import Footer from './Footer';
 
@@ -17,6 +18,7 @@ const SingleMessage = styled.div`
 const Message = ({ message }) => (
   <SingleMessage className="message">
     <Header message={message} />
+    <MessageTitle message={message} />
     <MessageBody message={message} />
     <Footer
       id={message.id}
