@@ -2,9 +2,9 @@ import React from 'react';
 import { MessageFormProvider } from './message-context';
 import { AppContextProvider } from './app-context';
 
-const AppStateProvider = ({ children }) => (
+const AppStateProvider = props => (
   <AppContextProvider>
-    <MessageFormProvider>{children}</MessageFormProvider>
+    <MessageFormProvider>{props.children}</MessageFormProvider>
   </AppContextProvider>
 );
 

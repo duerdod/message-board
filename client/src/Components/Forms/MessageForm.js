@@ -12,7 +12,7 @@ export const Label = styled.label`
   font-size: 0.85rem;
 `;
 
-const StyledForm = styled.form`
+export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   height: 100%;

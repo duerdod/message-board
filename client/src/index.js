@@ -11,6 +11,8 @@ import Footer from './Components/Layout/Footer/Footer';
 import Comments from './Components/Messages/Comments/Comments';
 import theme, { reset } from './Components/Theme';
 import AppStateProvider from './context/index';
+import MenuButtons from './Components/Menu/MenuButtons';
+import Menu from './Components/Menu/Menu';
 
 const httpLink = new HttpLink({
   uri: '/graphql'
@@ -31,10 +33,12 @@ const App = () => {
         <AppStateProvider>
           <Router>
             <Header />
+            <Menu />
             <Switch>
               <Route exact path="/" component={Board} />
               <Route path="/message/:id" component={Comments} />
             </Switch>
+            <MenuButtons />
             <Footer />
           </Router>
         </AppStateProvider>

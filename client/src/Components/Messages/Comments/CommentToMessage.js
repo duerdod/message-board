@@ -3,12 +3,10 @@ import styled from '@emotion/styled';
 import { Mutation } from 'react-apollo';
 import { COMMENT_MESSAGE, GET_SINGLE_MESSAGE } from '../../../gql/gql';
 import useForm from '../../../hooks/useForm';
-import { Label } from '../../ui/Form';
-import MessageForm from '../../ui/Form';
 import ThemeButton from '../../ui/ThemeButton';
 import StatusPage, { ErrorMessage } from '../../StatusPage';
 
-const StyledMessageForm = styled(MessageForm)`
+const StyledMessageForm = styled.form`
   background: ${({ theme }) => theme.white};
   display: block;
   padding: 1.2rem 1rem;
@@ -16,10 +14,27 @@ const StyledMessageForm = styled(MessageForm)`
     display: block;
     margin: 0;
     margin: 0.6rem;
+    width: 100%;
+    font-family: ${({ theme }) => theme.sansSerif};
+    font-size: 0.85rem;
   }
   > button {
     display: block;
     margin: 1rem auto;
+  }
+`;
+
+const Label = styled.label`
+  display: block;
+  font-size: 0.85rem;
+  color: ${({ theme }) => theme.black};
+  width: 100%;
+  &::after {
+    content: '';
+    width: 100%;
+    height: 1px;
+    display: block;
+    background-color: ${({ theme }) => theme.lightPink};
   }
 `;
 

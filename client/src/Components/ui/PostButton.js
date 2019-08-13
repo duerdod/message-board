@@ -7,10 +7,20 @@ const StyledPostButton = styled(ThemeButton)`
   padding: 1rem 4rem;
 `;
 
-const PostButton = () => {
+const PostButton = ({ history }) => {
   const { isFormOpen, toggleFormOpen } = useContext(MessageFormContext);
+
   return (
-    <StyledPostButton onClick={() => toggleFormOpen(isFormOpen => !isFormOpen)}>
+    <StyledPostButton
+      onClick={() => {
+        if (window.location.href.includes('message')) {
+          history.goBack();
+          toggleFormOpen(true);
+        } else {
+          toggleFormOpen(isFormOpen => !isFormOpen);
+        }
+      }}
+    >
       {isFormOpen ? 'DISCARD' : 'POST'}
     </StyledPostButton>
   );

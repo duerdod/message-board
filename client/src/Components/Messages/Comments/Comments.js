@@ -8,11 +8,18 @@ import CommentToMessage from './CommentToMessage';
 import StatusPage from '../../StatusPage';
 
 const CommentsContainer = styled.section`
+  width: 60%;
+  margin: 3rem auto;
+  box-shadow: ${({ theme }) => theme.boxShadow};
   > div {
     border-radius: 0px;
     box-shadow: none;
     border-top: 1px solid ${({ theme }) => theme.lightGrey};
     border-bottom: 1px solid ${({ theme }) => theme.lightGrey};
+  }
+  @media screen and (max-width: 64em) {
+    width: 100%;
+    margin: 0;
   }
 `;
 
@@ -20,10 +27,6 @@ const CommentContainer = styled.ul`
   background: ${({ theme }) => theme.white};
   box-shadow: 0 7px 6px -6px hsla(0, 0%, 0%, 0.15);
   padding: 1rem;
-
-  @media screen and (max-width: 64em) {
-    /* border-radius: 0px; */
-  }
 `;
 
 const Comments = props => {

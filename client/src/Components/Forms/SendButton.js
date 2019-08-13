@@ -3,6 +3,7 @@ import { Mutation } from 'react-apollo';
 import styled from '@emotion/styled';
 import { MessageFormContext } from '../../context/message-context';
 import { ADD_MESSAGE, GET_ALL_MESSAGES } from '../../gql/gql';
+import StatusPage from '../StatusPage';
 
 const SendButtonStyle = styled.button`
   color: ${({ theme }) => theme.white};
@@ -39,14 +40,15 @@ const FormButton = ({ className }) => {
 
   const submitMessage = (e, mutation) => {
     e.preventDefault();
-
-    if (!isFormOpen) {
-      toggleFormOpen(true);
-      return;
-    } else {
+    if (isFormOpen) {
       handleSubmit(e, mutation);
-      toggleFormOpen(false);
+      return;
     }
+  };
+
+  const onCompleted = () => {
+    setValues({});
+    toggleFormOpen(isFormOpen => false);
   };
 
   return (
@@ -58,15 +60,18 @@ const FormButton = ({ className }) => {
           query: GET_ALL_MESSAGES
         }
       ]}
-      onCompleted={() => setValues({})}
+      onCompleted={onCompleted}
     >
       {(addMessage, { error, loading }) => (
-        <SendButtonStyle
-          className={className}
-          onClick={e => submitMessage(e, addMessage)}
-        >
-          POST
-        </SendButtonStyle>
+        <>
+          {error ? <StatusPage state={error && 'error'} /> : null}
+          <SendButtonStyle
+            className={className}
+            onClick={e => submitMessage(e, addMessage)}
+          >
+            POST{loading ? 'ing' : null}
+          </SendButtonStyle>
+        </>
       )}
     </Mutation>
   );

@@ -22,6 +22,7 @@ const StyledMenuButton = styled(ThemeButton)`
     stroke-width: 1px;
   }
 `;
+
 const AnimatedModernBurger = animated(ModernBurger);
 const AnimatedClose = animated(Close);
 
