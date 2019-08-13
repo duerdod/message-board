@@ -5,6 +5,7 @@ import { COMMENT_MESSAGE, GET_SINGLE_MESSAGE } from '../../../gql/gql';
 import useForm from '../../../hooks/useForm';
 import ThemeButton from '../../ui/ThemeButton';
 import StatusPage, { ErrorMessage } from '../../StatusPage';
+import { ReactComponent as Chevron } from '../../../svg/ChevronLeft.svg';
 
 const StyledMessageForm = styled.form`
   background: ${({ theme }) => theme.white};
@@ -18,9 +19,17 @@ const StyledMessageForm = styled.form`
     font-family: ${({ theme }) => theme.sansSerif};
     font-size: 0.85rem;
   }
-  > button {
-    display: block;
-    margin: 1rem auto;
+  > div {
+    display: flex;
+    justify-content: center;
+    > {
+      button {
+        padding: 0.3rem 2rem;
+        svg {
+          height: 24px;
+        }
+      }
+    }
   }
 `;
 
@@ -38,7 +47,7 @@ const Label = styled.label`
   }
 `;
 
-const CommentToMessage = ({ id }) => {
+const CommentToMessage = ({ id, history }) => {
   const stateInit = {
     comment: '',
     author: ''
@@ -79,11 +88,19 @@ const CommentToMessage = ({ id }) => {
               />
             </Label>
             {error ? <ErrorMessage>{error.message}</ErrorMessage> : null}
-            <ThemeButton
-              onClick={e => (isValid ? handleSubmit(e, commentMessage) : null)}
-            >
-              COMMENT
-            </ThemeButton>
+
+            <div>
+              <ThemeButton onClick={() => history.replace('/')}>
+                <Chevron />
+              </ThemeButton>
+              <ThemeButton
+                onClick={e =>
+                  isValid ? handleSubmit(e, commentMessage) : null
+                }
+              >
+                COMMENT
+              </ThemeButton>
+            </div>
           </StyledMessageForm>
         );
       }}

@@ -16,8 +16,10 @@ do `docker-compose` and you're up.
 - [x] Stop users from posting within a fixed time frame.
 - [x] Message grid cleanup.
 - [ ] "Pagination".
+- [ ] Tagging posts.
+- [ ] Signup/Login with user settings.
 - [x] Vote for removal.
-- [ ] Add commenting possibility.
+- [x] Add commenting possibility.
 - [ ] Better server side error handling.
 - [ ] Naming, refactoring and cleanup.
 - [ ] Eject from CRA.

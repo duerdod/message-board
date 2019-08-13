@@ -68,11 +68,11 @@ export const reset = css`
     color: ${theme.black};
   }
   /* Stupid. */
-  /* body.menu-open {
-    position: fixed;
+  body.menu-open {
+    /* position: fixed; */
     height: 100%;
     overflow-y: hidden;
-  } */
+  }
 
 `;
 

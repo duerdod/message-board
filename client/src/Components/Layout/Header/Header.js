@@ -12,7 +12,7 @@ const HeaderContainer = styled.header`
 `;
 
 const Title = styled.h2`
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   margin: 0;
   line-height: 1.2;
   font-weight: 800;

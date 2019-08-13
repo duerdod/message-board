@@ -16,3 +16,13 @@ type Message {
   comments: [Comment]
   date: String
 }
+
+type User {
+  id: ID! @id
+  email: String! @unique
+  userName: String! @unique
+  firstName: String!
+  lastName: String!
+  password: String!
+  messages: [Message]
+}

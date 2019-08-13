@@ -14,6 +14,9 @@ import AppStateProvider from './context/index';
 import MenuButtons from './Components/Menu/MenuButtons';
 import Menu from './Components/Menu/Menu';
 
+// Auth
+import Signup from './Components/Auth/Signup';
+
 const httpLink = new HttpLink({
   uri: '/graphql'
 });
@@ -37,6 +40,7 @@ const App = () => {
             <Switch>
               <Route exact path="/" component={Board} />
               <Route path="/message/:id" component={Comments} />
+              <Route path="/signup" component={Signup} />
             </Switch>
             <MenuButtons />
             <Footer />

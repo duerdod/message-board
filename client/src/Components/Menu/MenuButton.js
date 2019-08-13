@@ -15,7 +15,7 @@ const StyledMenuButton = styled(ThemeButton)`
     transform: translate3d(55px, 0, 0);
     width: 65px;
     @media screen and (max-width: 63em) {
-      transform: translate3d(55px, 0, 0);
+      transform: translate3d(65px, 0, 0);
     }
   }
   svg {

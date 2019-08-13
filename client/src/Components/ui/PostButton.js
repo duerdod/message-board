@@ -9,12 +9,12 @@ const StyledPostButton = styled(ThemeButton)`
 
 const PostButton = ({ history }) => {
   const { isFormOpen, toggleFormOpen } = useContext(MessageFormContext);
-
+  console.log(history);
   return (
     <StyledPostButton
       onClick={() => {
         if (window.location.href.includes('message')) {
-          history.goBack();
+          history.replace('/');
           toggleFormOpen(true);
         } else {
           toggleFormOpen(isFormOpen => !isFormOpen);

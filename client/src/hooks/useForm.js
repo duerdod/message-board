@@ -15,9 +15,11 @@ const useForm = stateInit => {
   };
 
   // "Valid" as far as the client is concerned.
-  const isValid = Object.values(values).every(value => value.length > 2);
+  const isValid =
+    values && Object.values(values).every(value => value.length > 2);
 
   // Returns each as an object to be used insde stateful fn.
+
   return {
     handleChange,
     handleSubmit,

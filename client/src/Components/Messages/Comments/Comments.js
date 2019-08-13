@@ -6,22 +6,7 @@ import Message from '../Message';
 import Comment from './Comment';
 import CommentToMessage from './CommentToMessage';
 import StatusPage from '../../StatusPage';
-
-const CommentsContainer = styled.section`
-  width: 60%;
-  margin: 3rem auto;
-  box-shadow: ${({ theme }) => theme.boxShadow};
-  > div {
-    border-radius: 0px;
-    box-shadow: none;
-    border-top: 1px solid ${({ theme }) => theme.lightGrey};
-    border-bottom: 1px solid ${({ theme }) => theme.lightGrey};
-  }
-  @media screen and (max-width: 64em) {
-    width: 100%;
-    margin: 0;
-  }
-`;
+import { CommentsContainer } from '../../ui/CommentsContainer';
 
 const CommentContainer = styled.ul`
   background: ${({ theme }) => theme.white};
@@ -31,6 +16,7 @@ const CommentContainer = styled.ul`
 
 const Comments = props => {
   const { id } = props.match.params;
+  const { history } = props;
   return (
     <Query query={GET_SINGLE_MESSAGE} variables={{ id }}>
       {({ data, error, loading }) => {
@@ -43,7 +29,7 @@ const Comments = props => {
               <CommentContainer>
                 <Comment comments={data.message.comments} />
               </CommentContainer>
-              <CommentToMessage id={id} />
+              <CommentToMessage id={id} history={history} />
             </CommentsContainer>
           </>
         );
