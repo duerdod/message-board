@@ -168,10 +168,12 @@ export type MessageOrderByInput =
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
-export interface MessageUpdateOneRequiredWithoutCommentsInput {
+export interface MessageUpdateOneWithoutCommentsInput {
   create?: Maybe<MessageCreateWithoutCommentsInput>;
   update?: Maybe<MessageUpdateWithoutCommentsDataInput>;
   upsert?: Maybe<MessageUpsertWithoutCommentsInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
   connect?: Maybe<MessageWhereUniqueInput>;
 }
 
@@ -236,7 +238,7 @@ export interface CommentCreateInput {
   author: String;
   dislikes: Int;
   date: String;
-  message: MessageCreateOneWithoutCommentsInput;
+  message?: Maybe<MessageCreateOneWithoutCommentsInput>;
 }
 
 export interface MessageUpdateManyMutationInput {
@@ -275,7 +277,7 @@ export interface CommentUpdateInput {
   author?: Maybe<String>;
   dislikes?: Maybe<Int>;
   date?: Maybe<String>;
-  message?: Maybe<MessageUpdateOneRequiredWithoutCommentsInput>;
+  message?: Maybe<MessageUpdateOneWithoutCommentsInput>;
 }
 
 export interface CommentUpdateWithoutMessageDataInput {

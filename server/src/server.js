@@ -36,9 +36,10 @@ if (process.env.NODE_ENV === 'development') {
 
 // Static files
 if (process.env.NODE_ENV === 'production') {
-  app.use('/', express.static(path.join(clientPath, 'build')));
-  app.get('/', (req, res) => {
-    res.sendFile(path.join(clientPath, 'build'));
+  app.use(express.static(path.join(clientPath, 'build')));
+
+  app.get('/*', (req, res) => {
+    res.sendFile('index.html', { root: path.join(clientPath, 'build') });
   });
 }
 

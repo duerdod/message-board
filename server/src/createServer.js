@@ -23,7 +23,7 @@ const typeDefs = gql`
     author: String!
     date: String
     dislikes: Int!
-    message: Message!
+    message: Message
   }
 
   type Query {
