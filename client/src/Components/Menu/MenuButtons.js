@@ -7,6 +7,8 @@ import { withRouter } from 'react-router-dom';
 const MenuButtonContainer = styled.div`
   position: sticky;
   bottom: 55px;
+  width: 250px;
+  margin: 0 auto;
   > div {
     display: flex;
     align-items: center;
