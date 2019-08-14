@@ -716,8 +716,8 @@ type User {
   id: ID!
   email: String!
   username: String!
-  firstname: String!
-  lastname: String!
+  firstname: String
+  lastname: String
   password: String!
   messages(where: MessageWhereInput, orderBy: MessageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Message!]
 }
@@ -732,8 +732,8 @@ input UserCreateInput {
   id: ID
   email: String!
   username: String!
-  firstname: String!
-  lastname: String!
+  firstname: String
+  lastname: String
   password: String!
   messages: MessageCreateManyInput
 }
@@ -762,8 +762,8 @@ type UserPreviousValues {
   id: ID!
   email: String!
   username: String!
-  firstname: String!
-  lastname: String!
+  firstname: String
+  lastname: String
   password: String!
 }
 

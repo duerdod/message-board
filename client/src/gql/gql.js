@@ -74,3 +74,34 @@ export const COMMENT_MESSAGE = gql`
     }
   }
 `;
+
+export const SIGN_UP = gql`
+  mutation SIGN_UP(
+    $firstname: String
+    $lastname: String
+    $username: String!
+    $email: String!
+    $password: String!
+  ) {
+    signup(
+      firstname: $firstname
+      lastname: $lastname
+      username: $username
+      email: $email
+      password: $password
+    ) {
+      id
+      username
+      email
+    }
+  }
+`;
+
+export const SIGN_IN = gql`
+  mutation SIGN_IN($username: String!, $password: String!) {
+    signin(username: $username, password: $password) {
+      id
+      username
+    }
+  }
+`;

@@ -890,8 +890,8 @@ export interface UserCreateInput {
   id?: Maybe<ID_Input>;
   email: String;
   username: String;
-  firstname: String;
-  lastname: String;
+  firstname?: Maybe<String>;
+  lastname?: Maybe<String>;
   password: String;
   messages?: Maybe<MessageCreateManyInput>;
 }
@@ -961,8 +961,8 @@ export interface UserPreviousValues {
   id: ID_Output;
   email: String;
   username: String;
-  firstname: String;
-  lastname: String;
+  firstname?: String;
+  lastname?: String;
   password: String;
 }
 
@@ -1159,8 +1159,8 @@ export interface User {
   id: ID_Output;
   email: String;
   username: String;
-  firstname: String;
-  lastname: String;
+  firstname?: String;
+  lastname?: String;
   password: String;
 }
 

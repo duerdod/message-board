@@ -3,57 +3,7 @@ const { ApolloServer, gql } = require('apollo-server-express');
 const { prisma } = require('../generated/prisma-client/index');
 const Query = require('./resolvers/Query');
 const Mutation = require('./resolvers/Mutation');
-
-// Apollo Server 2 uses gql.
-// Separate it from createServer.
-const typeDefs = gql`
-  type Message {
-    id: ID!
-    title: String!
-    message: String!
-    author: String!
-    dislikes: Int!
-    comments: [Comment]
-    date: String
-  }
-
-  type Comment {
-    id: ID!
-    comment: String!
-    author: String!
-    date: String
-    dislikes: Int!
-    message: Message
-  }
-
-  type User {
-    id: ID!
-    email: String!
-    username: String!
-    firstname: String!
-    lastname: String!
-    password: String!
-    messages: [Message]
-  }
-
-  type Query {
-    messages: [Message]
-    message(id: ID!): Message
-  }
-
-  type Mutation {
-    addMessage(
-      title: String!
-      message: String!
-      author: String!
-      date: String
-    ): Message
-    dislikeMessage(id: ID!): Message
-    deleteMessage(id: ID!): Message
-    commentMessage(id: ID!, author: String!, comment: String!): Comment
-    createUser(email: String!, password: String!): User!
-  }
-`;
+const typeDefs = require('./graphqlschema');
 
 const corsOptions = {
   origin: '*',
@@ -67,7 +17,7 @@ function createServer() {
     resolvers: {
       Query,
       Mutation,
-      // Type resolvers.
+      // Type resolvers. Where to put them??! They cannot stay.
       Message: {
         comments(parent, args, ctx) {
           return ctx.prisma

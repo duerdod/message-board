@@ -80,7 +80,7 @@ const Menu = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink onClick={collapseMenu} to="#">
+            <NavLink onClick={collapseMenu} to="/signin">
               Sign in
             </NavLink>
           </li>

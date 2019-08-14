@@ -1,3 +1,6 @@
+require('dotenv').config({ path: '../../.env' });
+const bcrypt = require('bcryptjs');
+var jwt = require('jsonwebtoken');
 const {
   addUserTimestamp,
   validateMessage,
@@ -85,7 +88,66 @@ const Mutation = {
     return createdComment;
   },
 
-  async createUser(root, args, context) {}
+  async signup(root, args, context) {
+    // Is the user unique? ie. does the user exist
+    const userWithUsername = await context.prisma.user({
+      username: args.username
+    });
+    if (userWithUsername) {
+      throw new Error(
+        `User with the username ${userWithUsername.username} already exist.`
+      );
+    }
+
+    const userWithemail = await context.prisma.user({ email: args.email });
+    if (userWithemail) {
+      throw new Error(`User with email ${userWithemail.email} already exist.`);
+    }
+
+    // TODO:
+    // Are all fields valid? Email, password and username
+
+    // Hash passwordf
+    const password = await bcrypt.hash(args.password, 10);
+
+    // Create user.
+    const user = context.prisma.createUser({
+      email: args.email.toLowerCase(),
+      password,
+      username: args.username,
+      firstname: args.firstname,
+      lastname: args.lastname
+    });
+
+    // Return user
+    return user;
+  },
+  async signin(root, args, context) {
+    // Check if user exist
+    const user = await context.prisma.user({ username: args.username });
+    if (!user) {
+      return new Error('No such user. :(');
+    }
+
+    // Match password
+    const isMatchedPassword = await bcrypt.compare(
+      args.password,
+      user.password
+    );
+    if (!isMatchedPassword) {
+      return new Error('Wrong password. :(');
+    }
+
+    // Genereataetrrre jwt token
+    const token = jwt.sign({ data: user.username }, process.env.APP_SECRET);
+
+    // Add JWT to response
+    context.res.cookie('userToken', token, {
+      maxAge: Math.floor(Date.now() / 1000) + 60 * 60 // One hour
+    });
+
+    return user;
+  }
 };
 
 module.exports = Mutation;

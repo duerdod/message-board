@@ -1,7 +1,10 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { CommentsContainer } from '../ui/CommentsContainer';
+import { useMutation } from '@apollo/react-hooks';
 import useForm from '../../hooks/useForm';
+import { CommentsContainer } from '../ui/CommentsContainer';
+import ThemeButton from '../ui/ThemeButton';
+import { SIGN_UP } from '../../gql/gql';
 
 const FormContainer = styled(CommentsContainer)`
   background: ${({ theme }) => theme.white};
@@ -46,10 +49,20 @@ const Form = styled.form`
     display: flex;
     justify-content: space-between;
   }
+  @media (pointer: coarse) {
+    width: 100%;
+  }
 `;
 
 const Signup = () => {
-  const { handleChange } = useForm({});
+  const [signup, { data, error }] = useMutation(SIGN_UP);
+  const { handleChange, values } = useForm({
+    firstname: '',
+    lastname: '',
+    username: '',
+    email: '',
+    password: ''
+  });
 
   return (
     <FormContainer>
@@ -58,31 +71,51 @@ const Signup = () => {
         <div className="names">
           <label htmlFor="firstName">
             <span>First name</span>
-            <input name="firstName" type="text" onChange={handleChange} />
+            <input name="firstname" type="text" onChange={handleChange} />
           </label>
 
           <label htmlFor="lastName">
             <span>Last name</span>
-            <input name="lastName" type="text" onChange={handleChange} />
+            <input name="lastname" type="text" onChange={handleChange} />
           </label>
         </div>
 
         <label htmlFor="username">
           <span>Username</span>
-          <input name="email" type="text" onChange={handleChange} />
+          <input name="username" type="text" onChange={handleChange} required />
         </label>
 
         <label htmlFor="email">
           <span>Email</span>
-          <input name="email" type="text" onChange={handleChange} />
+          <input name="email" type="text" onChange={handleChange} required />
         </label>
 
         <label htmlFor="password">
           <span>Password</span>
-          <input name="password" type="password" onChange={handleChange} />
+          <input
+            name="password"
+            type="password"
+            onChange={handleChange}
+            required
+          />
         </label>
 
-        <button onClick={e => e.preventDefault()}>Sign up</button>
+        <ThemeButton
+          onClick={() => {
+            signup({
+              variables: {
+                // For some reason this doesn't work with object shorthands... ie { values }, why?
+                firstname: values.firstname,
+                lastname: values.lastname,
+                username: values.username,
+                email: values.email,
+                password: values.password
+              }
+            });
+          }}
+        >
+          Sign up
+        </ThemeButton>
       </Form>
     </FormContainer>
   );
