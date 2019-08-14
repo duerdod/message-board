@@ -715,9 +715,9 @@ type Subscription {
 type User {
   id: ID!
   email: String!
-  userName: String!
-  firstName: String!
-  lastName: String!
+  username: String!
+  firstname: String!
+  lastname: String!
   password: String!
   messages(where: MessageWhereInput, orderBy: MessageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Message!]
 }
@@ -731,9 +731,9 @@ type UserConnection {
 input UserCreateInput {
   id: ID
   email: String!
-  userName: String!
-  firstName: String!
-  lastName: String!
+  username: String!
+  firstname: String!
+  lastname: String!
   password: String!
   messages: MessageCreateManyInput
 }
@@ -748,12 +748,12 @@ enum UserOrderByInput {
   id_DESC
   email_ASC
   email_DESC
-  userName_ASC
-  userName_DESC
-  firstName_ASC
-  firstName_DESC
-  lastName_ASC
-  lastName_DESC
+  username_ASC
+  username_DESC
+  firstname_ASC
+  firstname_DESC
+  lastname_ASC
+  lastname_DESC
   password_ASC
   password_DESC
 }
@@ -761,9 +761,9 @@ enum UserOrderByInput {
 type UserPreviousValues {
   id: ID!
   email: String!
-  userName: String!
-  firstName: String!
-  lastName: String!
+  username: String!
+  firstname: String!
+  lastname: String!
   password: String!
 }
 
@@ -787,18 +787,18 @@ input UserSubscriptionWhereInput {
 
 input UserUpdateInput {
   email: String
-  userName: String
-  firstName: String
-  lastName: String
+  username: String
+  firstname: String
+  lastname: String
   password: String
   messages: MessageUpdateManyInput
 }
 
 input UserUpdateManyMutationInput {
   email: String
-  userName: String
-  firstName: String
-  lastName: String
+  username: String
+  firstname: String
+  lastname: String
   password: String
 }
 
@@ -831,48 +831,48 @@ input UserWhereInput {
   email_not_starts_with: String
   email_ends_with: String
   email_not_ends_with: String
-  userName: String
-  userName_not: String
-  userName_in: [String!]
-  userName_not_in: [String!]
-  userName_lt: String
-  userName_lte: String
-  userName_gt: String
-  userName_gte: String
-  userName_contains: String
-  userName_not_contains: String
-  userName_starts_with: String
-  userName_not_starts_with: String
-  userName_ends_with: String
-  userName_not_ends_with: String
-  firstName: String
-  firstName_not: String
-  firstName_in: [String!]
-  firstName_not_in: [String!]
-  firstName_lt: String
-  firstName_lte: String
-  firstName_gt: String
-  firstName_gte: String
-  firstName_contains: String
-  firstName_not_contains: String
-  firstName_starts_with: String
-  firstName_not_starts_with: String
-  firstName_ends_with: String
-  firstName_not_ends_with: String
-  lastName: String
-  lastName_not: String
-  lastName_in: [String!]
-  lastName_not_in: [String!]
-  lastName_lt: String
-  lastName_lte: String
-  lastName_gt: String
-  lastName_gte: String
-  lastName_contains: String
-  lastName_not_contains: String
-  lastName_starts_with: String
-  lastName_not_starts_with: String
-  lastName_ends_with: String
-  lastName_not_ends_with: String
+  username: String
+  username_not: String
+  username_in: [String!]
+  username_not_in: [String!]
+  username_lt: String
+  username_lte: String
+  username_gt: String
+  username_gte: String
+  username_contains: String
+  username_not_contains: String
+  username_starts_with: String
+  username_not_starts_with: String
+  username_ends_with: String
+  username_not_ends_with: String
+  firstname: String
+  firstname_not: String
+  firstname_in: [String!]
+  firstname_not_in: [String!]
+  firstname_lt: String
+  firstname_lte: String
+  firstname_gt: String
+  firstname_gte: String
+  firstname_contains: String
+  firstname_not_contains: String
+  firstname_starts_with: String
+  firstname_not_starts_with: String
+  firstname_ends_with: String
+  firstname_not_ends_with: String
+  lastname: String
+  lastname_not: String
+  lastname_in: [String!]
+  lastname_not_in: [String!]
+  lastname_lt: String
+  lastname_lte: String
+  lastname_gt: String
+  lastname_gte: String
+  lastname_contains: String
+  lastname_not_contains: String
+  lastname_starts_with: String
+  lastname_not_starts_with: String
+  lastname_ends_with: String
+  lastname_not_ends_with: String
   password: String
   password_not: String
   password_in: [String!]
@@ -898,7 +898,7 @@ input UserWhereInput {
 input UserWhereUniqueInput {
   id: ID
   email: String
-  userName: String
+  username: String
 }
 `
       }

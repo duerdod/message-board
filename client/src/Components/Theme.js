@@ -67,6 +67,9 @@ export const reset = css`
     @media (pointer: coarse)  {
         input, textarea {
           font-size: 1.1rem !important;
+          &::placeholder {
+            font-size: 0.85rem;
+          }
         }
       }
 

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Global } from '@emotion/core';
 import { ThemeProvider } from 'emotion-theming';
 import { ApolloClient, InMemoryCache, HttpLink } from 'apollo-boost';
-import { ApolloProvider } from 'react-apollo';
+import { ApolloProvider } from '@apollo/react-hooks';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Header from './Components/Layout/Header/Header';
 import Board from './Board';
@@ -31,8 +31,8 @@ const { styles } = reset;
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
-      <Global styles={{ styles }} />
       <ApolloProvider client={client}>
+        <Global styles={{ styles }} />
         <AppStateProvider>
           <Router>
             <Header />

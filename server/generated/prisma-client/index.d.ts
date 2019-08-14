@@ -212,12 +212,12 @@ export type UserOrderByInput =
   | "id_DESC"
   | "email_ASC"
   | "email_DESC"
-  | "userName_ASC"
-  | "userName_DESC"
-  | "firstName_ASC"
-  | "firstName_DESC"
-  | "lastName_ASC"
-  | "lastName_DESC"
+  | "username_ASC"
+  | "username_DESC"
+  | "firstname_ASC"
+  | "firstname_DESC"
+  | "lastname_ASC"
+  | "lastname_DESC"
   | "password_ASC"
   | "password_DESC";
 
@@ -398,9 +398,9 @@ export interface CommentCreateInput {
 
 export interface UserUpdateManyMutationInput {
   email?: Maybe<String>;
-  userName?: Maybe<String>;
-  firstName?: Maybe<String>;
-  lastName?: Maybe<String>;
+  username?: Maybe<String>;
+  firstname?: Maybe<String>;
+  lastname?: Maybe<String>;
   password?: Maybe<String>;
 }
 
@@ -473,7 +473,7 @@ export interface MessageUpdateWithoutCommentsDataInput {
 export type UserWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
   email?: Maybe<String>;
-  userName?: Maybe<String>;
+  username?: Maybe<String>;
 }>;
 
 export interface MessageUpsertWithoutCommentsInput {
@@ -510,48 +510,48 @@ export interface UserWhereInput {
   email_not_starts_with?: Maybe<String>;
   email_ends_with?: Maybe<String>;
   email_not_ends_with?: Maybe<String>;
-  userName?: Maybe<String>;
-  userName_not?: Maybe<String>;
-  userName_in?: Maybe<String[] | String>;
-  userName_not_in?: Maybe<String[] | String>;
-  userName_lt?: Maybe<String>;
-  userName_lte?: Maybe<String>;
-  userName_gt?: Maybe<String>;
-  userName_gte?: Maybe<String>;
-  userName_contains?: Maybe<String>;
-  userName_not_contains?: Maybe<String>;
-  userName_starts_with?: Maybe<String>;
-  userName_not_starts_with?: Maybe<String>;
-  userName_ends_with?: Maybe<String>;
-  userName_not_ends_with?: Maybe<String>;
-  firstName?: Maybe<String>;
-  firstName_not?: Maybe<String>;
-  firstName_in?: Maybe<String[] | String>;
-  firstName_not_in?: Maybe<String[] | String>;
-  firstName_lt?: Maybe<String>;
-  firstName_lte?: Maybe<String>;
-  firstName_gt?: Maybe<String>;
-  firstName_gte?: Maybe<String>;
-  firstName_contains?: Maybe<String>;
-  firstName_not_contains?: Maybe<String>;
-  firstName_starts_with?: Maybe<String>;
-  firstName_not_starts_with?: Maybe<String>;
-  firstName_ends_with?: Maybe<String>;
-  firstName_not_ends_with?: Maybe<String>;
-  lastName?: Maybe<String>;
-  lastName_not?: Maybe<String>;
-  lastName_in?: Maybe<String[] | String>;
-  lastName_not_in?: Maybe<String[] | String>;
-  lastName_lt?: Maybe<String>;
-  lastName_lte?: Maybe<String>;
-  lastName_gt?: Maybe<String>;
-  lastName_gte?: Maybe<String>;
-  lastName_contains?: Maybe<String>;
-  lastName_not_contains?: Maybe<String>;
-  lastName_starts_with?: Maybe<String>;
-  lastName_not_starts_with?: Maybe<String>;
-  lastName_ends_with?: Maybe<String>;
-  lastName_not_ends_with?: Maybe<String>;
+  username?: Maybe<String>;
+  username_not?: Maybe<String>;
+  username_in?: Maybe<String[] | String>;
+  username_not_in?: Maybe<String[] | String>;
+  username_lt?: Maybe<String>;
+  username_lte?: Maybe<String>;
+  username_gt?: Maybe<String>;
+  username_gte?: Maybe<String>;
+  username_contains?: Maybe<String>;
+  username_not_contains?: Maybe<String>;
+  username_starts_with?: Maybe<String>;
+  username_not_starts_with?: Maybe<String>;
+  username_ends_with?: Maybe<String>;
+  username_not_ends_with?: Maybe<String>;
+  firstname?: Maybe<String>;
+  firstname_not?: Maybe<String>;
+  firstname_in?: Maybe<String[] | String>;
+  firstname_not_in?: Maybe<String[] | String>;
+  firstname_lt?: Maybe<String>;
+  firstname_lte?: Maybe<String>;
+  firstname_gt?: Maybe<String>;
+  firstname_gte?: Maybe<String>;
+  firstname_contains?: Maybe<String>;
+  firstname_not_contains?: Maybe<String>;
+  firstname_starts_with?: Maybe<String>;
+  firstname_not_starts_with?: Maybe<String>;
+  firstname_ends_with?: Maybe<String>;
+  firstname_not_ends_with?: Maybe<String>;
+  lastname?: Maybe<String>;
+  lastname_not?: Maybe<String>;
+  lastname_in?: Maybe<String[] | String>;
+  lastname_not_in?: Maybe<String[] | String>;
+  lastname_lt?: Maybe<String>;
+  lastname_lte?: Maybe<String>;
+  lastname_gt?: Maybe<String>;
+  lastname_gte?: Maybe<String>;
+  lastname_contains?: Maybe<String>;
+  lastname_not_contains?: Maybe<String>;
+  lastname_starts_with?: Maybe<String>;
+  lastname_not_starts_with?: Maybe<String>;
+  lastname_ends_with?: Maybe<String>;
+  lastname_not_ends_with?: Maybe<String>;
   password?: Maybe<String>;
   password_not?: Maybe<String>;
   password_in?: Maybe<String[] | String>;
@@ -889,18 +889,18 @@ export interface MessageScalarWhereInput {
 export interface UserCreateInput {
   id?: Maybe<ID_Input>;
   email: String;
-  userName: String;
-  firstName: String;
-  lastName: String;
+  username: String;
+  firstname: String;
+  lastname: String;
   password: String;
   messages?: Maybe<MessageCreateManyInput>;
 }
 
 export interface UserUpdateInput {
   email?: Maybe<String>;
-  userName?: Maybe<String>;
-  firstName?: Maybe<String>;
-  lastName?: Maybe<String>;
+  username?: Maybe<String>;
+  firstname?: Maybe<String>;
+  lastname?: Maybe<String>;
   password?: Maybe<String>;
   messages?: Maybe<MessageUpdateManyInput>;
 }
@@ -960,9 +960,9 @@ export interface PageInfoSubscription
 export interface UserPreviousValues {
   id: ID_Output;
   email: String;
-  userName: String;
-  firstName: String;
-  lastName: String;
+  username: String;
+  firstname: String;
+  lastname: String;
   password: String;
 }
 
@@ -971,9 +971,9 @@ export interface UserPreviousValuesPromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   email: () => Promise<String>;
-  userName: () => Promise<String>;
-  firstName: () => Promise<String>;
-  lastName: () => Promise<String>;
+  username: () => Promise<String>;
+  firstname: () => Promise<String>;
+  lastname: () => Promise<String>;
   password: () => Promise<String>;
 }
 
@@ -982,9 +982,9 @@ export interface UserPreviousValuesSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   email: () => Promise<AsyncIterator<String>>;
-  userName: () => Promise<AsyncIterator<String>>;
-  firstName: () => Promise<AsyncIterator<String>>;
-  lastName: () => Promise<AsyncIterator<String>>;
+  username: () => Promise<AsyncIterator<String>>;
+  firstname: () => Promise<AsyncIterator<String>>;
+  lastname: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
 }
 
@@ -1158,18 +1158,18 @@ export interface MessageSubscriptionPayloadSubscription
 export interface User {
   id: ID_Output;
   email: String;
-  userName: String;
-  firstName: String;
-  lastName: String;
+  username: String;
+  firstname: String;
+  lastname: String;
   password: String;
 }
 
 export interface UserPromise extends Promise<User>, Fragmentable {
   id: () => Promise<ID_Output>;
   email: () => Promise<String>;
-  userName: () => Promise<String>;
-  firstName: () => Promise<String>;
-  lastName: () => Promise<String>;
+  username: () => Promise<String>;
+  firstname: () => Promise<String>;
+  lastname: () => Promise<String>;
   password: () => Promise<String>;
   messages: <T = FragmentableArray<Message>>(args?: {
     where?: MessageWhereInput;
@@ -1187,9 +1187,9 @@ export interface UserSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   email: () => Promise<AsyncIterator<String>>;
-  userName: () => Promise<AsyncIterator<String>>;
-  firstName: () => Promise<AsyncIterator<String>>;
-  lastName: () => Promise<AsyncIterator<String>>;
+  username: () => Promise<AsyncIterator<String>>;
+  firstname: () => Promise<AsyncIterator<String>>;
+  lastname: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
   messages: <T = Promise<AsyncIterator<MessageSubscription>>>(args?: {
     where?: MessageWhereInput;
@@ -1207,9 +1207,9 @@ export interface UserNullablePromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   email: () => Promise<String>;
-  userName: () => Promise<String>;
-  firstName: () => Promise<String>;
-  lastName: () => Promise<String>;
+  username: () => Promise<String>;
+  firstname: () => Promise<String>;
+  lastname: () => Promise<String>;
   password: () => Promise<String>;
   messages: <T = FragmentableArray<Message>>(args?: {
     where?: MessageWhereInput;

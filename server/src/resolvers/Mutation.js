@@ -28,7 +28,6 @@ const Mutation = {
     // Add / update timestamp cookie.
     addUserTimestamp(context);
 
-    // Return message.
     return newMessage;
   },
 
@@ -67,13 +66,14 @@ const Mutation = {
     const deletedMessage = await context.prisma.deleteMessage({ id });
     return deletedMessage;
   },
+
   async commentMessage(root, { id, author, comment }, context, info) {
-    // 1. Query messages with provided id.
+    // Query messages with provided id.
     const message = await context.prisma.message({ id });
-    // 2. Does message still exist?
+    // Does message still exist?
     if (!message) throw new Error('No message found');
 
-    // 3. Update message with provided comment and author
+    // Update message with provided comment and author
     const createdComment = await context.prisma.createComment({
       comment,
       author,
@@ -81,9 +81,11 @@ const Mutation = {
       dislikes: 0,
       message: { connect: { id } }
     });
-    // 4. Return comment
+
     return createdComment;
-  }
+  },
+
+  async createUser(root, args, context) {}
 };
 
 module.exports = Mutation;

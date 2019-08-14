@@ -26,6 +26,16 @@ const typeDefs = gql`
     message: Message
   }
 
+  type User {
+    id: ID!
+    email: String!
+    username: String!
+    firstname: String!
+    lastname: String!
+    password: String!
+    messages: [Message]
+  }
+
   type Query {
     messages: [Message]
     message(id: ID!): Message
@@ -41,6 +51,7 @@ const typeDefs = gql`
     dislikeMessage(id: ID!): Message
     deleteMessage(id: ID!): Message
     commentMessage(id: ID!, author: String!, comment: String!): Comment
+    createUser(email: String!, password: String!): User!
   }
 `;
 

@@ -90,7 +90,7 @@ const Spinner = () => {
   );
 };
 
-const Status = ({ state }) => {
+const StatusPage = ({ state }) => {
   return (
     <LoadingPage>
       <InnerContainer>
@@ -108,4 +108,4 @@ const Status = ({ state }) => {
   );
 };
 
-export default Status;
+export default StatusPage;

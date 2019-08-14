@@ -20,9 +20,9 @@ type Message {
 type User {
   id: ID! @id
   email: String! @unique
-  userName: String! @unique
-  firstName: String!
-  lastName: String!
+  username: String! @unique
+  firstname: String!
+  lastname: String!
   password: String!
   messages: [Message]
 }

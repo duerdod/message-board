@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Mutation } from 'react-apollo';
+import { useMutation } from '@apollo/react-hooks';
 import styled from '@emotion/styled';
 import { MessageFormContext } from '../../context/message-context';
 import { ADD_MESSAGE, GET_ALL_MESSAGES } from '../../gql/gql';
@@ -51,33 +51,30 @@ const FormButton = ({ className }) => {
     toggleFormOpen(isFormOpen => false);
   };
 
+  const [addMessage, { error, loading }] = useMutation(ADD_MESSAGE, {
+    variables: values,
+    refetchQueries: [
+      {
+        query: GET_ALL_MESSAGES
+      }
+    ],
+    onCompleted: onCompleted
+  });
+
   return (
-    <Mutation
-      mutation={ADD_MESSAGE}
-      variables={values}
-      refetchQueries={[
-        {
-          query: GET_ALL_MESSAGES
-        }
-      ]}
-      onCompleted={onCompleted}
-    >
-      {(addMessage, { error, loading }) => (
-        <>
-          {error ? (
-            <ErrorMessage style={{ textAlign: 'center' }}>
-              {error.message}
-            </ErrorMessage>
-          ) : null}
-          <SendButton
-            className={className}
-            onClick={e => submitMessage(e, addMessage)}
-          >
-            POST{loading ? 'ing' : null}
-          </SendButton>
-        </>
-      )}
-    </Mutation>
+    <>
+      {error ? (
+        <ErrorMessage style={{ textAlign: 'center' }}>
+          {error.message}
+        </ErrorMessage>
+      ) : null}
+      <SendButton
+        className={className}
+        onClick={e => submitMessage(e, addMessage)}
+      >
+        POST{loading ? 'ing' : null}
+      </SendButton>
+    </>
   );
 };
 

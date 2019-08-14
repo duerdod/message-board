@@ -1,5 +1,5 @@
 import React from 'react';
-import { Query } from 'react-apollo';
+import { useQuery } from '@apollo/react-hooks';
 import styled from '@emotion/styled';
 import { GET_SINGLE_MESSAGE } from '../../../gql/gql';
 import Message from '../Message';
@@ -17,24 +17,23 @@ const CommentContainer = styled.ul`
 const Comments = props => {
   const { id } = props.match.params;
   const { history } = props;
+  const { data, error, loading } = useQuery(GET_SINGLE_MESSAGE, {
+    variables: { id }
+  });
+
+  if (error) return <StatusPage state={error && 'error'} />;
+  if (loading) return <StatusPage state={loading && 'loading'} />;
+
   return (
-    <Query query={GET_SINGLE_MESSAGE} variables={{ id }}>
-      {({ data, error, loading }) => {
-        if (error) return <StatusPage state={error && 'error'} />;
-        if (loading) return <StatusPage state={loading && 'loading'} />;
-        return (
-          <>
-            <CommentsContainer>
-              <Message message={data.message} />
-              <CommentContainer>
-                <Comment comments={data.message.comments} />
-              </CommentContainer>
-              <CommentToMessage id={id} history={history} />
-            </CommentsContainer>
-          </>
-        );
-      }}
-    </Query>
+    <>
+      <CommentsContainer>
+        <Message message={data.message} />
+        <CommentContainer>
+          <Comment comments={data.message.comments} />
+        </CommentContainer>
+        <CommentToMessage id={id} history={history} />
+      </CommentsContainer>
+    </>
   );
 };
 
