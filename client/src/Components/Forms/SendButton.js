@@ -3,9 +3,9 @@ import { Mutation } from 'react-apollo';
 import styled from '@emotion/styled';
 import { MessageFormContext } from '../../context/message-context';
 import { ADD_MESSAGE, GET_ALL_MESSAGES } from '../../gql/gql';
-import StatusPage from '../StatusPage';
+import { ErrorMessage } from '../StatusPage';
 
-const SendButtonStyle = styled.button`
+const SendButton = styled.button`
   color: ${({ theme }) => theme.white};
   margin: 1rem 0.1rem;
   padding: 0.5rem 1rem;
@@ -64,13 +64,17 @@ const FormButton = ({ className }) => {
     >
       {(addMessage, { error, loading }) => (
         <>
-          {error ? <StatusPage state={error && 'error'} /> : null}
-          <SendButtonStyle
+          {error ? (
+            <ErrorMessage style={{ textAlign: 'center' }}>
+              {error.message}
+            </ErrorMessage>
+          ) : null}
+          <SendButton
             className={className}
             onClick={e => submitMessage(e, addMessage)}
           >
             POST{loading ? 'ing' : null}
-          </SendButtonStyle>
+          </SendButton>
         </>
       )}
     </Mutation>

@@ -64,6 +64,9 @@ const Text = styled.h2`
 const ErrorText = styled.p`
   font-size: 0.75rem;
   color: ${({ theme }) => theme.error};
+  display: block;
+  width: 100%;
+  padding-left: 1rem;
 `;
 
 // For smaller error messages.
@@ -72,7 +75,6 @@ export const ErrorMessage = props => (
 );
 
 const Spinner = () => {
-  // Jez... there are probably better ways.
   return (
     <>
       <span role="img" aria-label="loading messages" className="eyes">

@@ -69,8 +69,6 @@ export const StyledForm = styled.form`
 
 const Footer = styled.footer`
   width: 100%;
-  display: flex;
-  justify-content: flex-end;
   padding: 0rem;
   border-top: 1px solid ${({ theme }) => theme.lightGrey};
   margin-top: auto;

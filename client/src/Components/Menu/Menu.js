@@ -21,6 +21,7 @@ const MenuContainer = styled.div`
     left: 0;
   }
   @media screen and (max-width: 63em) {
+    width: 280px;
     max-width: 80%;
   }
 `;

@@ -9,6 +9,7 @@ const HeaderWrapper = styled.header`
   align-content: center;
   align-items: center;
   padding: 0.5rem 0.8rem 0 0.8rem;
+  margin: 0.3rem 0;
 `;
 
 const AuthorContainer = styled.span`
@@ -37,7 +38,7 @@ const Author = styled.span`
 
 const Timestamp = styled.span`
   font-size: 0.65rem;
-  color: #c5c0c0;
+  color: ${({ theme }) => theme.grey};
 `;
 
 const Header = ({ message, children }) => {

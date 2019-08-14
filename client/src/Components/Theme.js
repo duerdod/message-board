@@ -3,7 +3,7 @@ import UseMobileView from '../hooks/useMobileView';
 
 const theme = {
   black: '#383838',
-  white: '#fffafa',
+  white: '#fcfafa',
   lightGreen: '#a7d7c5',
   green: '#74b49b',
   darkGreen: '#5c8d89',
@@ -14,6 +14,7 @@ const theme = {
   yellow: '#f8b500',
   lightRed: '#fcc6c9',
   lightGrey: '#f4f3f3',
+  grey: '#7f7f7f',
   buttonGradient:
     'linear-gradient(315deg, rgba(238,156,167,1) 0%, rgba(237,148,160,1) 100%)',
   error: '#B6051F',
@@ -41,6 +42,7 @@ export const reset = css`
     overflow-x: hidden;
   }
   html {
+    text-rendering: optimizeLegibility;
     font-size: 15px;
   }
   html * {
@@ -62,6 +64,11 @@ export const reset = css`
       box-shadow: none;
     }
   }
+    @media (pointer: coarse)  {
+        input, textarea {
+          font-size: 1.1rem !important;
+        }
+      }
 
   a {
     text-decoration: none;

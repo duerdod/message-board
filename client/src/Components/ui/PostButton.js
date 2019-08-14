@@ -5,11 +5,14 @@ import { MessageFormContext } from '../../context/message-context';
 
 const StyledPostButton = styled(ThemeButton)`
   padding: 1rem 4rem;
+  width: 66px;
+  display: flex;
+  justify-content: center;
 `;
 
 const PostButton = ({ history }) => {
   const { isFormOpen, toggleFormOpen } = useContext(MessageFormContext);
-  console.log(history);
+
   return (
     <StyledPostButton
       onClick={() => {
