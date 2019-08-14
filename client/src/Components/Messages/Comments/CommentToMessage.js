@@ -5,7 +5,6 @@ import { COMMENT_MESSAGE, GET_SINGLE_MESSAGE } from '../../../gql/gql';
 import useForm from '../../../hooks/useForm';
 import ThemeButton from '../../ui/ThemeButton';
 import StatusPage, { ErrorMessage } from '../../StatusPage';
-import { ReactComponent as Chevron } from '../../../svg/ChevronLeft.svg';
 
 const StyledMessageForm = styled.form`
   background: ${({ theme }) => theme.white};
@@ -21,11 +20,9 @@ const StyledMessageForm = styled.form`
     line-height: 35px;
   }
   > div {
-    display: flex;
-    justify-content: space-between;
     > {
       button {
-        padding: 0.3rem 2rem;
+        padding: 1rem 2rem;
         svg {
           height: 24px;
         }
@@ -93,9 +90,6 @@ const CommentToMessage = ({ id, history }) => {
       {error ? <ErrorMessage>{error.message}</ErrorMessage> : null}
 
       <div>
-        <ThemeButton onClick={() => history.replace('/')}>
-          <Chevron />
-        </ThemeButton>
         <ThemeButton
           onClick={e => (isValid ? handleSubmit(e, commentMessage) : null)}
         >

@@ -9,7 +9,7 @@ import ThemeButton from '../ui/ThemeButton';
 const StyledMenuButton = styled(ThemeButton)`
   position: relative;
   width: 75px;
-  height: 51px;
+  height: 50px;
   will-change: width, transform;
   &.move {
     transform: translate3d(55px, 0, 0);
