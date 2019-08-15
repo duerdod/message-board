@@ -4,7 +4,10 @@ import { useMutation } from '@apollo/react-hooks';
 import useForm from '../../hooks/useForm';
 import { CommentsContainer } from '../ui/CommentsContainer';
 import ThemeButton from '../ui/ThemeButton';
-import { SIGN_IN } from '../../gql/gql';
+import { SIGN_IN, GET_CURRENT_USER } from '../../gql/gql';
+import { ErrorMessage } from '../StatusPage';
+
+// AUTH
 
 const FormContainer = styled(CommentsContainer)`
   background: ${({ theme }) => theme.white};
@@ -54,8 +57,16 @@ const Form = styled.form`
   }
 `;
 
-const Signup = () => {
-  const [signin, { data, error }] = useMutation(SIGN_IN);
+const Signin = ({ history }) => {
+  const onComplete = () => {
+    history.push({ pathname: '/' });
+  };
+
+  const [signin, { error }] = useMutation(SIGN_IN, {
+    onCompleted: onComplete,
+    refetchQueries: [{ query: GET_CURRENT_USER }]
+  });
+
   const { handleChange, values } = useForm({
     username: '',
     password: ''
@@ -67,7 +78,13 @@ const Signup = () => {
       <Form>
         <label htmlFor="username">
           <span>Username</span>
-          <input name="username" type="text" onChange={handleChange} required />
+          <input
+            name="username"
+            type="text"
+            placeholder="poppen"
+            onChange={handleChange}
+            required
+          />
         </label>
 
         <label htmlFor="password">
@@ -75,16 +92,17 @@ const Signup = () => {
           <input
             name="password"
             type="password"
+            placeholder="hejhej"
             onChange={handleChange}
             required
           />
         </label>
-
+        {error ? <ErrorMessage> {error.message}</ErrorMessage> : null}
         <ThemeButton
           onClick={() => {
             signin({
               variables: {
-                // For some reason this doesn't work with object shorthands... ie { values }, why?
+                // For some reason this doesn't work with object shorthands... ie { values }.
                 username: values.username,
                 password: values.password
               }
@@ -98,4 +116,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Signin;

@@ -4,6 +4,7 @@ const app = express();
 const createServer = require('./createServer');
 const server = createServer();
 const cookieParser = require('cookie-parser');
+var jwt = require('jsonwebtoken');
 const path = require('path');
 
 // ENV
@@ -19,6 +20,7 @@ const corsOptions = {
 };
 
 // Middlewares
+
 // Cookies
 app.use(cookieParser());
 
@@ -34,10 +36,19 @@ if (process.env.NODE_ENV === 'development') {
   });
 }
 
+// If user, populate requests with user details.
+app.use((req, res, next) => {
+  const { userToken } = req.cookies;
+  if (userToken) {
+    const { user } = jwt.verify(userToken, process.env.APP_SECRET);
+    req.user = user;
+  }
+  next();
+});
+
 // Static files
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(clientPath, 'build')));
-
   app.get('/*', (req, res) => {
     res.sendFile('index.html', { root: path.join(clientPath, 'build') });
   });

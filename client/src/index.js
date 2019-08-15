@@ -17,16 +17,16 @@ import Menu from './Components/Menu/Menu';
 // Auth
 import Signup from './Components/Auth/Signup';
 import Signin from './Components/Auth/Signin';
+import Profile from './Components/Auth/User/Profile';
 
 const httpLink = new HttpLink({
   uri: '/graphql'
 });
 
-const client = new ApolloClient({
+export const client = new ApolloClient({
   link: httpLink,
   cache: new InMemoryCache()
 });
-
 const { styles } = reset;
 
 const App = () => {
@@ -34,8 +34,8 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <ApolloProvider client={client}>
         <Global styles={{ styles }} />
-        <AppStateProvider>
-          <Router>
+        <Router>
+          <AppStateProvider>
             <Header />
             <Menu />
             <Switch>
@@ -43,11 +43,15 @@ const App = () => {
               <Route path="/message/:id" component={Comments} />
               <Route path="/signup" component={Signup} />
               <Route path="/signin" component={Signin} />
+
+              <Route path="/profile">
+                <Profile />
+              </Route>
             </Switch>
             <MenuButtons />
             <Footer />
-          </Router>
-        </AppStateProvider>
+          </AppStateProvider>
+        </Router>
       </ApolloProvider>
     </ThemeProvider>
   );

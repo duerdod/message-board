@@ -9,9 +9,15 @@ const HeaderContainer = styled.header`
   background: ${({ theme }) => theme.white};
   padding: 0.5rem 1rem;
   box-shadow: ${({ theme }) => theme.boxShadow};
+  @media (pointer: coarse) {
+    .title-container {
+      text-align: center;
+    }
+  }
 `;
 
 const Title = styled.h2`
+  display: inline-block;
   font-size: 1.7rem;
   margin: 0;
   line-height: 1.2;

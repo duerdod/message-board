@@ -3,7 +3,10 @@ import styled from '@emotion/styled';
 import { trimErrorMessage } from '../utils/utils';
 
 const LoadingPage = styled.div`
-  grid-column: span 4;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 999;
   background: ${({ theme }) => theme.white};
   box-shadow: ${({ theme }) => theme.boxShadow};
   padding: 10% 0;

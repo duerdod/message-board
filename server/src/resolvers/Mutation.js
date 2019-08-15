@@ -139,7 +139,14 @@ const Mutation = {
     }
 
     // Genereataetrrre jwt token
-    const token = jwt.sign({ data: user.username }, process.env.APP_SECRET);
+    const token = jwt.sign(
+      {
+        user: {
+          id: user.id
+        }
+      },
+      process.env.APP_SECRET
+    );
 
     // Add JWT to response
     context.res.cookie('userToken', token, {

@@ -7,6 +7,12 @@ const Query = {
   },
   message(root, { id }, context) {
     return context.prisma.message({ id });
+  },
+  async currentUser(root, args, context) {
+    if (!context.req.user) return null;
+
+    const user = await context.prisma.user({ id: context.req.user.id });
+    return user;
   }
 };
 

@@ -5,6 +5,7 @@ import useForm from '../../hooks/useForm';
 import { CommentsContainer } from '../ui/CommentsContainer';
 import ThemeButton from '../ui/ThemeButton';
 import { SIGN_UP } from '../../gql/gql';
+import { ErrorMessage } from '../StatusPage';
 
 const FormContainer = styled(CommentsContainer)`
   background: ${({ theme }) => theme.white};
@@ -55,7 +56,7 @@ const Form = styled.form`
 `;
 
 const Signup = () => {
-  const [signup, { data, error }] = useMutation(SIGN_UP);
+  const [signup, { error }] = useMutation(SIGN_UP);
   const { handleChange, values } = useForm({
     firstname: '',
     lastname: '',
@@ -99,12 +100,12 @@ const Signup = () => {
             required
           />
         </label>
-
+        {error ? <ErrorMessage> {error.message}</ErrorMessage> : null}
         <ThemeButton
           onClick={() => {
             signup({
               variables: {
-                // For some reason this doesn't work with object shorthands... ie { values }, why?
+                // For some reason this doesn't work with object shorthands... ie { values }. TODO.
                 firstname: values.firstname,
                 lastname: values.lastname,
                 username: values.username,

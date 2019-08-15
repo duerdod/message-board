@@ -5,6 +5,9 @@ import { AppContext } from '../../context/app-context';
 import FAQ from './MenuContent/FAQ';
 import Information from './MenuContent/Information';
 
+// AUTH
+import Authenticated from '../Auth/Authenticated';
+
 const MenuContainer = styled.div`
   height: 100%;
   max-width: 485px;
@@ -61,6 +64,7 @@ const NavItems = styled.ul`
 
 const Menu = () => {
   const { isMenuOpen, toggleMenuOpen } = useContext(AppContext);
+
   const collapseMenu = () => {
     toggleMenuOpen(false);
   };
@@ -74,16 +78,26 @@ const Menu = () => {
         <Information />
         <FAQ />
         <NavItems>
-          <li>
-            <NavLink onClick={collapseMenu} to="/signup">
-              Sign up
-            </NavLink>
-          </li>
-          <li>
-            <NavLink onClick={collapseMenu} to="/signin">
-              Sign in
-            </NavLink>
-          </li>
+          <Authenticated
+            renderAuth={user => (
+              <li>
+                <NavLink onClick={collapseMenu} to="/profile">
+                  {user.username}
+                </NavLink>
+              </li>
+            )}
+          >
+            <li>
+              <NavLink onClick={collapseMenu} to="signup">
+                Sign up
+              </NavLink>
+            </li>
+            <li>
+              <NavLink onClick={collapseMenu} to="/signin">
+                Sign in
+              </NavLink>
+            </li>
+          </Authenticated>
         </NavItems>
       </MenuInnerContainer>
     </MenuContainer>

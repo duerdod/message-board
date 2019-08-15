@@ -105,3 +105,15 @@ export const SIGN_IN = gql`
     }
   }
 `;
+
+export const GET_CURRENT_USER = gql`
+  query GET_CURRENT_USER {
+    currentUser {
+      id
+      firstname
+      lastname
+      username
+      email
+    }
+  }
+`;
