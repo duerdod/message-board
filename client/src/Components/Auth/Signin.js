@@ -97,7 +97,7 @@ const Signin = ({ history }) => {
             required
           />
         </label>
-        {error ? <ErrorMessage> {error.message}</ErrorMessage> : null}
+        {error ? <ErrorMessage>{error.message}</ErrorMessage> : null}
         <ThemeButton
           onClick={() => {
             signin({

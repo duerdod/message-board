@@ -1,7 +1,6 @@
 ## Message Board
 
-Available at: https://the-congress.herokuapp.com/.  
-Mostly been focusing on mobile devices.
+Available at: https://yo-bulletin.herokuapp.com/.
 
 Internet has no need for this application but it's still a work in progress.  
 Comes with the most simplest word sanitizer for all you evil ones.
