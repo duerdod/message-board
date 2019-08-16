@@ -11,7 +11,7 @@ const Container = styled.footer`
   padding: 0rem 0.5rem;
   border-top: 1px solid ${({ theme }) => theme.lightGrey};
   margin-top: auto;
-  background: rgba(167, 215, 197, 0.1);
+  background: ${({ theme }) => theme.whiteVariant};
   > * {
     font-size: 0.75rem;
   }

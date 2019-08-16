@@ -3,7 +3,7 @@ import { css } from '@emotion/core';
 const theme = {
   black: '#383838',
   white: '#fcfafa',
-  lightGreen: 'rgba(167, 215, 197, 0.1)',
+  whiteVariant: '#f6f6f6',
   green: '#74b49b',
   darkGreen: '#5c8d89',
   lightPink: '#f5e1da',

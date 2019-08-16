@@ -8,7 +8,7 @@ const HeaderContainer = styled.header`
   align-items: center;
   background: ${({ theme }) => theme.white};
   padding: 0.5rem 1rem;
-  box-shadow: ${({ theme }) => theme.boxShadow};
+  box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.05);
   @media (pointer: coarse) {
     .title-container {
       text-align: center;
