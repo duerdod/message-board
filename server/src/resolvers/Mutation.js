@@ -10,21 +10,24 @@ const {
 const Mutation = {
   async addMessage(root, { title, message, author }, context) {
     validateMessage(title, message, author);
-    // Check if user is inside timeframe.
-    if (context.cookies['last_message']) {
+
+    // Is there a user we should connect the message to?
+    // Users also has free passage to post without timeframe.
+    const user = await context.prisma.user({ username: author });
+
+    // Check if user is inside timeframe and is no user.
+    if (!user && context.cookies['last_message']) {
       throw new Error('Hang tight between yo messages, yo. 🥁');
     }
 
     // Set timestamp for client side calculations.
     // Rewrite to use a custom scalar from graphql schema.
     const date = Date.now().toString();
-    addUserTimestamp(context);
+    addUserTimestamp('last_message', context);
 
-    // Is there a user we should connect the message to?
-    const user = await context.prisma.user({ username: author });
-
+    // If no user, and time frame = ok
     if (!user) {
-      // Adds message anyway.
+      // Add message anyway without user.
       const newMessage = await context.prisma.createMessage({
         title: sanitizer(title),
         message: sanitizer(message),
@@ -36,9 +39,7 @@ const Mutation = {
     }
 
     // Otherwise, connect the user and message
-    // Get id and username from signed in user
     const { id, username } = user;
-    // Add message anyway.
     const newMessage = await context.prisma.createMessage({
       title: sanitizer(title),
       message: sanitizer(message),
@@ -93,6 +94,10 @@ const Mutation = {
     // Does message still exist?
     if (!message) throw new Error('No message found');
 
+    if (context.cookies['last_comment']) {
+      throw new Error('Hang tight between yo comments, yo. 🥁');
+    }
+
     // Update message with provided comment and author
     const createdComment = await context.prisma.createComment({
       comment,
@@ -102,6 +107,8 @@ const Mutation = {
       message: { connect: { id } }
     });
 
+    // Add comment cookie.
+    addUserTimestamp('last_comment', context);
     return createdComment;
   },
 

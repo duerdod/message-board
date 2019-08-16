@@ -35,7 +35,8 @@ const FormButton = ({ className }) => {
     handleSubmit,
     setValues,
     isFormOpen,
-    toggleFormOpen
+    toggleFormOpen,
+    stateInit
   } = useContext(MessageFormContext);
 
   const submitMessage = (e, mutation) => {
@@ -45,9 +46,8 @@ const FormButton = ({ className }) => {
       return;
     }
   };
-
   const onCompleted = () => {
-    setValues({});
+    setValues(stateInit);
     toggleFormOpen(isFormOpen => false);
   };
 

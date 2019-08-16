@@ -22,7 +22,7 @@ const FormContainer = styled.div`
 
 const Form = styled.form`
   width: 60%;
-  margin: 0 auto;
+  margin: 0 auto 10rem auto;
 
   label {
     display: block;
@@ -45,6 +45,9 @@ const Form = styled.form`
     display: block;
     height: 35px;
     width: 100%;
+    &::placeholder {
+      color: ${({ theme }) => theme.grey};
+    }
   }
   button {
     margin-top: 1rem;

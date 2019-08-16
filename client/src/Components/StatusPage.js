@@ -3,8 +3,8 @@ import styled from '@emotion/styled';
 import { trimErrorMessage } from '../utils/utils';
 
 const LoadingPage = styled.div`
-  position: absolute;
-  height: 100%;
+  position: relative;
+  height: 100vh;
   width: 100%;
   z-index: 999;
   background: ${({ theme }) => theme.white};

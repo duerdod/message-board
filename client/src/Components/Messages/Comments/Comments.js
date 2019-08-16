@@ -10,8 +10,8 @@ import { CommentsContainer } from '../../ui/CommentsContainer';
 
 const CommentContainer = styled.ul`
   background: ${({ theme }) => theme.white};
-  box-shadow: 0 7px 6px -6px hsla(0, 0%, 0%, 0.15);
   padding: 1rem;
+  margin-bottom: 2rem;
 `;
 
 const Comments = props => {

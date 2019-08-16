@@ -6,18 +6,22 @@ const FooterContainer = styled.footer`
   background: ${({ theme }) => theme.pink};
   margin: 0;
   padding: 1rem;
+  border-top: 1px solid ${({ theme }) => theme.lightGrey};
+  display: flex;
+  justify-content: center;
   h2 {
     text-transform: uppercase;
     color: ${({ theme }) => theme.lightRed};
-    text-align: center;
+
     font-weight: 900;
+    align-self: flex-end;
   }
 `;
 
 const Footer = () => {
   return (
     <FooterContainer>
-      <h2>hej hi hallu hello yo</h2>
+      <h2>hej hi hallu hello yoyo</h2>
     </FooterContainer>
   );
 };

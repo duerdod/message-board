@@ -8,12 +8,13 @@ const MessageFormContext = createContext();
 // No point of having this as "global state" ...
 const MessageFormProvider = ({ children }) => {
   const { user } = useUser();
-  const [isFormOpen, toggleFormOpen] = useState(false);
-  const { handleChange, handleSubmit, values, setValues } = useForm({
+  const stateInit = {
     title: '',
     message: '',
     author: (user && user.username) || ''
-  });
+  };
+  const [isFormOpen, toggleFormOpen] = useState(false);
+  const { handleChange, handleSubmit, values, setValues } = useForm(stateInit);
 
   return (
     <MessageFormContext.Provider
@@ -23,7 +24,8 @@ const MessageFormProvider = ({ children }) => {
         handleChange,
         handleSubmit,
         values,
-        setValues
+        setValues,
+        stateInit
       }}
     >
       {children}

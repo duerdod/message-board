@@ -44,11 +44,11 @@ const MenuInnerContainer = styled.div`
 `;
 
 const NavItems = styled.ul`
-  margin-top: auto;
+  margin-top: 1rem;
 
   li {
-    display: inline-block;
-    margin: 1rem;
+    display: block;
+    padding: 0.3rem 1rem 0.3rem 0;
     color: ${({ theme }) => theme.lightRed};
     font-weight: 900;
     transition: all 0.2s ease;
@@ -77,7 +77,6 @@ const Menu = () => {
     <MenuContainer className={`${isMenuOpen ? 'menu-open' : ''}`}>
       <MenuInnerContainer>
         <Information />
-        <FAQ />
         <NavItems>
           <Authenticated
             renderAuth={user => (
@@ -105,6 +104,7 @@ const Menu = () => {
             </li>
           </Authenticated>
         </NavItems>
+        <FAQ />
       </MenuInnerContainer>
     </MenuContainer>
   );

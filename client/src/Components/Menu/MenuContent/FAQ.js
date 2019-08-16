@@ -4,7 +4,7 @@ import { ReactComponent as Horn } from '../../../svg/Horn.svg';
 
 const FAQList = styled.ul`
   width: 100%;
-  margin: 3rem 0;
+  margin-top: auto;
   padding: 0;
 
   li {

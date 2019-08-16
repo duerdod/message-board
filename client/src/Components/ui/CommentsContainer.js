@@ -14,5 +14,6 @@ export const CommentsContainer = styled.section`
   @media screen and (max-width: 64em) {
     width: 100%;
     margin: 0;
+    box-shadow: none;
   }
 `;

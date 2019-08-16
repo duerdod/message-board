@@ -12,12 +12,15 @@ const ProfileContainer = styled.div`
   max-width: 650px;
   margin: 0 auto;
   position: relative;
+  padding: 1rem;
+
+  header {
+    display: flex;
+    justify-content: space-between;
+  }
 `;
 
 const Avatar = styled.div`
-  position: absolute;
-  right: 1rem;
-  top: -1.5rem;
   span {
     display: inline-flex;
     padding: 6px;
@@ -39,7 +42,7 @@ const Username = styled.h2`
   font-weight: 900;
   font-size: 1.8rem;
   margin-top: 2rem;
-  padding: 0.5rem 2rem 0.5rem 0;
+  padding: 0;
   letter-spacing: 1px;
 `;
 
@@ -48,12 +51,14 @@ const Profile = props => {
   if (!user) return <NotSignedIn />;
   return (
     <ProfileContainer>
-      <Avatar>
-        <span>
-          <Person />
-        </span>
-      </Avatar>
-      <Username>{user.username}</Username>
+      <header>
+        <Username>{user.username}</Username>
+        <Avatar>
+          <span>
+            <Person />
+          </span>
+        </Avatar>
+      </header>
       <Tabs />
     </ProfileContainer>
   );

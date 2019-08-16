@@ -10,18 +10,17 @@ do `docker-compose` and you're up.
 
 ## Todo
 
-- [x] Attach to GraphQL server.
-- [x] Complete form and client side form validation.
-- [x] Stop users from posting within a fixed time frame.
 - [x] Message grid cleanup.
+- [x] "Vote" for removal.
+- [x] Add comments.
 - [ ] "Pagination".
-- [ ] Tagging posts.
-- [ ] Signup/Login with user settings.
-- [x] Vote for removal.
-- [x] Add commenting possibility.
+- [ ] Tag posts.
+- [ ] Filter and sort messages.
+- [x] Signup/Login, view users messages.
+- [ ] User settings.
+- [ ] Write tests!
 - [ ] Better server side error handling.
 - [ ] Naming, refactoring and cleanup.
-- [ ] Eject from CRA.
 
 ## Tools
 

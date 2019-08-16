@@ -82,17 +82,17 @@ const Signup = () => {
         </div>
 
         <label htmlFor="username">
-          <span>Username</span>
+          <span>Username *</span>
           <input name="username" type="text" onChange={handleChange} required />
         </label>
 
         <label htmlFor="email">
-          <span>Email</span>
+          <span>Email*</span>
           <input name="email" type="text" onChange={handleChange} required />
         </label>
 
         <label htmlFor="password">
-          <span>Password</span>
+          <span>Password *</span>
           <input
             name="password"
             type="password"

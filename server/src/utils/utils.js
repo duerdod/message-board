@@ -1,9 +1,9 @@
 const Filter = require('bad-words');
 const cleanWithEmojis = new Filter({ placeHolder: '💩' });
 
-function addUserTimestamp(context) {
+function addUserTimestamp(cookieType, context) {
   // Add cookie.
-  context.res.cookie('last_message', 'time since last post', {
+  context.res.cookie(cookieType, 'time since last post or comment', {
     maxAge: process.env.NODE_ENV === 'development' ? 9000 : 1000 * 60 * 60, // 1 hour else 1,5 minutes
     httpOnly: true
   });
@@ -14,7 +14,7 @@ function validateMessage(title, message, author) {
   // This is really arbitrary. Change and move to env.variables.
   const minLength = 2;
   if (title.length < minLength) {
-    throw new Error('Title to short.');
+    throw new Error('Title to short. :(');
   }
   if (message.length < minLength) {
     throw new Error('Not very much of a message.');

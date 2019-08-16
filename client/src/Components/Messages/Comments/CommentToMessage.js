@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/react-hooks';
 import { COMMENT_MESSAGE, GET_SINGLE_MESSAGE } from '../../../gql/gql';
 import useForm from '../../../hooks/useForm';
 import ThemeButton from '../../ui/ThemeButton';
-import StatusPage, { ErrorMessage } from '../../StatusPage';
+import { ErrorMessage } from '../../StatusPage';
 import useUser from '../../../hooks/useUser';
 
 const StyledMessageForm = styled.form`
@@ -68,9 +68,6 @@ const CommentToMessage = ({ id, history }) => {
     ]
   });
 
-  if (error) return <StatusPage state={error && 'error'} />;
-  if (loading) return <StatusPage state={loading && 'loading'} />;
-
   return (
     <StyledMessageForm>
       <Label>
@@ -97,7 +94,7 @@ const CommentToMessage = ({ id, history }) => {
         <ThemeButton
           onClick={e => (isValid ? handleSubmit(e, commentMessage) : null)}
         >
-          COMMENT{loading ? 'ing' : null}
+          COMMENT{loading ? 'ING' : null}
         </ThemeButton>
       </div>
     </StyledMessageForm>
