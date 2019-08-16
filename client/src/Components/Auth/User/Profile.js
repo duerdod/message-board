@@ -11,7 +11,6 @@ const Username = styled.h2`
 
 const Profile = () => {
   const { user } = React.useContext(UserContext);
-
   if (!user) return <NotSignedIn />;
   return <Username>{user.username}</Username>;
 };

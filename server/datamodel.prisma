@@ -27,5 +27,5 @@ type User {
   lastname: String
   password: String!
   messages: [Message]
-  comments: [Comments]
+  comments: [Comment]
 }

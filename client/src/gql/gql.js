@@ -118,6 +118,21 @@ export const GET_CURRENT_USER = gql`
   }
 `;
 
+// NOT DETAILS. MESSAGES AND SUCH. ACTIONS? HISTORY? Rename...
+export const GET_CURRENT_USER_DETAILS = gql`
+  query GET_CURRENT_USER_DETAILS {
+    currentUser {
+      id
+      messages {
+        id
+        title
+        message
+        dislikes
+      }
+    }
+  }
+`;
+
 export const SIGN_OUT = gql`
   mutation SIGN_OUT {
     signout {

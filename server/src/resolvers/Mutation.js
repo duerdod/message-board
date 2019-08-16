@@ -18,18 +18,35 @@ const Mutation = {
     // Set timestamp for client side calculations.
     // Rewrite to use a custom scalar from graphql schema.
     const date = Date.now().toString();
+    addUserTimestamp(context);
 
-    // Add message and run text through the "sanitizer"...
+    // Is there a user we should connect the message to?
+    const user = await context.prisma.user({ username: author });
+
+    if (!user) {
+      // Adds message anyway.
+      const newMessage = await context.prisma.createMessage({
+        title: sanitizer(title),
+        message: sanitizer(message),
+        author: sanitizer(author),
+        dislikes: 0,
+        date
+      });
+      return newMessage;
+    }
+
+    // Otherwise, connect the user and message
+    // Get id and username from signed in user
+    const { id, username } = user;
+    // Add message anyway.
     const newMessage = await context.prisma.createMessage({
       title: sanitizer(title),
       message: sanitizer(message),
-      author: sanitizer(author),
       dislikes: 0,
+      author: username,
+      user: { connect: { id } },
       date
     });
-
-    // Add / update timestamp cookie.
-    addUserTimestamp(context);
 
     return newMessage;
   },
@@ -114,12 +131,11 @@ const Mutation = {
     const user = context.prisma.createUser({
       email: args.email.toLowerCase(),
       password,
-      username: args.username,
+      username: args.username.toLowerCase(),
       firstname: args.firstname,
       lastname: args.lastname
     });
 
-    // Return user
     return user;
   },
   async signin(root, args, context) {
@@ -151,7 +167,7 @@ const Mutation = {
 
     // Add JWT to response
     context.res.cookie('userToken', token, {
-      maxAge: Math.floor(Date.now() / 1000) + 60 * 60 // One hour
+      maxAge: Math.floor(Date.now() / 1000) + 60 * 60 // One hour?
       // httpOnly: true
     });
 

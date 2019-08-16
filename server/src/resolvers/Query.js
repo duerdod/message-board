@@ -10,7 +10,6 @@ const Query = {
   },
   async currentUser(root, args, context) {
     if (!context.req.user) return null;
-
     const user = await context.prisma.user({ id: context.req.user.id });
     return user;
   }

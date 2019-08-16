@@ -21,7 +21,7 @@ const MessageInput = () => {
         name="message"
         placeholder="Message"
         maxLength={config.messageLength}
-        value={values.message}
+        value={values.message || ''}
         required
         onChange={e => {
           handleChange(e);
@@ -47,7 +47,7 @@ const TitleInput = () => {
         placeholder="Title"
         name="title"
         maxLength="60"
-        value={values.title}
+        value={values.title || ''}
         required
         onChange={handleChange}
       />
@@ -66,7 +66,7 @@ const NameInput = () => {
         placeholder="Name"
         name="author"
         maxLength="50"
-        value={(user && user.username) || values.author}
+        value={(user && user.username) || values.author || ''}
         required
         onChange={handleChange}
       />

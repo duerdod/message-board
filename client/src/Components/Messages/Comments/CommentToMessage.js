@@ -79,7 +79,7 @@ const CommentToMessage = ({ id, history }) => {
           name="author"
           id="author"
           maxLength="50"
-          value={(user && user.username) || values.author}
+          value={(user && user.username) || values.author || ''}
           onChange={handleChange}
         />
       </Label>

@@ -35,7 +35,8 @@ export const StyledForm = styled.form`
 
   label[for='name'] {
     height: 33px;
-    input {
+    input,
+    span {
       line-height: 33px;
     }
   }

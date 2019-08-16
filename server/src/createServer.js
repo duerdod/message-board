@@ -24,6 +24,12 @@ function createServer() {
             .message({ id: parent.id })
             .comments({ orderBy: 'date_ASC' });
         }
+      },
+      User: {
+        messages(parent, args, ctx) {
+          // const { id } = parent;
+          return ctx.prisma.user({ id: parent.id }).messages();
+        }
       }
     },
     // Surfaces prisma db.

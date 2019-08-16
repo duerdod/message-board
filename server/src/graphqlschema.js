@@ -5,6 +5,16 @@ const typeDefs = gql`
     success: String!
   }
 
+  type Comment {
+    id: ID!
+    comment: String!
+    author: String!
+    dislikes: Int!
+    message: Message
+    user: User
+    date: String!
+  }
+
   type Message {
     id: ID!
     title: String!
@@ -12,16 +22,8 @@ const typeDefs = gql`
     author: String!
     dislikes: Int!
     comments: [Comment]
+    user: User
     date: String
-  }
-
-  type Comment {
-    id: ID!
-    comment: String!
-    author: String!
-    date: String
-    dislikes: Int!
-    message: Message
   }
 
   type User {
@@ -32,6 +34,7 @@ const typeDefs = gql`
     lastname: String
     password: String!
     messages: [Message]
+    comments: [Comment]
   }
 
   type Query {
