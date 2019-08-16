@@ -6,6 +6,7 @@ const Text = styled.h2`
   color: #${p => p.color};
   font-size: ${p => p.size}rem;
   margin: 0;
+  font-weight: 900;
 `;
 
 const Bell = styled(MenuBell)`

@@ -21,8 +21,9 @@ const Container = styled.footer`
     padding: 0;
   }
   border-radius: 0 0 4px 4px;
-  @media (pointer: coarse) {
+  @media screen and (max-width: 63em) {
     border-radius: 0;
+    padding: 0rem 1rem;
   }
 `;
 

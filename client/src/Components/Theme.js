@@ -40,9 +40,13 @@ export const reset = css`
   }
   html * {
     box-sizing: border-box;
+    &::selection {
+      background: ${theme.green};
+      color: ${theme.white};
+    }
   }
 
-  button, input, textarea, ul, li {
+  button, input, textarea, ul, li, p, h1,h2,h3,h4,h5 {
     margin: 0;
     border: 0;
     padding: 0;
@@ -51,6 +55,7 @@ export const reset = css`
     list-style: none;
     resize: none;
     box-shadow: none;
+    font-weight: 400;
     &:not(output):-moz-ui-invalid:not(:focus),
     &:not(output):-moz-ui-invalid:focus,
     &:not(output):-moz-ui-invalid:-moz-focusring:not(:focus) {

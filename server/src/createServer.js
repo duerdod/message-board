@@ -28,7 +28,9 @@ function createServer() {
       User: {
         messages(parent, args, ctx) {
           // const { id } = parent;
-          return ctx.prisma.user({ id: parent.id }).messages();
+          return ctx.prisma
+            .user({ id: parent.id })
+            .messages({ orderBy: 'date_DESC' });
         }
       }
     },

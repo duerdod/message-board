@@ -2,17 +2,17 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { useMutation } from '@apollo/react-hooks';
 import useForm from '../../hooks/useForm';
-import { CommentsContainer } from '../ui/CommentsContainer';
 import ThemeButton from '../ui/ThemeButton';
 import { SIGN_UP } from '../../gql/gql';
 import { ErrorMessage } from '../StatusPage';
 
-const FormContainer = styled(CommentsContainer)`
-  background: ${({ theme }) => theme.white};
+const FormContainer = styled.div`
   padding: 1rem 1rem 4rem 1rem;
 
   h2 {
+    margin-bottom: 1rem;
     text-align: center;
+    font-weight: 900;
     color: ${({ theme }) => theme.green};
   }
 `;

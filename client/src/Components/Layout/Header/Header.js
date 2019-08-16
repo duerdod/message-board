@@ -31,7 +31,9 @@ const Logo = () => (
   <Link className="title-container" to="/">
     <Title color="#74b49b">BULLETIN</Title>
     <Title color="#ee9ca7">AND</Title>
-    <Title color="#a7d7c5">THE COOLS</Title>
+    <Title color="#a7d7c5" style={{ fontStyle: 'italic' }}>
+      THE COOLS
+    </Title>
   </Link>
 );
 

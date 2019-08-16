@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import styled from '@emotion/styled';
 import { useMutation } from '@apollo/react-hooks';
 import useForm from '../../hooks/useForm';
-import { CommentsContainer } from '../ui/CommentsContainer';
 import ThemeButton from '../ui/ThemeButton';
 import { SIGN_IN } from '../../gql/gql';
 import { ErrorMessage } from '../StatusPage';
@@ -10,13 +9,14 @@ import { ErrorMessage } from '../StatusPage';
 // AUTH
 import { AuthContext } from '../../context/auth-context';
 
-const FormContainer = styled(CommentsContainer)`
+const FormContainer = styled.div`
   background: ${({ theme }) => theme.white};
   padding: 1rem 1rem 4rem 1rem;
 
   h2 {
     text-align: center;
     color: ${({ theme }) => theme.green};
+    font-weight: 900;
   }
 `;
 

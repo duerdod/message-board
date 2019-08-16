@@ -8,7 +8,6 @@ const LoadingPage = styled.div`
   width: 100%;
   z-index: 999;
   background: ${({ theme }) => theme.white};
-  box-shadow: ${({ theme }) => theme.boxShadow};
   padding: 10% 0;
 `;
 

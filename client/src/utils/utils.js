@@ -1,10 +1,9 @@
 import config from '../config';
 
 // Truncate text and add [...].
-// This will probably truncate in the middle of a word. But who cares RIGHT?!
 function truncateMessage(message, maxLength) {
   let text = message.slice(0, maxLength);
-  text += ' ...';
+  text = `<div class="trunc">${text} </div>`;
   return text;
 }
 

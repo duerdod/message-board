@@ -10,6 +10,7 @@ const Container = styled.div`
 const MessageText = styled.div`
   p {
     margin-top: 0;
+    margin-bottom: 2rem;
     font-size: 0.85rem;
     font-weight: 300;
     word-wrap: break-word;

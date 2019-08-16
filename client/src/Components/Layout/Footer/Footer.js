@@ -10,6 +10,7 @@ const FooterContainer = styled.footer`
     text-transform: uppercase;
     color: ${({ theme }) => theme.lightRed};
     text-align: center;
+    font-weight: 900;
   }
 `;
 
