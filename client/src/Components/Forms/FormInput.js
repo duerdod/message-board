@@ -3,6 +3,7 @@ import { MessageFormContext } from '../../context/message-context';
 import config from '../../config';
 import { charCounter } from '../../utils/utils';
 import { Label } from './MessageForm';
+import useUser from '../../hooks/useUser';
 
 const MessageInput = () => {
   const { values, handleChange } = useContext(MessageFormContext);
@@ -20,7 +21,7 @@ const MessageInput = () => {
         name="message"
         placeholder="Message"
         maxLength={config.messageLength}
-        value={values.message || ''}
+        value={values.message}
         required
         onChange={e => {
           handleChange(e);
@@ -37,14 +38,16 @@ const MessageInput = () => {
 
 const TitleInput = () => {
   const { values, handleChange } = useContext(MessageFormContext);
+  const { user } = useUser();
   return (
     <Label htmlFor="title">
       <input
+        autoFocus={user ? true : false}
         type="text"
         placeholder="Title"
         name="title"
         maxLength="60"
-        value={values.title || ''}
+        value={values.title}
         required
         onChange={handleChange}
       />
@@ -54,15 +57,16 @@ const TitleInput = () => {
 
 const NameInput = () => {
   const { values, handleChange } = useContext(MessageFormContext);
+  const { user } = useUser();
   return (
     <Label htmlFor="name">
       <input
-        autoFocus
+        autoFocus={user ? false : true}
         type="text"
         placeholder="Name"
         name="author"
         maxLength="50"
-        value={values.author || ''}
+        value={(user && user.username) || values.author}
         required
         onChange={handleChange}
       />

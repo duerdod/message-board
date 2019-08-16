@@ -3,8 +3,9 @@ type Comment {
   comment: String!
   author: String!
   dislikes: Int!
-  date: String!
   message: Message
+  user: User
+  date: String!
 }
 
 type Message {
@@ -14,6 +15,7 @@ type Message {
   author: String!
   dislikes: Int!
   comments: [Comment]
+  user: User
   date: String
 }
 
@@ -25,4 +27,5 @@ type User {
   lastname: String
   password: String!
   messages: [Message]
+  comments: [Comments]
 }

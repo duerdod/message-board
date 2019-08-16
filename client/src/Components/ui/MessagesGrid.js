@@ -2,9 +2,9 @@ import styled from '@emotion/styled';
 
 const MessagesGrid = styled.section`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   grid-gap: 1rem;
-  max-width: 1200px;
+  max-width: 800px;
   padding: 2rem;
   margin: 0 auto;
   transition: all 0.2s ease;

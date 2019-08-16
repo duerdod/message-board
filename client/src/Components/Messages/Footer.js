@@ -11,13 +11,18 @@ const Container = styled.footer`
   padding: 0rem 0.5rem;
   border-top: 1px solid ${({ theme }) => theme.lightGrey};
   margin-top: auto;
+  background: rgba(167, 215, 197, 0.1);
   > * {
     font-size: 0.75rem;
   }
   > label {
-    width: 12%;
+    width: 10%;
     margin: 0;
     padding: 0;
+  }
+  border-radius: 0 0 4px 4px;
+  @media (pointer: coarse) {
+    border-radius: 0;
   }
 `;
 

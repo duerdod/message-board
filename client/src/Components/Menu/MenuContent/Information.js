@@ -24,16 +24,16 @@ const Information = () => {
       <Text size="1.7" color="fcc6c9">
         PRESS THE BELL <Bell />
       </Text>
-      <Text size="1.3" color="a7d7c5">
+      <Text size="1.3" color="f4f3f3">
         IF YO DISAGREE
       </Text>
       <Text size="1.4" color="fcc6c9">
         MESSAGES WITH FIVE
       </Text>
-      <Text size="1.8" color="f8b500">
+      <Text size="2" color="fcc6c9">
         BELLS
       </Text>
-      <Text size="1.3" color="a7d7c5">
+      <Text size="1.3" color="f4f3f3">
         WILL BE REMOVED
       </Text>
     </div>

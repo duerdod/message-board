@@ -157,6 +157,7 @@ const Mutation = {
 
     return user;
   },
+
   signout(root, args, context) {
     context.res.clearCookie('userToken');
     return { success: 'Successfully logged out.' };

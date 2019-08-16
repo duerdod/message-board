@@ -1,15 +1,12 @@
 import { css } from '@emotion/core';
-import UseMobileView from '../hooks/useMobileView';
 
 const theme = {
   black: '#383838',
   white: '#fcfafa',
-  lightGreen: '#a7d7c5',
+  lightGreen: 'rgba(167, 215, 197, 0.1)',
   green: '#74b49b',
   darkGreen: '#5c8d89',
   lightPink: '#f5e1da',
-  backgroundPink: '#ffdde1',
-  backgroundCerise: '#ee9ca7',
   red: '#d47666',
   yellow: '#f8b500',
   lightRed: '#fcc6c9',
@@ -18,21 +15,17 @@ const theme = {
   buttonGradient:
     'linear-gradient(315deg, rgba(238,156,167,1) 0%, rgba(237,148,160,1) 100%)',
   error: '#B6051F',
-  border: `2px solid #383838`,
-  boxShadow: '0 2px 6px 0 hsla(0, 0%, 0%, 0.15)',
+  boxShadow: '0 2px 6px 0 hsla(0, 0%, 0%, 0.09)',
   sansSerif: 'Open Sans, sans-serif',
   secondary: 'Luckiest Guy, sans-serif',
-  serif: 'DM Serif Text, serif',
-  isLarge: () => {
-    const isLarge = UseMobileView();
-    return isLarge;
-  }
+  serif: 'DM Serif Text, serif'
 };
 
 export const reset = css`
   body {
-    background: linear-gradient(to right bottom, #fdf0f6, #fdebf2, #fee6ed, #ffe2e7, #ffdde1);
-    background-attachment:fixed;
+    /* background: linear-gradient(320deg, rgba(255,234,236,1) 27%, rgba(255,241,243,1) 55%); */
+    background: ${theme.white};
+    background-attachment: fixed;
     height:100%;
     /* background: ${theme.bg}; */
     color: ${theme.black};

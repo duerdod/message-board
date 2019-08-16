@@ -4,7 +4,7 @@ import { ReactComponent as CommentsIcon } from '../../../svg/Comments.svg';
 
 const CommentsContainer = styled.label`
   transition: all 0.4s ease;
-  padding: 0.2rem 0.5rem;
+  padding: 0.2rem 0.2rem;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -19,8 +19,8 @@ const CommentsCount = styled.span`
 `;
 
 const StyledCommentsIcon = styled(CommentsIcon)`
-  color: ${({ theme }) => theme.backgroundCerise};
-  fill: ${({ theme }) => theme.backgroundCerise};
+  color: ${({ theme }) => theme.darkGreen};
+  fill: ${({ theme }) => theme.darkGreen};
   width: 16px;
   stroke: none;
 `;

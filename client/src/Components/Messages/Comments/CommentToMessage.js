@@ -5,6 +5,7 @@ import { COMMENT_MESSAGE, GET_SINGLE_MESSAGE } from '../../../gql/gql';
 import useForm from '../../../hooks/useForm';
 import ThemeButton from '../../ui/ThemeButton';
 import StatusPage, { ErrorMessage } from '../../StatusPage';
+import useUser from '../../../hooks/useUser';
 
 const StyledMessageForm = styled.form`
   background: ${({ theme }) => theme.white};
@@ -43,12 +44,17 @@ const Label = styled.label`
     display: block;
     background-color: ${({ theme }) => theme.lightPink};
   }
+  .labeltext {
+    color: ${({ theme }) => theme.grey};
+    font-size: 0.75rem;
+  }
 `;
 
 const CommentToMessage = ({ id, history }) => {
+  const { user } = useUser();
   const stateInit = {
     comment: '',
-    author: ''
+    author: (user && user.username) || ''
   };
   const { values, handleChange, handleSubmit, isValid } = useForm(stateInit);
 
@@ -68,27 +74,25 @@ const CommentToMessage = ({ id, history }) => {
   return (
     <StyledMessageForm>
       <Label>
+        <span className="labeltext">name</span>
         <textarea
-          placeholder="name"
           name="author"
           id="author"
           maxLength="50"
+          value={(user && user.username) || values.author}
           onChange={handleChange}
         />
       </Label>
-
       <Label>
+        <span className="labeltext">comment</span>
         <textarea
-          placeholder="comment"
           name="comment"
           id="comment"
           maxLength="200"
           onChange={handleChange}
         />
       </Label>
-
       {error ? <ErrorMessage>{error.message}</ErrorMessage> : null}
-
       <div>
         <ThemeButton
           onClick={e => (isValid ? handleSubmit(e, commentMessage) : null)}
