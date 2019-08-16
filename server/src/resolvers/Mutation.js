@@ -145,15 +145,21 @@ const Mutation = {
           id: user.id
         }
       },
-      process.env.APP_SECRET
+      process.env.APP_SECRET,
+      { expiresIn: '1d' }
     );
 
     // Add JWT to response
     context.res.cookie('userToken', token, {
       maxAge: Math.floor(Date.now() / 1000) + 60 * 60 // One hour
+      // httpOnly: true
     });
 
     return user;
+  },
+  signout(root, args, context) {
+    context.res.clearCookie('userToken');
+    return { success: 'Successfully logged out.' };
   }
 };
 

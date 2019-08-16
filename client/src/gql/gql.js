@@ -117,3 +117,11 @@ export const GET_CURRENT_USER = gql`
     }
   }
 `;
+
+export const SIGN_OUT = gql`
+  mutation SIGN_OUT {
+    signout {
+      success
+    }
+  }
+`;

@@ -3,6 +3,8 @@ import useForm from '../hooks/useForm';
 
 const MessageFormContext = createContext();
 
+// This will probably be removed later on.
+// No point of having this as "global state" ...
 const MessageFormProvider = ({ children }) => {
   const [isFormOpen, toggleFormOpen] = useState(false);
   const { handleChange, handleSubmit, values, setValues } = useForm({

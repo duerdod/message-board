@@ -1,6 +1,10 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
+  type Success {
+    success: String!
+  }
+
   type Message {
     id: ID!
     title: String!
@@ -54,6 +58,7 @@ const typeDefs = gql`
       lastname: String
     ): User!
     signin(username: String!, password: String!): User!
+    signout: Success!
   }
 `;
 

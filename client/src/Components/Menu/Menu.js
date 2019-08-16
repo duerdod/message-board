@@ -7,6 +7,7 @@ import Information from './MenuContent/Information';
 
 // AUTH
 import Authenticated from '../Auth/Authenticated';
+import Signout from '../Auth/Signout';
 
 const MenuContainer = styled.div`
   height: 100%;
@@ -80,11 +81,16 @@ const Menu = () => {
         <NavItems>
           <Authenticated
             renderAuth={user => (
-              <li>
-                <NavLink onClick={collapseMenu} to="/profile">
-                  {user.username}
-                </NavLink>
-              </li>
+              <>
+                <li>
+                  <NavLink onClick={collapseMenu} to="/profile">
+                    User: {user.username}
+                  </NavLink>
+                </li>
+                <li>
+                  <Signout cb={collapseMenu} />
+                </li>
+              </>
             )}
           >
             <li>

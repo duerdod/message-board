@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from '@emotion/styled';
 import { useMutation } from '@apollo/react-hooks';
 import useForm from '../../hooks/useForm';
 import { CommentsContainer } from '../ui/CommentsContainer';
 import ThemeButton from '../ui/ThemeButton';
-import { SIGN_IN, GET_CURRENT_USER } from '../../gql/gql';
+import { SIGN_IN } from '../../gql/gql';
 import { ErrorMessage } from '../StatusPage';
 
 // AUTH
+import { AuthContext } from '../../context/auth-context';
 
 const FormContainer = styled(CommentsContainer)`
   background: ${({ theme }) => theme.white};
@@ -58,24 +59,23 @@ const Form = styled.form`
 `;
 
 const Signin = ({ history }) => {
-  const onComplete = () => {
-    history.push({ pathname: '/' });
-  };
-
-  const [signin, { error }] = useMutation(SIGN_IN, {
-    onCompleted: onComplete,
-    refetchQueries: [{ query: GET_CURRENT_USER }]
-  });
+  const { reload } = useContext(AuthContext);
 
   const { handleChange, values } = useForm({
     username: '',
     password: ''
   });
+  const [signin, { error }] = useMutation(SIGN_IN, {
+    onCompleted: () => {
+      reload();
+      history.push('/');
+    }
+  });
 
   return (
     <FormContainer>
       <h2>SIGN IN</h2>
-      <Form>
+      <Form method="POST">
         <label htmlFor="username">
           <span>Username</span>
           <input
@@ -102,7 +102,6 @@ const Signin = ({ history }) => {
           onClick={() => {
             signin({
               variables: {
-                // For some reason this doesn't work with object shorthands... ie { values }.
                 username: values.username,
                 password: values.password
               }

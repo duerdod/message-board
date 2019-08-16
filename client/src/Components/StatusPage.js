@@ -69,7 +69,6 @@ const ErrorText = styled.p`
   color: ${({ theme }) => theme.error};
   display: block;
   width: 100%;
-  padding-left: 1rem;
 `;
 
 // For smaller error messages.
