@@ -21,8 +21,8 @@ export const GET_SINGLE_MESSAGE = gql`
 `;
 
 export const GET_ALL_MESSAGES = gql`
-  query GET_ALL_MESSAGES {
-    messages {
+  query GET_ALL_MESSAGES($first: Int, $skip: Int) {
+    messages(first: $first, skip: $skip) {
       id
       title
       message
@@ -71,6 +71,7 @@ export const COMMENT_MESSAGE = gql`
       id
       comment
       author
+      __typename
     }
   }
 `;
@@ -93,6 +94,7 @@ export const SIGN_UP = gql`
       id
       username
       email
+      __typename
     }
   }
 `;
@@ -102,6 +104,7 @@ export const SIGN_IN = gql`
     signin(username: $username, password: $password) {
       id
       username
+      __typename
     }
   }
 `;
@@ -114,6 +117,7 @@ export const GET_CURRENT_USER = gql`
       lastname
       username
       email
+      __typename
     }
   }
 `;
@@ -128,6 +132,7 @@ export const GET_CURRENT_USER_DETAILS = gql`
         title
         message
         dislikes
+        __typename
       }
     }
   }
@@ -137,6 +142,7 @@ export const SIGN_OUT = gql`
   mutation SIGN_OUT {
     signout {
       success
+      __typename
     }
   }
 `;

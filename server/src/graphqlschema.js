@@ -38,7 +38,7 @@ const typeDefs = gql`
   }
 
   type Query {
-    messages: [Message]
+    messages(first: Int, skip: Int): [Message]
     message(id: ID!): Message
     currentUser: User
   }
