@@ -168,13 +168,13 @@ const Mutation = {
           id: user.id
         }
       },
-      process.env.APP_SECRET,
-      { expiresIn: '1d' }
+      process.env.APP_SECRET
+      // { expiresIn: '1d' }
     );
 
     // Add JWT to response
     context.res.cookie('userToken', token, {
-      maxAge: Math.floor(Date.now() / 1000) + 60 * 60 // One hour?
+      maxAge: 1000 * 60 * 60 * 24 * 365 // 1 year.
       // httpOnly: true
     });
 
