@@ -16,7 +16,7 @@ do `docker-compose` and you're up.
 - [ ] "Pagination".
 - [ ] Tag posts.
 - [ ] Filter and sort messages.
-- [x] Signup/Login, view users messages.
+- [x] Signup/Login, view users messages (user: poppen, pass:hejhej or signup).
 - [ ] User settings.
 - [ ] Write tests!
 - [ ] Better server side error handling.
