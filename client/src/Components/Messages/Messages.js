@@ -6,8 +6,8 @@ import Message from './Message';
 import StatusPage from '../StatusPage';
 import MessageForm from '../Forms/MessageForm';
 import { MessageFormContext } from '../../context/message-context';
-import config from '../../config';
-import ThemeButton from '../ui/ThemeButton';
+// import config from '../../config';
+// import ThemeButton from '../ui/ThemeButton';
 
 const Messages = props => {
   const { isFormOpen } = useContext(MessageFormContext);

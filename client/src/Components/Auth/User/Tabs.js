@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
 
-import { Messages, About } from './TabContent';
+import UserInformation from './UserInformation';
+import UserMessages from './UserMessages';
 
 // Rewrite and move to UI. Can be used elsewhere.
 const TabContainer = styled.section``;
@@ -39,7 +40,7 @@ const TabTitle = ({ onClick, id, className }) => {
   );
 };
 
-const Tabs = () => {
+const Tabs = ({ currentUser }) => {
   const [openTab, setTabOpen] = useState({
     id: 'messages'
   });
@@ -68,8 +69,16 @@ const Tabs = () => {
         </TabTitle>
       </TabUpper>
       <TabLower>
-        <About openTabId={openTab.id} id="profile" />
-        <Messages openTabId={openTab.id} id="messages" />
+        <UserInformation
+          currentUser={currentUser}
+          openTabId={openTab.id}
+          id="profile"
+        />
+        <UserMessages
+          messages={currentUser.messages}
+          openTabId={openTab.id}
+          id="messages"
+        />
       </TabLower>
     </TabContainer>
   );

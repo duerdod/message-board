@@ -88,6 +88,15 @@ function generateHandsomeUrl(url) {
   return newUrl;
 }
 
+function userApproval(messages = []) {
+  const approvalRate = messages.reduce(
+    (rate, message) =>
+      Math.floor(((rate += message.dislikes) / messages.length) * 25),
+    0
+  );
+  return approvalRate;
+}
+
 export {
   trimErrorMessage,
   charCounter,
@@ -95,5 +104,6 @@ export {
   truncateMessage,
   shouldMessageExpand,
   forwardOnEnter,
-  generateHandsomeUrl
+  generateHandsomeUrl,
+  userApproval
 };

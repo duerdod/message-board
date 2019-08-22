@@ -1,12 +1,14 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { useQuery } from '@apollo/react-hooks';
 
+import UserHeader from './UserHeader';
 import Tabs from './Tabs';
-import { ReactComponent as Person } from '../../../svg/Person2.svg';
 
 // AUTH
 import { UserContext } from '../../../context/user-context';
 import NotSignedIn from '../NotSignedIn';
+import { GET_CURRENT_USER_DETAILS } from '../../../gql/gql';
 
 const ProfileContainer = styled.div`
   max-width: 650px;
@@ -20,46 +22,17 @@ const ProfileContainer = styled.div`
   }
 `;
 
-const Avatar = styled.div`
-  span {
-    display: inline-flex;
-    padding: 6px;
-    border-radius: 50%;
-    box-shadow: ${({ theme }) => theme.boxShadow};
-    background: ${({ theme }) => theme.lightGrey};
-    margin-right: 6px;
-  }
-  svg {
-    height: 5rem;
-    width: 5rem;
-    stroke: ${({ theme }) => theme.black};
-  }
-`;
-
-const Username = styled.h2`
-  color: ${({ theme }) => theme.darkGreen};
-  /* text-align: right; */
-  font-weight: 900;
-  font-size: 1.8rem;
-  margin-top: 2rem;
-  padding: 0;
-  letter-spacing: 1px;
-`;
-
 const Profile = props => {
+  const { data, error, loading } = useQuery(GET_CURRENT_USER_DETAILS);
   const { user } = React.useContext(UserContext);
   if (!user) return <NotSignedIn />;
+  if (loading) return '';
+  if (error) return ':(';
+  const { currentUser } = data;
   return (
     <ProfileContainer>
-      <header>
-        <Username>{user.username}</Username>
-        <Avatar>
-          <span>
-            <Person />
-          </span>
-        </Avatar>
-      </header>
-      <Tabs />
+      <UserHeader currentUser={currentUser} />
+      <Tabs currentUser={currentUser} />
     </ProfileContainer>
   );
 };

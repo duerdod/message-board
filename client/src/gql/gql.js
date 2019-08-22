@@ -113,20 +113,20 @@ export const GET_CURRENT_USER = gql`
   query GET_CURRENT_USER {
     currentUser {
       id
-      firstname
-      lastname
-      username
-      email
       __typename
     }
   }
 `;
 
-// NOT DETAILS. MESSAGES AND SUCH. ACTIONS? HISTORY? Rename...
+// NOT DETAILS. MESSAGES AND SUCH. ACTIONS? HISTORY?
 export const GET_CURRENT_USER_DETAILS = gql`
   query GET_CURRENT_USER_DETAILS {
     currentUser {
       id
+      firstname
+      lastname
+      username
+      email
       messages {
         id
         title
@@ -134,6 +134,7 @@ export const GET_CURRENT_USER_DETAILS = gql`
         dislikes
         __typename
       }
+      __typename
     }
   }
 `;
