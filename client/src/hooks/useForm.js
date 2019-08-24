@@ -16,7 +16,7 @@ const useForm = stateInit => {
 
   // "Valid" as far as the client is concerned.
   const isValid =
-    values && Object.values(values).every(value => value.length > 2);
+    values.length && Object.values(values).every(value => value.length > 2);
 
   return {
     handleChange,

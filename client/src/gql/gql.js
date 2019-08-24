@@ -113,6 +113,7 @@ export const GET_CURRENT_USER = gql`
   query GET_CURRENT_USER {
     currentUser {
       id
+      username
       __typename
     }
   }

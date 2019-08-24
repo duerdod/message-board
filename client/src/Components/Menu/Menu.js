@@ -59,6 +59,9 @@ const NavItems = styled.ul`
       &:hover {
         color: ${({ theme }) => theme.white};
       }
+      span {
+        color: ${({ theme }) => theme.white};
+      }
     }
   }
 `;
@@ -83,7 +86,7 @@ const Menu = () => {
               <>
                 <li>
                   <NavLink onClick={collapseMenu} to="/profile">
-                    User: {user.username}
+                    User: <span>{user.username}</span>
                   </NavLink>
                 </li>
                 <li>

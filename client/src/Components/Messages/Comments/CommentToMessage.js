@@ -52,11 +52,11 @@ const Label = styled.label`
 
 const CommentToMessage = ({ id, history }) => {
   const { user } = useUser();
-  const stateInit = {
+  const formInit = {
     comment: '',
     author: (user && user.username) || ''
   };
-  const { values, handleChange, handleSubmit, isValid } = useForm(stateInit);
+  const { values, handleChange, handleSubmit } = useForm(formInit);
 
   const [commentMessage, { loading, error }] = useMutation(COMMENT_MESSAGE, {
     variables: { id, comment: values.comment, author: values.author },
@@ -92,7 +92,9 @@ const CommentToMessage = ({ id, history }) => {
       {error ? <ErrorMessage>{error.message}</ErrorMessage> : null}
       <div>
         <ThemeButton
-          onClick={e => (isValid ? handleSubmit(e, commentMessage) : null)}
+          onClick={e => {
+            handleSubmit(e, commentMessage);
+          }}
         >
           COMMENT{loading ? 'ING' : null}
         </ThemeButton>

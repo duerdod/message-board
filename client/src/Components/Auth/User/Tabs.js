@@ -42,7 +42,7 @@ const TabTitle = ({ onClick, id, className }) => {
 
 const Tabs = ({ currentUser }) => {
   const [openTab, setTabOpen] = useState({
-    id: 'messages'
+    id: 'profile'
   });
 
   const toggleTab = e => {
