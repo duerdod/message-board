@@ -40,7 +40,8 @@ const typeDefs = gql`
   type Query {
     messages(first: Int, skip: Int): [Message]
     message(id: ID!): Message
-    currentUser: User
+    currentUser: User!
+    user(username: String): User
   }
 
   type Mutation {
@@ -62,6 +63,7 @@ const typeDefs = gql`
     ): User!
     signin(username: String!, password: String!): User!
     signout: Success!
+    removeUser(username: String!, password: String!): User!
   }
 `;
 

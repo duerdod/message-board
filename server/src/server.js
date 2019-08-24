@@ -40,10 +40,19 @@ if (process.env.NODE_ENV === 'development') {
 app.use((req, res, next) => {
   const { userToken } = req.cookies;
   if (userToken) {
-    const { user } = jwt.verify(userToken, process.env.APP_SECRET);
-    req.user = user;
+    jwt.verify(userToken, process.env.APP_SECRET, (err, decoded) => {
+      if (err && err.name === 'TokenExpiredError') {
+        res.clearCookie('userToken');
+        next();
+      } else {
+        const { user } = decoded;
+        req.user = user;
+        next();
+      }
+    });
+  } else {
+    next();
   }
-  next();
 });
 
 // Static files

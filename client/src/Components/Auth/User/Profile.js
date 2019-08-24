@@ -22,13 +22,14 @@ const ProfileContainer = styled.div`
   }
 `;
 
-const Profile = props => {
-  const { data, error, loading } = useQuery(GET_CURRENT_USER_DETAILS);
+const Profile = () => {
   const { user } = React.useContext(UserContext);
+  const { data, error, loading } = useQuery(GET_CURRENT_USER_DETAILS);
   if (!user) return <NotSignedIn />;
   if (loading) return '';
   if (error) return ':(';
   const { currentUser } = data;
+
   return (
     <ProfileContainer>
       <UserHeader currentUser={currentUser} />

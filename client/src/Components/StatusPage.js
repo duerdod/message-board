@@ -71,8 +71,8 @@ const ErrorText = styled.p`
 `;
 
 // For smaller error messages.
-export const ErrorMessage = props => (
-  <ErrorText>{trimErrorMessage(props.children)}</ErrorText>
+export const ErrorMessage = ({ error }) => (
+  <ErrorText>{trimErrorMessage(error)}</ErrorText>
 );
 
 const Spinner = () => {

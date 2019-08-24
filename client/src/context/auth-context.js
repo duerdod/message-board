@@ -5,9 +5,9 @@ import StatusPage from '../Components/StatusPage';
 
 const AuthContext = createContext();
 
-// To simple ... ? If not cached always return a fullpagespinner while fetching user.
+// To simple ... ? Returns a fullpagespinner on first load.
 const AuthContextProvider = ({ children }) => {
-  const { data = { user: null }, isPending, isRejected, reload } = useAsync({
+  const { data, isPending, isRejected, reload } = useAsync({
     promiseFn: getUser
   });
 

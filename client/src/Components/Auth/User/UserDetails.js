@@ -3,9 +3,11 @@ import styled from '@emotion/styled';
 import { Formik, Form } from 'formik';
 import useForm from '../../../hooks/useForm';
 import ThemeButton from '../../ui/ThemeButton';
+import DeleteUser from './UserActions/DeleteUser';
+// import {ErrorMessage} from '../../StatusPage'
 
 const ChangeUserDetails = styled(ThemeButton)`
-  background: ${({ theme }) => theme.grey};
+  background: ${({ theme }) => theme.green};
   border: 2px solid ${({ theme }) => theme.lightGrey};
 `;
 
@@ -68,10 +70,10 @@ const UserDetails = ({ currentUser }) => {
     password
   });
 
-  // console.log(values);
+  // console.log(values.password);
   return (
     <Formik
-      initialValues={{ firstname, lastname, email, password }}
+      initialValues={{ firstname, lastname, email, password: '' }}
       onSubmit={() => {
         console.log(values);
       }}
@@ -125,6 +127,7 @@ const UserDetails = ({ currentUser }) => {
               name="password"
               placeholder={password}
               onChange={handleChange}
+              minLength={1}
             />
           </label>
           <label htmlFor="newPassword">
@@ -132,8 +135,9 @@ const UserDetails = ({ currentUser }) => {
             <input type="password" name="newPassword" onChange={handleChange} />
           </label>
           <ChangeUserDetails onClick={handleSubmit}>
-            submitera
+            Change details
           </ChangeUserDetails>
+          <DeleteUser username={username} password={values.password} />
         </StyledForm>
       )}
     </Formik>

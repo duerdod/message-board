@@ -69,38 +69,48 @@ const Signin = ({ history }) => {
     password: ''
   });
   const [signin, { error }] = useMutation(SIGN_IN, {
-    onCompleted: () => {
-      reload();
-      history.push('/');
-    }
+    onCompleted: () => reload().then(() => history.push('/profile'))
   });
 
   return (
     <FormContainer>
       <h2>SIGN IN</h2>
-      <Form method="POST">
+      <Form>
         <label htmlFor="username">
-          <span>Username</span>
+          <span
+            style={{ textTransform: 'lowercase' }}
+            role="img"
+            aria-label="hint"
+          >
+            Username 👉🏼 asap_erik
+          </span>
+
           <input
             name="username"
             type="text"
-            placeholder="poppen"
+            placeholder="asap_erik"
             onChange={handleChange}
             required
           />
         </label>
 
         <label htmlFor="password">
-          <span>Password</span>
+          <span
+            style={{ textTransform: 'lowercase' }}
+            role="img"
+            aria-label="hint"
+          >
+            Password 👉🏼 hej
+          </span>
           <input
             name="password"
             type="password"
-            placeholder="hejhej"
+            placeholder="hej"
             onChange={handleChange}
             required
           />
         </label>
-        {error ? <ErrorMessage>{error.message}</ErrorMessage> : null}
+        {error ? <ErrorMessage error={error.message} /> : null}
         <ThemeButton
           onClick={() => {
             signin({

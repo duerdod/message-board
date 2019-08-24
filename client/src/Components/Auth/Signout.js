@@ -26,6 +26,7 @@ const Signout = ({ cb }) => {
         e.preventDefault();
         signout();
         cb();
+        window.location.reload();
       }}
     >
       Sign out

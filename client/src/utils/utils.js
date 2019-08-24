@@ -44,13 +44,14 @@ function charCounter(inputCount = 0, maxLength) {
 }
 
 // Trim text. Strip "Network error:", "Graphql error:" etc.
-const trimErrorMessage = message => {
-  let index = [...message].indexOf(':');
-  if (!index) {
-    return message;
+const trimErrorMessage = error => {
+  if (!error) return '';
+  let index = [...error].indexOf(':');
+  if (index < 0) {
+    return error;
   }
-  let errorMessage = message.substring(index + 2);
-  return errorMessage;
+  error = error.substring(index + 2);
+  return error;
 };
 
 // Self explanatory.

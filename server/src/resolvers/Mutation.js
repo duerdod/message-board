@@ -131,16 +131,36 @@ const Mutation = {
     // TODO:
     // Are all fields valid? Email, password and username
 
+    if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(args.email)) {
+      throw new Error('Not a valid email.');
+    }
+
     // Hash passwordf
     const password = await bcrypt.hash(args.password, 10);
 
     // Create user.
-    const user = context.prisma.createUser({
+    const user = await context.prisma.createUser({
       email: args.email.toLowerCase(),
       password,
       username: args.username.toLowerCase(),
       firstname: args.firstname,
       lastname: args.lastname
+    });
+
+    const token = jwt.sign(
+      {
+        user: {
+          id: user.id
+        }
+      },
+      process.env.APP_SECRET
+      // { expiresIn: '1d' }
+    );
+
+    // Add JWT to response
+    context.res.cookie('userToken', token, {
+      maxAge: 1000 * 60 * 60 * 24 * 365 // 1 year.
+      // httpOnly: true
     });
 
     return user;
@@ -184,6 +204,35 @@ const Mutation = {
   signout(root, args, context) {
     context.res.clearCookie('userToken');
     return { success: 'Successfully logged out.' };
+  },
+  async removeUser(root, { username, password }, context) {
+    // Check if user is signed in.
+    if (!context.req.user) return null;
+    const user = await context.prisma.user({ username });
+
+    // Check if signed in user is the same as request delete user.
+    const isUserMatch = user.id === context.req.user.id;
+    if (!isUserMatch) {
+      throw new Error('You cannot delete someone elses account...');
+    }
+    // Check if correct password
+    const isPasswordMatch = await bcrypt.compare(password, user.password);
+    if (!isPasswordMatch) {
+      throw new Error('Wrong password :(');
+    }
+
+    // Remove related messages
+    await context.prisma.deleteManyMessages({
+      user: {
+        id: user.id
+      }
+    });
+    // TODO: and remove comments
+
+    // Remove and sign out.
+    const userToRemove = await context.prisma.deleteUser({ username });
+    context.res.clearCookie('userToken');
+    return userToRemove;
   }
 };
 

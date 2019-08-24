@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 const MessagesList = styled.ul`
   width: 80%;
   li {
+    cursor: pointer;
     margin-bottom: 1rem;
   }
 `;
@@ -23,10 +24,8 @@ const UserMessages = ({ id, openTabId, messages }) => {
         <MessagesList>
           {messages.map(({ message, title, id }) => (
             <li key={id}>
-              <Link to={`/message/${id}`}>
-                <MessageTitle>{title}</MessageTitle>
-                <MessageText>{message}</MessageText>
-              </Link>
+              <MessageTitle>{title}</MessageTitle>
+              <MessageText>{message}</MessageText>
             </li>
           ))}
         </MessagesList>

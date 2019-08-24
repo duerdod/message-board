@@ -119,6 +119,26 @@ export const GET_CURRENT_USER = gql`
   }
 `;
 
+export const GET_USER = gql`
+  query GET_USER($username: String) {
+    user(username: $username) {
+      id
+      firstname
+      lastname
+      username
+      email
+      messages {
+        id
+        title
+        message
+        dislikes
+        __typename
+      }
+      __typename
+    }
+  }
+`;
+
 // NOT DETAILS. MESSAGES AND SUCH. ACTIONS? HISTORY?
 export const GET_CURRENT_USER_DETAILS = gql`
   query GET_CURRENT_USER_DETAILS {
@@ -144,6 +164,15 @@ export const SIGN_OUT = gql`
   mutation SIGN_OUT {
     signout {
       success
+      __typename
+    }
+  }
+`;
+
+export const DELETE_USER = gql`
+  mutation DELETE_USER($username: String!, $password: String!) {
+    removeUser(username: $username, password: $password) {
+      id
       __typename
     }
   }

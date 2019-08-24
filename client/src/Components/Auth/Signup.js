@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from '@emotion/styled';
 import { useMutation } from '@apollo/react-hooks';
 import useForm from '../../hooks/useForm';
 import ThemeButton from '../ui/ThemeButton';
 import { SIGN_UP } from '../../gql/gql';
 import { ErrorMessage } from '../StatusPage';
+
+// AUTH
+import { AuthContext } from '../../context/auth-context';
 
 const FormContainer = styled.div`
   padding: 1rem 1rem 4rem 1rem;
@@ -55,14 +58,17 @@ const Form = styled.form`
   }
 `;
 
-const Signup = () => {
-  const [signup, { error }] = useMutation(SIGN_UP);
+const Signup = ({ history }) => {
+  const { reload } = useContext(AuthContext);
   const { handleChange, values } = useForm({
     firstname: '',
     lastname: '',
     username: '',
     email: '',
     password: ''
+  });
+  const [signup, { error }] = useMutation(SIGN_UP, {
+    onCompleted: () => reload().then(() => history.push(`/profile`))
   });
 
   return (
