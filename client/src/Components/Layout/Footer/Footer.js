@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 
 const FooterContainer = styled.footer`
   height: 200px;
-  background: ${({ theme }) => theme.pink};
+  /* background: ${({ theme }) => theme.pink}; */
   margin: 0;
   padding: 1rem;
   border-top: 1px solid ${({ theme }) => theme.lightGrey};

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import { useMutation } from '@apollo/react-hooks';
 import { COMMENT_MESSAGE, GET_SINGLE_MESSAGE } from '../../../gql/gql';
@@ -6,47 +6,44 @@ import useForm from '../../../hooks/useForm';
 import ThemeButton from '../../ui/ThemeButton';
 import { ErrorMessage } from '../../StatusPage';
 import useUser from '../../../hooks/useUser';
+import { ReactComponent as Person } from '../../../svg/Person2.svg';
 
-const StyledMessageForm = styled.form`
-  background: ${({ theme }) => theme.white};
-  display: block;
-  padding: 1.2rem 1rem;
-  textarea {
-    display: block;
-    margin: 0;
-    margin: 0.6rem;
-    width: 100%;
-    font-family: ${({ theme }) => theme.sansSerif};
-    font-size: 0.85rem;
-    line-height: 35px;
-  }
-  > div {
-    > {
-      button {
-        padding: 1rem 2rem;
-        svg {
-          height: 24px;
-        }
-      }
-    }
-  }
+const CommentButton = styled(ThemeButton)`
+  background: ${({ theme }) => theme.green};
+  border: 1px solid ${({ theme }) => theme.darkGreen};
+  width: 2 0%;
+  margin: 1rem auto;
 `;
 
-const Label = styled.label`
-  display: block;
-  font-size: 0.85rem;
-  color: ${({ theme }) => theme.black};
-  width: 100%;
-  &::after {
-    content: '';
-    width: 100%;
-    height: 1px;
-    display: block;
-    background-color: ${({ theme }) => theme.lightPink};
+const Avatar = styled(Person)`
+  stroke: #383838;
+`;
+
+const StyledForm = styled.form`
+  background: ${({ theme }) => theme.whiteVariant};
+  padding: 1rem;
+
+  .inner-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  .labeltext {
-    color: ${({ theme }) => theme.grey};
-    font-size: 0.75rem;
+
+  .avatar {
+    margin-right: 18px;
+  }
+
+  input {
+    background: ${({ theme }) => theme.white};
+    /* height: 45px; */
+    padding: 1rem;
+    border-radius: 3px;
+    width: 60%;
+    border: 1px solid #dedede;
+  }
+
+  .comment-button {
+    display: block;
   }
 `;
 
@@ -58,6 +55,8 @@ const CommentToMessage = ({ id, history }) => {
   };
   const { values, handleChange, handleSubmit } = useForm(formInit);
 
+  const [step, setStep] = useState(0);
+
   const [commentMessage, { loading, error }] = useMutation(COMMENT_MESSAGE, {
     variables: { id, comment: values.comment, author: values.author },
     refetchQueries: [
@@ -68,38 +67,50 @@ const CommentToMessage = ({ id, history }) => {
     ]
   });
 
+  const handleForwardStep = () => {
+    setStep(step => (step + 1) % 2);
+  };
+
+  console.log(values);
+
   return (
-    <StyledMessageForm>
-      <Label>
-        <span className="labeltext">name</span>
-        <textarea
-          name="author"
-          id="author"
-          maxLength="50"
-          value={(user && user.username) || values.author || ''}
-          onChange={handleChange}
-        />
-      </Label>
-      <Label>
-        <span className="labeltext">comment</span>
-        <textarea
-          name="comment"
-          id="comment"
-          maxLength="200"
-          onChange={handleChange}
-        />
-      </Label>
-      {error ? <ErrorMessage>{error.message}</ErrorMessage> : null}
-      <div>
-        <ThemeButton
-          onClick={e => {
-            handleSubmit(e, commentMessage);
-          }}
-        >
-          COMMENT{loading ? 'ING' : null}
-        </ThemeButton>
+    <StyledForm>
+      <div className="inner-form">
+        <span className="avatar">
+          <Avatar />
+        </span>
+        {step === 0 && (
+          <input
+            type="text"
+            name="comment"
+            placeholder="Add comment to message..."
+            onChange={handleChange}
+          />
+        )}
+        {step === 1 && (
+          <input
+            type="text"
+            name="author"
+            placeholder={values.author || 'Also, your name.'}
+            value={(user && user.username) || values.author || ''}
+            onChange={handleChange}
+          />
+        )}
+        {error ? <ErrorMessage>{error.message}</ErrorMessage> : null}
       </div>
-    </StyledMessageForm>
+      <CommentButton
+        disabled={loading}
+        className="comment-button"
+        onClick={e => {
+          if (step === 1) {
+            handleSubmit(e, commentMessage);
+          }
+          handleForwardStep();
+        }}
+      >
+        comment
+      </CommentButton>
+    </StyledForm>
   );
 };
 

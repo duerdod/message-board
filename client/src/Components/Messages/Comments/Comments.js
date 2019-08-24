@@ -9,9 +9,13 @@ import StatusPage from '../../StatusPage';
 import { CommentsContainer } from '../../ui/CommentsContainer';
 
 const CommentContainer = styled.ul`
-  background: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.whiteVariant};
   padding: 1rem;
   margin-bottom: 2rem;
+  /* background: #f9f9f9; */
+  /* border-bottom: 1px solid ${({ theme }) => theme.lightGrey};
+  border-right: 1px solid ${({ theme }) => theme.lightGrey};
+  border-left: 1px solid ${({ theme }) => theme.lightGrey}; */
 `;
 
 const Comments = props => {
@@ -25,15 +29,13 @@ const Comments = props => {
   if (loading) return <StatusPage state={loading && 'loading'} />;
 
   return (
-    <>
-      <CommentsContainer>
-        <Message message={data.message} />
-        <CommentContainer>
-          <Comment comments={data.message.comments} />
-        </CommentContainer>
-        <CommentToMessage id={id} history={history} />
-      </CommentsContainer>
-    </>
+    <CommentsContainer>
+      <Message message={data.message} />
+      <CommentToMessage id={id} history={history} />
+      <CommentContainer>
+        <Comment comments={data.message.comments} />
+      </CommentContainer>
+    </CommentsContainer>
   );
 };
 

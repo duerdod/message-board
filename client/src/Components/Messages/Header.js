@@ -9,7 +9,7 @@ const HeaderWrapper = styled.header`
   align-content: center;
   align-items: center;
   padding: 0.5rem 0.8rem 0 0.8rem;
-  margin: 0.3rem 0;
+  /* margin: 0.3rem 0; */
 `;
 
 const AuthorContainer = styled.span`
@@ -34,6 +34,7 @@ const Avatar = styled.span`
 `;
 const Author = styled.span`
   font-size: 0.75rem;
+  font-weight: 600;
 `;
 
 const Timestamp = styled.span`

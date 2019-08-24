@@ -10,6 +10,7 @@ const SingleMessage = styled.div`
   flex-direction: column;
   height: 100%;
   background: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.lightGrey};
   border-radius: 4px;
   box-shadow: ${({ theme }) => theme.boxShadow};
   transition: all 0.2s ease;

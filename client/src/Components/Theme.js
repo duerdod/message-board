@@ -2,15 +2,15 @@ import { css } from '@emotion/core';
 
 const theme = {
   black: '#383838',
-  white: '#fcfafa',
-  whiteVariant: '#f6f6f6',
+  white: '#fdfdfd',
+  whiteVariant: '#f8f8f8',
   green: '#74b49b',
   darkGreen: '#5c8d89',
   lightPink: '#f5e1da',
   red: '#d47666',
   yellow: '#f8b500',
   lightRed: '#fcc6c9',
-  lightGrey: '#f4f3f3',
+  lightGrey: '#fafafa',
   grey: '#7f7f7f',
   buttonGradient:
     'linear-gradient(315deg, rgba(238,156,167,1) 0%, rgba(237,148,160,1) 100%)',

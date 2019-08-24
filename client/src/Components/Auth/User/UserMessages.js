@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const MessagesList = styled.ul`
   width: 80%;
@@ -24,8 +24,10 @@ const UserMessages = ({ id, openTabId, messages }) => {
         <MessagesList>
           {messages.map(({ message, title, id }) => (
             <li key={id}>
-              <MessageTitle>{title}</MessageTitle>
-              <MessageText>{message}</MessageText>
+              <Link to={`/message/${id}`}>
+                <MessageTitle>{title}</MessageTitle>
+                <MessageText>{message}</MessageText>
+              </Link>
             </li>
           ))}
         </MessagesList>
