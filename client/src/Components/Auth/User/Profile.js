@@ -14,7 +14,7 @@ const ProfileContainer = styled.div`
   max-width: 650px;
   margin: 0 auto;
   position: relative;
-  padding: 1rem;
+  padding: 1rem 1rem 4rem 1rem;
 
   header {
     display: flex;
@@ -27,7 +27,7 @@ const Profile = () => {
   const { data, error, loading } = useQuery(GET_CURRENT_USER_DETAILS);
   if (!user) return <NotSignedIn />;
   if (loading) return '';
-  if (error) return ':(';
+  if (error) return <NotSignedIn />;
   const { currentUser } = data;
 
   return (

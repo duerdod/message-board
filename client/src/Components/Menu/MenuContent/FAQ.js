@@ -14,7 +14,7 @@ const FAQList = styled.ul`
     font-size: 1.1rem;
     margin: 0.5rem 0;
     padding: 0;
-    color: ${({ theme }) => theme.lightRed};
+    color: ${({ theme }) => theme.color.primary.hex};
     text-transform: uppercase;
     transition: all 0.2s ease;
     cursor: pointer;
@@ -23,6 +23,7 @@ const FAQList = styled.ul`
     }
 
     svg {
+      stroke: ${({ theme }) => theme.color.primary.hex};
       width: 28px;
       margin-right: 8px;
       transition: all 0.2s ease;
@@ -35,23 +36,21 @@ const FAQList = styled.ul`
   }
 `;
 
-const FAQ = () => {
-  return (
-    <FAQList>
-      <li>
-        <Horn />
-        CAN I POST WHATEVS?
-      </li>
-      <li>
-        <Horn />
-        HOW MUCH IS THE FISH?
-      </li>
-      <li>
-        <Horn />
-        WILL IT BLEND? :(
-      </li>
-    </FAQList>
-  );
-};
+const FAQ = () => (
+  <FAQList>
+    <li>
+      <Horn />
+      CAN I POST WHATEVS?
+    </li>
+    <li>
+      <Horn />
+      HOW MUCH IS THE FISH?
+    </li>
+    <li>
+      <Horn />
+      WILL IT BLEND? :(
+    </li>
+  </FAQList>
+);
 
 export default FAQ;

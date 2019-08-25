@@ -6,12 +6,12 @@ const FooterContainer = styled.footer`
   /* background: ${({ theme }) => theme.pink}; */
   margin: 0;
   padding: 1rem;
-  border-top: 1px solid ${({ theme }) => theme.lightGrey};
+  border-top: 1px solid ${({ theme }) => theme.color.white.tint[4]};
   display: flex;
   justify-content: center;
   h2 {
     text-transform: uppercase;
-    color: ${({ theme }) => theme.lightRed};
+    color: ${({ theme }) => theme.color.primary.hex};
 
     font-weight: 900;
     align-self: flex-end;

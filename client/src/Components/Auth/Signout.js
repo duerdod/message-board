@@ -6,7 +6,7 @@ import { SIGN_OUT } from '../../gql/gql';
 
 const SignoutButton = styled.button`
   display: inline-block;
-  color: ${({ theme }) => theme.lightRed};
+  color: ${({ theme }) => theme.color.white.hex};
   font-weight: 900;
   transition: all 0.2s ease;
   cursor: pointer;
@@ -19,14 +19,15 @@ const SignoutButton = styled.button`
 
 const Signout = ({ cb }) => {
   const { reload } = React.useContext(AuthContext);
-  const [signout] = useMutation(SIGN_OUT, { onCompleted: reload });
+  const [signout] = useMutation(SIGN_OUT, {
+    onCompleted: reload
+  });
+
   return (
     <SignoutButton
       onClick={e => {
         e.preventDefault();
-        signout();
-        cb();
-        window.location.reload();
+        signout().then(cb);
       }}
     >
       Sign out

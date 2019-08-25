@@ -4,12 +4,12 @@ import { useTransition, animated } from 'react-spring';
 import { AppContext } from '../../context/app-context';
 import { ReactComponent as ModernBurger } from '../../svg/Burger.svg';
 import { ReactComponent as Close } from '../../svg/Close.svg';
-import ThemeButton from '../ui/ThemeButton';
+import Button from '../ui/Button';
 
-const StyledMenuButton = styled(ThemeButton)`
+const StyledMenuButton = styled(Button)`
   position: relative;
   width: 75px;
-  height: 50px;
+  height: 45px;
   will-change: width, transform;
   &.move {
     transform: translate3d(55px, 0, 0);
@@ -46,6 +46,7 @@ const MenuButton = () => {
 
   return (
     <StyledMenuButton
+      color="primary"
       onClick={() => toggleMenuOpen(isMenuOpen => !isMenuOpen)}
       className={`${isMenuOpen && !isLarge ? 'move' : ''}`}
     >

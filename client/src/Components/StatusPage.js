@@ -13,7 +13,7 @@ const LoadingPage = styled.div`
 
 const InnerContainer = styled.div`
   font-size: 2rem;
-  color: ${({ theme }) => theme.darkGreen};
+  color: ${({ theme }) => theme.color.primary.hex};
   text-align: center;
   padding: 10% 0;
 
@@ -65,9 +65,10 @@ const Text = styled.h2`
 
 const ErrorText = styled.p`
   font-size: 0.75rem;
-  color: ${({ theme }) => theme.error};
+  color: ${({ theme }) => theme.color.red.hex};
   display: block;
   width: 100%;
+  margin: 1rem 0;
 `;
 
 // For smaller error messages.

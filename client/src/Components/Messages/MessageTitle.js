@@ -6,7 +6,7 @@ const MessageTitleText = styled.h2`
   font-size: 0.85rem;
   margin: 0.5rem 0 0.2rem 0;
   font-weight: 600;
-  color: ${({ theme }) => theme.darkGreen};
+  color: ${({ theme }) => theme.color.secondary.hex};
 `;
 
 const MessageTitle = ({ message, children }) => {

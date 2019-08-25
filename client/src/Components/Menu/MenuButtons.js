@@ -9,7 +9,7 @@ const MenuButtonContainer = styled.div`
   position: sticky;
   bottom: 55px;
   width: 250px;
-  margin: 0 auto;
+  margin: 1rem auto;
   > div {
     display: flex;
     align-items: center;

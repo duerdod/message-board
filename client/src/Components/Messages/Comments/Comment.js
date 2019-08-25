@@ -2,7 +2,10 @@ import React from 'react';
 import styled from '@emotion/styled';
 import Header from '../Header';
 
-const CommentContainer = styled.li``;
+const CommentContainer = styled.li`
+  border-top: 1px solid
+    ${({ theme }) => theme.color.grey.tint[theme.color.grey.tint.length - 1]};
+`;
 
 const CommentText = styled.div`
   padding: 0.1rem 1.5rem;
@@ -16,7 +19,7 @@ const CommentText = styled.div`
 `;
 
 const Footer = styled.footer`
-  border-top: 1px solid ${({ theme }) => theme.lightGrey};
+  background: ${({ theme }) => theme.color.grey.hex};
 `;
 
 const Comment = ({ comments }) => {

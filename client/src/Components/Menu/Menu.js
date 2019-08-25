@@ -18,8 +18,17 @@ const MenuContainer = styled.div`
   top: 0;
   left: -100%;
   transition: left 0.2s ease-out;
-  box-shadow: 0 2px 8px 0 hsla(0, 0%, 0%, 0.4);
-  background: ${({ theme }) => theme.buttonGradient};
+  box-shadow: 0 3px 8px 0 ${p => p.theme.color[p.color].tint[3]};
+  /* background: ${({ theme }) => theme.color.secondary.tint[3]}; */
+  background: linear-gradient(
+    170deg,
+    ${p =>
+      p.theme.color[p.color].tint
+        .map((color, i, colors) =>
+          i === colors.length - 1 ? color : (color += ' 0%, ')
+        )
+        .join('\n')}
+  );
   border-radius: 0px 4px 4px 0;
   &.menu-open {
     left: 0;
@@ -49,18 +58,21 @@ const NavItems = styled.ul`
   li {
     display: block;
     padding: 0.3rem 1rem 0.3rem 0;
-    color: ${({ theme }) => theme.lightRed};
+    color: ${({ theme }) => theme.color.white.hex};
     font-weight: 900;
     transition: all 0.2s ease;
     cursor: pointer;
     a {
-      color: ${({ theme }) => theme.lightRed};
+      color: ${({ theme }) => theme.color.white.hex};
       text-transform: uppercase;
       &:hover {
-        color: ${({ theme }) => theme.white};
+        color: ${({ theme }) => theme.color.white.hex};
       }
       span {
-        color: ${({ theme }) => theme.white};
+        color: ${({ theme }) => theme.color.white.hex};
+        &:hover {
+          color: ${({ theme }) => theme.color.white.hex};
+        }
       }
     }
   }
@@ -77,7 +89,10 @@ const Menu = () => {
   // Yes, this is always rendered. No big deal, not done anyho.
 
   return (
-    <MenuContainer className={`${isMenuOpen ? 'menu-open' : ''}`}>
+    <MenuContainer
+      className={`${isMenuOpen ? 'menu-open' : ''}`}
+      color="primary"
+    >
       <MenuInnerContainer>
         <Information />
         <NavItems>
@@ -86,7 +101,8 @@ const Menu = () => {
               <>
                 <li>
                   <NavLink onClick={collapseMenu} to="/profile">
-                    User: <span>{user.username}</span>
+                    <span>User: </span>
+                    {user.username}
                   </NavLink>
                 </li>
                 <li>

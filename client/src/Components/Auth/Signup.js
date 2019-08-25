@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import styled from '@emotion/styled';
 import { useMutation } from '@apollo/react-hooks';
 import useForm from '../../hooks/useForm';
-import ThemeButton from '../ui/ThemeButton';
+import Button from '../ui/Button';
 import { SIGN_UP } from '../../gql/gql';
 import { ErrorMessage } from '../StatusPage';
 
@@ -16,7 +16,7 @@ const FormContainer = styled.div`
     margin-bottom: 1rem;
     text-align: center;
     font-weight: 900;
-    color: ${({ theme }) => theme.green};
+    color: ${({ theme }) => theme.color.primary.hex};
   }
 `;
 
@@ -41,7 +41,7 @@ const Form = styled.form`
   }
 
   input {
-    border-bottom: 1px solid ${({ theme }) => theme.lightGrey};
+    border: 1px solid ${({ theme }) => theme.color.white.tint[1]};
     display: block;
     height: 35px;
     width: 100%;
@@ -107,7 +107,8 @@ const Signup = ({ history }) => {
           />
         </label>
         {error ? <ErrorMessage> {error.message}</ErrorMessage> : null}
-        <ThemeButton
+        <Button
+          size="small"
           onClick={() => {
             signup({
               variables: {
@@ -122,7 +123,7 @@ const Signup = ({ history }) => {
           }}
         >
           Sign up
-        </ThemeButton>
+        </Button>
       </Form>
     </FormContainer>
   );

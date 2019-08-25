@@ -11,7 +11,7 @@ const HeaderContainer = styled.header`
   box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.05);
 
   @media (pointer: coarse) {
-    .title-container {
+    > a {
       text-align: center;
     }
   }
@@ -23,27 +23,33 @@ const Title = styled.h2`
   margin: 0;
   line-height: 1.2;
   font-weight: 800;
-  color: ${p => p.color};
+  color: ${p => p.theme.color[p.color].tint[p.tint]};
   font-family: ${({ theme }) => theme.sansSerif};
-  text-shadow: 1px 1px 0px ${({ theme }) => theme.lightPink};
+  /* text-shadow: 0px 1px 1px
+    ${p =>
+      p.theme.color[p.color].tint[
+        p => p.theme.color[p.color].tint.length - 1
+      ]}; */
 `;
 
 const Logo = () => (
-  <Link className="title-container" to="/">
-    <Title color="#74b49b">BULLETIN</Title>
-    <Title color="#ee9ca7">AND</Title>
-    <Title color="#a7d7c5" style={{ fontStyle: 'italic' }}>
+  <Link to="/">
+    <Title tint={3} color="primary">
+      BULLETIN
+    </Title>
+    <Title tint={2} color="green">
+      AND
+    </Title>
+    <Title tint={1} color="primary" style={{ fontStyle: 'italic' }}>
       THE COOLS
     </Title>
   </Link>
 );
 
-const Header = () => {
-  return (
-    <HeaderContainer>
-      <Logo />
-    </HeaderContainer>
-  );
-};
+const Header = () => (
+  <HeaderContainer>
+    <Logo />
+  </HeaderContainer>
+);
 
 export default Header;

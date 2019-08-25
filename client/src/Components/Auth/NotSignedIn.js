@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import ThemeButton from '../ui/ThemeButton';
+import Button from '../ui/Button';
 
 const Container = styled.div`
   > h2 {
@@ -19,10 +19,10 @@ const Container = styled.div`
 const NotSignedIn = () => {
   return (
     <Container>
-      <h2>Yo aint no user</h2>
-      <ThemeButton onClick={() => window.location.replace('/signin')}>
+      {/* <h2>Yo aint no user</h2> */}
+      <Button size="small" onClick={() => window.location.replace('/signin')}>
         Please sign in
-      </ThemeButton>
+      </Button>
     </Container>
   );
 };

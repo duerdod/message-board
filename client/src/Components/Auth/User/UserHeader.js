@@ -25,7 +25,7 @@ const Avatar = styled.div`
 `;
 
 const Username = styled.h2`
-  color: ${({ theme }) => theme.darkGreen};
+  color: ${({ theme }) => theme.color.green.tint[1]};
   /* text-align: right; */
   font-weight: 900;
   font-size: 1.8rem;
@@ -37,7 +37,7 @@ const Username = styled.h2`
 const UserInformation = styled.h3`
   font-size: 1rem;
   font-weight: 600;
-  color: ${({ theme }) => theme.grey};
+  color: ${({ theme }) => theme.color.grey.tint[0]};
   display: grid;
   grid-template-columns: 30px 1fr;
   span {

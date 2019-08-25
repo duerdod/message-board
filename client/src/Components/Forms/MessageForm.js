@@ -58,7 +58,7 @@ export const StyledForm = styled.form`
     text-align: right;
     margin: 0;
     font-size: 0.55rem;
-    color: ${({ theme }) => theme.darkGreen};
+    color: ${({ theme }) => theme.color.green.hex};
   }
 
   @media screen and (max-width: 64em) {
@@ -71,7 +71,7 @@ export const StyledForm = styled.form`
 const Footer = styled.footer`
   width: 100%;
   padding: 0rem;
-  border-top: 1px solid ${({ theme }) => theme.lightGrey};
+  border-top: 1px solid ${({ theme }) => theme.color.white.tint[4]};
   margin-top: auto;
 `;
 

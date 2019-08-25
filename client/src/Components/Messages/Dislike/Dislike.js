@@ -26,8 +26,8 @@ const Dislikees = styled.span`
 `;
 
 export const StyledBell = styled(Bell)`
-  color: ${({ theme }) => theme.yellow};
-  fill: ${({ theme }) => theme.yellow};
+  color: ${({ theme }) => theme.color.yellow};
+  fill: ${({ theme }) => theme.color.yellow};
   width: 1.3rem;
   stroke: none;
   ${BellAnimation};

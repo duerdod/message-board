@@ -64,6 +64,13 @@ const typeDefs = gql`
     signin(username: String!, password: String!): User!
     signout: Success!
     removeUser(username: String!, password: String!): User!
+    updateUser(
+      firstname: String
+      lastname: String
+      email: String
+      password: String!
+      newPassword: String
+    ): User!
   }
 `;
 

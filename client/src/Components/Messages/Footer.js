@@ -9,9 +9,9 @@ const Container = styled.footer`
   display: flex;
   justify-content: flex-end;
   padding: 0rem 0.5rem;
-  border-top: 1px solid ${({ theme }) => theme.lightGrey};
+  border-top: 1px solid ${({ theme }) => theme.color.white.tint[4]};
   margin-top: auto;
-  background: ${({ theme }) => theme.whiteVariant};
+  background: ${({ theme }) => theme.color.white.tint[6]};
   > * {
     font-size: 0.75rem;
   }

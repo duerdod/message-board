@@ -1,20 +1,23 @@
 import React, { useContext } from 'react';
-import styled from '@emotion/styled';
-import ThemeButton from '../ui/ThemeButton';
+// import styled from '@emotion/styled';
+// import Button from '../ui/Button';
 import { MessageFormContext } from '../../context/message-context';
+import Button from './Button';
 
-const StyledPostButton = styled(ThemeButton)`
-  padding: 1rem 4rem;
-  width: 66px;
-  display: flex;
-  justify-content: center;
-`;
+// const StyledPostButton = styled(ThemeButton)`
+//   padding: 1rem 4rem;
+//   width: 66px;
+//   display: flex;
+//   justify-content: center;
+// `;
 
 const PostButton = ({ history }) => {
   const { isFormOpen, toggleFormOpen } = useContext(MessageFormContext);
 
   return (
-    <StyledPostButton
+    <Button
+      color="primary"
+      size="large"
       onClick={() => {
         if (window.location.href.includes('message')) {
           history.replace('/');
@@ -25,7 +28,7 @@ const PostButton = ({ history }) => {
       }}
     >
       {isFormOpen ? 'DISCARD' : 'POST'}
-    </StyledPostButton>
+    </Button>
   );
 };
 

@@ -177,3 +177,26 @@ export const DELETE_USER = gql`
     }
   }
 `;
+
+export const UPDATE_USER = gql`
+  mutation UPDATE_USER(
+    $firstname: String
+    $lastname: String
+    $email: String
+    $password: String!
+    $newPassword: String
+  ) {
+    updateUser(
+      firstname: $firstname
+      lastname: $lastname
+      email: $email
+      password: $password
+      newPassword: $newPassword
+    ) {
+      id
+      firstname
+      lastname
+      email
+    }
+  }
+`;

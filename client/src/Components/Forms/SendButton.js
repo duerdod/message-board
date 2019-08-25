@@ -6,7 +6,7 @@ import { ADD_MESSAGE, GET_ALL_MESSAGES } from '../../gql/gql';
 import { ErrorMessage } from '../StatusPage';
 
 const SendButton = styled.button`
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.whiteVariant};
   margin: 1rem 0.1rem;
   padding: 0.5rem 1rem;
   font-size: 0.75rem;
@@ -18,7 +18,7 @@ const SendButton = styled.button`
   box-shadow: 0 1px 3px 0 hsla(0, 0%, 0%, 0.1);
   background-size: 200% 200%;
   letter-spacing: 1px;
-  background: ${({ theme }) => theme.green};
+  background: ${({ theme }) => theme.color.green.hex};
   &:hover {
     background-size: 100% 100%;
     box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.1);

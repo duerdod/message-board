@@ -1,15 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from '@emotion/styled';
 import { Formik, Form } from 'formik';
 import useForm from '../../../hooks/useForm';
-import ThemeButton from '../../ui/ThemeButton';
+import Button from '../../ui/Button';
 import DeleteUser from './UserActions/DeleteUser';
-// import {ErrorMessage} from '../../StatusPage'
-
-const ChangeUserDetails = styled(ThemeButton)`
-  background: ${({ theme }) => theme.green};
-  border: 2px solid ${({ theme }) => theme.lightGrey};
-`;
+import { ErrorMessage } from '../../StatusPage';
+import { useMutation } from '@apollo/react-hooks';
+import { UPDATE_USER, GET_CURRENT_USER } from '../../../gql/gql';
+import { AuthContext } from '../../../context/auth-context';
 
 const StyledForm = styled(Form)`
   width: 100%;
@@ -32,7 +30,7 @@ const StyledForm = styled(Form)`
   }
 
   input {
-    border-bottom: 1px solid ${({ theme }) => theme.lightGrey};
+    border: 1px solid ${({ theme }) => theme.color.white.tint[1]};
     display: block;
     height: 35px;
     width: 100%;
@@ -61,6 +59,10 @@ export function validateEmail(email) {
 }
 
 const UserDetails = ({ currentUser }) => {
+  const { reload } = useContext(AuthContext);
+  const [updateUser, { error, loading }] = useMutation(UPDATE_USER, {
+    refetchQueries: GET_CURRENT_USER
+  });
   const { firstname, lastname, username, email, password } = currentUser;
   const { values, handleChange } = useForm({
     firstname,
@@ -69,13 +71,18 @@ const UserDetails = ({ currentUser }) => {
     email,
     password
   });
-
   // console.log(values.password);
   return (
     <Formik
       initialValues={{ firstname, lastname, email, password: '' }}
       onSubmit={() => {
-        console.log(values);
+        updateUser({
+          variables: {
+            ...values,
+            username,
+            id: currentUser.id
+          }
+        }).then(reload);
       }}
       validateOnChange
     >
@@ -134,9 +141,15 @@ const UserDetails = ({ currentUser }) => {
             <span>New password</span>
             <input type="password" name="newPassword" onChange={handleChange} />
           </label>
-          <ChangeUserDetails onClick={handleSubmit}>
+          {error ? <ErrorMessage error={error.message} /> : null}
+          <Button
+            disabled={loading}
+            size="small"
+            color="green"
+            onClick={handleSubmit}
+          >
             Change details
-          </ChangeUserDetails>
+          </Button>
           <DeleteUser username={username} password={values.password} />
         </StyledForm>
       )}

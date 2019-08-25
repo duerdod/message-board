@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 
 import UserInformation from './UserInformation';
 import UserMessages from './UserMessages';
+import UserSavedMessage from './UserSavedMessages';
 
 // Rewrite and move to UI. Can be used elsewhere.
 const TabContainer = styled.section``;
@@ -68,7 +69,7 @@ const Tabs = ({ currentUser }) => {
           Messages
         </TabTitle>
         <TabTitle
-          id="saved"
+          id="saved-messages"
           onClick={toggleTab}
           className={'saved' === openTab.id ? 'active' : ''}
         >
@@ -93,6 +94,7 @@ const Tabs = ({ currentUser }) => {
           openTabId={openTab.id}
           id="messages"
         />
+        <UserSavedMessage openTabId={openTab.id} id="saved-messages" />
       </TabLower>
     </TabContainer>
   );

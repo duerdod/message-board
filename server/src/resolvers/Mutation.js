@@ -205,6 +205,7 @@ const Mutation = {
     context.res.clearCookie('userToken');
     return { success: 'Successfully logged out.' };
   },
+
   async removeUser(root, { username, password }, context) {
     // Check if user is signed in.
     if (!context.req.user) return null;
@@ -233,6 +234,57 @@ const Mutation = {
     const userToRemove = await context.prisma.deleteUser({ username });
     context.res.clearCookie('userToken');
     return userToRemove;
+  },
+
+  async updateUser(
+    root,
+    { firstname, lastname, email, password, newPassword },
+    context
+  ) {
+    if (!context.req.user) return null;
+    const user = await context.prisma.user({ id: context.req.user.id });
+
+    const isUserMatch = user.id === context.req.user.id;
+    if (!isUserMatch) {
+      throw new Error('You cannot delete someone elses account...');
+    }
+    // Check if correct password
+    const isPasswordMatch = await bcrypt.compare(password, user.password);
+    if (!isPasswordMatch) {
+      throw new Error('Wrong password :(');
+    }
+
+    if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
+      throw new Error('Not a valid email.');
+    }
+
+    if (newPassword) {
+      const newCryptedPassword = await bcrypt.hash(newPassword, 10);
+      return await context.prisma.updateUser({
+        data: {
+          firstname,
+          lastname,
+          email,
+          password: newCryptedPassword
+        },
+        where: {
+          id: user.id
+        }
+      });
+    }
+
+    const updatedUser = await context.prisma.updateUser({
+      data: {
+        firstname,
+        lastname,
+        email
+      },
+      where: {
+        id: user.id
+      }
+    });
+
+    return updatedUser;
   }
 };
 
