@@ -25,7 +25,7 @@ const MenuContainer = styled.div`
     ${p =>
       p.theme.color[p.color].tint
         .map((color, i, colors) =>
-          i === colors.length - 1 ? color : (color += ' 0%, ')
+          i === colors.length - 1 ? color : (color += ' 80%, ')
         )
         .join('\n')}
   );

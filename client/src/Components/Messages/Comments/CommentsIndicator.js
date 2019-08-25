@@ -19,8 +19,8 @@ const CommentsCount = styled.span`
 `;
 
 const StyledCommentsIcon = styled(CommentsIcon)`
-  color: ${({ theme }) => theme.color.green.shade[0]};
-  fill: ${({ theme }) => theme.color.green.shade[0]};
+  color: ${({ theme }) => theme.color.primary.hex};
+  fill: ${({ theme }) => theme.color.primary.hex};
   width: 16px;
   stroke: none;
 `;

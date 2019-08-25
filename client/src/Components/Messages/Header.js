@@ -23,7 +23,7 @@ const Avatar = styled.span`
   display: inline-flex;
   padding: 6px;
   border-radius: 50%;
-  background: ${({ theme }) => theme.color.grey.tint[3]};
+  background: ${({ theme }) => theme.color.grey.tint[9]};
   margin-right: 6px;
 
   svg {
@@ -35,12 +35,12 @@ const Avatar = styled.span`
 const Author = styled.span`
   font-size: 0.75rem;
   font-weight: 600;
-  color: ${({ theme }) => theme.color.secondary.hex};
+  color: ${({ theme }) => theme.color.grey.tint[0]};
 `;
 
 const Timestamp = styled.span`
   font-size: 0.65rem;
-  color: ${({ theme }) => theme.color.grey.tint[0]};
+  color: ${({ theme }) => theme.color.grey.tint[4]};
 `;
 
 const Header = ({ message, children }) => {

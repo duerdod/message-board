@@ -134,7 +134,6 @@ const UserDetails = ({ currentUser }) => {
               name="password"
               placeholder={password}
               onChange={handleChange}
-              minLength={1}
             />
           </label>
           <label htmlFor="newPassword">
@@ -145,7 +144,7 @@ const UserDetails = ({ currentUser }) => {
           <Button
             disabled={loading}
             size="small"
-            color="green"
+            color="primary"
             onClick={handleSubmit}
           >
             Change details
