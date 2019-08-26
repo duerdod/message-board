@@ -22,12 +22,11 @@ function createServer() {
         comments(parent, args, ctx) {
           return ctx.prisma
             .message({ id: parent.id })
-            .comments({ orderBy: 'date_ASC' });
+            .comments({ orderBy: 'date_DESC' });
         }
       },
       User: {
         messages(parent, args, ctx) {
-          // const { id } = parent;
           return ctx.prisma
             .user({ id: parent.id })
             .messages({ orderBy: 'date_DESC' });

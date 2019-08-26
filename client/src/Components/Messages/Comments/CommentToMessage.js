@@ -45,7 +45,7 @@ const CommentToMessage = ({ id, history }) => {
     comment: '',
     author: (user && user.username) || ''
   };
-  const { values, handleChange, handleSubmit } = useForm(formInit);
+  const { values, handleChange, handleSubmit, setValues } = useForm(formInit);
 
   const [step, setStep] = useState(0);
 
@@ -60,10 +60,8 @@ const CommentToMessage = ({ id, history }) => {
   });
 
   const handleForwardStep = () => {
-    setStep(step => (step + 1) % 2);
+    setStep(step => (step + 1) % 3);
   };
-
-  console.log(values);
 
   return (
     <StyledForm>
@@ -72,7 +70,8 @@ const CommentToMessage = ({ id, history }) => {
         <input
           type="text"
           name="comment"
-          placeholder="Add comment to message..."
+          placeholder="Add comment..."
+          value={values.comment}
           onChange={handleChange}
         />
       )}
@@ -92,10 +91,15 @@ const CommentToMessage = ({ id, history }) => {
         disabled={loading}
         className="comment-button"
         onClick={e => {
-          step === 1 ? handleSubmit(e, commentMessage) : handleForwardStep();
+          if (step === 1 || user) {
+            handleSubmit(e, commentMessage);
+            handleForwardStep();
+            setValues(formInit);
+          }
+          handleForwardStep();
         }}
       >
-        comment
+        comment{loading ? 'ing' : null}
       </Button>
     </StyledForm>
   );

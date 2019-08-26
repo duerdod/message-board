@@ -14,7 +14,7 @@ const FAQList = styled.ul`
     font-size: 1.1rem;
     margin: 0.5rem 0;
     padding: 0;
-    color: ${({ theme }) => theme.color.primary.hex};
+    color: ${({ theme }) => theme.color.primary.tint[7]};
     text-transform: uppercase;
     transition: all 0.2s ease;
     cursor: pointer;
@@ -23,7 +23,7 @@ const FAQList = styled.ul`
     }
 
     svg {
-      stroke: ${({ theme }) => theme.color.primary.hex};
+      stroke: ${({ theme }) => theme.color.primary.tint[6]};
       width: 28px;
       margin-right: 8px;
       transition: all 0.2s ease;

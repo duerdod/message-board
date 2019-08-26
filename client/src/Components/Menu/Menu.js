@@ -20,7 +20,7 @@ const MenuContainer = styled.div`
   transition: left 0.2s ease-out;
   box-shadow: 0 3px 8px 0 ${p => p.theme.color[p.color].tint[3]};
   /* background: ${({ theme }) => theme.color.secondary.tint[3]}; */
-  background: linear-gradient(
+  /* background: linear-gradient(
     170deg,
     ${p =>
       p.theme.color[p.color].tint
@@ -28,7 +28,10 @@ const MenuContainer = styled.div`
           i === colors.length - 1 ? color : (color += ' 80%, ')
         )
         .join('\n')}
-  );
+  ); */
+  background: linear-gradient(170deg, ${p =>
+    p.theme.color[p.color].tint[1]} 80% , ${p =>
+  p.theme.color[p.color].tint[4]});
   border-radius: 0px 4px 4px 0;
   &.menu-open {
     left: 0;

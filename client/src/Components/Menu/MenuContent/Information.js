@@ -10,7 +10,7 @@ const Text = styled.h2`
 `;
 
 const Bell = styled(MenuBell)`
-  fill: ${p => p.theme.color.yellow};
+  fill: ${p => p.theme.color.secondary.hex};
   stroke: none;
   width: 1.5rem;
   transition: all 0.2s ease;
@@ -22,7 +22,7 @@ const Bell = styled(MenuBell)`
 const Information = () => {
   return (
     <div>
-      <Text size="1.7" color="primary">
+      <Text size="1.7" color="white">
         PRESS THE BELL <Bell />
       </Text>
       <Text size="1.3" color="white">
@@ -34,7 +34,7 @@ const Information = () => {
       <Text size="2" color="white">
         BELLS
       </Text>
-      <Text size="1.3" color="primary">
+      <Text size="1.3" color="white">
         REMOVIZESES
       </Text>
     </div>
