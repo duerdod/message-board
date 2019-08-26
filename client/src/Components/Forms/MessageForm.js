@@ -61,7 +61,7 @@ export const StyledForm = styled.form`
     color: ${({ theme }) => theme.color.green.hex};
   }
 
-  @media screen and (max-width: 64em) {
+  ${p => p.theme.isMobile} { {
     font-size: 1.1rem;
     border-radius: 0;
     box-shadow: none;

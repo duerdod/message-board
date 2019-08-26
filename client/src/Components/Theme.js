@@ -12,6 +12,7 @@ const theme = {
     large: '1.1rem',
     xlarge: '1.4rem'
   },
+  isMobile: '@media screen and (max-width: 52em)',
   sansSerif: 'Open Sans, sans-serif',
   serif: 'DM Serif Text, serif',
   color: {

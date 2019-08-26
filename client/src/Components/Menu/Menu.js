@@ -36,7 +36,7 @@ const MenuContainer = styled.div`
   &.menu-open {
     left: 0;
   }
-  @media screen and (max-width: 63em) {
+  ${p => p.theme.isMobile} { {
     width: 280px;
     max-width: 80%;
   }

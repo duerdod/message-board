@@ -12,7 +12,7 @@ const MessagesGrid = styled.section`
     grid-row: span 2;
   }
 
-  @media screen and (max-width: 64em) {
+  ${p => p.theme.isMobile} {
     grid-template-columns: 1fr;
     grid-gap: 0rem;
     padding: 0rem;

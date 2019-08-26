@@ -3,8 +3,7 @@ import styled from '@emotion/styled';
 import Header from '../Header';
 
 const CommentContainer = styled.li`
-  border-top: 1px solid
-    ${({ theme }) => theme.color.grey.tint[theme.color.grey.tint.length - 1]};
+  border-top: 1px solid ${({ theme }) => theme.color.grey.tint[9]};
 `;
 
 const CommentText = styled.div`

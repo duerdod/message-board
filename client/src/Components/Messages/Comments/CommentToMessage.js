@@ -59,10 +59,6 @@ const CommentToMessage = ({ id, history }) => {
     ]
   });
 
-  const handleForwardStep = () => {
-    setStep(step => (step + 1) % 3);
-  };
-
   return (
     <StyledForm>
       <Avatar />
@@ -75,15 +71,16 @@ const CommentToMessage = ({ id, history }) => {
           onChange={handleChange}
         />
       )}
-      {step === 1 && (
-        <input
-          type="text"
-          name="author"
-          placeholder={values.author || 'Also, your name.'}
-          value={(user && user.username) || values.author || ''}
-          onChange={handleChange}
-        />
-      )}
+      {step === 1 &&
+        (!user && (
+          <input
+            type="text"
+            name="author"
+            placeholder={values.author || 'Also, your name.'}
+            value={(user && user.username) || values.author || ''}
+            onChange={handleChange}
+          />
+        ))}
       {error ? <ErrorMessage>{error.message}</ErrorMessage> : null}
       <Button
         color="primary"
@@ -93,10 +90,11 @@ const CommentToMessage = ({ id, history }) => {
         onClick={e => {
           if (step === 1 || user) {
             handleSubmit(e, commentMessage);
-            handleForwardStep();
+            setStep(0);
             setValues(formInit);
+          } else {
+            setStep((step + 1) % 2);
           }
-          handleForwardStep();
         }}
       >
         comment{loading ? 'ing' : null}

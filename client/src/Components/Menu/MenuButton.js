@@ -14,7 +14,7 @@ const StyledMenuButton = styled(Button)`
   &.move {
     transform: translate3d(55px, 0, 0);
     width: 65px;
-    @media screen and (max-width: 63em) {
+    ${p => p.theme.isMobile} { {
       transform: translate3d(65px, 0, 0);
     }
   }

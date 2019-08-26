@@ -25,11 +25,6 @@ const Title = styled.h2`
   font-weight: 800;
   color: ${p => p.theme.color[p.color].tint[p.tint]};
   font-family: ${({ theme }) => theme.sansSerif};
-  /* text-shadow: 0px 1px 1px
-    ${p =>
-      p.theme.color[p.color].tint[
-        p => p.theme.color[p.color].tint.length - 1
-      ]}; */
 `;
 
 const Logo = () => (

@@ -13,7 +13,6 @@ const LoadingPage = styled.div`
 
 const InnerContainer = styled.div`
   font-size: 2rem;
-  color: ${({ theme }) => theme.color.primary.hex};
   text-align: center;
   padding: 10% 0;
 
@@ -60,7 +59,8 @@ const Text = styled.h2`
   margin: 0.2rem;
   font-weight: 800;
   letter-spacing: 3px;
-  text-shadow: 1px 1px 0px ${({ theme }) => theme.lightPink};
+  color: ${({ theme }) => theme.color.primary.hex};
+  text-shadow: 1px 1px 0px ${({ theme }) => theme.color.primary.tint[6]};
 `;
 
 const ErrorText = styled.p`
