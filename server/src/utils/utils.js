@@ -29,7 +29,7 @@ function sanitizer(text) {
 }
 
 function checkMessageForTags() {
-  return new RegExp(/(#[A-Za-z0-9-_]+)(?:#[A-Za-z0-9-_]+)*/g);
+  return new RegExp(/(#[A-Za-z0-9-_]+)(?:#[A-Za-z0-9-_]+)*/gi);
 }
 
 function extractTagsFromMessage(message) {

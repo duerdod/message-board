@@ -89,6 +89,8 @@ function generateHandsomeUrl(url) {
   return newUrl;
 }
 
+// "Approval". No idea what to call it.
+// Also make some nicer calculations. There should be a number between 1-100%.
 function userApproval(messages = []) {
   const approvalRate = messages.reduce(
     (rate, message) =>
@@ -96,6 +98,10 @@ function userApproval(messages = []) {
     0
   );
   return approvalRate;
+}
+
+function checkMessageForTags() {
+  return new RegExp(/(#[A-Za-z0-9-_]+)(?:#[A-Za-z0-9-_]+)*/gi);
 }
 
 export {
@@ -106,5 +112,6 @@ export {
   shouldMessageExpand,
   forwardOnEnter,
   generateHandsomeUrl,
-  userApproval
+  userApproval,
+  checkMessageForTags
 };

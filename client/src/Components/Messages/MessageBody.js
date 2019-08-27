@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { shouldMessageExpand } from '../../utils/utils';
+import { shouldMessageExpand, checkMessageForTags } from '../../utils/utils';
 
 const Container = styled.div`
   padding: 0.1rem 1.5rem;
@@ -17,11 +17,19 @@ const MessageText = styled.div`
   }
 `;
 
+function handleTags(message) {
+  const tags = message.match(checkMessageForTags());
+  if (!tags) return message;
+  const tagsWithSpace = tags.map(tag => ` ${tag} `).join(' ');
+  const messeageWithoutTags = message.replace(checkMessageForTags(), '');
+  return `${messeageWithoutTags} ${tagsWithSpace}`;
+}
+
 const MessageBody = ({ message, children }) => {
   return (
     <Container className={`${shouldMessageExpand(message.message)} content`}>
       <MessageText>
-        <p>{message.message || children}</p>
+        <p>{handleTags(message.message) || children}</p>
       </MessageText>
     </Container>
   );
