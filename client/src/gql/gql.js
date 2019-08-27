@@ -55,6 +55,9 @@ export const GET_ALL_MESSAGES = gql`
       comments {
         id
       }
+      user {
+        id
+      }
     }
   }
 `;

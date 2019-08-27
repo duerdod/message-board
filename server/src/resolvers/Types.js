@@ -9,6 +9,9 @@ const Types = {
     },
     tags(parent, args, ctx) {
       return ctx.prisma.message({ id: parent.id }).tags();
+    },
+    user(parent, args, ctx) {
+      return ctx.prisma.message({ id: parent.id }).user();
     }
   },
   Tag: {

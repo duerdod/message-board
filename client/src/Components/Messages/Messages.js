@@ -55,8 +55,7 @@ export default Messages;
 //   });
 // };
 
-{
-  /* <ThemeButton
+/* <ThemeButton
         style={{
           width: '60px',
           margin: '2rem auto',
@@ -78,4 +77,3 @@ export default Messages;
           <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
         </svg>
       </ThemeButton> */
-}

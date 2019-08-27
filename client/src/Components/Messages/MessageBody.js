@@ -24,7 +24,9 @@ const MessageText = styled.div`
   }
 `;
 
-function filterForTags(message) {
+function filterForTags(incoming) {
+  const { message, user } = incoming;
+  if (!user) return message;
   const tags = message.match(checkMessageForTags());
   if (!tags) return message;
   const messeageWithoutTags = message.replace(checkMessageForTags(), '');
@@ -46,7 +48,7 @@ const MessageBody = ({ message, children }) => {
   return (
     <Container className={`${shouldMessageExpand(message.message)} content`}>
       <MessageText>
-        <p>{message ? filterForTags(message.message) : children}</p>
+        <p>{message ? filterForTags(message) : children}</p>
       </MessageText>
     </Container>
   );
