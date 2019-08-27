@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { trimErrorMessage } from '../utils/utils';
+import Button from './ui/Button';
 
 const LoadingPage = styled.div`
   position: relative;
@@ -15,7 +16,9 @@ const InnerContainer = styled.div`
   font-size: 2rem;
   text-align: center;
   padding: 10% 0;
-
+  button {
+    margin: 2rem 0;
+  }
   @keyframes rotate {
     from {
       transform: rotate(0turn);
@@ -61,6 +64,9 @@ const Text = styled.h2`
   letter-spacing: 3px;
   color: ${({ theme }) => theme.color.primary.hex};
   text-shadow: 1px 1px 0px ${({ theme }) => theme.color.primary.tint[6]};
+  &.error {
+    color: ${({ theme }) => theme.color.red.tint[3]};
+  }
 `;
 
 const ErrorText = styled.p`
@@ -99,10 +105,19 @@ const StatusPage = ({ state }) => {
         {state === 'loading' ? (
           <Text>Spinner.</Text>
         ) : (
-          <Text>
-            Oh darn. <br />
-            Something went wrong.
-          </Text>
+          <>
+            <Text className="error">
+              Oh darn. <br />
+              Something went wrong.
+            </Text>
+            <Button
+              size="large"
+              color="primary"
+              onClick={() => window.location.reload()}
+            >
+              Try again
+            </Button>
+          </>
         )}
         <Spinner />
       </InnerContainer>

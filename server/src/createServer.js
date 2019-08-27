@@ -18,6 +18,7 @@ function createServer() {
       Query,
       Mutation,
       // Type resolvers. Where to put them??! They cannot stay.
+      // Comments.
       Message: {
         comments(parent, args, ctx) {
           return ctx.prisma
@@ -25,11 +26,18 @@ function createServer() {
             .comments({ orderBy: 'date_DESC' });
         }
       },
+      // Connected user message
       User: {
         messages(parent, args, ctx) {
           return ctx.prisma
             .user({ id: parent.id })
             .messages({ orderBy: 'date_DESC' });
+        }
+      },
+      // For message tagging
+      Message: {
+        tags(parent, args, ctx) {
+          return ctx.prisma.message({ id: parent.id }).tags();
         }
       }
     },

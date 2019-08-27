@@ -11,6 +11,10 @@ type AggregateMessage {
   count: Int!
 }
 
+type AggregateTag {
+  count: Int!
+}
+
 type AggregateUser {
   count: Int!
 }
@@ -364,6 +368,7 @@ type Message {
   comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment!]
   user: User
   date: String
+  tags(where: TagWhereInput, orderBy: TagOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Tag!]
 }
 
 type MessageConnection {
@@ -381,6 +386,12 @@ input MessageCreateInput {
   comments: CommentCreateManyWithoutMessageInput
   user: UserCreateOneWithoutMessagesInput
   date: String
+  tags: TagCreateManyWithoutMessagesInput
+}
+
+input MessageCreateManyWithoutTagsInput {
+  create: [MessageCreateWithoutTagsInput!]
+  connect: [MessageWhereUniqueInput!]
 }
 
 input MessageCreateManyWithoutUserInput {
@@ -401,6 +412,18 @@ input MessageCreateWithoutCommentsInput {
   dislikes: Int!
   user: UserCreateOneWithoutMessagesInput
   date: String
+  tags: TagCreateManyWithoutMessagesInput
+}
+
+input MessageCreateWithoutTagsInput {
+  id: ID
+  title: String!
+  message: String!
+  author: String!
+  dislikes: Int!
+  comments: CommentCreateManyWithoutMessageInput
+  user: UserCreateOneWithoutMessagesInput
+  date: String
 }
 
 input MessageCreateWithoutUserInput {
@@ -411,6 +434,7 @@ input MessageCreateWithoutUserInput {
   dislikes: Int!
   comments: CommentCreateManyWithoutMessageInput
   date: String
+  tags: TagCreateManyWithoutMessagesInput
 }
 
 type MessageEdge {
@@ -552,6 +576,7 @@ input MessageUpdateInput {
   comments: CommentUpdateManyWithoutMessageInput
   user: UserUpdateOneWithoutMessagesInput
   date: String
+  tags: TagUpdateManyWithoutMessagesInput
 }
 
 input MessageUpdateManyDataInput {
@@ -568,6 +593,18 @@ input MessageUpdateManyMutationInput {
   author: String
   dislikes: Int
   date: String
+}
+
+input MessageUpdateManyWithoutTagsInput {
+  create: [MessageCreateWithoutTagsInput!]
+  delete: [MessageWhereUniqueInput!]
+  connect: [MessageWhereUniqueInput!]
+  set: [MessageWhereUniqueInput!]
+  disconnect: [MessageWhereUniqueInput!]
+  update: [MessageUpdateWithWhereUniqueWithoutTagsInput!]
+  upsert: [MessageUpsertWithWhereUniqueWithoutTagsInput!]
+  deleteMany: [MessageScalarWhereInput!]
+  updateMany: [MessageUpdateManyWithWhereNestedInput!]
 }
 
 input MessageUpdateManyWithoutUserInput {
@@ -603,6 +640,17 @@ input MessageUpdateWithoutCommentsDataInput {
   dislikes: Int
   user: UserUpdateOneWithoutMessagesInput
   date: String
+  tags: TagUpdateManyWithoutMessagesInput
+}
+
+input MessageUpdateWithoutTagsDataInput {
+  title: String
+  message: String
+  author: String
+  dislikes: Int
+  comments: CommentUpdateManyWithoutMessageInput
+  user: UserUpdateOneWithoutMessagesInput
+  date: String
 }
 
 input MessageUpdateWithoutUserDataInput {
@@ -612,6 +660,12 @@ input MessageUpdateWithoutUserDataInput {
   dislikes: Int
   comments: CommentUpdateManyWithoutMessageInput
   date: String
+  tags: TagUpdateManyWithoutMessagesInput
+}
+
+input MessageUpdateWithWhereUniqueWithoutTagsInput {
+  where: MessageWhereUniqueInput!
+  data: MessageUpdateWithoutTagsDataInput!
 }
 
 input MessageUpdateWithWhereUniqueWithoutUserInput {
@@ -622,6 +676,12 @@ input MessageUpdateWithWhereUniqueWithoutUserInput {
 input MessageUpsertWithoutCommentsInput {
   update: MessageUpdateWithoutCommentsDataInput!
   create: MessageCreateWithoutCommentsInput!
+}
+
+input MessageUpsertWithWhereUniqueWithoutTagsInput {
+  where: MessageWhereUniqueInput!
+  update: MessageUpdateWithoutTagsDataInput!
+  create: MessageCreateWithoutTagsInput!
 }
 
 input MessageUpsertWithWhereUniqueWithoutUserInput {
@@ -713,6 +773,9 @@ input MessageWhereInput {
   date_not_starts_with: String
   date_ends_with: String
   date_not_ends_with: String
+  tags_every: TagWhereInput
+  tags_some: TagWhereInput
+  tags_none: TagWhereInput
   AND: [MessageWhereInput!]
   OR: [MessageWhereInput!]
   NOT: [MessageWhereInput!]
@@ -735,6 +798,12 @@ type Mutation {
   upsertMessage(where: MessageWhereUniqueInput!, create: MessageCreateInput!, update: MessageUpdateInput!): Message!
   deleteMessage(where: MessageWhereUniqueInput!): Message
   deleteManyMessages(where: MessageWhereInput): BatchPayload!
+  createTag(data: TagCreateInput!): Tag!
+  updateTag(data: TagUpdateInput!, where: TagWhereUniqueInput!): Tag
+  updateManyTags(data: TagUpdateManyMutationInput!, where: TagWhereInput): BatchPayload!
+  upsertTag(where: TagWhereUniqueInput!, create: TagCreateInput!, update: TagUpdateInput!): Tag!
+  deleteTag(where: TagWhereUniqueInput!): Tag
+  deleteManyTags(where: TagWhereInput): BatchPayload!
   createUser(data: UserCreateInput!): User!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
@@ -767,6 +836,9 @@ type Query {
   message(where: MessageWhereUniqueInput!): Message
   messages(where: MessageWhereInput, orderBy: MessageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Message]!
   messagesConnection(where: MessageWhereInput, orderBy: MessageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): MessageConnection!
+  tag(where: TagWhereUniqueInput!): Tag
+  tags(where: TagWhereInput, orderBy: TagOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Tag]!
+  tagsConnection(where: TagWhereInput, orderBy: TagOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TagConnection!
   user(where: UserWhereUniqueInput!): User
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
@@ -776,7 +848,192 @@ type Query {
 type Subscription {
   comment(where: CommentSubscriptionWhereInput): CommentSubscriptionPayload
   message(where: MessageSubscriptionWhereInput): MessageSubscriptionPayload
+  tag(where: TagSubscriptionWhereInput): TagSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+}
+
+type Tag {
+  id: ID!
+  tag: String!
+  messages(where: MessageWhereInput, orderBy: MessageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Message!]
+}
+
+type TagConnection {
+  pageInfo: PageInfo!
+  edges: [TagEdge]!
+  aggregate: AggregateTag!
+}
+
+input TagCreateInput {
+  id: ID
+  tag: String!
+  messages: MessageCreateManyWithoutTagsInput
+}
+
+input TagCreateManyWithoutMessagesInput {
+  create: [TagCreateWithoutMessagesInput!]
+  connect: [TagWhereUniqueInput!]
+}
+
+input TagCreateWithoutMessagesInput {
+  id: ID
+  tag: String!
+}
+
+type TagEdge {
+  node: Tag!
+  cursor: String!
+}
+
+enum TagOrderByInput {
+  id_ASC
+  id_DESC
+  tag_ASC
+  tag_DESC
+}
+
+type TagPreviousValues {
+  id: ID!
+  tag: String!
+}
+
+input TagScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  tag: String
+  tag_not: String
+  tag_in: [String!]
+  tag_not_in: [String!]
+  tag_lt: String
+  tag_lte: String
+  tag_gt: String
+  tag_gte: String
+  tag_contains: String
+  tag_not_contains: String
+  tag_starts_with: String
+  tag_not_starts_with: String
+  tag_ends_with: String
+  tag_not_ends_with: String
+  AND: [TagScalarWhereInput!]
+  OR: [TagScalarWhereInput!]
+  NOT: [TagScalarWhereInput!]
+}
+
+type TagSubscriptionPayload {
+  mutation: MutationType!
+  node: Tag
+  updatedFields: [String!]
+  previousValues: TagPreviousValues
+}
+
+input TagSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: TagWhereInput
+  AND: [TagSubscriptionWhereInput!]
+  OR: [TagSubscriptionWhereInput!]
+  NOT: [TagSubscriptionWhereInput!]
+}
+
+input TagUpdateInput {
+  tag: String
+  messages: MessageUpdateManyWithoutTagsInput
+}
+
+input TagUpdateManyDataInput {
+  tag: String
+}
+
+input TagUpdateManyMutationInput {
+  tag: String
+}
+
+input TagUpdateManyWithoutMessagesInput {
+  create: [TagCreateWithoutMessagesInput!]
+  delete: [TagWhereUniqueInput!]
+  connect: [TagWhereUniqueInput!]
+  set: [TagWhereUniqueInput!]
+  disconnect: [TagWhereUniqueInput!]
+  update: [TagUpdateWithWhereUniqueWithoutMessagesInput!]
+  upsert: [TagUpsertWithWhereUniqueWithoutMessagesInput!]
+  deleteMany: [TagScalarWhereInput!]
+  updateMany: [TagUpdateManyWithWhereNestedInput!]
+}
+
+input TagUpdateManyWithWhereNestedInput {
+  where: TagScalarWhereInput!
+  data: TagUpdateManyDataInput!
+}
+
+input TagUpdateWithoutMessagesDataInput {
+  tag: String
+}
+
+input TagUpdateWithWhereUniqueWithoutMessagesInput {
+  where: TagWhereUniqueInput!
+  data: TagUpdateWithoutMessagesDataInput!
+}
+
+input TagUpsertWithWhereUniqueWithoutMessagesInput {
+  where: TagWhereUniqueInput!
+  update: TagUpdateWithoutMessagesDataInput!
+  create: TagCreateWithoutMessagesInput!
+}
+
+input TagWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  tag: String
+  tag_not: String
+  tag_in: [String!]
+  tag_not_in: [String!]
+  tag_lt: String
+  tag_lte: String
+  tag_gt: String
+  tag_gte: String
+  tag_contains: String
+  tag_not_contains: String
+  tag_starts_with: String
+  tag_not_starts_with: String
+  tag_ends_with: String
+  tag_not_ends_with: String
+  messages_every: MessageWhereInput
+  messages_some: MessageWhereInput
+  messages_none: MessageWhereInput
+  AND: [TagWhereInput!]
+  OR: [TagWhereInput!]
+  NOT: [TagWhereInput!]
+}
+
+input TagWhereUniqueInput {
+  id: ID
+  tag: String
 }
 
 type User {

@@ -4,7 +4,9 @@ var jwt = require('jsonwebtoken');
 const {
   addUserTimestamp,
   validateMessage,
-  sanitizer
+  sanitizer,
+  extractTagsFromMessage,
+  checkMessageForTags
 } = require('../utils/utils');
 
 const Mutation = {
@@ -15,32 +17,31 @@ const Mutation = {
     // Users also has free passage to post without timeframe.
     const user = await context.prisma.user({ username: author });
 
-    // Check if user is inside timeframe and is no user.
+    // Check if author is inside timeframe and is no user.
     if (!user && context.cookies['last_message']) {
       throw new Error('Hang tight between yo messages, yo. 🥁');
     }
 
     // Set timestamp for client side calculations.
-    // Rewrite to use a custom scalar from graphql schema.
     const date = Date.now().toString();
     addUserTimestamp('last_message', context);
 
-    // If no user, and time frame = ok
+    // Is no user, and time frame is legit
     if (!user) {
       // Add message anyway without user.
-      const newMessage = await context.prisma.createMessage({
+      const newMessageWithoutUser = await context.prisma.createMessage({
         title: sanitizer(title),
         message: sanitizer(message),
         author: sanitizer(author),
         dislikes: 0,
         date
       });
-      return newMessage;
+      return newMessageWithoutUser;
     }
 
     // Otherwise, connect the user and message
     const { id, username } = user;
-    const newMessage = await context.prisma.createMessage({
+    const newMessageWithUser = await context.prisma.createMessage({
       title: sanitizer(title),
       message: sanitizer(message),
       dislikes: 0,
@@ -49,7 +50,35 @@ const Mutation = {
       date
     });
 
-    return newMessage;
+    // For now this is only available for signup users.
+    // Is there any # (tags) in the new message?
+    if (checkMessageForTags().test(message)) {
+      extractTagsFromMessage(message).forEach(async tag => {
+        // Does tag excist? Update tag by inserting the new message.
+        const isTagInUse = await context.prisma.tag({ tag });
+        if (isTagInUse) {
+          const updatedTag = await context.prisma.updateTag({
+            data: {
+              messages: { connect: { id: newMessageWithUser.id } }
+            },
+            where: {
+              tag
+            }
+          });
+          return updatedTag;
+        }
+
+        // Otherwise create a new tag.
+        const messageWithTags = await context.prisma.createTag({
+          tag,
+          messages: { connect: { id: newMessageWithUser.id } }
+        });
+
+        return messageWithTags;
+      });
+    }
+
+    return newMessageWithUser;
   },
 
   async dislikeMessage(root, { id }, context) {

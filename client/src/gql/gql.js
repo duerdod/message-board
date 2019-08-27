@@ -1,20 +1,48 @@
 import gql from 'graphql-tag';
 
+const message = `
+  id
+  title
+  message
+  author
+  dislikes
+  date
+  __typename
+`;
+
+const tags = ` 
+  tags {
+  id
+  tag
+  __typename
+}
+`;
+
+const comment = `
+  comments {
+    id
+    comment
+    author
+    date
+    __typename
+  }
+`;
+
+const user = `
+  id
+  username
+  firstname
+  lastname
+  email
+  __typename
+`;
+
 export const GET_SINGLE_MESSAGE = gql`
   query GET_SINGLE_MESSAGE($id: ID!) {
     message(id: $id) {
-      id
-      title
-      message
-      author
-      dislikes
-      comments {
-        id
-        comment
-        author
-        date
-      }
-      date
+      ${message}
+      ${comment}
+      ${tags}
       __typename
     }
   }
@@ -23,16 +51,10 @@ export const GET_SINGLE_MESSAGE = gql`
 export const GET_ALL_MESSAGES = gql`
   query GET_ALL_MESSAGES($first: Int, $skip: Int) {
     messages(first: $first, skip: $skip) {
-      id
-      title
-      message
-      author
-      dislikes
+      ${message}
       comments {
         id
       }
-      date
-      __typename
     }
   }
 `;
@@ -91,10 +113,7 @@ export const SIGN_UP = gql`
       email: $email
       password: $password
     ) {
-      id
-      username
-      email
-      __typename
+      ${user}
     }
   }
 `;
@@ -102,9 +121,7 @@ export const SIGN_UP = gql`
 export const SIGN_IN = gql`
   mutation SIGN_IN($username: String!, $password: String!) {
     signin(username: $username, password: $password) {
-      id
-      username
-      __typename
+      ${user}
     }
   }
 `;
@@ -122,18 +139,8 @@ export const GET_CURRENT_USER = gql`
 export const GET_USER = gql`
   query GET_USER($username: String) {
     user(username: $username) {
-      id
-      firstname
-      lastname
-      username
-      email
-      messages {
-        id
-        title
-        message
-        dislikes
-        __typename
-      }
+      ${user}
+      ${message}
       __typename
     }
   }
@@ -143,17 +150,9 @@ export const GET_USER = gql`
 export const GET_CURRENT_USER_DETAILS = gql`
   query GET_CURRENT_USER_DETAILS {
     currentUser {
-      id
-      firstname
-      lastname
-      username
-      email
+      ${user}
       messages {
-        id
-        title
-        message
-        dislikes
-        __typename
+        ${message}
       }
       __typename
     }
@@ -193,10 +192,7 @@ export const UPDATE_USER = gql`
       password: $password
       newPassword: $newPassword
     ) {
-      id
-      firstname
-      lastname
-      email
+      ${user}
     }
   }
 `;

@@ -28,8 +28,20 @@ function sanitizer(text) {
   return cleanWithEmojis.clean(text);
 }
 
+function checkMessageForTags() {
+  return new RegExp(/(#[A-Za-z0-9-_]+)(?:#[A-Za-z0-9-_]+)*/g);
+}
+
+function extractTagsFromMessage(message) {
+  const tags = message.match(checkMessageForTags());
+  if (!tags) return [];
+  return tags;
+}
+
 module.exports = {
   addUserTimestamp,
   validateMessage,
-  sanitizer
+  sanitizer,
+  checkMessageForTags,
+  extractTagsFromMessage
 };

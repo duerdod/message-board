@@ -1,3 +1,9 @@
+type Tag {
+    id: ID! @id @unique
+    tag: String! @unique
+    messages: [Message]!
+}
+
 type Comment {
   id: ID! @id @unique
   comment: String!
@@ -17,6 +23,7 @@ type Message {
   comments: [Comment]
   user: User
   date: String
+  tags: [Tag!] 
 }
 
 type User {

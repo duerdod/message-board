@@ -1,0 +1,7 @@
+fragment Comment on Message {
+  id
+  comment
+  author
+  date
+  __typename
+}

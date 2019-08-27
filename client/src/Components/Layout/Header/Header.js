@@ -29,13 +29,13 @@ const Title = styled.h2`
 
 const Logo = () => (
   <Link to="/">
-    <Title tint={1} color="primary">
+    <Title tint={2} color="secondary">
       BULLETIN
     </Title>
-    <Title tint={4} color="primary">
+    <Title tint={4} color="secondary">
       AND
     </Title>
-    <Title tint={6} color="primary" style={{ fontStyle: 'italic' }}>
+    <Title tint={6} color="secondary" style={{ fontStyle: 'italic' }}>
       THE COOLS
     </Title>
   </Link>

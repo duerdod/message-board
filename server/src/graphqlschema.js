@@ -5,6 +5,12 @@ const typeDefs = gql`
     success: String!
   }
 
+  type Tag {
+    id: ID!
+    tag: String!
+    message: [Message]!
+  }
+
   type Comment {
     id: ID!
     comment: String!
@@ -23,6 +29,7 @@ const typeDefs = gql`
     dislikes: Int!
     comments: [Comment]
     user: User
+    tags: [Tag!]
     date: String
   }
 
@@ -54,6 +61,7 @@ const typeDefs = gql`
     dislikeMessage(id: ID!): Message
     deleteMessage(id: ID!): Message
     commentMessage(id: ID!, author: String!, comment: String!): Comment
+    addTagToMessage(id: ID!, tag: String!): Tag!
     signup(
       email: String!
       password: String!

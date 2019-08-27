@@ -1,0 +1,15 @@
+  #import './CommentFragment'
+  
+  query GET_SINGLE_MESSAGE($id: ID!) {
+    message(id: $id) {
+      id
+      title
+      message
+      author
+      dislikes
+      date
+      ...Comment
+      __typename
+    }
+  }
+`;

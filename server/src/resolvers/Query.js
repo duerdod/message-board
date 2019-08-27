@@ -7,8 +7,9 @@ const Query = {
     });
     return messages;
   },
-  message(root, { id }, context) {
-    return context.prisma.message({ id });
+  async message(root, { id }, context) {
+    const message = await context.prisma.message({ id });
+    return message;
   },
   user(root, args, context) {
     return context.prisma.user({ username: args.username });
