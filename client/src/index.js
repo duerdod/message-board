@@ -15,6 +15,8 @@ import MenuButtons from './Components/Menu/MenuButtons';
 import Menu from './Components/Menu/Menu';
 import MaxWidth from './Components/ui/MaxWidth';
 
+import MessagesWithTag from './Components/Messages/Tags/MessagesWithTag';
+
 // Auth
 import Signup from './Components/Auth/Signup';
 import Signin from './Components/Auth/Signin';
@@ -46,6 +48,7 @@ const App = () => {
                 <Route path="/signup" component={Signup} />
                 <Route path="/signin" component={Signin} />
                 <Route path="/profile" component={Profile} />
+                <Route path="/messages/:id" component={MessagesWithTag} />
               </Switch>
             </MaxWidth>
             <MenuButtons />

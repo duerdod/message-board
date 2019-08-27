@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
 import { shouldMessageExpand, checkMessageForTags } from '../../utils/utils';
 
 const Container = styled.div`
@@ -14,22 +15,38 @@ const MessageText = styled.div`
     font-size: 0.85rem;
     font-weight: 300;
     word-wrap: break-word;
+
+    a {
+      color: ${({ theme }) => theme.color.secondary.tint[4]};
+      font-weight: 600;
+      margin-right: 0.2rem;
+    }
   }
 `;
 
-function handleTags(message) {
+function filterForTags(message) {
   const tags = message.match(checkMessageForTags());
   if (!tags) return message;
-  const tagsWithSpace = tags.map(tag => ` ${tag} `).join(' ');
   const messeageWithoutTags = message.replace(checkMessageForTags(), '');
-  return `${messeageWithoutTags} ${tagsWithSpace}`;
+  return AppendTagLink(messeageWithoutTags, tags);
 }
+
+const AppendTagLink = (message, tags) => (
+  <>
+    {message}
+    {tags.map((tag, i) => (
+      <Link key={i} to={`/messages/${tag.replace('#', '')}`}>
+        {tag}
+      </Link>
+    ))}
+  </>
+);
 
 const MessageBody = ({ message, children }) => {
   return (
     <Container className={`${shouldMessageExpand(message.message)} content`}>
       <MessageText>
-        <p>{handleTags(message.message) || children}</p>
+        <p>{filterForTags(message.message) || children}</p>
       </MessageText>
     </Container>
   );

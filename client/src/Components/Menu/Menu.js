@@ -115,7 +115,7 @@ const Menu = () => {
             )}
           >
             <li>
-              <NavLink onClick={collapseMenu} to="signup">
+              <NavLink onClick={collapseMenu} to="/signup">
                 Sign up
               </NavLink>
             </li>
