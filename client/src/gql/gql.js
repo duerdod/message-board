@@ -196,3 +196,14 @@ export const UPDATE_USER = gql`
     }
   }
 `;
+
+export const GET_MESSAGE_BY_TAG = gql`
+  query GET_MESSAGE_BY_TAG($tag: String!) {
+    tag(tag: $tag) {
+      id
+      messages {
+        ${message}
+      }
+    }
+  }
+`;

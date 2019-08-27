@@ -17,7 +17,7 @@ const MessageText = styled.div`
     word-wrap: break-word;
 
     a {
-      color: ${({ theme }) => theme.color.secondary.tint[4]};
+      color: ${({ theme }) => theme.color.primary.hex};
       font-weight: 600;
       margin-right: 0.2rem;
     }
@@ -46,7 +46,7 @@ const MessageBody = ({ message, children }) => {
   return (
     <Container className={`${shouldMessageExpand(message.message)} content`}>
       <MessageText>
-        <p>{filterForTags(message.message) || children}</p>
+        <p>{message ? filterForTags(message.message) : children}</p>
       </MessageText>
     </Container>
   );

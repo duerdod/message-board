@@ -48,7 +48,7 @@ const App = () => {
                 <Route path="/signup" component={Signup} />
                 <Route path="/signin" component={Signin} />
                 <Route path="/profile" component={Profile} />
-                <Route path="/messages/:id" component={MessagesWithTag} />
+                <Route path="/messages/:tag" component={MessagesWithTag} />
               </Switch>
             </MaxWidth>
             <MenuButtons />

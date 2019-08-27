@@ -23,7 +23,7 @@ type Message {
   comments: [Comment]
   user: User
   date: String
-  tags: [Tag!] 
+  tags: [Tag!]
 }
 
 type User {

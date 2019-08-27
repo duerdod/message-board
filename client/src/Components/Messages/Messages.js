@@ -1,44 +1,62 @@
 import React, { useContext } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { GET_ALL_MESSAGES } from '../../gql/gql';
+import { GET_ALL_MESSAGES, GET_MESSAGE_BY_TAG } from '../../gql/gql';
 import MessagesGrid from '../ui/MessagesGrid';
 import Message from './Message';
 import StatusPage from '../StatusPage';
 import MessageForm from '../Forms/MessageForm';
 import { MessageFormContext } from '../../context/message-context';
-// import config from '../../config';
-// import Button from '../ui/Button';
 
-const Messages = props => {
+const Messages = ({ tag }) => {
   const { isFormOpen } = useContext(MessageFormContext);
-  const { error, data, loading } = useQuery(GET_ALL_MESSAGES);
 
-  // const fetchMessages = () => {
-  //   fetchMore({
-  //     variables: {
-  //       first: config.messageBatchCount,
-  //       skip: data.messages.length
-  //     },
-  //     updateQuery: (prev, { fetchMoreResult }) => {
-  //       if (!fetchMoreResult) return prev;
-  //       const { messages } = fetchMoreResult;
-  //       return {
-  //         messages: [...prev.messages, ...messages]
-  //       };
-  //     }
-  //   });
-  // };
+  // Tag = is on page /messages/:tag
+  const { error, data, loading } = useQuery(
+    tag ? GET_MESSAGE_BY_TAG : GET_ALL_MESSAGES,
+    {
+      variables: { tag: `#${tag}` }
+    }
+  );
 
   if (error) return <StatusPage state={error && 'error'} />;
   if (loading) return <StatusPage state={loading && 'loading'} />;
 
+  // Rewrite to use tag as vairable on GET_ALL_MESSAGES instead.
+  const { messages } = tag ? data.tag : data;
+
   return (
     <MessagesGrid>
       {isFormOpen ? <MessageForm /> : null}
-      {data.messages.map(message => (
+      {messages.map(message => (
         <Message key={message.id} message={message} />
       ))}
-      {/* <ThemeButton
+    </MessagesGrid>
+  );
+};
+
+export default Messages;
+
+// import config from '../../config';
+// import Button from '../ui/Button';
+
+// const fetchMessages = () => {
+//   fetchMore({
+//     variables: {
+//       first: config.messageBatchCount,
+//       skip: data.messages.length
+//     },
+//     updateQuery: (prev, { fetchMoreResult }) => {
+//       if (!fetchMoreResult) return prev;
+//       const { messages } = fetchMoreResult;
+//       return {
+//         messages: [...prev.messages, ...messages]
+//       };
+//     }
+//   });
+// };
+
+{
+  /* <ThemeButton
         style={{
           width: '60px',
           margin: '2rem auto',
@@ -59,9 +77,5 @@ const Messages = props => {
         >
           <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
         </svg>
-      </ThemeButton> */}
-    </MessagesGrid>
-  );
-};
-
-export default Messages;
+      </ThemeButton> */
+}

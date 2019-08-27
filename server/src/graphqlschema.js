@@ -8,7 +8,7 @@ const typeDefs = gql`
   type Tag {
     id: ID!
     tag: String!
-    message: [Message]!
+    messages: [Message]
   }
 
   type Comment {
@@ -16,7 +16,7 @@ const typeDefs = gql`
     comment: String!
     author: String!
     dislikes: Int!
-    message: Message
+    message: Message!
     user: User
     date: String!
   }
@@ -49,6 +49,7 @@ const typeDefs = gql`
     message(id: ID!): Message
     currentUser: User!
     user(username: String): User
+    tag(tag: String!): Tag!
   }
 
   type Mutation {

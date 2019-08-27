@@ -3,6 +3,7 @@ const { ApolloServer, gql } = require('apollo-server-express');
 const { prisma } = require('../generated/prisma-client/index');
 const Query = require('./resolvers/Query');
 const Mutation = require('./resolvers/Mutation');
+const Types = require('./resolvers/Types');
 const typeDefs = require('./graphqlschema');
 
 const corsOptions = {
@@ -17,31 +18,10 @@ function createServer() {
     resolvers: {
       Query,
       Mutation,
-      // Type resolvers. Where to put them??! They cannot stay.
-      // Comments.
-      Message: {
-        comments(parent, args, ctx) {
-          return ctx.prisma
-            .message({ id: parent.id })
-            .comments({ orderBy: 'date_DESC' });
-        }
-      },
-      // Connected user message
-      User: {
-        messages(parent, args, ctx) {
-          return ctx.prisma
-            .user({ id: parent.id })
-            .messages({ orderBy: 'date_DESC' });
-        }
-      },
-      // For message tagging
-      Message: {
-        tags(parent, args, ctx) {
-          return ctx.prisma.message({ id: parent.id }).tags();
-        }
-      }
+      // Type resolvers for sub queries.
+      ...Types
     },
-    // Surfaces prisma db.
+    // Spreads request and response to each request.
     context: ({ req, res }) => ({
       ...req,
       ...res,
