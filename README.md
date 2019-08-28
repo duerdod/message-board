@@ -1,9 +1,9 @@
 ## Message Board
 
-Available at: https://yo-bulletin.herokuapp.com/.
+Sleepingly Heroku-deployed at: http://bulletin.okbry.cool/. 🐌 🚀
 
-Internet has no need for this application but it's still a work in progress.  
-Comes with the most simplest word sanitizer for all you evil ones.
+Internet has no need for this application but yet it's a work in progress.
+Comes with the most simplest sanitizer for all you evil ones.
 
 Requires `Docker` and `docker-compose`,  
 do `docker-compose` and you're up.
@@ -18,7 +18,7 @@ do `docker-compose` and you're up.
 - [ ] Write tests!
 - [ ] User settings.
 - [ ] Filter and sort messages.
-- [x] Signup/Login with jwt and bcryptjs, view users messages (user: poppen, pass:hejhej or signup).
+- [x] Signup/Login with jwt and bcryptjs, view users messages (user: asap_erik, pass:hej or signup yoself).
 - [ ] User settings.
 - [ ] Better server side error handling.
 - [ ] Naming, refactoring and cleanup.
@@ -26,12 +26,12 @@ do `docker-compose` and you're up.
 
 ## Tools
 
-- Express
-- GraphQL-Server
 - React
 - React Apollo
+- GraphQL
+- React Apollo Server
+- Express
 - Emotion
-- Emotion theming
 - Docker and docker-compose
 
 Merge from: https://github.com/duerdod/message-board-old
