@@ -13,7 +13,6 @@ const Title = styled.h2`
 
 const MessagesWithTag = props => {
   const { tag } = props.match.params;
-
   return (
     <div>
       <Title>#{tag}</Title>

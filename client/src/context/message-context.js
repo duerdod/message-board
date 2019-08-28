@@ -5,14 +5,16 @@ import useUser from '../hooks/useUser';
 const MessageFormContext = createContext();
 
 // This will probably be removed later on.
-// No point of having this as "global state" ...
+// No point of having this as context ... I think.
 const MessageFormProvider = ({ children }) => {
   const { user } = useUser();
+
   const stateInit = {
     title: '',
     message: '',
     author: (user && user.username) || ''
   };
+
   const [isFormOpen, toggleFormOpen] = useState(false);
   const { handleChange, handleSubmit, values, setValues } = useForm(stateInit);
 

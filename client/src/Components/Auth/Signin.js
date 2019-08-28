@@ -45,10 +45,8 @@ const Form = styled.form`
     display: block;
     height: 35px;
     width: 100%;
-    &::placeholder {
-      color: ${({ theme }) => theme.color.grey.tint[0]};
-    }
   }
+
   button {
     margin-top: 1rem;
   }

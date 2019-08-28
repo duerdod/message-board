@@ -18,7 +18,7 @@ do `docker-compose` and you're up.
 - [ ] Write tests!
 - [ ] User settings.
 - [ ] Filter and sort messages.
-- [x] Signup/Login with jwt and bcryptjs, view users messages (user: asap_erik, pass:hej or signup yoself).
+- [x] Signup/Login with jwt and bcryptjs (user: asap_erik, pass:hej or signup yoself, there's no SSL so use some dummy.).
 - [ ] User settings.
 - [ ] Better server side error handling.
 - [ ] Naming, refactoring and cleanup.

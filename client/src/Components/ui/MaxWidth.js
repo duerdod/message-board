@@ -5,7 +5,7 @@ const MaxWidth = styled.main`
   padding: 2rem;
   margin: 0 auto;
   position: relative;
-  ${p => p.theme.isMobile} { {
+  ${p => p.theme.isMobile} {
     padding: 0;
   }
 `;

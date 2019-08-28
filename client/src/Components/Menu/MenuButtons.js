@@ -19,12 +19,12 @@ const MenuButtonContainer = styled.div`
 
 const MenuButtons = props => {
   const { history, location } = props;
-
+  const isStartPage = location.pathname === '/';
   return (
     <MenuButtonContainer>
       <div>
-        {location.pathname !== '/' ? <BackButton history={history} /> : null}
-        <PostButton {...props} />
+        {!isStartPage ? <BackButton history={history} /> : null}
+        <PostButton isStartPage={isStartPage} {...props} />
         <MenuButton />
       </div>
     </MenuButtonContainer>

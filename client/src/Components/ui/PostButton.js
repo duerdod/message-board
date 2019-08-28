@@ -1,23 +1,15 @@
 import React, { useContext } from 'react';
-import styled from '@emotion/styled';
 import { MessageFormContext } from '../../context/message-context';
 import Button from './Button';
 
-const StyledPostButton = styled(Button)`
-  .menu-open {
-    background: #000;
-  }
-`;
-
-const PostButton = ({ history, location }) => {
+const PostButton = ({ history, isStartPage }) => {
   const { isFormOpen, toggleFormOpen } = useContext(MessageFormContext);
-  const isPostPage = location.pathname === '/';
   return (
-    <StyledPostButton
+    <Button
       color="primary"
       size="large"
       onClick={() => {
-        if (isPostPage) {
+        if (!isStartPage) {
           history.replace('/');
           toggleFormOpen(true);
         } else {
@@ -25,8 +17,8 @@ const PostButton = ({ history, location }) => {
         }
       }}
     >
-      {isFormOpen && isPostPage ? 'DISCARD' : 'POST'}
-    </StyledPostButton>
+      {isFormOpen && isStartPage ? 'DISCARD' : 'POST'}
+    </Button>
   );
 };
 

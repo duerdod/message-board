@@ -14,7 +14,6 @@ import AppStateProvider from './context/index';
 import MenuButtons from './Components/Menu/MenuButtons';
 import Menu from './Components/Menu/Menu';
 import MaxWidth from './Components/ui/MaxWidth';
-
 import MessagesWithTag from './Components/Messages/Tags/MessagesWithTag';
 
 // Auth
@@ -30,6 +29,7 @@ export const client = new ApolloClient({
   link: httpLink,
   cache: new InMemoryCache()
 });
+
 const { styles } = reset;
 
 const App = () => {

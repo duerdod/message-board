@@ -158,6 +158,7 @@ export const reset = css`
     textarea {
       font-size: 16px !important;
       appearance: none;
+      background: ${theme.color.white.hex};
       &::placeholder {
         font-size: 0.85rem;
       }

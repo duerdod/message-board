@@ -23,7 +23,7 @@ const SendButton = styled.button`
     background-size: 100% 100%;
     box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.1);
   }
-  ${p => p.theme.isMobile} { {
+  ${p => p.theme.isMobile} {
     box-shadow: none;
     border-radius: 0;
   }

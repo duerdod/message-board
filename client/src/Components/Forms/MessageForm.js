@@ -61,7 +61,7 @@ export const StyledForm = styled.form`
     color: ${({ theme }) => theme.color.green.hex};
   }
 
-  ${p => p.theme.isMobile} { {
+  ${p => p.theme.isMobile} {
     font-size: 1.1rem;
     border-radius: 0;
     box-shadow: none;

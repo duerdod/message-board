@@ -106,13 +106,13 @@ const Signup = ({ history }) => {
             required
           />
         </label>
-        {error ? <ErrorMessage> {error.message}</ErrorMessage> : null}
+        {error ? <ErrorMessage error={error.message} /> : null}
         <Button
           size="small"
           onClick={() => {
             signup({
               variables: {
-                // For some reason this doesn't work with object shorthands... ie { values }. TODO.
+                // For some reason this doesn't work with object shorthands... ie { ...values }. TODO.
                 firstname: values.firstname,
                 lastname: values.lastname,
                 username: values.username,

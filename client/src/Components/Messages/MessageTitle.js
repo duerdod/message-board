@@ -9,8 +9,8 @@ const MessageTitleText = styled.h2`
   color: ${({ theme }) => theme.color.grey.tint[2]};
 `;
 
-const MessageTitle = ({ message, children }) => {
-  return <MessageTitleText>{message.title || children}</MessageTitleText>;
-};
+const MessageTitle = ({ message, children }) => (
+  <MessageTitleText>{message.title || children}</MessageTitleText>
+);
 
 export default MessageTitle;

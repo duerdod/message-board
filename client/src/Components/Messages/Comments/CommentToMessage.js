@@ -32,7 +32,6 @@ const StyledForm = styled.form`
 
   input {
     background: ${({ theme }) => theme.color.white.hex};
-    /* height: 45px; */
     padding: 1rem;
     border-radius: 3px;
     width: 50%;
@@ -46,15 +45,15 @@ const StyledForm = styled.form`
   }
 `;
 
-const CommentToMessage = ({ id, history }) => {
+const CommentToMessage = ({ id }) => {
   const { user } = useUser();
+
   const formInit = {
     comment: '',
     author: (user && user.username) || ''
   };
-  const { values, handleChange, handleSubmit, setValues } = useForm(formInit);
 
-  const [step, setStep] = useState(0);
+  const { values, handleChange, handleSubmit, setValues } = useForm(formInit);
 
   const [commentMessage, { loading, error }] = useMutation(COMMENT_MESSAGE, {
     variables: { id, comment: values.comment, author: values.author },
@@ -66,6 +65,8 @@ const CommentToMessage = ({ id, history }) => {
     ]
   });
 
+  // Steps as in a form wizard.
+  const [step, setStep] = useState(0);
   return (
     <Page>
       <StyledForm>

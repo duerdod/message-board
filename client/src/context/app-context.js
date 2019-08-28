@@ -1,11 +1,10 @@
 import React, { createContext, useState, useEffect } from 'react';
-import useMobileView from '../hooks/useMobileView';
 
 const AppContext = createContext();
 
+// I think there is no point in having this as a context this far up.
 const AppContextProvider = ({ children }) => {
   const [isMenuOpen, toggleMenuOpen] = useState(false);
-  const { isLarge } = useMobileView();
 
   useEffect(() => {
     // Is this OK? Looks bad.
@@ -16,7 +15,7 @@ const AppContextProvider = ({ children }) => {
   }, [isMenuOpen]);
 
   return (
-    <AppContext.Provider value={{ isLarge, isMenuOpen, toggleMenuOpen }}>
+    <AppContext.Provider value={{ isMenuOpen, toggleMenuOpen }}>
       {children}
     </AppContext.Provider>
   );

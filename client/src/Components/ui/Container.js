@@ -10,9 +10,4 @@ export const Container = styled.section`
     border-radius: 0px;
     box-shadow: none;
   }
-  /* ${p => p.theme.isMobile} { {
-    width: 100%;
-    margin: 0;
-    box-shadow: none;
-  } */
 `;

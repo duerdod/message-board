@@ -47,17 +47,6 @@ const StyledForm = styled(Form)`
   }
 `;
 
-export function validateEmail(email) {
-  let error;
-  if (!email) {
-    error = 'Nah email supplied';
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
-    error = 'Invalid email address';
-  }
-  console.log(error);
-  return error;
-}
-
 const UserDetails = ({ currentUser }) => {
   const { reload } = useContext(AuthContext);
   const [updateUser, { error, loading }] = useMutation(UPDATE_USER, {
@@ -71,7 +60,7 @@ const UserDetails = ({ currentUser }) => {
     email,
     password
   });
-  // console.log(values.password);
+
   return (
     <Formik
       initialValues={{ firstname, lastname, email, password: '' }}

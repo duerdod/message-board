@@ -27,19 +27,17 @@ const Container = styled.footer`
   }
 `;
 
-const Footer = ({ id, dislikes, comments }) => {
-  return (
-    <Container>
-      <Link
-        to={{
-          pathname: `/message/${id}`
-        }}
-      >
-        <Comments id={id} comments={comments} />
-      </Link>
-      <Dislike id={id} dislikes={dislikes} />
-    </Container>
-  );
-};
+const Footer = ({ id, dislikes, comments }) => (
+  <Container>
+    <Link
+      to={{
+        pathname: `/message/${id}`
+      }}
+    >
+      <Comments id={id} comments={comments} />
+    </Link>
+    <Dislike id={id} dislikes={dislikes} />
+  </Container>
+);
 
 export default Footer;

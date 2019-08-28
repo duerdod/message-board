@@ -37,9 +37,6 @@ export const StyledBell = styled(Bell)`
   }
 `;
 
-// const refetchMessage = dislikes =>
-//   dislikes < 5 ? GET_SINGLE_MESSAGE : GET_ALL_MESSAGES;
-
 const Dislike = ({ id, dislikes }) => {
   const [dislikeMessage, { loading }] = useMutation(DISLIKE_MESSAGE, {
     variables: {

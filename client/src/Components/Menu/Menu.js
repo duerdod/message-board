@@ -10,6 +10,10 @@ import Authenticated from '../Auth/Authenticated';
 import Signout from '../Auth/Signout';
 
 const MenuContainer = styled.div`
+  &.menu-open {
+    left: 0;
+  }
+
   height: 100%;
   max-width: 485px;
   width: 400px;
@@ -19,7 +23,10 @@ const MenuContainer = styled.div`
   left: -100%;
   transition: left 0.2s ease-out;
   box-shadow: 0 3px 8px 0 ${p => p.theme.color[p.color].tint[3]};
-  /* background: ${({ theme }) => theme.color.secondary.tint[3]}; */
+  background: linear-gradient(170deg, ${p =>
+    p.theme.color[p.color].tint[1]} 80% , ${p =>
+  p.theme.color[p.color].tint[4]});
+  border-radius: 0px 4px 4px 0;
   /* background: linear-gradient(
     170deg,
     ${p =>
@@ -28,15 +35,10 @@ const MenuContainer = styled.div`
           i === colors.length - 1 ? color : (color += ' 80%, ')
         )
         .join('\n')}
-  ); */
-  background: linear-gradient(170deg, ${p =>
-    p.theme.color[p.color].tint[1]} 80% , ${p =>
-  p.theme.color[p.color].tint[4]});
-  border-radius: 0px 4px 4px 0;
-  &.menu-open {
-    left: 0;
-  }
-  ${p => p.theme.isMobile} { {
+  );
+      THIS WAS FUN. BUT NOT AS PERFORMANT? I THINK.
+   */
+  ${p => p.theme.isMobile} { 
     width: 280px;
     max-width: 80%;
   }
@@ -48,11 +50,6 @@ const MenuInnerContainer = styled.div`
   margin: 0.2rem;
   display: flex;
   flex-direction: column;
-
-  h2,
-  h3 {
-    margin: 0;
-  }
 `;
 
 const NavItems = styled.ul`
@@ -100,12 +97,12 @@ const Menu = () => {
         <Information />
         <NavItems>
           <Authenticated
-            renderAuth={user => (
+            renderAuth={({ username }) => (
               <>
                 <li>
                   <NavLink onClick={collapseMenu} to="/profile">
                     <span>User: </span>
-                    {user.username}
+                    {username}
                   </NavLink>
                 </li>
                 <li>

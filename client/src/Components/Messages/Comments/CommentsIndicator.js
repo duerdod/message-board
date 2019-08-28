@@ -25,13 +25,11 @@ const StyledCommentsIcon = styled(CommentsIcon)`
   stroke: none;
 `;
 
-const Comments = ({ comments }) => {
-  return (
-    <CommentsContainer>
-      <StyledCommentsIcon />
-      <CommentsCount>{comments ? comments.length : 0}</CommentsCount>
-    </CommentsContainer>
-  );
-};
+const Comments = ({ comments }) => (
+  <CommentsContainer>
+    <StyledCommentsIcon />
+    <CommentsCount>{comments ? comments.length : 0}</CommentsCount>
+  </CommentsContainer>
+);
 
 export default Comments;

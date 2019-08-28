@@ -21,9 +21,9 @@ const Footer = styled.footer`
   background: ${({ theme }) => theme.color.grey.hex};
 `;
 
-const Comment = ({ comments }) => {
-  return comments.map((comment, i) => (
-    <CommentContainer key={i}>
+const Comment = ({ comments }) =>
+  comments.map(comment => (
+    <CommentContainer key={comment.id}>
       <Header message={comment} />
       <CommentText>
         <p>{comment.comment}</p>
@@ -31,6 +31,5 @@ const Comment = ({ comments }) => {
       <Footer />
     </CommentContainer>
   ));
-};
 
 export default Comment;

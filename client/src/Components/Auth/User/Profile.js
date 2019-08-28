@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { useQuery } from '@apollo/react-hooks';
-
+import StatusPage from '../../StatusPage';
 import UserHeader from './UserHeader';
 import Tabs from './Tabs';
 
@@ -26,7 +26,7 @@ const Profile = () => {
   const { user } = React.useContext(UserContext);
   const { data, error, loading } = useQuery(GET_CURRENT_USER_DETAILS);
   if (!user) return <NotSignedIn />;
-  if (loading) return '';
+  if (loading) return <StatusPage state={loading && 'loading'} />;
   if (error) return <NotSignedIn />;
   const { currentUser } = data;
 

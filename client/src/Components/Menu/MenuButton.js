@@ -28,6 +28,7 @@ const AnimatedClose = animated(Close);
 
 const MenuButton = () => {
   const { isMenuOpen, toggleMenuOpen, isLarge } = useContext(AppContext);
+
   const animate = useTransition(isMenuOpen, p => p, {
     unique: true,
     from: {

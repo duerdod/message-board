@@ -9,7 +9,6 @@ const HeaderWrapper = styled.header`
   align-content: center;
   align-items: center;
   padding: 0.5rem 0.8rem 0 0.8rem;
-  /* margin: 0.3rem 0; */
 `;
 
 const AuthorContainer = styled.span`
@@ -18,20 +17,20 @@ const AuthorContainer = styled.span`
   margin-right: 4px;
 `;
 
-// Hard coded avatar. Fix this.
+// Hard coded avatar. TODO.
 const Avatar = styled.span`
   display: inline-flex;
   padding: 6px;
   border-radius: 50%;
   background: ${({ theme }) => theme.color.grey.tint[9]};
   margin-right: 6px;
-
   svg {
     height: 1rem;
     width: 1rem;
     stroke: black;
   }
 `;
+
 const Author = styled.span`
   font-size: 0.75rem;
   font-weight: 600;
@@ -43,18 +42,17 @@ const Timestamp = styled.span`
   color: ${({ theme }) => theme.color.grey.tint[4]};
 `;
 
-const Header = ({ message, children }) => {
-  return (
-    <HeaderWrapper>
-      <AuthorContainer>
-        <Avatar>
-          <Person />
-        </Avatar>
-        <Author>{message.author || children}</Author>
-      </AuthorContainer>
-      <Timestamp> &#8729; {addTimestamp(message.date)}</Timestamp>
-    </HeaderWrapper>
-  );
-};
+// Children is passed down from message form. If its open.
+const Header = ({ message, children }) => (
+  <HeaderWrapper>
+    <AuthorContainer>
+      <Avatar>
+        <Person />
+      </Avatar>
+      <Author>{message.author || children}</Author>
+    </AuthorContainer>
+    <Timestamp> &#8729; {addTimestamp(message.date)}</Timestamp>
+  </HeaderWrapper>
+);
 
 export default Header;
