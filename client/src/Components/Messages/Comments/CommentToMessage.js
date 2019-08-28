@@ -8,6 +8,13 @@ import { ErrorMessage } from '../../StatusPage';
 import useUser from '../../../hooks/useUser';
 import { ReactComponent as Person } from '../../../svg/Person2.svg';
 
+const Page = styled.div`
+  background: ${({ theme }) => theme.color.white.tint[6]};
+  .error-message {
+    text-align: center;
+  }
+`;
+
 const Avatar = styled(Person)`
   stroke: #383838;
 `;
@@ -60,46 +67,50 @@ const CommentToMessage = ({ id, history }) => {
   });
 
   return (
-    <StyledForm>
-      <Avatar />
-      {step === 0 && (
-        <input
-          type="text"
-          name="comment"
-          placeholder="Add comment..."
-          value={values.comment}
-          onChange={handleChange}
-        />
-      )}
-      {step === 1 &&
-        (!user && (
+    <Page>
+      <StyledForm>
+        <Avatar />
+        {step === 0 && (
           <input
             type="text"
-            name="author"
-            placeholder={values.author || 'Also, your name.'}
-            value={(user && user.username) || values.author || ''}
+            name="comment"
+            placeholder="Add comment..."
+            value={values.comment}
             onChange={handleChange}
+            autoFocus
           />
-        ))}
-      {error ? <ErrorMessage>{error.message}</ErrorMessage> : null}
-      <Button
-        color="primary"
-        size="xsmall"
-        disabled={loading}
-        className="comment-button"
-        onClick={e => {
-          if (step === 1 || user) {
-            handleSubmit(e, commentMessage);
-            setStep(0);
-            setValues(formInit);
-          } else {
-            setStep((step + 1) % 2);
-          }
-        }}
-      >
-        comment{loading ? 'ing' : null}
-      </Button>
-    </StyledForm>
+        )}
+        {step === 1 &&
+          (!user && (
+            <input
+              type="text"
+              name="author"
+              placeholder={values.author || 'Also, your name.'}
+              value={(user && user.username) || values.author || ''}
+              onChange={handleChange}
+              autoFocus
+            />
+          ))}
+        <Button
+          color="primary"
+          size="xsmall"
+          disabled={loading}
+          className="comment-button"
+          onClick={e => {
+            if (step === 1 || user) {
+              handleSubmit(e, commentMessage);
+              setStep(0);
+              setValues(formInit);
+            } else {
+              setStep((step + 1) % 2);
+            }
+          }}
+        >
+          comment{loading ? 'ing' : null}
+        </Button>
+      </StyledForm>
+      {error ? <ErrorMessage error={error.message} /> : null}
+    </Page>
   );
 };
 

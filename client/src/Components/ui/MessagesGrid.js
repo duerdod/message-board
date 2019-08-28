@@ -13,7 +13,7 @@ const MessagesGrid = styled.section`
   }
 
   ${p => p.theme.isMobile} {
-    grid-template-columns: 1fr;
+    grid-template-columns: 100%;
     grid-gap: 0rem;
     padding: 0rem;
     .message {

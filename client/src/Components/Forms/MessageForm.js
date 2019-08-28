@@ -73,6 +73,9 @@ const Footer = styled.footer`
   padding: 0rem;
   border-top: 1px solid ${({ theme }) => theme.color.white.tint[4]};
   margin-top: auto;
+  .error-message {
+    text-align: center;
+  }
 `;
 
 const StyledSendButton = styled(SendButton)`

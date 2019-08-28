@@ -74,12 +74,13 @@ const ErrorText = styled.p`
   color: ${({ theme }) => theme.color.red.hex};
   display: block;
   width: 100%;
-  margin: 1rem 0;
+  padding: 1rem 0;
+  background: inherit;
 `;
 
 // For smaller error messages.
 export const ErrorMessage = ({ error }) => (
-  <ErrorText>{trimErrorMessage(error)}</ErrorText>
+  <ErrorText className="error-message">{trimErrorMessage(error)}</ErrorText>
 );
 
 const Spinner = () => {

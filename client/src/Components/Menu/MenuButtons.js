@@ -24,7 +24,7 @@ const MenuButtons = props => {
     <MenuButtonContainer>
       <div>
         {location.pathname !== '/' ? <BackButton history={history} /> : null}
-        <PostButton history={history} />
+        <PostButton {...props} />
         <MenuButton />
       </div>
     </MenuButtonContainer>

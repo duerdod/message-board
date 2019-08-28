@@ -15,7 +15,7 @@ const StyledMenuButton = styled(Button)`
     transform: translate3d(55px, 0, 0);
     width: 65px;
     ${p => p.theme.isMobile} {
-      transform: translate3d(65px, 0, 0);
+      transform: translate3d(75px, 0, 0);
     }
   }
   svg {

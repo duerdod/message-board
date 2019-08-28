@@ -63,11 +63,7 @@ const FormButton = ({ className }) => {
 
   return (
     <>
-      {error ? (
-        <ErrorMessage style={{ textAlign: 'center' }}>
-          {error.message}
-        </ErrorMessage>
-      ) : null}
+      {error ? <ErrorMessage error={error.message} /> : null}
       <SendButton
         className={className}
         onClick={e => submitMessage(e, addMessage)}
