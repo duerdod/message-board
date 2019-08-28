@@ -14,13 +14,15 @@ do `docker-compose` and you're up.
 - [x] "Vote" for removal.
 - [x] Add comments.
 - [ ] "Pagination".
-- [ ] Tag posts.
+- [x] Tag posts.
+- [ ] Write tests!
+- [ ] User settings.
 - [ ] Filter and sort messages.
 - [x] Signup/Login with jwt and bcryptjs, view users messages (user: poppen, pass:hejhej or signup).
 - [ ] User settings.
-- [ ] Write tests!
 - [ ] Better server side error handling.
 - [ ] Naming, refactoring and cleanup.
+- [ ] Cleanup, refactoring, cleanup, refactoring, cleanup, refactoring, cleanup, refactoring.
 
 ## Tools
 

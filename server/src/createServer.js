@@ -1,13 +1,10 @@
 /* eslint-disable */
-const { ApolloServer, gql } = require('apollo-server-express');
-const { importSchema } = require('graphql-import');
+const { ApolloServer } = require('apollo-server-express');
 const { prisma } = require('../generated/prisma-client/index');
 const Query = require('./resolvers/Query');
 const Mutation = require('./resolvers/Mutation');
 const Types = require('./resolvers/Types');
-
-// Using importSchema to import Prisma generated types.
-const typeDefs = importSchema('src/board-schema.graphql');
+const typeDefs = require('./graphqlschema');
 
 const corsOptions = {
   origin: '*',
