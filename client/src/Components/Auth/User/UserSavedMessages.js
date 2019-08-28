@@ -1,11 +1,18 @@
 import React from 'react';
-// import styled from '@emotion/styled';
+import styled from '@emotion/styled';
 import Button from '../../ui/Button';
+
+const Container = styled.div`
+  > button {
+    display: block;
+    margin: 1rem;
+  }
+`;
 
 const UserSavedMessages = ({ id, openTabId }) => {
   return (
     openTabId === id && (
-      <div>
+      <Container>
         <Button onClick={() => console.log('hej')} color="green" size="xsmall">
           xsmall
         </Button>
@@ -25,7 +32,7 @@ const UserSavedMessages = ({ id, openTabId }) => {
         >
           xlarge
         </Button>
-      </div>
+      </Container>
     )
   );
 };
