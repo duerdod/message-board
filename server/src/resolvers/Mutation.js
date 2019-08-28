@@ -50,31 +50,34 @@ const Mutation = {
       date
     });
 
-    // For now this is only available for signup users.
+    // For now this is only available for signed up users.
     // Is there any # (tags) in the new message?
     if (checkMessageForTags().test(message)) {
-      extractTagsFromMessage(message).forEach(async tag => {
-        // Does tag excist? Update tag by inserting the new message.
-        const isTagInUse = await context.prisma.tag({ tag });
-        if (isTagInUse) {
-          const updatedTag = await context.prisma.updateTag({
-            data: {
-              messages: { connect: { id: newMessageWithUser.id } }
-            },
-            where: {
-              tag
-            }
+      extractTagsFromMessage(message).forEach(async (tag, i) => {
+        // No excisting tag? Create it.
+        const existingTag = await context.prisma.tag({ tag }).messages();
+        if (!existingTag) {
+          const newTag = await context.prisma.createTag({
+            tag,
+            messages: { connect: { id: newMessageWithUser.id } },
+            count: 0
           });
-          return updatedTag;
+
+          return newTag;
         }
 
-        // Otherwise create a new tag.
-        const messageWithTags = await context.prisma.createTag({
-          tag,
-          messages: { connect: { id: newMessageWithUser.id } }
+        // Otherwise update it with new use count.
+        const updatedTag = await context.prisma.updateTag({
+          data: {
+            messages: { connect: { id: newMessageWithUser.id } },
+            count: existingTag.length + 1
+          },
+          where: {
+            tag
+          }
         });
 
-        return messageWithTags;
+        return updatedTag;
       });
     }
 

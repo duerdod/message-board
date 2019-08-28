@@ -33,9 +33,12 @@ function checkMessageForTags() {
 }
 
 function extractTagsFromMessage(message) {
-  const tags = message.match(checkMessageForTags());
-  if (!tags) return [];
-  return tags;
+  const rawTags = message.match(checkMessageForTags());
+  if (!rawTags) return [];
+  // Tags have to be longer than 1 char. If they are,
+  // replace to someting "unique" to handle on client.
+  const lengthCheckedTags = rawTags.filter(tag => tag.length > 2);
+  return lengthCheckedTags;
 }
 
 module.exports = {

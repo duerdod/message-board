@@ -1,4 +1,6 @@
 const { gql } = require('apollo-server-express');
+const { importSchema } = require('graphql-import');
+const types = gql(importSchema('src/schema.graphql'));
 
 const typeDefs = gql`
   type Success {
@@ -29,7 +31,7 @@ const typeDefs = gql`
     dislikes: Int!
     comments: [Comment]
     user: User
-    tags: [Tag!]
+    tags: [Tag]
     date: String
   }
 
@@ -50,6 +52,7 @@ const typeDefs = gql`
     currentUser: User!
     user(username: String): User
     tag(tag: String!): Tag!
+    tags: [Tag]
   }
 
   type Mutation {

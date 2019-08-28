@@ -21,7 +21,7 @@ const Messages = ({ tag }) => {
   if (error) return <StatusPage state={error && 'error'} />;
   if (loading) return <StatusPage state={loading && 'loading'} />;
 
-  // Rewrite to use tag as vairable on GET_ALL_MESSAGES instead.
+  // Rewrite to use tag as variable on GET_ALL_MESSAGES instead.
   const { messages } = tag ? data.tag : data;
 
   return (

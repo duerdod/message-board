@@ -24,34 +24,46 @@ const MessageText = styled.div`
   }
 `;
 
-function filterForTags(incoming) {
-  const { message, user } = incoming;
-  if (!user) return message;
-  const tags = message.match(checkMessageForTags());
-  if (!tags) return message;
-  const messeageWithoutTags = message.replace(checkMessageForTags(), '');
-  return AppendTagLink(messeageWithoutTags, tags);
+function filterTags(rawMessage) {
+  const { tags, user, message } = rawMessage;
+  if (!tags) return <MessageTextWithoutTags message={message} />;
+  if (!user) return <MessageTextWithoutTags message={message} />;
+
+  // Room for improvement...
+  const messageWithTags = message
+    .split(checkMessageForTags())
+    .filter(text => text !== ' ' && text !== '');
+  return <AppendTagLink message={messageWithTags} />;
 }
 
-const AppendTagLink = (message, tags) => (
-  <>
-    {message}
-    {tags.map((tag, i) => (
-      <Link key={i} to={`/messages/${tag.replace('#', '')}`}>
-        {tag}
-      </Link>
-    ))}
-  </>
+const MessageTextWithoutTags = ({ message }) => (
+  <MessageText>
+    <p>{message}</p>
+  </MessageText>
 );
 
-const MessageBody = ({ message, children }) => {
-  return (
-    <Container className={`${shouldMessageExpand(message.message)} content`}>
-      <MessageText>
-        <p>{message ? filterForTags(message) : children}</p>
-      </MessageText>
-    </Container>
-  );
-};
+const AppendTagLink = ({ message }) => (
+  <MessageText>
+    <p>
+      {message.map((text, i) =>
+        // If text chunk includes #, ie. is a tag, return link to it
+        text.includes('#') ? (
+          <Link key={i} to={`/messages/${text.replace('#', '')}`}>
+            {text}
+          </Link>
+        ) : (
+          text
+        )
+      )}
+    </p>
+  </MessageText>
+);
+
+// Children is returned from Post form.
+const MessageBody = ({ message, children }) => (
+  <Container className={`${shouldMessageExpand(message.message)} content`}>
+    {message ? filterTags(message) : children}
+  </Container>
+);
 
 export default MessageBody;

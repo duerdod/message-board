@@ -11,9 +11,6 @@ const Query = {
     const message = await context.prisma.message({ id });
     return message;
   },
-  user(root, args, context) {
-    return context.prisma.user({ username: args.username });
-  },
   async currentUser(root, args, context) {
     if (!context.req.user) return null;
     const user = await context.prisma.user({ id: context.req.user.id });
@@ -23,6 +20,10 @@ const Query = {
     // Messages because Im only intrested in messages related to the tag ...
     const messages = await context.prisma.tag({ tag: args.tag });
     return messages;
+  },
+  async tags(root, args, context) {
+    const tags = await context.prisma.tags();
+    return tags;
   }
 };
 

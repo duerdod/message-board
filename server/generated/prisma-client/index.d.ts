@@ -244,7 +244,13 @@ export type MessageOrderByInput =
   | "date_ASC"
   | "date_DESC";
 
-export type TagOrderByInput = "id_ASC" | "id_DESC" | "tag_ASC" | "tag_DESC";
+export type TagOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "tag_ASC"
+  | "tag_DESC"
+  | "count_ASC"
+  | "count_DESC";
 
 export type UserOrderByInput =
   | "id_ASC"
@@ -422,6 +428,14 @@ export interface TagWhereInput {
   messages_every?: Maybe<MessageWhereInput>;
   messages_some?: Maybe<MessageWhereInput>;
   messages_none?: Maybe<MessageWhereInput>;
+  count?: Maybe<Int>;
+  count_not?: Maybe<Int>;
+  count_in?: Maybe<Int[] | Int>;
+  count_not_in?: Maybe<Int[] | Int>;
+  count_lt?: Maybe<Int>;
+  count_lte?: Maybe<Int>;
+  count_gt?: Maybe<Int>;
+  count_gte?: Maybe<Int>;
   AND?: Maybe<TagWhereInput[] | TagWhereInput>;
   OR?: Maybe<TagWhereInput[] | TagWhereInput>;
   NOT?: Maybe<TagWhereInput[] | TagWhereInput>;
@@ -936,11 +950,13 @@ export interface CommentCreateWithoutUserInput {
 
 export interface TagUpdateWithoutMessagesDataInput {
   tag?: Maybe<String>;
+  count?: Maybe<Int>;
 }
 
 export interface TagCreateWithoutMessagesInput {
   id?: Maybe<ID_Input>;
   tag: String;
+  count: Int;
 }
 
 export interface TagUpsertWithWhereUniqueWithoutMessagesInput {
@@ -988,6 +1004,14 @@ export interface TagScalarWhereInput {
   tag_not_starts_with?: Maybe<String>;
   tag_ends_with?: Maybe<String>;
   tag_not_ends_with?: Maybe<String>;
+  count?: Maybe<Int>;
+  count_not?: Maybe<Int>;
+  count_in?: Maybe<Int[] | Int>;
+  count_not_in?: Maybe<Int[] | Int>;
+  count_lt?: Maybe<Int>;
+  count_lte?: Maybe<Int>;
+  count_gt?: Maybe<Int>;
+  count_gte?: Maybe<Int>;
   AND?: Maybe<TagScalarWhereInput[] | TagScalarWhereInput>;
   OR?: Maybe<TagScalarWhereInput[] | TagScalarWhereInput>;
   NOT?: Maybe<TagScalarWhereInput[] | TagScalarWhereInput>;
@@ -1022,6 +1046,7 @@ export interface UserSubscriptionWhereInput {
 
 export interface TagUpdateManyDataInput {
   tag?: Maybe<String>;
+  count?: Maybe<Int>;
 }
 
 export interface UserUpdateManyMutationInput {
@@ -1039,6 +1064,7 @@ export interface MessageUpsertWithoutCommentsInput {
 
 export interface TagUpdateManyMutationInput {
   tag?: Maybe<String>;
+  count?: Maybe<Int>;
 }
 
 export interface UserUpdateOneWithoutCommentsInput {
@@ -1193,6 +1219,7 @@ export interface TagCreateInput {
   id?: Maybe<ID_Input>;
   tag: String;
   messages?: Maybe<MessageCreateManyWithoutTagsInput>;
+  count: Int;
 }
 
 export interface CommentUpsertWithWhereUniqueWithoutMessageInput {
@@ -1347,6 +1374,7 @@ export interface MessageCreateOneWithoutCommentsInput {
 export interface TagUpdateInput {
   tag?: Maybe<String>;
   messages?: Maybe<MessageUpdateManyWithoutTagsInput>;
+  count?: Maybe<Int>;
 }
 
 export interface NodeNode {
@@ -1907,6 +1935,7 @@ export interface TagSubscriptionPayloadSubscription
 export interface Tag {
   id: ID_Output;
   tag: String;
+  count: Int;
 }
 
 export interface TagPromise extends Promise<Tag>, Fragmentable {
@@ -1921,6 +1950,7 @@ export interface TagPromise extends Promise<Tag>, Fragmentable {
     first?: Int;
     last?: Int;
   }) => T;
+  count: () => Promise<Int>;
 }
 
 export interface TagSubscription
@@ -1937,6 +1967,7 @@ export interface TagSubscription
     first?: Int;
     last?: Int;
   }) => T;
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface TagNullablePromise extends Promise<Tag | null>, Fragmentable {
@@ -1951,6 +1982,7 @@ export interface TagNullablePromise extends Promise<Tag | null>, Fragmentable {
     first?: Int;
     last?: Int;
   }) => T;
+  count: () => Promise<Int>;
 }
 
 export interface UserEdge {
@@ -1973,6 +2005,7 @@ export interface UserEdgeSubscription
 export interface TagPreviousValues {
   id: ID_Output;
   tag: String;
+  count: Int;
 }
 
 export interface TagPreviousValuesPromise
@@ -1980,6 +2013,7 @@ export interface TagPreviousValuesPromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   tag: () => Promise<String>;
+  count: () => Promise<Int>;
 }
 
 export interface TagPreviousValuesSubscription
@@ -1987,6 +2021,7 @@ export interface TagPreviousValuesSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   tag: () => Promise<AsyncIterator<String>>;
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface MessageConnection {

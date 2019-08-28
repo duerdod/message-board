@@ -7,6 +7,13 @@ const message = `
   author
   dislikes
   date
+  tags {
+    id
+    tag
+  }
+  user {
+    id
+  }
   __typename
 `;
 
@@ -134,16 +141,6 @@ export const GET_CURRENT_USER = gql`
     currentUser {
       id
       username
-      __typename
-    }
-  }
-`;
-
-export const GET_USER = gql`
-  query GET_USER($username: String) {
-    user(username: $username) {
-      ${user}
-      ${message}
       __typename
     }
   }

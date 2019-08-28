@@ -34,7 +34,7 @@ const Form = styled.form`
     margin-right: 4px;
     span {
       position: absolute;
-      bottom: 35px;
+      bottom: 37px;
       font-size: 0.65rem;
       color: ${({ theme }) => theme.black};
     }
@@ -46,7 +46,7 @@ const Form = styled.form`
     height: 35px;
     width: 100%;
     &::placeholder {
-      color: ${({ theme }) => theme.lightGrey};
+      color: ${({ theme }) => theme.color.grey.tint[0]};
     }
   }
   button {
@@ -64,10 +64,7 @@ const Form = styled.form`
 const Signin = ({ history }) => {
   const { reload } = useContext(AuthContext);
 
-  const { handleChange, values } = useForm({
-    username: '',
-    password: ''
-  });
+  const { handleChange, values } = useForm();
   const [signin, { error }] = useMutation(SIGN_IN, {
     onCompleted: () => reload().then(() => history.push('/profile'))
   });
