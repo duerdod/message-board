@@ -3,19 +3,26 @@ import styled from '@emotion/styled';
 import Messages from '../Messages';
 
 const Title = styled.h2`
-  color: ${({ theme }) => theme.color.primary.hex};
-  font-weight: 900;
   text-align: center;
   margin: 1rem;
   font-size: 1.7rem;
-  letter-spacing: 2px;
+  font-weight: 600;
+  color: ${({ theme }) => theme.color.grey.hex};
+  text-transform: uppercase;
+  span {
+    color: ${({ theme }) => theme.color.primary.hex};
+    font-weight: 900;
+    letter-spacing: 2px;
+  }
 `;
 
 const MessagesWithTag = props => {
   const { tag } = props.match.params;
   return (
     <div>
-      <Title>#{tag}</Title>
+      <Title>
+        All <span>#{tag}</span> messages
+      </Title>
       <Messages tag={tag} />
     </div>
   );
