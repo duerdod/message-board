@@ -16,21 +16,20 @@ export const GET_TAGS = gql`
   }
 `;
 
-const Page = styled.div``;
-
-// const PageTitle = styled.h2`
-//   /* text-align: center; */
-//   color: ${({ theme }) => theme.color.primary.hex};
-//   font-weight: 900;
-//   font-size: 1.7rem;
-// `;
-
-const TagContainer = styled.ul`
+const Page = styled.div`
   margin-top: 1rem;
 `;
 
+const PageTitle = styled.h2`
+  color: ${({ theme }) => theme.color.primary.tint[7]};
+  font-weight: 900;
+  font-size: 1.2rem;
+`;
+
+const TagContainer = styled.ul``;
+
 const Tag = styled.li`
-  color: ${({ theme }) => theme.color.white.tint[1]};
+  color: ${({ theme }) => theme.color.primary.tint[7]};
   font-weight: 200;
   display: inline-block;
   font-size: ${p => p.size}rem;
@@ -38,7 +37,7 @@ const Tag = styled.li`
   opacity: 0.7;
   transition: all 0.2s ease;
   &:hover {
-    opacity: 1;
+    color: ${({ theme }) => theme.color.primary.tint[9]};
   }
 `;
 
@@ -50,7 +49,7 @@ const Trendy = ({ collapseMenu }) => {
 
   return (
     <Page>
-      {/* <PageTitle>Tr3ndie t4gs</PageTitle> */}
+      <PageTitle>Trending</PageTitle>
       <TagContainer>
         {tags
           .sort((first, second) => second.count - first.count)

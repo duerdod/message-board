@@ -7,6 +7,11 @@ const Text = styled.h2`
   font-size: ${p => p.size}rem;
   margin: 0;
   font-weight: 900;
+  &:hover {
+    svg {
+      fill: ${({ theme }) => theme.white};
+    }
+  }
 `;
 
 const Bell = styled(MenuBell)`

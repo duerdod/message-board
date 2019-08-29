@@ -14,23 +14,23 @@ const UserSavedMessages = ({ id, openTabId }) => {
     openTabId === id && (
       <Container>
         <Button onClick={() => console.log('hej')} color="green" size="xsmall">
-          xsmall
+          xsmall / green
         </Button>
         <Button onClick={() => console.log('hej')} color="red" size="small">
-          small
+          small / red
         </Button>
-        <Button onClick={() => console.log('hej')} color="primary" size="lagom">
-          lagom
+        <Button onClick={() => console.log('hej')} color="grey" size="lagom">
+          lagom / grey
         </Button>
-        <Button onClick={() => console.log('hej')} color="grey" size="large">
-          large
+        <Button onClick={() => console.log('hej')} color="primary" size="large">
+          large / primary
         </Button>
         <Button
           onClick={() => console.log('hej')}
           color="secondary"
           size="xlarge"
         >
-          xlarge
+          xlarge / secondary
         </Button>
       </Container>
     )

@@ -35,7 +35,7 @@ const Logo = () => (
     <Title tint={4} color="primary">
       AND
     </Title>
-    <Title tint={6} color="primary" style={{ fontStyle: 'italic' }}>
+    <Title tint={5} color="primary" style={{ fontStyle: 'italic' }}>
       THE COOLS
     </Title>
   </Link>

@@ -14,7 +14,6 @@ const Avatar = styled.div`
     padding: 6px;
     border-radius: 50%;
     box-shadow: ${({ theme }) => theme.boxShadow};
-    background: ${({ theme }) => theme.lightGrey};
     margin-right: 6px;
   }
   svg {
@@ -25,7 +24,7 @@ const Avatar = styled.div`
 `;
 
 const Username = styled.h2`
-  color: ${({ theme }) => theme.color.green.tint[1]};
+  color: ${({ theme }) => theme.color.primary.tint[1]};
   /* text-align: right; */
   font-weight: 900;
   font-size: 1.8rem;
