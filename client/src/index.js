@@ -5,16 +5,22 @@ import { ThemeProvider } from 'emotion-theming';
 import { ApolloClient, InMemoryCache, HttpLink } from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Header from './Components/Layout/Header/Header';
-import Board from './Board';
-import Footer from './Components/Layout/Footer/Footer';
-import Comments from './Components/Messages/Comments/Comments';
 import theme, { reset } from './Components/Theme';
 import AppStateProvider from './context/index';
-import MenuButtons from './Components/Menu/MenuButtons';
+
+// Components
 import Menu from './Components/Menu/Menu';
+import Footer from './Components/Layout/Footer/Footer';
+import MenuButtons from './Components/Menu/MenuButtons';
+import Header from './Components/Layout/Header/Header';
+
 import MaxWidth from './Components/ui/MaxWidth';
+
+// Pages
+import Board from './Board';
+import Trendy from './Components/Trendy/Trendy';
 import MessagesWithTag from './Components/Messages/Tags/MessagesWithTag';
+import Comments from './Components/Messages/Comments/Comments';
 
 // Auth
 import Signup from './Components/Auth/Signup';
@@ -45,10 +51,11 @@ const App = () => {
               <Switch>
                 <Route exact path="/" component={Board} />
                 <Route path="/message/:id" component={Comments} />
+                <Route path="/messages/:tag" component={MessagesWithTag} />
                 <Route path="/signup" component={Signup} />
                 <Route path="/signin" component={Signin} />
                 <Route path="/profile" component={Profile} />
-                <Route path="/messages/:tag" component={MessagesWithTag} />
+                <Route path="/trendie" component={Trendy} />
               </Switch>
             </MaxWidth>
             <MenuButtons />

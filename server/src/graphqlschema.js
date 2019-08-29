@@ -9,6 +9,7 @@ const typeDefs = gql`
     id: ID!
     tag: String!
     messages: [Message]
+    count: Int!
   }
 
   type Comment {

@@ -89,15 +89,19 @@ const theme = {
       shade: ['#727272', '#666666', '#595959', '#4C4C4C']
     },
     white: {
-      hex: '#fdfdfd',
+      hex: '#FCFBFB',
       tint: [
-        '#FFFFFF',
-        '#F2F2F2',
-        '#F3F3F3',
-        '#F5F5F5',
-        '#F6F6F6',
-        '#F7F7F7',
-        '#F9F9F9'
+        '#FAF9F9',
+        '#FBFAFA',
+        '#FBFAFA',
+        '#FCFBFB',
+        '#FCFBFB',
+        '#FDFCFC',
+        '#FDFDFD',
+        '#FEFDFD',
+        '#FEFEFE',
+        '#FFFEFE',
+        '#FFFFFF'
       ]
     }
   }

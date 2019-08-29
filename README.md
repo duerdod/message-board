@@ -17,6 +17,7 @@ do `docker-compose` and you're up.
 - [x] Tag posts.
 - [ ] Write tests!
 - [ ] User settings.
+- [ ] Add WebSocket for GraphQL subscriptions.
 - [ ] Filter and sort messages.
 - [x] Signup/Login with jwt and bcryptjs (user: asap_erik, pass:hej or signup yoself, there's no SSL so use some dummy.).
 - [ ] User settings.
