@@ -32,7 +32,7 @@ const StyledForm = styled.form`
 
   input {
     background: ${({ theme }) => theme.color.white.hex};
-    padding: 1rem;
+    padding: 0.6rem;
     border-radius: 3px;
     width: 50%;
     border: 1px solid #dedede;

@@ -2,9 +2,7 @@ import config from '../config';
 
 // Truncate text and add [...].
 function truncateMessage(message, maxLength) {
-  let text = message.slice(0, maxLength);
-  text = `<div class="trunc">${text} </div>`;
-  return text;
+  return `${message.slice(0, maxLength)} ...`;
 }
 
 // Adds timestamp to each message. Should this really be handled client side?

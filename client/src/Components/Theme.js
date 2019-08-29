@@ -188,6 +188,7 @@ export const reset = css`
   body.menu-open {
     height: 100%;
     width: 100%;
+    position: fixed;
     overflow-y: hidden;
   }
 `;

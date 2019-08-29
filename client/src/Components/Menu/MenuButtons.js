@@ -6,10 +6,11 @@ import BackButton from '../ui/BackButton';
 import { withRouter } from 'react-router-dom';
 
 const MenuButtonContainer = styled.div`
-  position: sticky;
+  position: fixed;
   bottom: 55px;
-  width: 250px;
-  margin: 1rem auto;
+  max-width: 250px;
+  left: 50%;
+  transform: translateX(-50%);
   > div {
     display: flex;
     align-items: center;

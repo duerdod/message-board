@@ -10,9 +10,9 @@ const Title = styled.h2`
   color: ${({ theme }) => theme.color.grey.hex};
   text-transform: uppercase;
   span {
-    color: ${({ theme }) => theme.color.primary.hex};
+    color: ${({ theme }) => theme.color.secondary.hex};
     font-weight: 900;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
   }
 `;
 

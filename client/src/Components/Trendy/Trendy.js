@@ -22,6 +22,7 @@ const Page = styled.div`
 
 const PageTitle = styled.h2`
   color: ${({ theme }) => theme.color.primary.tint[7]};
+  color: ${({ theme }) => theme.color.secondary.tint[2]};
   font-weight: 900;
   font-size: 1.2rem;
 `;
@@ -29,12 +30,12 @@ const PageTitle = styled.h2`
 const TagContainer = styled.ul``;
 
 const Tag = styled.li`
-  color: ${({ theme }) => theme.color.primary.tint[7]};
+  color: ${({ theme }) => theme.color.primary.tint[8]};
   font-weight: 200;
   display: inline-block;
   font-size: ${p => p.size}rem;
   margin-right: 0.5rem;
-  opacity: 0.7;
+  opacity: 1;
   transition: all 0.2s ease;
   &:hover {
     color: ${({ theme }) => theme.color.primary.tint[9]};
@@ -52,6 +53,7 @@ const Trendy = ({ collapseMenu }) => {
       <PageTitle>Trending</PageTitle>
       <TagContainer>
         {tags
+          // TODO: Handle sorting and limit server side.
           .sort((first, second) => second.count - first.count)
           .map(
             ({ tag, count, id }, i) =>

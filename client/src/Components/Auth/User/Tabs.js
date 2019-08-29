@@ -21,13 +21,22 @@ const TabUpper = styled.div`
       display: block;
       height: 1px;
       width: 100%;
-      background: ${({ theme }) => theme.black};
+      background: ${({ theme }) => theme.color.primary.tint[7]};
     }
     &.active {
       &::after {
-        background: ${({ theme }) => theme.color.primary.hex};
+        background: ${({ theme }) => theme.color.secondary.hex};
       }
     }
+  }
+  h3 {
+    &:nth-last-of-type(-n + 2) {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+  }
+  ${p => p.theme.isMobile} {
+    text-align: center;
   }
 `;
 
@@ -35,7 +44,12 @@ const TabLower = styled.div``;
 
 const TabTitle = ({ onClick, id, className }) => {
   return (
-    <h3 className={className} onClick={onClick} data-tab-id={id}>
+    <h3
+      className={className}
+      aria-label="Cchange tab"
+      onClick={onClick}
+      data-tab-id={id}
+    >
       {id}
     </h3>
   );
@@ -43,7 +57,7 @@ const TabTitle = ({ onClick, id, className }) => {
 
 const Tabs = ({ currentUser }) => {
   const [openTab, setTabOpen] = useState({
-    id: 'profile'
+    id: 'my messages'
   });
 
   const toggleTab = e => {
@@ -62,22 +76,21 @@ const Tabs = ({ currentUser }) => {
           Profile
         </TabTitle>
         <TabTitle
-          id="messages"
+          id="my messages"
           onClick={toggleTab}
-          className={'messages' === openTab.id ? 'active' : ''}
+          className={'my messages' === openTab.id ? 'active' : ''}
         >
-          Messages
+          My messages
         </TabTitle>
         <TabTitle
-          id="saved-messages"
           onClick={toggleTab}
-          className={'saved' === openTab.id ? 'active' : ''}
+          id="favorites"
+          className={'favorites' === openTab.id ? 'active' : ''}
         >
-          Saved Messages
+          Favorites
         </TabTitle>
         <TabTitle
           id="settings"
-          onClick={toggleTab}
           className={'settings' === openTab.id ? 'active' : ''}
         >
           Settings
@@ -92,9 +105,9 @@ const Tabs = ({ currentUser }) => {
         <UserMessages
           messages={currentUser.messages}
           openTabId={openTab.id}
-          id="messages"
+          id="my messages"
         />
-        <UserSavedMessage openTabId={openTab.id} id="saved-messages" />
+        <UserSavedMessage openTabId={openTab.id} id="favorites" />
       </TabLower>
     </TabContainer>
   );

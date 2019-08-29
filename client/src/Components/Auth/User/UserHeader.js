@@ -24,8 +24,7 @@ const Avatar = styled.div`
 `;
 
 const Username = styled.h2`
-  color: ${({ theme }) => theme.color.primary.tint[1]};
-  /* text-align: right; */
+  color: ${({ theme }) => theme.color.secondary.tint[0]};
   font-weight: 900;
   font-size: 1.8rem;
   margin-top: 2rem;

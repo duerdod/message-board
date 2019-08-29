@@ -108,6 +108,7 @@ const Signup = ({ history }) => {
         </label>
         {error ? <ErrorMessage error={error.message} /> : null}
         <Button
+          color="green"
           size="small"
           onClick={() => {
             signup({

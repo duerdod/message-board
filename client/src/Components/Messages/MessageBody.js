@@ -17,7 +17,7 @@ const MessageText = styled.div`
     word-wrap: break-word;
 
     a {
-      color: ${({ theme }) => theme.color.primary.tint[3]};
+      color: ${({ theme }) => theme.color.primary.tint[2]};
       font-weight: 600;
       margin-left: 0.1rem;
     }
