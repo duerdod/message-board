@@ -43,8 +43,8 @@ const DeleteUser = ({ username, password }) => {
       </DeleteUserButton>
       {isDeletable ? (
         <DeleteInfo>
-          Enter your password to delete your account. All your messages will be
-          deleted.
+          Enter your password to delete your account. All your messages are
+          being deleted. Also.
         </DeleteInfo>
       ) : null}
       {error ? <ErrorMessage error={error.message} /> : null}

@@ -17,7 +17,7 @@ const theme = {
   serif: 'DM Serif Text, serif',
   color: {
     primary: {
-      hex: '#5D50C6',
+      hex: '#6D62CC',
       tint: [
         '#5D50C6',
         '#6D62CC',

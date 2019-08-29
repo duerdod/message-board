@@ -104,7 +104,7 @@ const StatusPage = ({ state }) => {
     <LoadingPage>
       <InnerContainer>
         {state === 'loading' ? (
-          <Text>Spinner.</Text>
+          <Text>Working</Text>
         ) : (
           <>
             <Text className="error">

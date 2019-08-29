@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import styled from '@emotion/styled';
 import { MessageFormContext } from '../../context/message-context';
-import { ADD_MESSAGE, GET_ALL_MESSAGES } from '../../gql/gql';
+import { ADD_MESSAGE, GET_ALL_MESSAGES, GET_TAGS } from '../../gql/gql';
 import { ErrorMessage } from '../StatusPage';
 
 const SendButton = styled.button`
@@ -56,6 +56,9 @@ const FormButton = ({ className }) => {
     refetchQueries: [
       {
         query: GET_ALL_MESSAGES
+      },
+      {
+        query: GET_TAGS
       }
     ],
     onCompleted: onCompleted

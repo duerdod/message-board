@@ -12,7 +12,7 @@ const padding = {
 };
 
 const ThemeButton = styled.button`
-  box-shadow: 0px 1px 2px ${p => p.theme.color[p.color].tint[3]};
+  box-shadow: 0 4px 6px -1px ${p => p.theme.color[p.color].tint[3]};
   font-size: ${p => p.theme.fontSize[p.size]};
   padding: ${p => padding[p.size]};
   color: ${p => p.theme.white};
@@ -28,7 +28,7 @@ const ThemeButton = styled.button`
   margin-right: 4px;
   &:hover {
     background: ${p => p.theme.color[p.color].tint[1]};
-    box-shadow: 0 1px 0px 0 ${p => p.theme.color[p.color].tint[3]};
+    box-shadow: 0 1px 2px 0px ${p => p.theme.color[p.color].tint[3]};
   }
 `;
 

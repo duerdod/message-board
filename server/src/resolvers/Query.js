@@ -1,7 +1,7 @@
 const Query = {
   messages(root, args, context) {
     const messages = context.prisma.messages({
-      first: 150, //args.first,
+      first: args.first,
       skip: args.skip,
       orderBy: 'date_DESC'
     });
@@ -16,13 +16,17 @@ const Query = {
     const user = await context.prisma.user({ id: context.req.user.id });
     return user;
   },
+  // Should be called something else.
   async tag(root, args, context) {
     // Messages because Im only intrested in messages related to the tag ...
     const messages = await context.prisma.tag({ tag: args.tag });
     return messages;
   },
   async tags(root, args, context) {
-    const tags = await context.prisma.tags();
+    const tags = await context.prisma.tags({
+      first: 20,
+      orderBy: 'count_DESC'
+    });
     return tags;
   }
 };

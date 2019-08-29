@@ -46,7 +46,7 @@ const typeDefs = gql`
   }
 
   type Query {
-    messages(first: Int, skip: Int): [Message]
+    messages(first: Int, skip: Int, tags: String): [Message]
     message(id: ID!): Message
     currentUser: User!
     user(username: String): User

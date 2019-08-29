@@ -207,3 +207,14 @@ export const GET_MESSAGE_BY_TAG = gql`
     }
   }
 `;
+
+// For trending
+export const GET_TAGS = gql`
+  query GET_TAGS {
+    tags {
+      id
+      tag
+      count
+    }
+  }
+`;
