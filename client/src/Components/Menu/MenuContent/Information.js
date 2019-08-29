@@ -23,7 +23,7 @@ const Information = () => {
   return (
     <div>
       <Text size="1.7" color="white">
-        PRESS THE BELL <Bell />
+        RING THE BELL <Bell />
       </Text>
       <Text size="1.3" color="white">
         IF YO DISAGREE

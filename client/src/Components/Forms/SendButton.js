@@ -18,7 +18,7 @@ const SendButton = styled.button`
   box-shadow: 0 1px 3px 0 hsla(0, 0%, 0%, 0.1);
   background-size: 200% 200%;
   letter-spacing: 1px;
-  background: ${({ theme }) => theme.color.primary.hex};
+  background: ${({ theme }) => theme.color.green.hex};
   &:hover {
     background-size: 100% 100%;
     box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.1);

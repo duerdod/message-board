@@ -19,12 +19,12 @@ const MessageText = styled.div`
     a {
       color: ${({ theme }) => theme.color.primary.hex};
       font-weight: 600;
-      margin-right: 0.2rem;
+      margin-left: 0.1rem;
     }
   }
 `;
 
-function filterTags(rawMessage) {
+function filterForTags(rawMessage) {
   const { tags, user, message } = rawMessage;
   if (!tags) return <MessageTextWithoutTags message={message} />;
   if (!user) return <MessageTextWithoutTags message={message} />;
@@ -33,7 +33,7 @@ function filterTags(rawMessage) {
   const messageWithTags = message
     .split(checkMessageForTags())
     .filter(text => text !== ' ' && text !== '');
-  return <AppendTagLink message={messageWithTags} />;
+  return <MessageTextWithTags message={messageWithTags} />;
 }
 
 const MessageTextWithoutTags = ({ message }) => (
@@ -42,7 +42,7 @@ const MessageTextWithoutTags = ({ message }) => (
   </MessageText>
 );
 
-const AppendTagLink = ({ message }) => (
+const MessageTextWithTags = ({ message }) => (
   <MessageText>
     <p>
       {message.map((text, i) =>
@@ -62,7 +62,7 @@ const AppendTagLink = ({ message }) => (
 // Children is returned from Post form.
 const MessageBody = ({ message, children }) => (
   <Container className={`${shouldMessageExpand(message.message)} content`}>
-    {message ? filterTags(message) : children}
+    {message ? filterForTags(message) : children}
   </Container>
 );
 

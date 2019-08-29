@@ -93,7 +93,7 @@ const CommentToMessage = ({ id }) => {
             />
           ))}
         <Button
-          color="primary"
+          color="green"
           size="xsmall"
           disabled={loading}
           className="comment-button"

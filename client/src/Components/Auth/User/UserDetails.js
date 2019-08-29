@@ -133,7 +133,7 @@ const UserDetails = ({ currentUser }) => {
           <Button
             disabled={loading}
             size="small"
-            color="primary"
+            color="green"
             onClick={handleSubmit}
           >
             Change details

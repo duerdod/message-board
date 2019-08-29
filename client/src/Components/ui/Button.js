@@ -17,7 +17,7 @@ const ThemeButton = styled.button`
   padding: ${p => padding[p.size]};
   color: ${p => p.theme.white};
   background: ${p => p.theme.color[p.color].hex};
-  border: 3px solid ${p => p.theme.color[p.color].tint[3]};
+  border: 3px solid ${p => p.theme.color[p.color].tint[4]};
   font-family: ${({ theme }) => theme.sansSerif};
   cursor: pointer;
   border-radius: 50px;
@@ -27,7 +27,7 @@ const ThemeButton = styled.button`
   transition: all 0.4s ease;
   margin-right: 4px;
   &:hover {
-    background: ${p => p.theme.color[p.color].tint[1]};
+    background: ${p => p.theme.color[p.color].tint[2]};
     box-shadow: 0 1px 0px 0 ${p => p.theme.color[p.color].tint[3]};
   }
 `;

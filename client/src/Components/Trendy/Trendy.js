@@ -35,7 +35,7 @@ const Tag = styled.li`
   display: inline-block;
   font-size: ${p => p.size}rem;
   margin-right: 0.5rem;
-  opacity: 0.6;
+  opacity: 0.7;
   transition: all 0.2s ease;
   &:hover {
     opacity: 1;

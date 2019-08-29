@@ -17,18 +17,18 @@ const theme = {
   serif: 'DM Serif Text, serif',
   color: {
     primary: {
-      hex: '#4CBCA1',
+      hex: '#FC9EA7',
       tint: [
-        '#1FAB89',
-        '#35B395',
-        '#4CBCA1',
-        '#62C4AC',
-        '#79CDB8',
-        '#8FD5C4',
-        '#A5DDD0',
-        '#BCE6DC',
-        '#D2EEE7',
-        '#E9F7F3',
+        '#FB8691',
+        '#FB929C',
+        '#FC9EA7',
+        '#FCAAB2',
+        '#FDB6BD',
+        '#FDC3C8',
+        '#FDCFD3',
+        '#FEDBDE',
+        '#FEE7E9',
+        '#FFF3F4',
         '#FFFFFF'
       ],
       shade: ['#E488A4', '#CA7992', '#B16A7F', '#985B6D']
@@ -36,16 +36,16 @@ const theme = {
     secondary: {
       hex: '#F9CB45',
       tint: [
-        '#F7BE16',
-        '#F8C52D',
-        '#F9CB45',
-        '#F9D25C',
-        '#FAD873',
-        '#FBDF8B',
-        '#FCE5A2',
-        '#FDECB9',
-        '#FDF2D0',
-        '#FEF9E8',
+        '#FBDA91',
+        '#FBDE9C',
+        '#FCE1A7',
+        '#FCE5B2',
+        '#FDE9BD',
+        '#FDEDC8',
+        '#FDF0D3',
+        '#FEF4DE',
+        '#FEF8E9',
+        '#FFFBF4',
         '#FFFFFF'
       ],
       shade: ['#3E455C', '#373E52', '#303647', '#292E3D']
@@ -67,9 +67,20 @@ const theme = {
       ]
     },
     green: {
-      hex: '#1fab89',
-      tint: ['#35B395', '#4CBCA1', '#62C4AC', '#79CDB8'],
-      shade: ['#1C9A7B', '#19896E', '#167860', '#136752']
+      hex: '#62C4AC',
+      tint: [
+        '#1FAB89',
+        '#35B395',
+        '#4CBCA1',
+        '#62C4AC',
+        '#79CDB8',
+        '#8FD5C4',
+        '#A5DDD0',
+        '#BCE6DC',
+        '#D2EEE7',
+        '#E9F7F3',
+        '#FFFFFF'
+      ]
     },
     grey: {
       hex: '#AEB1B7',

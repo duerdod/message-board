@@ -25,7 +25,7 @@ const TabUpper = styled.div`
     }
     &.active {
       &::after {
-        background: rgba(238, 156, 167, 1);
+        background: ${({ theme }) => theme.color.primary.hex};
       }
     }
   }
