@@ -42,6 +42,14 @@ const Dislike = ({ id, dislikes }) => {
     variables: {
       id
     },
+    optimisticResponse: {
+      __typename: 'Mutation',
+      dislikeMessage: {
+        __typename: 'Message',
+        id,
+        dislikes: dislikes + 1
+      }
+    },
     update(cache, payload) {
       if (dislikes < 5) return;
       // Read cache
