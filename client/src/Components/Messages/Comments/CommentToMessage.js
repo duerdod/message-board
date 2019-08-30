@@ -21,7 +21,7 @@ const Avatar = styled(Person)`
 
 const StyledForm = styled.form`
   background: ${({ theme }) => theme.color.white.tint[6]};
-  padding: 1rem;
+  padding: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -32,7 +32,7 @@ const StyledForm = styled.form`
 
   input {
     background: ${({ theme }) => theme.color.white.hex};
-    padding: 0.6rem;
+    padding: 0.85rem;
     border-radius: 3px;
     width: 50%;
     border: 1px solid #dedede;
@@ -41,7 +41,7 @@ const StyledForm = styled.form`
 
   .comment-button {
     display: block;
-    font-size: 0.6rem;
+    font-size: 0.75rem;
   }
 `;
 

@@ -18,7 +18,9 @@ const Types = {
     messages(parent, args, ctx) {
       // Get parent id from tag and get messages related to that tag id.
       // console.log(parent);
-      return ctx.prisma.tag({ id: parent.id }).messages();
+      return ctx.prisma
+        .tag({ id: parent.id })
+        .messages({ orderBy: 'date_ASC' });
     }
   },
   // Connected user message

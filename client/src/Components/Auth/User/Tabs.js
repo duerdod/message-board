@@ -21,7 +21,7 @@ const TabUpper = styled.div`
       display: block;
       height: 1px;
       width: 100%;
-      background: ${({ theme }) => theme.color.primary.tint[7]};
+      background: ${({ theme }) => theme.color.secondary.tint[8]};
     }
     &.active {
       &::after {
@@ -57,7 +57,7 @@ const TabTitle = ({ onClick, id, className }) => {
 
 const Tabs = ({ currentUser }) => {
   const [openTab, setTabOpen] = useState({
-    id: 'my messages'
+    id: 'profile'
   });
 
   const toggleTab = e => {

@@ -6,7 +6,7 @@ export const Container = styled.section`
   position: relative;
   padding: 1rem;
   > div {
-    background: ${({ theme }) => theme.color.white.tint[6]};
+    background: ${({ theme }) => theme.color.primary.tint[6]};
     border-radius: 0px;
     box-shadow: none;
   }

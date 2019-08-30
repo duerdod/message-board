@@ -12,10 +12,6 @@ import Authenticated from '../Auth/Authenticated';
 import Signout from '../Auth/Signout';
 
 const MenuContainer = styled.div`
-  &.menu-open {
-    left: 0;
-  }
-
   height: 100%;
   max-width: 485px;
   width: 400px;
@@ -24,7 +20,7 @@ const MenuContainer = styled.div`
   top: 0;
   left: -100%;
   transition: left 0.2s ease-out;
-  box-shadow: 0 3px 8px 0 ${p => p.theme.color[p.color].tint[3]};
+  box-shadow: 0 3px 6px ${p => p.theme.color[p.color].tint[3]};
   background: linear-gradient(170deg, ${p =>
     p.theme.color[p.color].tint[2]} 75% , ${p =>
   p.theme.color[p.color].tint[3]});
@@ -40,6 +36,9 @@ const MenuContainer = styled.div`
   );
       THIS WAS FUN. BUT NOT AS PERFORMANT? I THINK.
    */
+  &.menu-open {
+    left: 0;
+  }
   ${p => p.theme.isMobile} { 
     width: 280px;
     max-width: 80%;

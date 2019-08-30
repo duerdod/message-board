@@ -12,7 +12,7 @@ import Button from '../ui/Button';
 // import config from '../../config';
 
 const Page = styled.main`
-  button {
+  .fetch-more {
     left: 50%;
     position: absolute;
     transform: translateX(-50%);
@@ -29,9 +29,7 @@ const Messages = ({ tag }) => {
     tag ? GET_MESSAGE_BY_TAG : GET_ALL_MESSAGES,
     {
       variables: {
-        tag: `#${tag}`,
-        first: 150,
-        skip: 0
+        tag: `#${tag}`
       }
     }
   );
@@ -44,7 +42,6 @@ const Messages = ({ tag }) => {
   const fetchMessages = () => {
     fetchMore({
       variables: {
-        first: 150,
         skip: data.messages.length
       },
       updateQuery: (lastResult, { fetchMoreResult }) => {
@@ -68,11 +65,10 @@ const Messages = ({ tag }) => {
         ))}
       </MessagesGrid>
       <Button
+        className="fetch-more"
         color="secondary"
         size="lagom"
-        onClick={() => {
-          console.log('not yet..');
-        }}
+        onClick={() => console.log('pagination')}
       >
         Is there more messages?
       </Button>
@@ -81,29 +77,3 @@ const Messages = ({ tag }) => {
 };
 
 export default Messages;
-
-// TODO: Come up with some UI for this... I works like a chaarm.
-//
-
-/* <ThemeButton
-        style={{
-          width: '60px',
-          margin: '2rem auto',
-          justifyContent: 'center'
-        }}
-        onClick={fetchMessages}
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="#fcfafa"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
-        </svg>
-      </ThemeButton> */

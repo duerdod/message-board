@@ -24,7 +24,7 @@ const ThemeButton = styled.button`
   text-transform: uppercase;
   font-weight: 900;
   letter-spacing: 1px;
-  transition: all 0.4s ease;
+  transition: all 0.2s ease;
   margin-right: 4px;
   &:hover {
     background: ${p => p.theme.color[p.color].tint[1]};

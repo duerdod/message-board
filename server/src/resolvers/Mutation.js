@@ -124,7 +124,8 @@ const Mutation = {
     // Query messages with provided id.
     const message = await context.prisma.message({ id });
     // Does message still exist?
-    if (!message) throw new Error('No message found');
+    if (!message)
+      throw new Error('No message found. Is it still there? Yo sure?');
 
     if (context.cookies['last_comment']) {
       throw new Error('Hang tight between yo comments, yo. 🥁');
@@ -132,8 +133,8 @@ const Mutation = {
 
     // Update message with provided comment and author
     const createdComment = await context.prisma.createComment({
-      comment,
-      author,
+      comment: sanitizer(comment),
+      author: sanitizer(author),
       date: Date.now().toString(),
       dislikes: 0,
       message: { connect: { id } }
