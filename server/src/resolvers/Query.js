@@ -1,7 +1,7 @@
 const Query = {
   messages(root, args, context) {
     const messages = context.prisma.messages({
-      first: 150, //args.first,
+      first: args.first, // 150,
       skip: args.skip,
       orderBy: 'date_DESC'
     });

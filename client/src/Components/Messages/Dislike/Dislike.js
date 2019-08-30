@@ -63,7 +63,7 @@ const Dislike = ({ id, dislikes }) => {
       onChange={dislikeMessage}
       disabled={loading}
     >
-      <DislikeButton type="radio" id={`dislike-${id}`} />
+      <DislikeButton type="checkbox" id={`dislike-${id}`} />
       <StyledBell className={loading && 'pressed'} />
       <Dislikees>{dislikes}</Dislikees>
     </DislikeContainer>

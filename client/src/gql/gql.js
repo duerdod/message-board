@@ -7,12 +7,19 @@ const message = `
   author
   dislikes
   date
+  comments {
+    id
+    __typename
+  }
   tags {
     id
     tag
+    __typename
   }
   user {
     id
+    username
+    __typename
   }
   __typename
 `;
@@ -56,15 +63,9 @@ export const GET_SINGLE_MESSAGE = gql`
 `;
 
 export const GET_ALL_MESSAGES = gql`
-  query GET_ALL_MESSAGES($first: Int, $skip: Int) {
-    messages(first: $first, skip: $skip) {
+  query GET_ALL_MESSAGES(, $first: Int, $skip: Int) {
+    messages(, first: $first, skip: $skip) @connection(key: "messages") {
       ${message}
-      comments {
-        id
-      }
-      user {
-        id
-      }
     }
   }
 `;
@@ -82,7 +83,7 @@ export const DISLIKE_MESSAGE = gql`
 export const ADD_MESSAGE = gql`
   mutation ADD_MESSAGE($title: String!, $message: String!, $author: String!) {
     addMessage(title: $title, message: $message, author: $author) {
-      id
+      ${message}
       __typename
     }
   }

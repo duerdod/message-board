@@ -56,13 +56,27 @@ const FormButton = ({ className }) => {
     variables: values,
     refetchQueries: [
       {
-        query: GET_ALL_MESSAGES
-      },
-      {
         query: GET_TAGS
       }
     ],
-    onCompleted: onCompleted
+    onCompleted: onCompleted,
+    update(
+      cache,
+      {
+        data: { addMessage }
+      }
+    ) {
+      // read cache
+      const data = cache.readQuery({ query: GET_ALL_MESSAGES });
+      // write back to cache
+      cache.writeQuery({
+        query: GET_ALL_MESSAGES,
+        data: {
+          ...data,
+          messages: [addMessage, ...data.messages]
+        }
+      });
+    }
   });
 
   return (

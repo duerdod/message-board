@@ -29,7 +29,9 @@ const Messages = ({ tag }) => {
     tag ? GET_MESSAGE_BY_TAG : GET_ALL_MESSAGES,
     {
       variables: {
-        tag: `#${tag}`
+        tag: `#${tag}`,
+        first: 20,
+        skip: 0
       }
     }
   );
@@ -68,7 +70,7 @@ const Messages = ({ tag }) => {
         className="fetch-more"
         color="secondary"
         size="lagom"
-        onClick={() => console.log('pagination')}
+        onClick={fetchMessages}
       >
         Is there more messages?
       </Button>
