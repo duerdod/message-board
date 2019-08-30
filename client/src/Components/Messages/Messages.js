@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import styled from '@emotion/styled';
 import { GET_ALL_MESSAGES, GET_MESSAGE_BY_TAG } from '../../gql/gql';
@@ -16,12 +16,21 @@ const Page = styled.main`
     left: 50%;
     position: absolute;
     transform: translateX(-50%);
+    margin: 1rem 0;
+    white-space: nowrap;
+    &:disabled {
+      opacity: 0.3;
+    }
   }
 `;
 
 // TODO: Rewrite to use tag as variable on GET_ALL_MESSAGES instead.
-// TODO: How to know when there is no more fetchMore without using cursors? ...
+// TODO: How to know when there is no more fetchMore without using cursors?
+// Testing it with state.
 const Messages = ({ tag }) => {
+  const [isEndReached, setEndReached] = useState(
+    window.location.href.includes('/messages/')
+  );
   const { isFormOpen } = useContext(MessageFormContext);
 
   // Tag = is on page /messages/:tag
@@ -30,7 +39,7 @@ const Messages = ({ tag }) => {
     {
       variables: {
         tag: `#${tag}`,
-        first: 20,
+        first: 45,
         skip: 0
       }
     }
@@ -40,13 +49,15 @@ const Messages = ({ tag }) => {
   if (loading) return <StatusPage state={loading && 'loading'} />;
   const { messages } = tag ? data.tag : data;
 
-  // eslint-disable-next-line
   const fetchMessages = () => {
     fetchMore({
       variables: {
         skip: data.messages.length
       },
       updateQuery: (lastResult, { fetchMoreResult }) => {
+        if (fetchMoreResult.messages.length < 1) {
+          setEndReached(true);
+        }
         if (!fetchMoreResult) {
           return lastResult;
         }
@@ -67,12 +78,13 @@ const Messages = ({ tag }) => {
         ))}
       </MessagesGrid>
       <Button
+        disabled={isEndReached}
         className="fetch-more"
         color="secondary"
         size="lagom"
         onClick={fetchMessages}
       >
-        Is there more messages?
+        {isEndReached ? 'No more messages' : 'Is there more messages?'}
       </Button>
     </Page>
   );
