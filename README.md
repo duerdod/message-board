@@ -1,6 +1,6 @@
 ## Message Board
 
-Sleepingly Heroku-deployed at: http://bulletin.okbry.cool/. 🐌 🚀
+Sleepy, unsecure Heroku-deploy at: http://bulletin.okbry.cool/. 🔓 🐌 🚀
 
 Internet has no need for this application but yet it's a work in progress.
 Comes with the most simplest sanitizer for all you evil ones.
