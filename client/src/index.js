@@ -18,7 +18,6 @@ import MaxWidth from './Components/ui/MaxWidth';
 
 // Pages
 import Board from './Board';
-import Trendy from './Components/Trendy/Trendy';
 import MessagesWithTag from './Components/Messages/Tags/MessagesWithTag';
 import Comments from './Components/Messages/Comments/Comments';
 
@@ -55,7 +54,6 @@ const App = () => {
                 <Route path="/signup" component={Signup} />
                 <Route path="/signin" component={Signin} />
                 <Route path="/profile" component={Profile} />
-                <Route path="/trendie" component={Trendy} />
               </Switch>
             </MaxWidth>
             <MenuButtons />

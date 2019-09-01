@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { useMutation } from '@apollo/react-hooks';
 import { ReactComponent as Bell } from '../../../svg/Bell.svg';
-import { DISLIKE_MESSAGE, GET_ALL_MESSAGES } from '../../../gql/gql';
+import { DISLIKE_MESSAGE, GET_ALL_MESSAGES, GET_TAGS } from '../../../gql/gql';
 import BellAnimation from '../../ui/BellAnimation';
 
 const DislikeContainer = styled.label`
@@ -51,17 +51,19 @@ const Dislike = ({ id, dislikes }) => {
       }
     },
     update(cache, payload) {
-      if (dislikes < 5) return;
-      // Read cache
-      const data = cache.readQuery({ query: GET_ALL_MESSAGES });
+      // Update cache after removal
+      if (dislikes === 5) {
+        // Read cache
+        const data = cache.readQuery({ query: GET_ALL_MESSAGES });
+        // Remove message from cache
+        data.messages = data.messages.filter(
+          message => message.id !== payload.data.dislikeMessage.id
+        );
 
-      // Remove message from cache
-      data.messages = data.messages.filter(
-        message => message.id !== payload.data.dislikeMessage.id
-      );
-
-      // Put back into Apollo cache
-      cache.writeQuery({ query: GET_ALL_MESSAGES, data });
+        // Put back into Apollo cache
+        cache.writeQuery({ query: GET_ALL_MESSAGES, data });
+      }
+      return;
     }
   });
 
@@ -71,7 +73,7 @@ const Dislike = ({ id, dislikes }) => {
       onChange={dislikeMessage}
       disabled={loading}
     >
-      <DislikeButton type="radio" id={`dislike-${id}`} />
+      <DislikeButton type="checkbox" id={`dislike-${id}`} />
       <StyledBell className={loading && 'pressed'} />
       <Dislikees>{dislikes}</Dislikees>
     </DislikeContainer>

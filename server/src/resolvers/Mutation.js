@@ -6,7 +6,7 @@ const {
   validateMessage,
   sanitizer,
   extractTagsFromMessage,
-  checkMessageForTags
+  hasTags
 } = require('../utils/utils');
 
 const Mutation = {
@@ -52,7 +52,7 @@ const Mutation = {
 
     // For now this is only available for signed up users.
     // Is there any # (tags) in the new message?
-    if (checkMessageForTags().test(message)) {
+    if (hasTags().test(message)) {
       extractTagsFromMessage(message).forEach(async (tag, i) => {
         // No excisting tag? Create it.
         const existingTag = await context.prisma.tag({ tag }).messages();
@@ -60,7 +60,7 @@ const Mutation = {
           const newTag = await context.prisma.createTag({
             tag,
             messages: { connect: { id: newMessageWithUser.id } },
-            count: 0
+            count: 1
           });
 
           return newTag;
@@ -95,9 +95,8 @@ const Mutation = {
     const { dislikes } = message;
 
     // If reached dislike count
-    if (dislikes >= 5) {
-      // Remove message.
-      const deletedMessage = await context.prisma.deleteMessage({ id });
+    if (dislikes === 5) {
+      const deletedMessage = await Mutation.deleteMessage(id, context);
       return deletedMessage;
     }
 
@@ -112,12 +111,39 @@ const Mutation = {
     });
 
     // Return the updated message.
+
     return dislike;
   },
 
-  async deleteMessage(root, { id }, context) {
-    const deletedMessage = await context.prisma.deleteMessage({ id });
-    return deletedMessage;
+  async deleteMessage(id, context) {
+    // ONLY BECAUSE THE AGGREGATE DOES NOT WORK. TODO!!!!!! MESS!!
+    const message = await context.prisma.message({ id });
+    if (hasTags().test(message.message)) {
+      extractTagsFromMessage(message.message).forEach(async (tag, i) => {
+        // If last message among related tags
+        const tagMessages = await context.prisma.tag({ tag }).messages();
+        if (tagMessages.length === 1) {
+          await context.prisma.deleteTag({ tag });
+          return await context.prisma.deleteMessage({ id });
+        }
+
+        // Otherwise update it with new use count.
+        await context.prisma.updateTag({
+          data: {
+            messages: { disconnect: { id } },
+            count: tagMessages.length - 1
+          },
+          where: {
+            tag
+          }
+        });
+        return await context.prisma.deleteMessage({ id });
+      });
+    } else {
+      const deletedMessage = await context.prisma.deleteMessage({ id });
+      return deletedMessage;
+    }
+    return message;
   },
 
   async commentMessage(root, { id, author, comment }, context, info) {
@@ -254,14 +280,6 @@ const Mutation = {
     if (!isPasswordMatch) {
       throw new Error('Wrong password :(');
     }
-
-    // Remove related messages
-    await context.prisma.deleteManyMessages({
-      user: {
-        id: user.id
-      }
-    });
-    // TODO: and remove comments
 
     // Remove and sign out.
     const userToRemove = await context.prisma.deleteUser({ username });

@@ -24,7 +24,7 @@ const Query = {
   },
   async tags(root, args, context) {
     const tags = await context.prisma.tags({
-      first: 20,
+      first: 10,
       orderBy: 'count_DESC'
     });
     return tags;

@@ -28,15 +28,14 @@ function sanitizer(text) {
   return cleanWithEmojis.clean(text);
 }
 
-function checkMessageForTags() {
+function hasTags() {
   return new RegExp(/(#[A-Za-z0-9-_]+)(?:#[A-Za-z0-9-_]+)*/gi);
 }
 
 function extractTagsFromMessage(message) {
-  const rawTags = message.match(checkMessageForTags());
+  const rawTags = message.match(hasTags());
   if (!rawTags) return [];
-  // Tags have to be longer than 1 char. If they are,
-  // replace to someting "unique" to handle on client.
+  // Tags have to be longer than 1 char.
   const lengthCheckedTags = rawTags.filter(tag => tag.length > 2);
   return lengthCheckedTags;
 }
@@ -45,6 +44,6 @@ module.exports = {
   addUserTimestamp,
   validateMessage,
   sanitizer,
-  checkMessageForTags,
+  hasTags,
   extractTagsFromMessage
 };

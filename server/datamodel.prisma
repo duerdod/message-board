@@ -1,7 +1,7 @@
 type Tag {
     id: ID! @id @unique
     tag: String! @unique
-    messages: [Message]
+    messages: [Message] @relation(name: "TagOnMessage", onDelete: SET_NULL)
     count: Int!
 }
 
@@ -10,8 +10,8 @@ type Comment {
   comment: String!
   author: String!
   dislikes: Int!
-  message: Message
-  user: User
+  message: Message @relation(name: "CommentOnMessage")
+  user: User @relation(name: "UserOnComment")
   date: String!
 }
 
@@ -20,11 +20,11 @@ type Message {
   title: String!
   message: String!
   author: String!
-  dislikes: Int!
-  comments: [Comment]
-  user: User
+  dislikes: Int! @default(value: 0)
+  comments: [Comment] @relation(name: "CommentOnMessage", onDelete: CASCADE)
+  user: User @relation(name: "UserOnMessage", onDelete: SET_NULL)
+  tags: [Tag] @relation(name: "TagOnMessage", onDelete: SET_NULL)
   date: String
-  tags: [Tag]
 }
 
 type User {
@@ -34,6 +34,6 @@ type User {
   firstname: String
   lastname: String
   password: String!
-  messages: [Message]
-  comments: [Comment]
+  messages: [Message] @relation(name: "UserOnMessage", onDelete: CASCADE)
+  comments: [Comment] @relation(name: "UserOnComment", onDelete: CASCADE)
 }

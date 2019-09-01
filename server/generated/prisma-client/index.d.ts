@@ -352,6 +352,9 @@ export interface MessageWhereInput {
   comments_some?: Maybe<CommentWhereInput>;
   comments_none?: Maybe<CommentWhereInput>;
   user?: Maybe<UserWhereInput>;
+  tags_every?: Maybe<TagWhereInput>;
+  tags_some?: Maybe<TagWhereInput>;
+  tags_none?: Maybe<TagWhereInput>;
   date?: Maybe<String>;
   date_not?: Maybe<String>;
   date_in?: Maybe<String[] | String>;
@@ -366,9 +369,6 @@ export interface MessageWhereInput {
   date_not_starts_with?: Maybe<String>;
   date_ends_with?: Maybe<String>;
   date_not_ends_with?: Maybe<String>;
-  tags_every?: Maybe<TagWhereInput>;
-  tags_some?: Maybe<TagWhereInput>;
-  tags_none?: Maybe<TagWhereInput>;
   AND?: Maybe<MessageWhereInput[] | MessageWhereInput>;
   OR?: Maybe<MessageWhereInput[] | MessageWhereInput>;
   NOT?: Maybe<MessageWhereInput[] | MessageWhereInput>;
@@ -497,8 +497,8 @@ export interface MessageUpdateWithoutCommentsDataInput {
   author?: Maybe<String>;
   dislikes?: Maybe<Int>;
   user?: Maybe<UserUpdateOneWithoutMessagesInput>;
-  date?: Maybe<String>;
   tags?: Maybe<TagUpdateManyWithoutMessagesInput>;
+  date?: Maybe<String>;
 }
 
 export interface CommentSubscriptionWhereInput {
@@ -621,8 +621,8 @@ export interface MessageUpdateInput {
   dislikes?: Maybe<Int>;
   comments?: Maybe<CommentUpdateManyWithoutMessageInput>;
   user?: Maybe<UserUpdateOneWithoutMessagesInput>;
-  date?: Maybe<String>;
   tags?: Maybe<TagUpdateManyWithoutMessagesInput>;
+  date?: Maybe<String>;
 }
 
 export type UserWhereUniqueInput = AtLeastOne<{
@@ -839,10 +839,10 @@ export interface MessageCreateWithoutCommentsInput {
   title: String;
   message: String;
   author: String;
-  dislikes: Int;
+  dislikes?: Maybe<Int>;
   user?: Maybe<UserCreateOneWithoutMessagesInput>;
-  date?: Maybe<String>;
   tags?: Maybe<TagCreateManyWithoutMessagesInput>;
+  date?: Maybe<String>;
 }
 
 export interface CommentWhereInput {
@@ -932,11 +932,11 @@ export interface MessageCreateInput {
   title: String;
   message: String;
   author: String;
-  dislikes: Int;
+  dislikes?: Maybe<Int>;
   comments?: Maybe<CommentCreateManyWithoutMessageInput>;
   user?: Maybe<UserCreateOneWithoutMessagesInput>;
-  date?: Maybe<String>;
   tags?: Maybe<TagCreateManyWithoutMessagesInput>;
+  date?: Maybe<String>;
 }
 
 export interface CommentCreateWithoutUserInput {
@@ -1022,10 +1022,10 @@ export interface MessageCreateWithoutUserInput {
   title: String;
   message: String;
   author: String;
-  dislikes: Int;
+  dislikes?: Maybe<Int>;
   comments?: Maybe<CommentCreateManyWithoutMessageInput>;
-  date?: Maybe<String>;
   tags?: Maybe<TagCreateManyWithoutMessagesInput>;
+  date?: Maybe<String>;
 }
 
 export interface TagUpdateManyWithWhereNestedInput {
@@ -1095,7 +1095,7 @@ export interface MessageCreateWithoutTagsInput {
   title: String;
   message: String;
   author: String;
-  dislikes: Int;
+  dislikes?: Maybe<Int>;
   comments?: Maybe<CommentCreateManyWithoutMessageInput>;
   user?: Maybe<UserCreateOneWithoutMessagesInput>;
   date?: Maybe<String>;
@@ -1147,8 +1147,8 @@ export interface MessageUpdateWithoutUserDataInput {
   author?: Maybe<String>;
   dislikes?: Maybe<Int>;
   comments?: Maybe<CommentUpdateManyWithoutMessageInput>;
-  date?: Maybe<String>;
   tags?: Maybe<TagUpdateManyWithoutMessagesInput>;
+  date?: Maybe<String>;
 }
 
 export interface MessageCreateManyWithoutUserInput {
@@ -1564,7 +1564,6 @@ export interface MessagePromise extends Promise<Message>, Fragmentable {
     last?: Int;
   }) => T;
   user: <T = UserPromise>() => T;
-  date: () => Promise<String>;
   tags: <T = FragmentableArray<Tag>>(args?: {
     where?: TagWhereInput;
     orderBy?: TagOrderByInput;
@@ -1574,6 +1573,7 @@ export interface MessagePromise extends Promise<Message>, Fragmentable {
     first?: Int;
     last?: Int;
   }) => T;
+  date: () => Promise<String>;
 }
 
 export interface MessageSubscription
@@ -1594,7 +1594,6 @@ export interface MessageSubscription
     last?: Int;
   }) => T;
   user: <T = UserSubscription>() => T;
-  date: () => Promise<AsyncIterator<String>>;
   tags: <T = Promise<AsyncIterator<TagSubscription>>>(args?: {
     where?: TagWhereInput;
     orderBy?: TagOrderByInput;
@@ -1604,6 +1603,7 @@ export interface MessageSubscription
     first?: Int;
     last?: Int;
   }) => T;
+  date: () => Promise<AsyncIterator<String>>;
 }
 
 export interface MessageNullablePromise
@@ -1624,7 +1624,6 @@ export interface MessageNullablePromise
     last?: Int;
   }) => T;
   user: <T = UserPromise>() => T;
-  date: () => Promise<String>;
   tags: <T = FragmentableArray<Tag>>(args?: {
     where?: TagWhereInput;
     orderBy?: TagOrderByInput;
@@ -1634,6 +1633,7 @@ export interface MessageNullablePromise
     first?: Int;
     last?: Int;
   }) => T;
+  date: () => Promise<String>;
 }
 
 export interface PageInfo {

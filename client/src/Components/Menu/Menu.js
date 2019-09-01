@@ -5,7 +5,7 @@ import { AppContext } from '../../context/app-context';
 import FAQ from './MenuContent/FAQ';
 import Information from './MenuContent/Information';
 
-import Trendy from '../Trendy/Trendy';
+import Trending from '../Messages/Trending/Trending';
 
 // AUTH
 import Authenticated from '../Auth/Authenticated';
@@ -124,7 +124,7 @@ const Menu = () => {
             </li>
           </Authenticated>
         </NavItems>
-        <Trendy collapseMenu={collapseMenu} />
+        <Trending collapseMenu={collapseMenu} />
         <FAQ />
       </MenuInnerContainer>
     </MenuContainer>

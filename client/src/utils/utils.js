@@ -6,7 +6,6 @@ function truncateMessage(message, maxLength) {
 }
 
 // Adds timestamp to each message. Should this really be handled client side?
-// Rewrite. The output should be 1 minute ago, 4 hours ago etcetc., until there is "a new day". CHECKKKK!
 function addTimestamp(time = Date.now()) {
   const added = new Date(Number(time));
   const now = new Date();
@@ -53,7 +52,7 @@ const trimErrorMessage = error => {
 };
 
 // Self explanatory.
-// This is later passed to classNames.
+// This is later passed as className
 const shouldMessageExpand = (cardContent = '') =>
   cardContent && cardContent.length > config.cardContentLength
     ? `expanded`
