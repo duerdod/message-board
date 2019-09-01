@@ -86,14 +86,28 @@ function generateHandsomeUrl(url) {
   return newUrl;
 }
 
+function getUserToken(cookieName) {
+  const token = document.cookie
+    .split(';')
+    .find(cookie => cookie.trim().startsWith(cookieName));
+  return token;
+}
+
+function removeUserToken() {
+  const cookieName = 'userToken=';
+  let cookie = getUserToken(cookieName);
+  cookie = `${cookie.replace(
+    cookie.substring(cookieName.length)
+  )};expires=${new Date(Date.now() - 1)}`;
+  document.cookie = cookie;
+}
+
 // "Approval". No idea what to call it.
-// Also make some nicer calculations. There should be a number between 1-100%.
+// Also make some nicer calculations. There should be a number between -999%-100%.
 function userApproval(messages = []) {
-  const approvalRate = messages.reduce(
-    (rate, message) =>
-      Math.floor(((rate += message.dislikes) / messages.length) * 25),
-    0
-  );
+  const approvalRate = messages.reduce((rate, message) => {
+    return (rate -= message.dislikes / messages.length);
+  }, 100);
   return approvalRate;
 }
 
@@ -109,6 +123,8 @@ export {
   shouldMessageExpand,
   forwardOnEnter,
   generateHandsomeUrl,
+  getUserToken,
+  removeUserToken,
   userApproval,
   checkMessageForTags
 };

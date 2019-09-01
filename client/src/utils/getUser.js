@@ -1,13 +1,12 @@
 import { GET_CURRENT_USER } from '../gql/gql';
 import { client } from '../index';
+import { getUserToken } from './utils';
 
 const cookieName = 'userToken=';
 
 async function getToken() {
   // So this feels shady.
-  let token = document.cookie
-    .split(';')
-    .find(cookie => cookie.trim().startsWith(cookieName));
+  let token = getUserToken(cookieName);
   if (!token) {
     return null;
   }

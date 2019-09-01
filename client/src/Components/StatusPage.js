@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { trimErrorMessage } from '../utils/utils';
+import { trimErrorMessage, removeUserToken } from '../utils/utils';
 import Button from './ui/Button';
 
 const LoadingPage = styled.div`
@@ -114,7 +114,10 @@ const StatusPage = ({ state }) => {
             <Button
               size="large"
               color="primary"
-              onClick={() => window.location.reload()}
+              onClick={() => {
+                removeUserToken();
+                window.location.replace('/');
+              }}
             >
               Try again
             </Button>

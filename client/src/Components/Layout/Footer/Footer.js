@@ -5,7 +5,7 @@ const FooterContainer = styled.footer`
   height: 200px;
   /* background: ${({ theme }) => theme.pink}; */
   margin: 0;
-  padding: 1rem;
+  padding: 1rem 3rem 1rem 1rem;
   border-top: 1px solid ${({ theme }) => theme.color.white.tint[4]};
   display: flex;
   justify-content: center;

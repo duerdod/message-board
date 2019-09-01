@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { useMutation } from '@apollo/react-hooks';
 import { ReactComponent as Bell } from '../../../svg/Bell.svg';
-import { DISLIKE_MESSAGE, GET_ALL_MESSAGES, GET_TAGS } from '../../../gql/gql';
+import { DISLIKE_MESSAGE, GET_ALL_MESSAGES } from '../../../gql/gql';
 import BellAnimation from '../../ui/BellAnimation';
 
 const DislikeContainer = styled.label`
@@ -73,7 +73,7 @@ const Dislike = ({ id, dislikes }) => {
       onChange={dislikeMessage}
       disabled={loading}
     >
-      <DislikeButton type="checkbox" id={`dislike-${id}`} />
+      <DislikeButton type="radio" id={`dislike-${id}`} />
       <StyledBell className={loading && 'pressed'} />
       <Dislikees>{dislikes}</Dislikees>
     </DislikeContainer>

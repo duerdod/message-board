@@ -28,9 +28,8 @@ const Page = styled.main`
 // TODO: How to know when there is no more fetchMore without using cursors?
 // Testing it with state.
 const Messages = ({ tag }) => {
-  const [isEndReached, setEndReached] = useState(
-    window.location.href.includes('/messages/')
-  );
+  const isStartPage = window.location.href.includes('/messages/');
+  const [isEndReached, setEndReached] = useState(isStartPage);
   const { isFormOpen } = useContext(MessageFormContext);
 
   // Tag = is on page /messages/:tag
