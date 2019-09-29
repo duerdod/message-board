@@ -1,27 +1,23 @@
 ## Message Board
 
-Sleepy, unsecure Heroku-deploy at: http://bulletin.okbry.cool/. 🔓 🐌 🚀
+Sleepy, unencrypted Heroku-deploy at: http://bulletin.okbry.cool/. 🔓 🐌 🚀
 
 Internet has no need for this application but yet it's a work in progress.
 Comes with the most simplest sanitizer for all you evil ones.
-
-Requires `Docker` and `docker-compose`,  
-do `docker-compose` and you're up.
 
 ## Todo
 
 - [x] Message grid cleanup.
 - [x] "Vote" for removal.
 - [x] Add comments.
-- [ ] "Pagination".
-- [x] Tag posts.
+- [x] "Pagination".
+- [x] Tag and "trending" posts.
+- [x] Signup/Login using jwt and bcryptjs (use provided test user or signup, unencrypted, use dummy).
 - [ ] Write tests!
 - [ ] User settings.
-- [ ] Add WebSocket for GraphQL subscriptions.
+- [ ] WebSocket for GraphQL subscriptions.
+- [ ] Error handling.
 - [ ] Filter and sort messages.
-- [x] Signup/Login with jwt and bcryptjs (user: asap_erik, pass:hej or signup yoself, there's no SSL so use some dummy.).
-- [ ] User settings.
-- [ ] Better server side error handling.
 - [ ] Naming, refactoring and cleanup.
 - [ ] Cleanup, refactoring, cleanup, refactoring, cleanup, refactoring, cleanup, refactoring.
 

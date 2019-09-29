@@ -1,6 +1,5 @@
+// Type resolvers.
 const Types = {
-  // Type resolvers. Where to put them??! They cannot stay.
-  // Sub fields to message.
   Message: {
     comments(parent, args, ctx) {
       return ctx.prisma

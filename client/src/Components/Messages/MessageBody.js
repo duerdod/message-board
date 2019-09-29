@@ -60,10 +60,15 @@ const MessageTextWithTags = ({ message }) => (
 );
 
 // Children is returned from Post form.
-const MessageBody = ({ message, children }) => (
-  <Container className={`${shouldMessageExpand(message.message)} content`}>
-    {message ? filterForTags(message) : children}
-  </Container>
-);
+const MessageBody = ({ message, children }) => {
+  const formatedMessage = React.useMemo(() => filterForTags(message), [
+    message
+  ]);
+  return (
+    <Container className={`${shouldMessageExpand(message.message)} content`}>
+      {message ? formatedMessage : children}
+    </Container>
+  );
+};
 
 export default MessageBody;

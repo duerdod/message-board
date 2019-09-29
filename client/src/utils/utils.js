@@ -102,8 +102,7 @@ function removeUserToken() {
   document.cookie = cookie;
 }
 
-// "Approval". No idea what to call it.
-// Also make some nicer calculations. There should be a number between -999%-100%.
+// Also make some nicer calculations. There should be a number between -99%-100%.
 function userApproval(messages = []) {
   const approvalRate = messages.reduce((rate, message) => {
     return (rate -= message.dislikes / messages.length);
