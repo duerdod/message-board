@@ -11,7 +11,7 @@
   "author": "erikp",
   "license": "ISC",
   "dependencies": {
-    "apollo-server": "^2.7.2",
+    "apollo-server": "^2.25.3",
     "apollo-server-express": "^2.7.2",
     "bad-words": "^3.0.3",
     "bcryptjs": "^2.4.3",
